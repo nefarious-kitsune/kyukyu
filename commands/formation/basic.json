@@ -1,0 +1,27 @@
+{
+  "embed": {
+    "title": "Basic Formtion",
+    "description": "Tips on basic formation for new players.",
+    "url": "https://sites.google.com/view/arena-masters/tips/basic-forms",
+    "image": {
+      "url": "https://cdn.discordapp.com/attachments/831064145637539860/831370948463689738/basic-formation.JPG"
+    },
+    "fields": [
+      {
+        "name": "Basics",
+        "value": "• Prioritize the front-line. Put your best melee troops in the first two rows.\n• Put your ranged units in the middle to protect them.\n• Put some defense at the back row.\n• Form an archer wall so your back defenders would stay at the back."
+      },
+      {
+        "name": "Value Troops",
+        "value": "__Undead Soldier__: fast-moving, high-attack troops that can revive once. Put them in the front. If you have spare units, put some in the back.\n__Magic Apprentices__: fast back-line attackers who can deal AoE damage. Put them in the front so they can reach enemy's back faster.\n__Goblikazes__: self-exploding units that can weaken enemy's front line. Put them in the first and last rows.\n__Ghost Assassins__: fast-attacking units that blink to the enemy's back. Position them so they can trigger enemy's back-row Goblikazes.\n__Ballista__: powerful range units that deal damage to multiple units in a straight line. They have limited ranges, so put them in row 2-3 if possible.\n__Ice Mages__: powerful long-range units that deal damage to multiple units in a circle.\n__Archers__: fast-attacking long-range units."
+      },
+      {
+        "name": "Filler Troops",
+        "value": "Ogre Warrior, Paladin, Harbinger of Fire, Bandits, and Cactuses are useful placeholder troops for beginners."
+      }
+    ],
+    "footer": {
+      "text": "For more tips, use `?formation intermediate`, `?formation leveling`"
+    }
+  }
+}

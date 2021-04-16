@@ -1,0 +1,19 @@
+{
+  "name": "kyukyu-bot",
+  "version": "1.0.0",
+  "description": "Information bot for the mobile game Art of War: Legions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kitsune",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^11.5.1",
+    "dotenv": "^8.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.24.0",
+    "eslint-config-google": "^0.14.0"
+  }
+}

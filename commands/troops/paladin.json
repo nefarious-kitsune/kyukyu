@@ -1,0 +1,21 @@
+{
+  "embed": {
+    "title": "Paladin",
+    "image": {
+      "url": "https://cdn.discordapp.com/attachments/667757428816871434/831738190548697128/paladin-range.png"
+    },
+    "thumbnail": {
+      "url": "https://cdn.discordapp.com/attachments/831064145637539860/831430422977314856/Paladin.png"
+    },
+    "fields": [
+      {
+        "name": "Skill Description",
+        "value": "• Paladin activates the <Shield of Light> skill with every 5 basic attacks\n• The skill provides a __health boost__ to the friendly unit with the lowest health within range.\n• Each friendly may receive <Shield of Light> only once.\n• Health increase: 300 / 350 / 400 / 450 / 500 / 50 / 600 / 650 / 1000"
+      },
+      {
+        "name": "Main Uses",
+        "value": "• Paladin has the highest *combined* health of all troops and are often used as placeholder troops for tank troops."
+      }
+    ]
+  }
+}

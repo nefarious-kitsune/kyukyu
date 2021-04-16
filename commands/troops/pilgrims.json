@@ -1,0 +1,21 @@
+{
+  "embed": {
+    "title": "Pilgrims",
+    "image": {
+      "url": "https://media.discordapp.net/attachments/667757428816871434/831706554775896064/pilgrims-range.png"
+    },
+    "thumbnail": {
+      "url": "https://media.discordapp.net/attachments/831064145637539860/831430451880788009/Pilgrims.png"
+    },
+    "fields": [
+      {
+        "name": "Skill Description",
+        "value": "• Pilgrims activate the <Sacred Healing> skill with every 1 basic attack\n• The skill __restores lost health__ of all friendly units within range.\n• Healing: 45 / 50 / 55 / 65 / 80 / 100 / 125 / 150 / 263"
+      },
+      {
+        "name": "Main Uses",
+        "value": "• Pilgrims are essential in Honor Hunting. Typically 2-3 Pilgrims are recommanded.\n• Pilgrims are sometimes used as back-row defenders."
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "embed": {
+    "title": "Aly",
+    "color": 16431948,
+    "thumbnail": {
+      "url": "https://cdn.discordapp.com/attachments/667757428816871434/829621813210382347/aly2.png"
+    },
+    "fields": [
+      {
+        "name": "Description",
+        "value": "A powerful mage who can deal massive damage to enemy units with spirit bombs while also reducing their defense and stunning them."
+      },
+      {
+        "name": "Strong Against",
+        "value": "Chione",
+        "inline": true
+      },
+      {
+        "name": "Weak Against",
+        "value": "Arthur, Selene, Zeus",
+        "inline": true
+      },
+      {
+        "name": "Arena Troops",
+        "value": "Witchcraft Totem, Stone Golem, Frost Archers, Voodoo Dolls, Peltasts, Pirate Ship, Undead Soldier, Magic Apprentice, Ghost Assassins"
+      }
+    ]
+  }
+}

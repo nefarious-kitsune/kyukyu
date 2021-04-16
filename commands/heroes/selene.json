@@ -1,0 +1,33 @@
+{
+  "embed": {
+    "title": "Selene",
+    "color": 16431948,
+    "thumbnail": {
+      "url": "https://cdn.discordapp.com/attachments/667757428816871434/829545078212132874/selene.png"
+    },
+    "fields": [
+      {
+        "name": "Description",
+        "value": "A burst hero who provides massive attack increase and damage immunity to friendly troops in the battle opening"
+      },
+      {
+        "name": "Passive Skill Duration",
+        "value": "3/3/3/4/4/4/5/5/5/6/6/6/7/7/7"
+      },
+      {
+        "name": "Strong Against",
+        "value": "Aly, Davison, Seondeok, Zeus",
+        "inline": true
+      },
+      {
+        "name": "Weak Against",
+        "value": "Chione",
+        "inline": true
+      },
+      {
+        "name": "Arena Troops",
+        "value": "Rhino Knight, Witchcraft Totem, Voodoo Dolls, Peltasts, Taurus Witchers, Pirate Ship, Priest Mage, Ballista, Undead Soldier, Magic Apprentice, Ghost Assassins"
+      }
+    ]
+  }
+}
