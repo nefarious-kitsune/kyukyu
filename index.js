@@ -3,8 +3,8 @@ const fs = require('fs');
 const Discord = require('discord.js');
 const {prefix} = require('./config.json');
 
-const kurama = new Discord.Client();
-kurama.commands = new Discord.Collection();
+const kyukyu = new Discord.Client();
+kyukyu.commands = new Discord.Collection();
 
 fs.readdirSync('./commands').forEach( (folder) => {
   fs.readdirSync(`./commands/${folder}`)
@@ -13,15 +13,15 @@ fs.readdirSync('./commands').forEach( (folder) => {
         const path = `./commands/${folder}/${file}`;
         const cmd = require(path);
         cmd['path'] = path;
-        kurama.commands.set(cmd.name, cmd);
+        kyukyu.commands.set(cmd.name, cmd);
       });
 });
 
 require('dotenv').config();
 const TOKEN = process.env.TOKEN;
-kurama.login(TOKEN);
+kyukyu.login(TOKEN);
 
-kurama.on('ready', () => {
+kyukyu.on('ready', () => {
   console.log(`┌───────────────────────────────────────────────────────┐`);
   console.log(`│                                                       │`);
   console.log(`│  ─=≡Σ(((^._.^)彡                                     │`);
@@ -30,18 +30,18 @@ kurama.on('ready', () => {
   console.log(`└───────────────────────────────────────────────────────┘`);
 });
 
-kurama.on('message', (msg) => {
+kyukyu.on('message', (msg) => {
   if (msg.author.bot) return;
 
   if ( msg.content.startsWith(prefix) ) {
     const args = msg.content.substring(prefix.length).split(/\s+/);
     const cmdName = args.shift().toLowerCase();
 
-    if (!kurama.commands.has(cmdName)) return;
+    if (!kyukyu.commands.has(cmdName)) return;
 
     const cmd =
-        kurama.commands.get(cmdName) ||
-        kurama.commands.find(
+        kyukyu.commands.get(cmdName) ||
+        kyukyu.commands.find(
             (cmd) => cmd.aliases && cmd.aliases.includes(cmdName)
         );
 
@@ -51,7 +51,7 @@ kurama.on('message', (msg) => {
       let reply = `You didn't provide any arguments`;
       if (cmd.usage) {
         reply += '\nThe proper usage would be:' +
-              '\`${prefix}${cmd.name} ${cmd.usage}\`';
+              `\`${prefix}${cmd.name} ${cmd.usage}\``;
       }
       return msg.reply(reply);
     }
