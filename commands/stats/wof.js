@@ -1,4 +1,5 @@
 const MIN_PROB = 0.0005;
+const assets = require('../../assets.json');
 
 module.exports = {
   name: 'wof',
@@ -14,12 +15,9 @@ module.exports = {
 
     if (args.length == 1) {
       if (VOUCHERS.includes(resultType)) {
-        msg.channel.send('https://cdn.discordapp.com/attachments/'+
-            '831064145637539860/833893539812343808/'+
-            'WoF_probability_voucher.png');
+        msg.channel.send(assets.IMG_WOF_PROBABILITY_VOUCHER);
       } else {
-        msg.channel.send('https://cdn.discordapp.com/attachments/'+
-            '831064145637539860/833893528090050570/WoF_probability_shard.png');
+        msg.channel.send(assets.IMG_WOF_PROBABILITY_SHARD);
       }
       return;
     }
