@@ -2,6 +2,7 @@ const fs = require('fs');
 
 const Discord = require('discord.js');
 const {prefix} = require('./config.json');
+const {parseArgs} = require('./parse_args.js');
 
 const kyukyu = new Discord.Client();
 kyukyu.commands = new Discord.Collection();
@@ -34,7 +35,7 @@ kyukyu.on('message', (msg) => {
   if (msg.author.bot) return;
 
   if ( msg.content.startsWith(prefix) ) {
-    const args = msg.content.substring(prefix.length).split(/\s+/);
+    const args = parseArgs(prefix, msg.content);
     const cmdName = args.shift().toLowerCase();
 
     if (!kyukyu.commands.has(cmdName)) return;
