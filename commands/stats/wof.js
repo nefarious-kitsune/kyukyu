@@ -7,7 +7,6 @@ module.exports = {
   name: 'wof',
   description: 'Get probability of getting a certain result in a wheel event.',
   usage: '<hero|voucher> <desired quantity> <number of spins>',
-  aliases: locale.COMMAND_WOF_ALIASES,
   args: true,
   async execute(msg, args) {
     const VOUCHERS = locale.COMMAND_WOF_VOUCHERS;
