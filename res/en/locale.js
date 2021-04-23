@@ -1,5 +1,7 @@
 /* eslint-disable max-len */
 
+const path = require('path');
+
 const SPLASH =
 `┌───────────────────────────────────────────────────────┐
 │                                                       │
@@ -29,7 +31,11 @@ module.exports = {
   COMMAND_HELP_DESC: 'Show help for a specified command..',
   COMMAND_HELP_USAGE: '[command name]',
   COMMAND_HELP_ALIASES: ['h', 'commands'],
-  COMMAND_HELP_HELP: 'Type \`%1%help <command>\` to get more information about a specific command!\n\n**Commands available:**\n%2%',
+  COMMAND_HELP_HELP: 'Type \`%PREFIX%help <command>\` to get more information about a specific command!\n\n**Commands available:**\n%COMMANDS%',
+  COMMAND_HELP_LABEL_ALIASES: 'Aliases',
+  COMMAND_HELP_LABEL_DESC: 'Description',
+  COMMAND_HELP_LABEL_USAGE: 'Usage',
+  COMMAND_HELP_LABEL_EXAMPLE: 'Example',
   COMMAND_HELP_NOT_FOUND: 'This command does not exist.',
 
   COMMAND_WOF_PLUS: 'The probability of getting %RANGE% or more %UNIT% in %SPIN% spins is %PROB%%.\n',
@@ -44,6 +50,11 @@ module.exports = {
 
   COMMAND_HERO_DESC: 'Information about heroes.',
   COMMAND_HERO_USAGE: 'aly|selene',
+  COMMAND_HERO_ALIASES: [],
+  COMMAND_HERO_MAP: {
+    'aly': path.resolve(__dirname, 'heroes', 'aly.json'),
+    'selene': path.resolve(__dirname, 'heroes', 'selene.json'),
+  },
 
   COMMAND_TROOPS_DESC: 'Information about troops.',
   COMMAND_TROOPS_USAGE: '<troops name>',

@@ -19,9 +19,11 @@ module.exports = {
           .forEach((cmd)=>commandArray.push(prefix + cmd.name));
 
       return msg.channel.send(
-          locale.COMMAND_HELP_HELP
-              .replace('%1%', process.env.prefix)
-              .replace('%2%', commandArray.join(', '))
+          locale.literal(
+              locale.COMMAND_HELP_HELP,
+              '%PREFIX%', process.env.prefix,
+              '%COMMANDS%', commandArray.join(', '),
+          )
       );
     } else {
       const cmdName = args[0].toLowerCase();
@@ -35,16 +37,20 @@ module.exports = {
 
       let help = `**Name:** ${cmd.name}`;
       if (cmd.aliases) {
-        help += `\n**Aliases:** ${cmd.aliases.join(', ')}`;
+        help += `\n**${locale.COMMAND_HELP_LABEL_ALIASES}:** ` +
+          cmd.aliases.join(', ');
       }
       if (cmd.description) {
-        help += `\n**Description:** ${cmd.description}`;
+        help += `\n**${locale.COMMAND_HELP_LABEL_DESC}:** ` +
+          `${cmd.description}`;
       }
       if (cmd.usage) {
-        help += `\n**Usage:** \`${prefix}${cmd.name} ${cmd.usage}\``;
+        help += `\n**${locale.COMMAND_HELP_LABEL_USAGE}:** ` +
+          `\`${prefix}${cmd.name} ${cmd.usage}\``;
       }
       if (cmd.usage_example) {
-        help += `\n**Example:** \`${prefix}${cmd.name} ${cmd.usage_example}\``;
+        help += `\n**${locale.COMMAND_HELP_LABEL_EXAMPLE}:** ` +
+          `\`${prefix}${cmd.name} ${cmd.usage_example}\``;
       }
       msg.channel.send(help);
     }
