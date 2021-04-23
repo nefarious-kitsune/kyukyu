@@ -1,14 +1,14 @@
-const fs = require('fs');
-const {prefix} = require('../../config.json');
+const {locale} = require('../../res/res');
+const prefix = process.env.prefix;
 
 const BLACKLIST = ['reload', 'status', 'say', 'behave', 'embed'];
 
 module.exports = {
   name: 'help',
-  description: 'Show help for a specified command.',
-  usage: '[command name]',
+  description: locale.COMMAND_HELP_DESC,
+  usage: locale.COMMAND_HELP_USAGE,
   usage_example: `building`,
-  aliases: ['h', 'commands'],
+  aliases: locale.COMMAND_HELP_ALIASES,
   async execute(msg, args) {
     const {commands} = msg.client;
 
@@ -19,9 +19,9 @@ module.exports = {
           .forEach((cmd)=>commandArray.push(prefix + cmd.name));
 
       return msg.channel.send(
-          'Type ``' + prefix + 'help <command>`` ' +
-          'to get more information about a specific command!\n\n' +
-          '**Commands available:**\n' + commandArray.sort().join(' ,')
+          locale.COMMAND_HELP_HELP
+              .replace('%1%', process.env.prefix)
+              .replace('%2%', commandArray.join(', '))
       );
     } else {
       const cmdName = args[0].toLowerCase();
@@ -31,7 +31,7 @@ module.exports = {
                 (cmd) => cmd.aliases && cmd.aliases.includes(cmdName)
             );
 
-      if (!cmd) return msg.reply('This command does not exist.');
+      if (!cmd) return msg.reply(locale.COMMAND_HELP_NOT_FOUND);
 
       let help = `**Name:** ${cmd.name}`;
       if (cmd.aliases) {

@@ -1,23 +1,17 @@
 const fs = require('fs');
+const {locale} = require('../../res/res');
 
 module.exports = {
   name: 'troops',
-  description: 'Information about troops',
-  usage: '<troops name>',
+  description: locale.COMMAND_TROOPS_DESC,
+  usage: locale.COMMAND_TROOPS_USAGE,
   args: true,
   async execute(msg, args) {
-    const noComment = [
-      'infantry',
-      'iron guards',
-      'hell jailers',
-      'fire mage',
-      'viking warrior',
-      'scholar',
-      'templar knight'
-    ];
-    const troopsName = args.join(' ').toLowerCase();
-    if (noComment.includes(troopsName)) {
-      msg.reply(`I have no comment.`);
+    const troopsName = args[0].toLowerCase();
+    const blackList = locale.COMMAND_TROOPS_BLACKLIST.split(',');
+
+    if (blackList.includes(troopsName)) {
+      msg.reply(locale.NO_COMMENT);
       return;
     }
 
@@ -28,13 +22,13 @@ module.exports = {
           fs.readFileSync(`${__dirname}/${troopsName}.json`)
       );
 
-      // if (!embed.hasOwnProperty('footer')) {
-      //   embed['footer'] = {text: ''};
-      // }
+      if (!embed.hasOwnProperty('footer')) {
+        embed['footer'] = locale.EMBED_FOOTER;
+      }
 
       msg.channel.send(embed);
     } else {
-      msg.reply(`I have no information for "${troopsName}"`);
+      msg.reply(locale.NO_INFO.replace('%1%', troopsName));
       return;
     }
   },

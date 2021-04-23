@@ -1,8 +1,9 @@
+const {locale} = require('../../res/res');
 const fs = require('fs');
 
 module.exports = {
   name: 'reload',
-  description: 'Reloads a command',
+  description: locale.COMMAND_RELOAD_DESC,
   args: true,
   async execute(msg, args) {
     const cmdName = args[0].toLowerCase();
@@ -13,7 +14,9 @@ module.exports = {
       );
 
     if (!cmd) {
-      return msg.reply(`There is no command with name or alias \`${cmdName}\``);
+      return msg.reply(
+          locale.COMMAND_RELOAD_NOT_FOUND.replace('%1', cmdName)
+      );
     }
 
     const folderName =

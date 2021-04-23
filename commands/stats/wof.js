@@ -1,5 +1,6 @@
+const {locale, images} = require('../../res/res');
+
 const MIN_PROB = 0.0005;
-const assets = require('../../assets.json');
 
 module.exports = {
   name: 'wof',
@@ -7,17 +8,17 @@ module.exports = {
   usage: '<hero|voucher> <desired quantity> <number of spins>',
   args: true,
   async execute(msg, args) {
-    const VOUCHERS = ['voucher', 'vouchers'];
-    const SHARDS = ['hero', 'shards', 'shard'];
+    const VOUCHERS = locale.COMMAND_WOF_VOUCHERS;
+    const SHARDS = locale.COMMAND_WOF_SHARDS;
 
     const resultType = args[0].toLowerCase();
     if (!VOUCHERS.includes(resultType) && !SHARDS.includes(resultType)) return;
 
     if (args.length == 1) {
       if (VOUCHERS.includes(resultType)) {
-        msg.channel.send(assets.IMG_WOF_PROBABILITY_VOUCHER);
+        msg.channel.send(images.IMG_WOF_PROBABILITY_VOUCHER);
       } else {
-        msg.channel.send(assets.IMG_WOF_PROBABILITY_SHARD);
+        msg.channel.send(images.IMG_WOF_PROBABILITY_SHARD);
       }
       return;
     }
@@ -126,13 +127,13 @@ module.exports = {
       prob1 = 0.19; // probability of 1× voucher
       qty2 = 3;
       prob2 = 0.06; // probability of 3× vouchers
-      unit = 'vouchers';
+      unit = locale.COMMAND_WOF_UNIT_VOUCHERS;
     } else {
       qty1 = 1;
       prob1 = 0.016; // probability of 1× shard
       qty2 = 2;
       prob2 = 0.004; // probability of 2× shardss
-      unit = 'shards';
+      unit = locale.COMMAND_WOF_UNIT_SHARDS;
     }
 
     if ( ['mode', 'm'].includes(args[1].toLowerCase()) ) {
@@ -145,10 +146,16 @@ module.exports = {
         thisProb = getProbability(
             spinCount, resultQty, prob1, qty1, prob2, qty2);
       } while (thisProb > prevProb);
+
+      --resultQty;
+
       msg.channel.send(
-          `With ${spinCount} spins, the __mode__ is ` +
-          `${--resultQty} ${unit} ` +
-          `(${Math.round(prevProb*1000)/10}% probability).`
+          locale.literal(locale.COMMAND_WOF_MODE,
+              '%SPIN%', spinCount,
+              '%N%', resultQty,
+              '%UNIT%', unit,
+              '%PROB%', Math.round(prevProb*1000)/10,
+          )
       );
       return;
     }
@@ -174,8 +181,12 @@ module.exports = {
         resultQty++;
       } while ((thisProb > MIN_PROB) || (thisProb > prevProb));
       msg.channel.send(
-          `The probability of getting ${resultRange[1]}+ ${unit} ` +
-          `in ${spinCount} spins is ${Math.round(totalProb*1000)/10}%.`
+          locale.literal(locale.COMMAND_WOF_PLUS,
+              '%SPIN%', spinCount,
+              '%RANGE%', resultRange[1],
+              '%UNIT%', unit,
+              '%PROB%', Math.round(totalProb*1000)/10,
+          )
       );
     } else if ((resultRange[2] == '-')||(resultRange[2] == '~')) {
       let resultQty1;
@@ -202,8 +213,12 @@ module.exports = {
         ((thisProb > MIN_PROB) || (thisProb > prevProb))
       );
       msg.channel.send(
-          `The probability of getting ${resultQty1}-${resultQty2} ${unit} ` +
-          `in ${spinCount} spins is ${Math.round(totalProb*1000)/10}%.`
+          locale.COMMAND_WOF_RANGE
+              .replace('%RANGE1%', resultQty1)
+              .replace('%RANGE2%', resultQty2)
+              .replace('%UNIT%', unit)
+              .replace('%SPIN%', spinCount)
+              .replace('%PROB%', Math.round(totalProb*1000)/10)
       );
     } else {
       let log = '';
@@ -213,15 +228,24 @@ module.exports = {
         const X2 = combinations[i][1];
         const prob = bin2(spinCount, prob1, X1, prob2, X2);
         if (prob >= 0.001) {
-          log += `${Math.round(prob * 1000)/10}% probability of ` +
-              `${qty1}×${X1} + ${qty1}×${X2} ${unit}\n`;
+          log +=
+              locale.literal(locale.COMMAND_WOF_EXACT_LOG,
+                  '%QTY1%', qty1, '%X1%', X1,
+                  '%QTY2%', qty2, '%X2%', X2,
+                  '%UNIT%', unit,
+                  '%PROB%', Math.round(prob * 1000)/10,
+              );
         }
         totalProb += prob;
       }
       msg.channel.send(
-          `The probability of getting ${resultRange[1]} ${unit} ` +
-          `in ${spinCount} spins is ${Math.round(totalProb*1000)/10}%.\n` +
-          log
+          locale.literal(locale.COMMAND_WOF_EXACT,
+              '%SPIN%', spinCount,
+              '%RANGE%', resultRange[1],
+              '%UNIT%', unit,
+              '%PROB%', Math.round(totalProb*1000)/10,
+              '%LOG%', log,
+          )
       );
     }
   },

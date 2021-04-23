@@ -1,8 +1,22 @@
 const fs = require('fs');
+const path = require('path');
 
 const Discord = require('discord.js');
-const {prefix} = require('./config.json');
-const {parseArgs} = require('./parse_args.js');
+
+let configFilePath = path.resolve('./config.json');
+const processArgs = process.argv.slice(2);
+if (processArgs && processArgs[0]) {
+  configFilePath = path.resolve(processArgs[0]);
+}
+const config = JSON.parse(fs.readFileSync(configFilePath));
+const prefix = config.prefix || '?';
+process.env.prefix = prefix;
+process.env.lang = config.en || 'en';
+process.env.TOKEN = config['login token'];
+
+const res = require('./res/res');
+
+const {parseArgs} = require('./helpers/parseArgs.js');
 
 const kyukyu = new Discord.Client();
 kyukyu.commands = new Discord.Collection();
@@ -18,17 +32,10 @@ fs.readdirSync('./commands').forEach( (folder) => {
       });
 });
 
-require('dotenv').config();
-const TOKEN = process.env.TOKEN;
-kyukyu.login(TOKEN);
+kyukyu.login(process.env.TOKEN);
 
 kyukyu.on('ready', () => {
-  console.log(`┌───────────────────────────────────────────────────────┐`);
-  console.log(`│                                                       │`);
-  console.log(`│  ─=≡Σ(((^._.^)彡                                     │`);
-  console.log(`│ Catfish is overrated. Enters the foxfish...           │`);
-  console.log(`│                                                       │`);
-  console.log(`└───────────────────────────────────────────────────────┘`);
+  console.log(res.locale.SPLASH);
 });
 
 kyukyu.on('message', (msg) => {
