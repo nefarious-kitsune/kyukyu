@@ -3,10 +3,10 @@ const path = require('path');
 
 const Discord = require('discord.js');
 
-let configFilePath = path.resolve('./config.json');
+let configFilePath = path.resolve(__dirname, 'config.json');
 const processArgs = process.argv.slice(2);
 if (processArgs && processArgs[0]) {
-  configFilePath = path.resolve(processArgs[0]);
+  configFilePath = path.resolve(__dirname, processArgs[0]);
 }
 const config = JSON.parse(fs.readFileSync(configFilePath));
 const prefix = config.prefix || '?';
@@ -44,8 +44,6 @@ kyukyu.on('message', (msg) => {
   if ( msg.content.startsWith(prefix) ) {
     const args = parseArgs(prefix, msg.content);
     const cmdName = args.shift().toLowerCase();
-
-    if (!kyukyu.commands.has(cmdName)) return;
 
     const cmd =
         kyukyu.commands.get(cmdName) ||
