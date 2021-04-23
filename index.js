@@ -11,7 +11,7 @@ if (processArgs && processArgs[0]) {
 const config = JSON.parse(fs.readFileSync(configFilePath));
 const prefix = config.prefix || '?';
 process.env.prefix = prefix;
-process.env.lang = config.en || 'en';
+process.env.lang = config.lang || 'en';
 process.env.TOKEN = config['login token'];
 
 const res = require('./res/res');

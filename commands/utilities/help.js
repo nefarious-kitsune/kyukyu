@@ -1,4 +1,5 @@
 const {locale} = require('../../res/res');
+const {literal} = require('../../helpers/literal');
 const prefix = process.env.prefix;
 
 const BLACKLIST = ['reload', 'status', 'say', 'behave', 'embed'];
@@ -19,7 +20,7 @@ module.exports = {
           .forEach((cmd)=>commandArray.push(prefix + cmd.name));
 
       return msg.channel.send(
-          locale.literal(
+          literal(
               locale.COMMAND_HELP_HELP,
               '%PREFIX%', process.env.prefix,
               '%COMMANDS%', commandArray.join(', '),

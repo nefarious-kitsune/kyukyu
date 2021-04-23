@@ -1,4 +1,5 @@
 const {locale, images} = require('../../res/res');
+const {literal} = require('../../helpers/literal');
 
 const MIN_PROB = 0.0005;
 
@@ -150,7 +151,7 @@ module.exports = {
       --resultQty;
 
       msg.channel.send(
-          locale.literal(locale.COMMAND_WOF_MODE,
+          literal(locale.COMMAND_WOF_MODE,
               '%SPIN%', spinCount,
               '%N%', resultQty,
               '%UNIT%', unit,
@@ -181,7 +182,7 @@ module.exports = {
         resultQty++;
       } while ((thisProb > MIN_PROB) || (thisProb > prevProb));
       msg.channel.send(
-          locale.literal(locale.COMMAND_WOF_PLUS,
+          literal(locale.COMMAND_WOF_PLUS,
               '%SPIN%', spinCount,
               '%RANGE%', resultRange[1],
               '%UNIT%', unit,
@@ -229,7 +230,7 @@ module.exports = {
         const prob = bin2(spinCount, prob1, X1, prob2, X2);
         if (prob >= 0.001) {
           log +=
-              locale.literal(locale.COMMAND_WOF_EXACT_LOG,
+              literal(locale.COMMAND_WOF_EXACT_LOG,
                   '%QTY1%', qty1, '%X1%', X1,
                   '%QTY2%', qty2, '%X2%', X2,
                   '%UNIT%', unit,
@@ -239,7 +240,7 @@ module.exports = {
         totalProb += prob;
       }
       msg.channel.send(
-          locale.literal(locale.COMMAND_WOF_EXACT,
+          literal(locale.COMMAND_WOF_EXACT,
               '%SPIN%', spinCount,
               '%RANGE%', resultRange[1],
               '%UNIT%', unit,

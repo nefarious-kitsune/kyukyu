@@ -11,14 +11,6 @@ const SPLASH =
 └───────────────────────────────────────────────────────┘`;
 
 module.exports = {
-  literal: function(template, ...strings) {
-    let s = template;
-    const str = [].slice.call(strings);
-    for (let i = 0; i < str.length; i=i+2) {
-      s = s.replace(str[i], str[i+1]);
-    }
-    return s;
-  },
   SPLASH: SPLASH,
   EMBED_FOOTER: 'Information contributed by AoW players.',
 

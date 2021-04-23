@@ -1,5 +1,6 @@
 const fs = require('fs');
 const {locale} = require('../../res/res');
+const {literal} = require('../../helpers/literal');
 
 module.exports = {
   name: 'hero',
@@ -19,7 +20,7 @@ module.exports = {
       msg.channel.send(embed);
     } else {
       msg.reply(
-          locale.literal(locale.NO_INFO, '%1%', heroName)
+          literal(locale.NO_INFO, '%1%', heroName)
       );
       return;
     }
