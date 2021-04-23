@@ -1,0 +1,29 @@
+{
+  "embed": {
+    "title": "阿狸",
+    "color": 16431948,
+    "thumbnail": {
+      "url": "https://cdn.discordapp.com/attachments/833978786395586600/835071270470418432/136_Aly.png"
+    },
+    "fields": [
+      {
+        "name": "敘述",
+        "value": "能夠用火焰彈給敵方帶來強大的傷害，同時讓敵方眩暈與防禦降低的強力法師英雄。"
+      },
+      {
+        "name": "克制",
+        "value": "齊昂妮",
+        "inline": true
+      },
+      {
+        "name": "被克制t",
+        "value": "亞瑟、賽勒涅、宙斯",
+        "inline": true
+      },
+      {
+        "name": "Arena Troops",
+        "value": "巫術圖騰、岩石巨人、冰霜弓箭手、巫毒娃娃、投茅者、海盜船、夜魔衛兵、魔法學徒、幽靈刺客s"
+      }
+    ]
+  }
+}
