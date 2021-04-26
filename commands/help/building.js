@@ -1,14 +1,22 @@
 const fs = require('fs');
+const {locale} = require('../../res/res');
 
 module.exports = {
   name: 'building',
-  description: 'Tips for building your barrack',
+  description: locale.COMMAND_BUILDING_DESC,
+  aliases: locale.COMMAND_BUILDING_ALIASES,
+  args: false,
   async execute(msg, args) {
-    const embed1 = JSON.parse(fs.readFileSync(__dirname + '/building1.json'));
-    const embed2 = JSON.parse(fs.readFileSync(__dirname + '/building2.json'));
-    const embed3 = JSON.parse(fs.readFileSync(__dirname + '/building3.json'));
-    msg.channel.send(embed1);
-    msg.channel.send(embed2);
-    msg.channel.send(embed3);
+    const embeds = [];
+    locale.COMMAND_BUILDING_FILES.forEach( (fPath) => {
+      embeds.push(JSON.parse(fs.readFileSync(fPath)));
+    });
+    const lastEmbed = embeds[embeds.length-1];
+    if (!lastEmbed.embed.hasOwnProperty('footer')) {
+      lastEmbed.embed['footer'] = {text: locale.EMBED_FOOTER};
+    }
+    embeds.forEach( (embed) => {
+      msg.channel.send(embed);
+    });
   },
 };
