@@ -51,8 +51,9 @@ module.exports = {
 
   COMMAND_HERO_DESC: '顯示英雄的相關資訊。',
   COMMAND_HERO_USAGE: '阿狸|賽勒涅',
-  COMMAND_HERO_ALIASES: [],
+  COMMAND_HERO_ALIASES: ['英雄'],
   COMMAND_HERO_MAP: {
+    'meta': path.resolve(__dirname, 'heroes', 'meta.json'),
     'aly': path.resolve(__dirname, 'heroes', 'aly.json'),
     '阿狸': path.resolve(__dirname, 'heroes', 'aly.json'),
     'selene': path.resolve(__dirname, 'heroes', 'selene.json'),
