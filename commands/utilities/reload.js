@@ -15,7 +15,7 @@ module.exports = {
 
     if (!cmd) {
       return msg.reply(
-          locale.COMMAND_RELOAD_NOT_FOUND.replace('%1', cmdName)
+          literal(COMMAND_RELOAD_NOT_FOUND, '{1}', cmdName)
       );
     }
 

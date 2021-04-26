@@ -20,7 +20,7 @@ module.exports = {
       msg.channel.send(embed);
     } else {
       msg.reply(
-          literal(locale.NO_INFO, '%1%', heroName)
+          literal(locale.NO_INFO, '{1}', heroName)
       );
       return;
     }

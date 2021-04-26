@@ -153,10 +153,10 @@ module.exports = {
 
       msg.channel.send(
           literal(locale.COMMAND_WOF_MODE,
-              '%SPIN%', spinCount,
-              '%N%', resultQty,
-              '%UNIT%', unit,
-              '%PROB%', Math.round(prevProb*1000)/10,
+              '{SPIN_COUNT}', spinCount,
+              '{TOTAL_QTY}', resultQty,
+              '{UNIT}', unit,
+              '{PROB}', Math.round(prevProb*1000)/10,
           )
       );
       return;
@@ -184,10 +184,10 @@ module.exports = {
       } while ((thisProb > MIN_PROB) || (thisProb > prevProb));
       msg.channel.send(
           literal(locale.COMMAND_WOF_PLUS,
-              '%SPIN%', spinCount,
-              '%RANGE%', resultRange[1],
-              '%UNIT%', unit,
-              '%PROB%', Math.round(totalProb*1000)/10,
+              '{SPIN_COUNT}', spinCount,
+              '{HIT_RANGE}', resultRange[1],
+              '{UNIT}', unit,
+              '{PROB}', Math.round(totalProb*1000)/10,
           )
       );
     } else if ((resultRange[2] == '-')||(resultRange[2] == '~')) {
@@ -215,38 +215,39 @@ module.exports = {
         ((thisProb > MIN_PROB) || (thisProb > prevProb))
       );
       msg.channel.send(
-          locale.COMMAND_WOF_RANGE
-              .replace('%RANGE1%', resultQty1)
-              .replace('%RANGE2%', resultQty2)
-              .replace('%UNIT%', unit)
-              .replace('%SPIN%', spinCount)
-              .replace('%PROB%', Math.round(totalProb*1000)/10)
+          literal(locale.COMMAND_WOF_RANGE,
+              '{HIT_RANGE_1}', resultQty1,
+              '{HIT_RANGE_2}', resultQty2,
+              '{UNIT}', unit,
+              '{SPIN_COUNT}', spinCount,
+              '{PROB}', Math.round(totalProb*1000)/10,
+          )
       );
     } else {
       let log = '';
       const combinations = getCombination(resultRange[1], qty1, qty2);
       for (let i=0; i<combinations.length; i++) {
-        const X1 = combinations[i][0];
-        const X2 = combinations[i][1];
-        const prob = bin2(spinCount, prob1, X1, prob2, X2);
+        const hit1 = combinations[i][0];
+        const hit2 = combinations[i][1];
+        const prob = bin2(spinCount, prob1, hit1, prob2, hit2);
         if (prob >= 0.001) {
           log +=
               literal(locale.COMMAND_WOF_EXACT_LOG,
-                  '%QTY1%', qty1, '%X1%', X1,
-                  '%QTY2%', qty2, '%X2%', X2,
-                  '%UNIT%', unit,
-                  '%PROB%', Math.round(prob * 1000)/10,
+                  '{QTY_1}', qty1, '{HIT_1}', hit1,
+                  '{QTY_2}', qty2, '{HIT_2}', hit2,
+                  '{UNIT}', unit,
+                  '{PROB}', Math.round(prob * 1000)/10,
               );
         }
         totalProb += prob;
       }
       msg.channel.send(
           literal(locale.COMMAND_WOF_EXACT,
-              '%SPIN%', spinCount,
-              '%RANGE%', resultRange[1],
-              '%UNIT%', unit,
-              '%PROB%', Math.round(totalProb*1000)/10,
-              '%LOG%', log,
+              '{SPIN_COUNT}', spinCount,
+              '{HIT_RANGE}', resultRange[1],
+              '{UNIT}', unit,
+              '{PROB}', Math.round(totalProb*1000)/10,
+              '{LOG}', log,
           )
       );
     }

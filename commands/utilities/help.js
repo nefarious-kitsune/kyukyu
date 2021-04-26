@@ -22,8 +22,8 @@ module.exports = {
       return msg.channel.send(
           literal(
               locale.COMMAND_HELP_HELP,
-              '%PREFIX%', process.env.prefix,
-              '%COMMANDS%', commandArray.join(', '),
+              '{PREFIX}', process.env.prefix,
+              '{COMMANDS}', commandArray.join(', '),
           )
       );
     } else {
