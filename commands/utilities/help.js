@@ -2,7 +2,7 @@ const {locale} = require('../../res/res');
 const {literal} = require('../../helpers/literal');
 const prefix = process.env.prefix;
 
-const BLACKLIST = ['reload', 'status', 'say', 'behave', 'embed'];
+const BLACKLIST = ['reload', 'greet'];
 
 module.exports = {
   name: 'help',

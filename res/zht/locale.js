@@ -1,17 +1,14 @@
 /* eslint-disable max-len */
 
+const fs = require('fs');
 const path = require('path');
 
-const SPLASH =
-`┌───────────────────────────────────────────────────────┐
-│                                                       │
-│  ─=≡Σ(((^._.^)彡                                     │
-│ 鯰魚過時了。狸魚來了...                               │
-│                                                       │
-└───────────────────────────────────────────────────────┘`;
+const SPLASH = fs.readFileSync(path.resolve(__dirname, 'splash.md'), 'utf8');
+const GREETING = fs.readFileSync(path.resolve(__dirname, 'greeting.md'), 'utf8');
 
 module.exports = {
   SPLASH: SPLASH,
+  GREETING: GREETING,
   EMBED_FOOTER: '資訊由AoW玩家提供。',
 
   NO_INFO: '我沒有關於「{1}」的訊息。',

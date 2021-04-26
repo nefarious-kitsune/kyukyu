@@ -1,17 +1,14 @@
 /* eslint-disable max-len */
 
+const fs = require('fs');
 const path = require('path');
 
-const SPLASH =
-`┌───────────────────────────────────────────────────────┐
-│                                                       │
-│  ─=≡Σ(((^._.^)彡                                     │
-│ Catfish is overrated. Enters the foxfish...           │
-│                                                       │
-└───────────────────────────────────────────────────────┘`;
+const SPLASH = fs.readFileSync(path.resolve(__dirname, 'splash.md'), 'utf8');
+const GREETING = fs.readFileSync(path.resolve(__dirname, 'greeting.md'), 'utf8');
 
 module.exports = {
   SPLASH: SPLASH,
+  GREETING: GREETING,
   EMBED_FOOTER: 'Information contributed by AoW players.',
 
   NO_INFO: 'I have no information for {1}',
