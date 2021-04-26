@@ -23,8 +23,8 @@ module.exports = {
           fs.readFileSync(`${__dirname}/${troopsName}.json`)
       );
 
-      if (!embed.hasOwnProperty('footer')) {
-        embed['footer'] = locale.EMBED_FOOTER;
+      if (!embed.embed.hasOwnProperty('footer')) {
+        embed.embed['footer'] = {text: locale.EMBED_FOOTER};
       }
 
       msg.channel.send(embed);

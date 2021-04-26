@@ -14,8 +14,8 @@ module.exports = {
       const embed = JSON.parse(
           fs.readFileSync(locale.COMMAND_HERO_MAP[heroName])
       );
-      if (!embed.hasOwnProperty('footer')) {
-        embed['footer'] = locale.EMBED_FOOTER;
+      if (!embed.embed.hasOwnProperty('footer')) {
+        embed.embed['footer'] = {text: locale.EMBED_FOOTER};
       }
       msg.channel.send(embed);
     } else {
