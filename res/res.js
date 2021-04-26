@@ -9,5 +9,5 @@ const images = JSON.parse(
 
 module.exports = {
   locale: locale,
-  iamges: images,
+  images: images,
 };
