@@ -32,3 +32,44 @@ module.exports = {
     const troopsName = res.findTroops(args[1]);
     const troopsLevel = parseInt(args[2]);
 
+    if (Number.isNaN(heroLevel)||(heroLevel < 0)||(heroLevel > 15)) return;
+    if (Number.isNaN(troopsLevel)||(troopsLevel < 0)||(troopsLevel > 9)) return;
+
+    const troopsDisplayName = locale.TROOPS_DISPLAY_NAMES[troopsName];
+    troops = troopsStats(troopsName, troopsLevel);
+
+    const equivAttackIncrease =
+        Math.round(
+            100 *
+            (troops.basic.health * 0.05) /
+            (troops.basic.attack - troops.basic.defense)
+        );
+
+    let text =
+      literal(
+          locale.COMMAND_PLUS_SEONDEOK_INTRO,
+          '{TROOPS}', troopsDisplayName,
+          '{TROOPS LEVEL}', troopsLevel,
+          '{HERO LEVEL}', heroLevel,
+      );
+    text +=
+      literal(
+          locale.COMMAND_PLUS_SEONDEOK_DAMAGE,
+          '{ATTACK}', troops.basic.attack,
+          '{ADD DAMAGE}', Math.round(troops.basic.health * 0.05),
+          '{EQUIV INCREASE}', equivAttackIncrease,
+      );
+
+    if ((troops.extended.attack_type == 'melee') &&
+      (troops.extended.damage_shape == 'single')) {
+      text +=
+        literal(
+            locale.COMMAND_PLUS_SEONDEOK_AOE,
+            '{AOE RANGE}', (aoeRanges[heroLevel-1]/5),
+            '{AOE ATTACK}', aoeRatios[heroLevel-1] * troops.basic.attack,
+        );
+    }
+
+    msg.channel.send(text);
+  },
+};
