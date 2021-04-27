@@ -1,5 +1,6 @@
 const fs = require('fs');
-const {locale} = require('../../res/res');
+const res = require('../../res/res');
+const locale = res.locale;
 const {literal} = require('../../helpers/literal');
 
 module.exports = {
@@ -9,14 +10,14 @@ module.exports = {
   aliases: locale.COMMAND_TROOPS_ALIASES,
   args: true,
   async execute(msg, args) {
-    const troopsName = args[0].toLowerCase();
+    const troopsName = res.findTroops(args[0]);
     const blackList = locale.COMMAND_TROOPS_BLACKLIST.split(',');
 
     if (blackList.includes(troopsName)) {
       msg.reply(locale.NO_COMMENT);
       return;
     }
-    if (locale.COMMAND_TROOPS_MAP.hasOwnProperty(troopsName)) {
+    if (troopsName && locale.COMMAND_TROOPS_MAP.hasOwnProperty(troopsName)) {
       const embed = JSON.parse(
           fs.readFileSync(locale.COMMAND_TROOPS_MAP[troopsName])
       );
@@ -26,7 +27,7 @@ module.exports = {
       msg.channel.send(embed);
     } else {
       msg.reply(
-          literal(locale.NO_INFO, '{1}', troopsName)
+          literal(locale.NO_INFO, '{1}', args[0].trim())
       );
       return;
     }

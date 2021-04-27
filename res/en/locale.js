@@ -14,6 +14,23 @@ module.exports = {
   NO_INFO: 'I have no information for {1}',
   NO_COMMENT: 'I have no comment!',
 
+  TROOPS_MAP: [
+    // first item is the correct spelling, the rest alternate spellings
+    ['infantry'],
+    ['iron guards', 'iron guard'],
+    ['hell jailers', 'hell jailer'],
+    ['fire mage'],
+    ['viking warrior'],
+    ['scholar'],
+    ['templar knight'],
+    ['undead soldier', 'undead soldiers', 'undead'],
+    ['paladin', 'paladins'],
+    ['pilgrims', 'pilgrim'],
+    ['brawlers', 'brawler'],
+    ['nun', 'nuns'],
+    ['voodoo dolls', 'voodoo doll', 'voodoo'],
+  ],
+
   COMMAND_RELOAD_DESC: 'Reloads a command.',
   COMMAND_RELOAD_NOT_FOUND: 'There is no command with name or alias of "{1}"',
 
@@ -65,6 +82,5 @@ module.exports = {
     'brawlers': path.resolve(__dirname, 'troops', 'brawlers.json'),
     'nun': path.resolve(__dirname, 'troops', 'nun.json'),
     'voodoo dolls': path.resolve(__dirname, 'troops', 'voodoo dolls.json'),
-    'voodoo': path.resolve(__dirname, 'troops', 'voodoo dolls.json'),
   },
 };
