@@ -7,15 +7,27 @@ module.exports = {
   async execute(msg, args) {
     let greeting = locale.GREETING;
 
-    const me = await msg.guild.member(msg.client.user.id);
-    const nickname =
-      me?
-      (me.nickname||me.user.username):
-      msg.client.user.username;
+    let avatarUrl;
+    let nickname;
+
+    if (msg.channel.type == 'text') {
+      const me = await msg.guild.member(msg.client.user.id);
+      nickname = me.displayName || me.user.username;
+      avatarUrl = me.user.avatarURL;
+    } else {
+      const me = msg.client.user;
+      nickname = me.username;
+      avatarUrl = me.avatarURL;
+    }
 
     greeting = greeting
         .replace(/{BOT NAME}/g, nickname)
         .replace(/{PREFIX}/g, prefix);
-    msg.channel.send(greeting);
+    msg.channel.send({
+      embed: {
+        description: greeting,
+        thumbnail: {url: avatarUrl},
+      },
+    });
   },
 };

@@ -1,4 +1,4 @@
-Hello, I am {BOT NAME}, a bot created by AoW players to provide information on the game.
+Hello, I am **{BOT NAME}**, a bot created by AoW players to provide information on the game.
 
 The following are some examples of my commands:
 - `{PREFIX}troops`
@@ -7,4 +7,4 @@ The following are some examples of my commands:
 - `{PREFIX}hero aly`
 - `{PREFIX}wheel shards 8-12 200`
 
-You can view my source code at GitHub: https://github.com/nefarious-kitsune/kyukyu
+You can view my source code at GitHub: [github.com/nefarious-kitsune/kyukyu](https://github.com/nefarious-kitsune/kyukyu)
