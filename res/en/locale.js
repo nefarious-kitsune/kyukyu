@@ -14,7 +14,7 @@ module.exports = {
   NO_INFO: 'I have no information for {1}',
   NO_COMMENT: 'I have no comment!',
 
-  TROOPS_MAP: [
+  TROOPS_ALIASES: [
     // first item is the correct spelling, the rest alternate spellings
     ['infantry'],
     ['iron guards', 'iron guard'],
@@ -30,6 +30,22 @@ module.exports = {
     ['nun', 'nuns'],
     ['voodoo dolls', 'voodoo doll', 'voodoo'],
   ],
+
+  TROOPS_DISPLAY_NAMES: {
+    'infantry': 'Infantry',
+    'iron guards': 'Iron Guards',
+    'hell jailers': 'Hell Jailers',
+    'fire mage': 'Fire Mage',
+    'viking warrior': 'Viking Warrior',
+    'scholar': 'Scholar',
+    'templar knight': 'Templar Knight',
+    'undead soldier': 'Undead Soldier',
+    'paladin': 'Paladin',
+    'pilgrims': 'Pilgrims',
+    'brawlers': 'Brawlers',
+    'nun': 'Nun',
+    'voodoo dolls': 'Voodoo Dolls',
+  },
 
   COMMAND_RELOAD_DESC: 'Reloads a command.',
   COMMAND_RELOAD_NOT_FOUND: 'There is no command with name or alias of "{1}"',
@@ -76,11 +92,20 @@ module.exports = {
   COMMAND_TROOPS_USAGE: '<troops name>',
   COMMAND_TROOPS_ALIASES: ['troop'],
   COMMAND_TROOPS_BLACKLIST: 'infantry,iron guards,hell jailers,fire mage,viking warrior,scholar,templar knight',
-  COMMAND_TROOPS_MAP: {
+  COMMAND_TROOPS_FILES: {
     'paladin': path.resolve(__dirname, 'troops', 'paladin.json'),
     'pilgrims': path.resolve(__dirname, 'troops', 'pilgrims.json'),
     'brawlers': path.resolve(__dirname, 'troops', 'brawlers.json'),
     'nun': path.resolve(__dirname, 'troops', 'nun.json'),
     'voodoo dolls': path.resolve(__dirname, 'troops', 'voodoo dolls.json'),
   },
+
+  COMMAND_PLUS_SEONDEOK_DESC: 'Calculate the effect of Seondeok on troops.',
+  COMMAND_PLUS_SEONDEOK_USAGE: '<hero level> <troops name> <troops level>',
+  COMMAND_PLUS_SEONDEOK_USAGE_EXAMPLE: '15 \'undead soldier\' 9',
+  COMMAND_PLUS_SEONDEOK_ALIASES: ['+seon'],
+  COMMAND_PLUS_SEONDEOK_INTRO: 'When a level {TROOPS LEVEL} {TROOPS} is used with level {HERO LEVEL} Seondeok, the effect is as followed.\n',
+  COMMAND_PLUS_SEONDEOK_DAMAGE: '**Damage** = ({ATTACK} - *enemy unit\'s defense*) + {ADD DAMAGE}\n  *(about {EQUIV INCREASE}% attack increase)*\n',
+  COMMAND_PLUS_SEONDEOK_AOE: '**AoE Range**: {AOE RANGE}\n**AoE Attack**: {AOE ATTACK}\n',
+
 };

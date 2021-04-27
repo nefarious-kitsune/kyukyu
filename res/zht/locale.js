@@ -14,7 +14,7 @@ module.exports = {
   NO_INFO: '我沒有關於「{1}」的訊息。',
   NO_COMMENT: '我不予置評！',
 
-  TROOPS_MAP: [
+  TROOPS_ALIASES: [
     // first item is the correct spelling, the rest alternate spellings
     ['infantry', '步兵'],
     ['iron guards', 'iron guard', '鐵衛'],
@@ -30,6 +30,22 @@ module.exports = {
     ['nun', 'nuns', '修女'],
     ['voodoo dolls', 'voodoo doll', 'voodoo', '巫毒娃娃', '巫毒'],
   ],
+
+  TROOPS_DISPLAY_NAMES: {
+    'infantry': '步兵',
+    'iron guards': '鐵衛',
+    'hell jailers': '獄卒',
+    'fire mage': '火法師',
+    'viking warrior': 'Viking Warrior',
+    'scholar': 'Scholar',
+    'templar knight': 'Templar Knight',
+    'undead soldier': '夜魔衛兵',
+    'paladin': '神盾兵',
+    'pilgrims': '巡禮者',
+    'brawlers': '爭鬥者',
+    'nun': '修女',
+    'voodoo dolls': '巫毒娃娃',
+  },
 
   COMMAND_RELOAD_DESC: '重載指令。',
   COMMAND_RELOAD_NOT_FOUND: '沒有名稱或別名是「{1}」的指令',
@@ -79,11 +95,20 @@ module.exports = {
   COMMAND_TROOPS_USAGE: '<部隊名稱>',
   COMMAND_TROOPS_ALIASES: ['士兵', '部隊'],
   COMMAND_TROOPS_BLACKLIST: 'infantry,iron guards,hell jailers,fire mage,viking warrior,scholar,templar knight',
-  COMMAND_TROOPS_MAP: {
+  COMMAND_TROOPS_FILES: {
     'paladin': path.resolve(__dirname, 'troops', 'paladin.json'),
     'pilgrims': path.resolve(__dirname, 'troops', 'pilgrims.json'),
     'brawlers': path.resolve(__dirname, 'troops', 'brawlers.json'),
     'nun': path.resolve(__dirname, 'troops', 'nun.json'),
     'voodoo dolls': path.resolve(__dirname, 'troops', 'voodoo dolls.json'),
   },
+
+  COMMAND_PLUS_SEONDEOK_DESC: '計算善德對友軍的效能。',
+  COMMAND_PLUS_SEONDEOK_USAGE: '<英雄等級> <部隊> <部隊等級>',
+  COMMAND_PLUS_SEONDEOK_USAGE_EXAMPLE: '15 夜魔衛兵 9',
+  COMMAND_PLUS_SEONDEOK_ALIASES: ['+seon', '+善德'],
+  COMMAND_PLUS_SEONDEOK_INTRO: '當等級{TROOPS LEVEL}的{TROOPS}搭配等級{HERO LEVEL}的善德時，其效果如下。\n',
+  COMMAND_PLUS_SEONDEOK_DAMAGE: '__傷害__ = ({ATTACK} - *敵方單位防禦*) + {ADD DAMAGE}\n  *(大約等同於{EQUIV INCREASE}%攻擊加成)*\n',
+  COMMAND_PLUS_SEONDEOK_AOE: '__群傷範圍__: {AOE RANGE}\n__群傷__: {AOE ATTACK}\n',
+
 };

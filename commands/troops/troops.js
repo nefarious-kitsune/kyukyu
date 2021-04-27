@@ -17,9 +17,9 @@ module.exports = {
       msg.reply(locale.NO_COMMENT);
       return;
     }
-    if (troopsName && locale.COMMAND_TROOPS_MAP.hasOwnProperty(troopsName)) {
+    if (troopsName && locale.COMMAND_TROOPS_FILES.hasOwnProperty(troopsName)) {
       const embed = JSON.parse(
-          fs.readFileSync(locale.COMMAND_TROOPS_MAP[troopsName])
+          fs.readFileSync(locale.COMMAND_TROOPS_FILES[troopsName])
       );
       if (!embed.embed.hasOwnProperty('footer')) {
         embed.embed['footer'] = {text: locale.EMBED_FOOTER};
