@@ -1,0 +1,18 @@
+{
+  "embed": {
+    "title": "Voodoo Dolls (待翻譯)",
+    "thumbnail": {
+      "url": "https://media.discordapp.net/attachments/831064145637539860/831430580251394078/VoodooDolls.png"
+    },
+    "fields": [
+      {
+        "name": "Skill Description",
+        "value": "• Voodoo Dolls activate the <Destiny Bond> skill at the start of a battle\n• The skill places a __curse__ on an enemy unit. If the target unit is of same or lower level as the cursing Voodoo Doll, the curse is 100% successful. If the target unit is of higher level, the curse rate is reduced (roughly 60% for one level difference).\n• When a Voodoo Doll is injured or died, the cursed unit receives the same effect.\n• A Voodoo Doll cannot curse a hero or another Voodoo Doll.\n• If the cursed unit died before the cursing Voodoo Doll dies, the Voodoo Doll curses another unit.\n• Magic Apprentice and Demon are immue to <Destiny Bond> while in flight\n• In Honor Hunting, if a Voodoo Doll died, it deals a large damage to the world boss.\n• Damage to world boss upon death: 1000 / 1500 / 2000 / 2500 / 3500 / 5000 / 7000 / 10000 / 17500"
+      },
+      {
+        "name": "Main Uses",
+        "value": "• Voodoo Dolls are essential in Honor Hunting due to their high attack power and skill.\n• Voodoo Dolls are commonly used in arena formations, especially for Aly"
+      }
+    ]
+  }
+}

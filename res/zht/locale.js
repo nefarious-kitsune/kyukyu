@@ -60,5 +60,20 @@ module.exports = {
 
   COMMAND_TROOPS_DESC: '顯示部隊的相關資訊。',
   COMMAND_TROOPS_USAGE: '<部隊名稱>',
-  COMMAND_TROOPS_BLACKLIST: 'infantry,iron guards,hell jailers,fire mage,viking warrior,scholar,templar knight',
+  COMMAND_TROOPS_ALIASES: ['士兵', '部隊'],
+  COMMAND_TROOPS_BLACKLIST: 'infantry,步兵,iron guards,鐵衛,hell jailers,獄卒,fire mage,火法師,viking warrior,scholar,templar knight',
+  COMMAND_TROOPS_MAP: {
+    'paladin': path.resolve(__dirname, 'troops', 'paladin.json'),
+    '神盾兵': path.resolve(__dirname, 'troops', 'paladin.json'),
+    'pilgrims': path.resolve(__dirname, 'troops', 'pilgrims.json'),
+    '巡禮者': path.resolve(__dirname, 'troops', 'pilgrims.json'),
+    'brawlers': path.resolve(__dirname, 'troops', 'brawlers.json'),
+    '爭鬥者': path.resolve(__dirname, 'troops', 'brawlers.json'),
+    'nun': path.resolve(__dirname, 'troops', 'nun.json'),
+    '修女': path.resolve(__dirname, 'troops', 'nun.json'),
+    'voodoo dolls': path.resolve(__dirname, 'troops', 'voodoo dolls.json'),
+    'voodoo': path.resolve(__dirname, 'troops', 'voodoo dolls.json'),
+    '巫毒娃娃': path.resolve(__dirname, 'troops', 'voodoo dolls.json'),
+    '巫毒': path.resolve(__dirname, 'troops', 'voodoo dolls.json'),
+  },
 };

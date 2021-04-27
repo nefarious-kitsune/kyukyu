@@ -57,5 +57,14 @@ module.exports = {
 
   COMMAND_TROOPS_DESC: 'Information about troops.',
   COMMAND_TROOPS_USAGE: '<troops name>',
+  COMMAND_TROOPS_ALIASES: ['troop'],
   COMMAND_TROOPS_BLACKLIST: 'infantry,iron guards,hell jailers,fire mage,viking warrior,scholar,templar knight',
+  COMMAND_TROOPS_MAP: {
+    'paladin': path.resolve(__dirname, 'troops', 'paladin.json'),
+    'pilgrims': path.resolve(__dirname, 'troops', 'pilgrims.json'),
+    'brawlers': path.resolve(__dirname, 'troops', 'brawlers.json'),
+    'nun': path.resolve(__dirname, 'troops', 'nun.json'),
+    'voodoo dolls': path.resolve(__dirname, 'troops', 'voodoo dolls.json'),
+    'voodoo': path.resolve(__dirname, 'troops', 'voodoo dolls.json'),
+  },
 };

@@ -6,6 +6,7 @@ module.exports = {
   name: 'troops',
   description: locale.COMMAND_TROOPS_DESC,
   usage: locale.COMMAND_TROOPS_USAGE,
+  aliases: locale.COMMAND_TROOPS_ALIASES,
   args: true,
   async execute(msg, args) {
     const troopsName = args[0].toLowerCase();
@@ -15,21 +16,18 @@ module.exports = {
       msg.reply(locale.NO_COMMENT);
       return;
     }
-
-    const jsonFiles = fs.readdirSync(__dirname)
-        .filter((file) => file.endsWith('.json'));
-    if (jsonFiles.includes(`${troopsName}.json`)) {
+    if (locale.COMMAND_TROOPS_MAP.hasOwnProperty(troopsName)) {
       const embed = JSON.parse(
-          fs.readFileSync(`${__dirname}/${troopsName}.json`)
+          fs.readFileSync(locale.COMMAND_TROOPS_MAP[troopsName])
       );
-
       if (!embed.embed.hasOwnProperty('footer')) {
         embed.embed['footer'] = {text: locale.EMBED_FOOTER};
       }
-
       msg.channel.send(embed);
     } else {
-      msg.reply(literal(NO_INFO, '{1}', troopsName));
+      msg.reply(
+          literal(locale.NO_INFO, '{1}', troopsName)
+      );
       return;
     }
   },
