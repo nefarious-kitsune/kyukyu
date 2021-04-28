@@ -1,4 +1,5 @@
 {
+  "race": "human",
   "basic": {
     "count": 1,
     "health": [600, 1100, 2000, 3000, 4250, 5500, 6750, 8000, 14000, 20000],
@@ -10,7 +11,7 @@
     "attack_type": "ranged",
     "damage_type": "magical",
     "damage_shape": "rounded",
-    "damage_range": "4"
+    "damage_range": 4
   },
   "skill": {
     "damage": [550, 575, 600, 625, 650, 675, 700, 725, 1270],

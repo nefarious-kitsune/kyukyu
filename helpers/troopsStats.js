@@ -21,7 +21,10 @@ function troopsStats(name, level) {
     fs.accessSync(troopsStatsPath, fs.constants.R_OK | fs.constants.W_OK);
     try {
       const troopsStats = JSON.parse(fs.readFileSync(troopsStatsPath));
-      const result = {basic: {}, extended: {}};
+      const result = {
+        race: troopsStats.race,
+        basic: {},
+      };
       for (const [key, value] of Object.entries(troopsStats.basic)) {
         if (Array.isArray(value)) {
           result.basic[key] =

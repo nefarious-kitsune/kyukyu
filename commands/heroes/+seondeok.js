@@ -51,10 +51,10 @@ module.exports = {
           '{TROOPS}', troopsDisplayName,
           '{TROOPS LEVEL}', troopsLevel,
           '{HERO LEVEL}', heroLevel,
-      );
-    text +=
+      ) +
+      locale.COMMAND_PLUS_SEONDEOK_OPENING +
       literal(
-          locale.COMMAND_PLUS_SEONDEOK_DAMAGE,
+          locale.COMMAND_PLUS_SEONDEOK_OPENING_DMG,
           '{ATTACK}', troops.basic.attack,
           '{ADD DAMAGE}', Math.round(troops.basic.health * 0.05),
           '{EQUIV INCREASE}', equivAttackIncrease,
@@ -62,12 +62,45 @@ module.exports = {
 
     if ((troops.basic.attack_type == 'melee') &&
       (troops.basic.damage_shape == 'single')) {
+      const range = (aoeRanges[heroLevel-1]/5); // diameter
+      const area = Math.round(range * range * 0.25 * 3.14 *10)/10;
       text +=
         literal(
-            locale.COMMAND_PLUS_SEONDEOK_AOE,
-            '{AOE RANGE}', (aoeRanges[heroLevel-1]/5),
+            locale.COMMAND_PLUS_SEONDEOK_OPENING_AOE,
+            '{AOE RADIUS}', range/2,
+            '{AOE AREA}', area,
             '{AOE ATTACK}', aoeRatios[heroLevel-1] * troops.basic.attack,
         );
+    }
+
+    text +=
+        locale.COMMAND_PLUS_SEONDEOK_NORMAL +
+        literal(
+            locale.COMMAND_PLUS_SEONDEOK_NORMAL_ATTACK,
+            '{ATTACK}', troops.basic.attack,
+        );
+    if (troops.basic.damage_shape) {
+      if (troops.basic.damage_shape == 'rounded') {
+        const range = (troops.basic.damage_range);
+        const area = Math.round(range * range * 0.25 * 3.14 * 10)/10;
+        text +=
+          literal(
+              locale.COMMAND_PLUS_SEONDEOK_NORMAL_CIRCLE,
+              '{AOE RADIUS}', range/2,
+              '{AOE AREA}', area,
+          );
+      } else if (troops.basic.damage_shape == 'rectangular') {
+        const w = troops.basic.damage_range1;
+        const l = troops.basic.damage_range2;
+        const area = Math.round(w * l *10)/10;
+        text +=
+          literal(
+              locale.COMMAND_PLUS_SEONDEOK_NORMAL_RECT,
+              '{AOE W}', w,
+              '{AOE L}', l,
+              '{AOE AREA}', area,
+          );
+      }
     }
 
     msg.channel.send(text);
