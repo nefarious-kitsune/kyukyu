@@ -125,4 +125,13 @@ module.exports = {
   COMMAND_PLUS_SELENE_OPENING: '**{DURATION}-Second Opening Buff**\n',
   COMMAND_PLUS_SELENE_OPENING_ATK: 'Attack: {ATTACK} ({INCREASE}% increase)\n',
   COMMAND_PLUS_SELENE_OPENING_CURSED: 'Damage from death of a level 9 Voodoo Dolls: {DAMAGE} ({HEALTH PERCENTAGE}% of max health)\n',
+
+  COMMAND_PLUS_ARTHUR_DESC: 'Calculate the effect of Arthur on troops.',
+  COMMAND_PLUS_ARTHUR_USAGE: '<hero level> <troops name> <troops level>',
+  COMMAND_PLUS_ARTHUR_USAGE_EXAMPLE: '15 \'peltasts\' 9',
+  COMMAND_PLUS_ARTHUR_ALIASES: [],
+  COMMAND_PLUS_ARTHUR_INTRO: 'When a level {TROOPS LEVEL} {TROOPS} is used with level {HERO LEVEL} Arthur, the effect is as followed.\n\n',
+  COMMAND_PLUS_ARTHUR_PASSIVE: 'Damage Immunity: {IMMUNITY PERCENTAGE}%\n',
+  COMMAND_PLUS_ARTHUR_OPENING_CURSED: 'Damage from death of a level 9 Voodoo Dolls: {DAMAGE} ({HEALTH PERCENTAGE}% of max health)\n',
+  COMMAND_PLUS_ARTHUR_NOT_HUMAN: 'No effect. Arthur\'s abilities only apply to Human troops.\n',
 };
