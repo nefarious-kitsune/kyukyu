@@ -60,8 +60,8 @@ module.exports = {
           '{EQUIV INCREASE}', equivAttackIncrease,
       );
 
-    if ((troops.extended.attack_type == 'melee') &&
-      (troops.extended.damage_shape == 'single')) {
+    if ((troops.basic.attack_type == 'melee') &&
+      (troops.basic.damage_shape == 'single')) {
       text +=
         literal(
             locale.COMMAND_PLUS_SEONDEOK_AOE,

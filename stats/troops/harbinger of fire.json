@@ -1,0 +1,15 @@
+{
+  "basic": {
+    "count": [3, 5, 7, 9],
+    "health": [1000, 1250, 1750, 2800, 3750, 5000, 7250, 9000, 15750],
+    "attack": [ 100,  120,  160,  220,  280,  350,  420,  500,   875],
+    "defense":[  25,   31,   38,   44,   50,   56,   63,   69,   125],
+    "speed": "medium",
+    "attack_speed": 0.8,
+    "attack_distance": "short",
+    "attack_type": "melee",
+    "damage_type": "magical",
+    "damage_shape": "rectangular",
+    "damage_range": [1.8, 3.6]
+  }
+}

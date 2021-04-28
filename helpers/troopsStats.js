@@ -30,14 +30,6 @@ function troopsStats(name, level) {
           result.basic[key] = value;
         }
       }
-      for (const [key, value] of Object.entries(troopsStats.extended)) {
-        if (Array.isArray(value)) {
-          result.extended[key] =
-              (level <= value.length)?value[level-1]:value[value.length-1];
-        } else {
-          result.extended[key] = value;
-        }
-      }
       if (troopsStats.skills) {
         result['skills'] = {};
         for (const [key, value] of Object.entries(troopsStats.skills)) {

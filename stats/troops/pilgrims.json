@@ -1,0 +1,19 @@
+{
+  "basic": {
+    "count": [3, 5, 7, 9],
+    "health": [1200, 1500, 2200, 3500, 5400, 7300, 9200, 11100, 19425],
+    "attack": [ 100,  120,  160,  220,  260,  300,  340,   380,   665],
+    "defense":[  44,   50,   56,   69,   75,   81,   88,    94,   169],
+    "speed": "medium",
+    "attack_speed": 1,
+    "attack_distance": "short",
+    "attack_type": "melee",
+    "damage_type": "physical",
+    "damage_shape": "single"
+  },
+  "skill": {
+    "heal": [45, 50, 55, 65, 80, 100, 125, 150, 263],
+    "trigger_number": 1,
+    "range": 5
+  }
+}
