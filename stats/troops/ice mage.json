@@ -1,0 +1,23 @@
+{
+  "basic": {
+    "count": 1,
+    "health": [600, 1100, 2000, 3000, 4250, 5500, 6750, 8000, 14000, 20000],
+    "attack": [100,  120,  140,  200,  240,  300,  360,  420,   735,  1050],
+    "defense":[ 20,   25,   30,   35,   40,   45,   50,   55,    60,    65],
+    "speed": "very slow"
+  },
+  "extended": {
+    "attack_speed": 0.7,
+    "attack_type": "ranged",
+    "damage_type": "magical",
+    "damage_shape": "rounded",
+    "damage_range": "4",
+    "shooting_range": "infinity"
+  },
+  "skill": {
+    "damage": [550, 575, 600, 625, 650, 675, 700, 725, 1270],
+    "trigger_number": 4,
+    "attack speed reduction":   [0.20, 0.25, 0.30, 0.40, 0.50, 0.55, 0.60, 0.65, 0.65],
+    "movement speed reduction": [0.50, 0.55, 0.60, 0.65, 0.70, 0.75, 0.80, 0.85, 0.85]
+  }
+}
