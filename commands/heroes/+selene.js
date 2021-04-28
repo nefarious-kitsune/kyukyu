@@ -23,10 +23,10 @@ const durations = [
 
 module.exports = {
   name: '+selene',
-  // description: locale.COMMAND_PLUS_SELENE_DESC,
-  // usage: locale.COMMAND_PLUS_SELENE_USAGE,
-  // usage_example: locale.COMMAND_PLUS_SELENE_USAGE_EXAMPLE,
-  // aliases: locale.COMMAND_PLUS_SELENE_ALIASES,
+  description: locale.COMMAND_PLUS_SELENE_DESC,
+  usage: locale.COMMAND_PLUS_SELENE_USAGE,
+  usage_example: locale.COMMAND_PLUS_SELENE_USAGE_EXAMPLE,
+  aliases: locale.COMMAND_PLUS_SELENE_ALIASES,
   args: true,
   async execute(msg, args) {
     if (args.length < 3) return;
