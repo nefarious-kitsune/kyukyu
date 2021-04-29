@@ -14,7 +14,8 @@ anyone can modify the code and run the bot him/herself.
 
 ## Commands
 
-See [Commands](commands.md)
+- [Commands](commands.md)
+- [指令](commands.zh.md)
 
 ## Contribution
 
