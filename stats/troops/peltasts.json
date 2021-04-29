@@ -1,0 +1,20 @@
+{
+  "race": "human",
+  "basic": {
+    "count": [3, 5, 7, 9],
+    "health": [ 800, 900, 1200, 1800, 3200, 4600, 6000, 7400, 12950],
+    "attack": [ 210, 230,  260,  290,  320,  350,  390,  430,   755],
+    "defense":[  15,  20,   25,   30,   35,   40,   45,   50,    55],
+    "speed": "medium",
+    "attack_speed": 1,
+    "shooting_range": 8,
+    "attack_type": "range",
+    "damage_type": "physical",
+    "damage_shape": "puncture",
+    "damage_range": 8
+  },
+  "skill": {
+    "attack_increase": [0.02, 0.022, 0.024, 0.026, 0.028, 0.030, 0.032, 0.034, 0.036],
+    "duration": 3
+  }
+}
