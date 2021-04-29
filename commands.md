@@ -5,11 +5,11 @@ command like `+smash` or `+avatar`.
 
 Below are some commands.
 
-## `?greet` command
+## ?greet command
 
 Have Kyukyu greet the community.
 
-## `?formation` command
+## ?formation command
 
 Get formation tips.
 
@@ -17,11 +17,11 @@ Examples:
 - `?formation basic` (formation tips for absolute beginners)
 - `?formation leveling` (formation tips for leveling)
 
-## `?building` command
+## ?building command
 
 Get tips on building a barrack.
 
-## `?troops` command
+## ?troops command
 
 Get detailed description of a troops.
 
@@ -30,7 +30,7 @@ Examples:
 - `?troops 'voodoo'` (information about Voodoo Dolls)
 - `?troops voodoo` (information about Voodoo Dolls)
 
-## `?hero` command
+## ?hero command
 
 Get detailed description of a hero.
 
@@ -38,7 +38,7 @@ Examples:
 - `?hero meta` (information on the best heroes)
 - `?hero aly` (information on Aly)
 
-## `?+` command
+## ?+ command
 
 Get the effect of a hero on a friendly troops.
 
@@ -47,7 +47,7 @@ Examples:
 - `?+selene 11 'ice mage' 8` (get the effect of a level-11 Selene on a level-8 Ice Mage)
 - `?+arthur 13 peltasts 9` (get the effect of a level-13 Arthur on a level-9 Peltasts)
 
-## `?wof` command
+## ?wof command
 
 Get probability of a Wheel of Fortune result.
 

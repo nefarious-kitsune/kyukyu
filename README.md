@@ -14,15 +14,7 @@ anyone can modify the code and run the bot him/herself.
 
 ## Commands
 
-The bot is for information only, and it won't have any *fun*
-command like `+smash` or `+avatar`.
-Below is a list of some commands:
-
-- `?troops`
-- `?formation leveling|basic`
-- `?purchasing`
-- `?building`
-- `?hero aly|selene`
+See [Commands](commands.md)
 
 ## Contribution
 
@@ -31,17 +23,3 @@ The easiest way to contribute is to create your own
 content using a embed visualizer such as
 [this](https://leovoel.github.io/embed-visualizer/)
 and send it to the developer.
-
-## Requirements
-
-- [Node.js](http://nodejs.org/)
-- [Discord](https://discordapp.com/) account
-
-## Installation Steps (if applicable)
-
-1. Clone repo
-2. Run `npm install`
-3. Add Discord credentials in a `.env` file
-3. Run `node index.js`
-4. Interact with your Discord bot via your web browser
-
