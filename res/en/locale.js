@@ -101,6 +101,7 @@ module.exports = {
   COMMAND_TROOPS_FILES: {
     'paladin': path.resolve(__dirname, 'troops', 'paladin.json'),
     'pilgrims': path.resolve(__dirname, 'troops', 'pilgrims.json'),
+    'peltasts': path.resolve(__dirname, 'troops', 'peltasts.json'),
     'brawlers': path.resolve(__dirname, 'troops', 'brawlers.json'),
     'nun': path.resolve(__dirname, 'troops', 'nun.json'),
     'voodoo dolls': path.resolve(__dirname, 'troops', 'voodoo dolls.json'),
