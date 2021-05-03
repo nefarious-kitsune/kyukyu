@@ -11,7 +11,7 @@ module.exports = {
   GREETING: GREETING,
   EMBED_FOOTER: '資訊由AoW玩家提供。',
 
-  NO_INFO: '我沒有關於「{1}」的訊息。',
+  NO_INFO: '我沒有關於「{TEXT}」的訊息。',
   NO_COMMENT: '我不予置評！',
 
   TROOPS_ALIASES: [
@@ -58,7 +58,7 @@ module.exports = {
   },
 
   COMMAND_RELOAD_DESC: '重載指令。',
-  COMMAND_RELOAD_NOT_FOUND: '沒有名稱或別名是「{1}」的指令',
+  COMMAND_RELOAD_NOT_FOUND: '沒有名稱或別名是「{TEXT}」的指令',
 
   COMMAND_HELP_DESC: '顯示某特定指令的協助訊息。',
   COMMAND_HELP_USAGE: '[指令名稱]',

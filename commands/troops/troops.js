@@ -27,7 +27,7 @@ module.exports = {
       msg.channel.send(embed);
     } else {
       msg.reply(
-          literal(locale.NO_INFO, '{1}', args[0].trim())
+          literal(locale.NO_INFO, '{TEXT}', args[0].trim())
       );
       return;
     }

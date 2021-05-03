@@ -1,4 +1,5 @@
 const {locale} = require('../../res/res');
+const {literal} = require('../../helpers/literal');
 const fs = require('fs');
 
 module.exports = {
@@ -15,7 +16,7 @@ module.exports = {
 
     if (!cmd) {
       return msg.reply(
-          literal(COMMAND_RELOAD_NOT_FOUND, '{1}', cmdName)
+          literal(locale.COMMAND_RELOAD_NOT_FOUND, '{TEXT}', cmdName)
       );
     }
 

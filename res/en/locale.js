@@ -11,11 +11,12 @@ module.exports = {
   GREETING: GREETING,
   EMBED_FOOTER: 'Information contributed by AoW players.',
 
-  NO_INFO: 'I have no information for {1}',
+  NO_INFO: 'I have no information for {TEXT}',
   NO_COMMENT: 'I have no comment!',
 
   TROOPS_ALIASES: [
     // first item is the correct spelling, the rest alternate spellings
+    ['meta'],
     ['infantry'],
     ['iron guards', 'iron guard'],
     ['hell jailers', 'hell jailer'],
@@ -37,6 +38,7 @@ module.exports = {
   ],
 
   TROOPS_DISPLAY_NAMES: {
+    'meta': 'meta',
     'infantry': 'Infantry',
     'iron guards': 'Iron Guards',
     'hell jailers': 'Hell Jailers',
@@ -58,7 +60,7 @@ module.exports = {
   },
 
   COMMAND_RELOAD_DESC: 'Reloads a command.',
-  COMMAND_RELOAD_NOT_FOUND: 'There is no command with name or alias of "{1}"',
+  COMMAND_RELOAD_NOT_FOUND: 'There is no command with name or alias of "{TEXT}"',
 
   COMMAND_HELP_DESC: 'Show help for a specified command..',
   COMMAND_HELP_USAGE: '[command name]',
@@ -103,6 +105,7 @@ module.exports = {
   COMMAND_TROOPS_ALIASES: ['troop'],
   COMMAND_TROOPS_BLACKLIST: 'infantry,iron guards,hell jailers,fire mage,viking warrior,scholar,templar knight',
   COMMAND_TROOPS_FILES: {
+    'meta': path.resolve(__dirname, 'troops', 'meta.json'),
     'paladin': path.resolve(__dirname, 'troops', 'paladin.json'),
     'pilgrims': path.resolve(__dirname, 'troops', 'pilgrims.json'),
     'peltasts': path.resolve(__dirname, 'troops', 'peltasts.json'),
