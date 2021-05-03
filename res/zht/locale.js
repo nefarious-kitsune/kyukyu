@@ -33,6 +33,7 @@ module.exports = {
     ['nun', 'nuns', '修女'],
     ['voodoo dolls', 'voodoo doll', 'voodoo', '巫毒娃娃', '巫毒'],
     ['meteor golem', 'mg', '幽靈隕石', '隕石'],
+    ['stone golem', 'sg', '岩石巨人', '岩石'],
   ],
 
   TROOPS_DISPLAY_NAMES: {
@@ -53,6 +54,7 @@ module.exports = {
     'nun': '修女',
     'voodoo dolls': '巫毒娃娃',
     'meteor golem': '幽靈隕石',
+    'stone golem': '岩石巨人',
   },
 
   COMMAND_RELOAD_DESC: '重載指令。',
@@ -110,6 +112,13 @@ module.exports = {
     'nun': path.resolve(__dirname, 'troops', 'nun.json'),
     'voodoo dolls': path.resolve(__dirname, 'troops', 'voodoo dolls.json'),
   },
+
+  COMMAND_CURSE_DESC: '計算詛咒對敵方部隊的效能。',
+  COMMAND_CURSE_USAGE: '<目標> <目標等級> [詛咒者] [詛咒者等級]',
+  COMMAND_CURSE_USAGE_EXAMPLE: '\'岩石巨人\' 9 巫毒 8',
+  COMMAND_CURSE_ALIASES: ['詛咒'],
+  COMMAND_CURSE_VOODOO_CANNOT_BE_CURSED: '巫毒娃娃不能夠詛咒另一個巫毒娃娃。',
+  COMMAND_CURSE_VOODOO: '詛咒者：巫毒娃娃（{VOODOO LEVEL}級）\n目標：{TARGET}（{TARGET LEVEL}級）\n詛咒成功率：{RATE}%\n最高傷害：{DAMAGE}（目標最高生命的{HEALTH PERCENTAGE}%）',
 
   COMMAND_PLUS_SEONDEOK_DESC: '計算善德對友軍的效能。',
   COMMAND_PLUS_SEONDEOK_USAGE: '<英雄等級> <部隊> <部隊等級>',

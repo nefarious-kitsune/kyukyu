@@ -33,6 +33,7 @@ module.exports = {
     ['nun', 'nuns'],
     ['voodoo dolls', 'voodoo doll', 'voodoo'],
     ['meteor golem', 'mg'],
+    ['stone golem', 'sg'],
   ],
 
   TROOPS_DISPLAY_NAMES: {
@@ -53,6 +54,7 @@ module.exports = {
     'nun': 'Nun',
     'voodoo dolls': 'Voodoo Dolls',
     'meteor golem': 'Meteor Golem',
+    'stone golem': 'Stone Golem',
   },
 
   COMMAND_RELOAD_DESC: 'Reloads a command.',
@@ -108,6 +110,13 @@ module.exports = {
     'nun': path.resolve(__dirname, 'troops', 'nun.json'),
     'voodoo dolls': path.resolve(__dirname, 'troops', 'voodoo dolls.json'),
   },
+
+  COMMAND_CURSE_DESC: 'Calculate the effect of curse on troops.',
+  COMMAND_CURSE_USAGE: '<target> <target level> [curser] [curser level]',
+  COMMAND_CURSE_USAGE_EXAMPLE: '\'stone golem\' 9 voodoo 8',
+  COMMAND_CURSE_ALIASES: [],
+  COMMAND_CURSE_VOODOO_CANNOT_BE_CURSED: 'A Voodoo Dolls unit cannot curse another Voodoo Dolls unit.',
+  COMMAND_CURSE_VOODOO: 'Curser: Voodoo Dolls (Level {VOODOO LEVEL})\nTarget: {TARGET} (Level {TARGET LEVEL})\nCurse Success Rate: {RATE}%\nMax Damage to Target: {DAMAGE} ({HEALTH PERCENTAGE}% of total health)',
 
   COMMAND_PLUS_SEONDEOK_DESC: 'Calculate the effect of Seondeok on troops.',
   COMMAND_PLUS_SEONDEOK_USAGE: '<hero level> <troops name> <troops level>',
