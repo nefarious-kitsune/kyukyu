@@ -32,6 +32,7 @@ module.exports = {
     ['brawlers', 'brawler', '爭鬥者'],
     ['nun', 'nuns', '修女'],
     ['voodoo dolls', 'voodoo doll', 'voodoo', '巫毒娃娃', '巫毒'],
+    ['meteor golem', 'mg', '幽靈隕石', '隕石'],
   ],
 
   TROOPS_DISPLAY_NAMES: {
@@ -51,6 +52,7 @@ module.exports = {
     'brawlers': '爭鬥者',
     'nun': '修女',
     'voodoo dolls': '巫毒娃娃',
+    'meteor golem': '幽靈隕石',
   },
 
   COMMAND_RELOAD_DESC: '重載指令。',
@@ -117,7 +119,7 @@ module.exports = {
   COMMAND_PLUS_SEONDEOK_OPENING: '**8秒開局加成**\n',
   COMMAND_PLUS_SEONDEOK_OPENING_DMG: '傷害 = ({ATTACK} - 敵方護甲) + {ADD DAMAGE}\n  （等同約{EQUIV INCREASE}%攻擊加成）\n',
   COMMAND_PLUS_SEONDEOK_OPENING_AOE: '群傷半徑：{AOE RADIUS}（面積 {AOE AREA}）\n群傷：{AOE ATTACK}\n',
-  COMMAND_PLUS_SEONDEOK_NORMAL: '\n**普通攻擊**\n',
+  COMMAND_PLUS_SEONDEOK_NORMAL: '\n**普通攻擊** (原始值)\n',
   COMMAND_PLUS_SEONDEOK_NORMAL_ATTACK: '攻擊：{ATTACK}\n',
   COMMAND_PLUS_SEONDEOK_NORMAL_CIRCLE: '群傷半徑：{AOE RADIUS}（面積 {AOE AREA}）\n',
   COMMAND_PLUS_SEONDEOK_NORMAL_RECT: '群傷範圍：{AOE W}x{AOE L}（面積 {AOE AREA}）\n',

@@ -32,6 +32,7 @@ module.exports = {
     ['brawlers', 'brawler'],
     ['nun', 'nuns'],
     ['voodoo dolls', 'voodoo doll', 'voodoo'],
+    ['meteor golem', 'mg'],
   ],
 
   TROOPS_DISPLAY_NAMES: {
@@ -51,6 +52,7 @@ module.exports = {
     'brawlers': 'Brawlers',
     'nun': 'Nun',
     'voodoo dolls': 'Voodoo Dolls',
+    'meteor golem': 'Meteor Golem',
   },
 
   COMMAND_RELOAD_DESC: 'Reloads a command.',
@@ -115,7 +117,7 @@ module.exports = {
   COMMAND_PLUS_SEONDEOK_OPENING: '**8-Second Opening Buff**\n',
   COMMAND_PLUS_SEONDEOK_OPENING_DMG: 'Damage = ({ATTACK} - *enemy unit\'s defense*) + {ADD DAMAGE}\n  *(about {EQUIV INCREASE}% attack increase)*\n',
   COMMAND_PLUS_SEONDEOK_OPENING_AOE: 'AoE Radius: {AOE RADIUS} (Area: {AOE AREA})\nAoE Attack: {AOE ATTACK}\n',
-  COMMAND_PLUS_SEONDEOK_NORMAL: '\n**Basic Attack**\n',
+  COMMAND_PLUS_SEONDEOK_NORMAL: '\n**Basic Attack** (original)\n',
   COMMAND_PLUS_SEONDEOK_NORMAL_ATTACK: 'Attack: {ATTACK}\n',
   COMMAND_PLUS_SEONDEOK_NORMAL_CIRCLE: 'AoE Radius: {AOE RADIUS} (Area: {AOE AREA})\n',
   COMMAND_PLUS_SEONDEOK_NORMAL_RECT: 'AoE Range: {AOE W}x{AOE L} (Area: {AOE AREA})\n',

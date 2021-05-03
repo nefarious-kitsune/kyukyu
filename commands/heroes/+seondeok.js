@@ -34,6 +34,7 @@ module.exports = {
 
     if (Number.isNaN(heroLevel)||(heroLevel < 0)||(heroLevel > 15)) return;
     if (Number.isNaN(troopsLevel)||(troopsLevel < 0)||(troopsLevel > 9)) return;
+    if (troopsName == false) return;
 
     const troopsDisplayName = locale.TROOPS_DISPLAY_NAMES[troopsName];
     troops = troopsStats(troopsName, troopsLevel);
@@ -90,8 +91,8 @@ module.exports = {
               '{AOE AREA}', area,
           );
       } else if (troops.basic.damage_shape == 'rectangular') {
-        const w = troops.basic.damage_range1;
-        const l = troops.basic.damage_range2;
+        const w = troops.basic.damage_range[0];
+        const l = troops.basic.damage_range[1];
         const area = Math.round(w * l *10)/10;
         text +=
           literal(
