@@ -167,7 +167,7 @@ module.exports = {
   COMMAND_CURSE_USAGE_EXAMPLE: '\'stone golem\' 9 voodoo 8',
   COMMAND_CURSE_ALIASES: [],
   COMMAND_CURSE_VOODOO_CANNOT_BE_CURSED: 'A Voodoo Dolls unit cannot curse another Voodoo Dolls unit.',
-  COMMAND_CURSE_VOODOO: 'Curser: Voodoo Dolls (Level {VOODOO LEVEL})\nTarget: {TARGET} (Level {TARGET LEVEL})\nCurse Success Rate: {RATE}%\nMax Damage to Target: {DAMAGE} ({HEALTH PERCENTAGE}% of total health)',
+  COMMAND_CURSE_VOODOO: 'Curser: Voodoo Dolls (Level {VOODOO LEVEL})\nTarget: {TARGET} (Level {TARGET LEVEL})\nCurse Success Rate: {RATE}%\nMaximum Damage to Target: {DAMAGE} ({HEALTH PERCENTAGE}% of total health)',
 
   COMMAND_PLUS_SEONDEOK_DESC: 'Calculate the effect of Seondeok on troops.',
   COMMAND_PLUS_SEONDEOK_USAGE: '<hero level> <troops name> <troops level>',
@@ -189,7 +189,7 @@ module.exports = {
   COMMAND_PLUS_SELENE_INTRO: 'When a level {TROOPS LEVEL} {TROOPS} is used with level {HERO LEVEL} Selene, the effect is as followed.\n\n',
   COMMAND_PLUS_SELENE_OPENING: '**{DURATION}-Second Opening Buff**\n',
   COMMAND_PLUS_SELENE_OPENING_ATK: 'Attack: {ATTACK} ({INCREASE}% increase)\n',
-  COMMAND_PLUS_SELENE_OPENING_CURSED: 'Damage from death of a level 9 Voodoo Dolls: {DAMAGE} ({HEALTH PERCENTAGE}% of max health)\n',
+  COMMAND_PLUS_SELENE_OPENING_CURSED: 'Maximum damage from a level 9 Voodoo Dolls: {DAMAGE} ({HEALTH PERCENTAGE}% of max health)\n',
 
   COMMAND_PLUS_ARTHUR_DESC: 'Calculate the effect of Arthur on troops.',
   COMMAND_PLUS_ARTHUR_USAGE: '<hero level> <troops name> <troops level>',
@@ -197,6 +197,6 @@ module.exports = {
   COMMAND_PLUS_ARTHUR_ALIASES: [],
   COMMAND_PLUS_ARTHUR_INTRO: 'When a level {TROOPS LEVEL} {TROOPS} is used with level {HERO LEVEL} Arthur, the effect is as followed.\n\n',
   COMMAND_PLUS_ARTHUR_PASSIVE: 'Damage Immunity: {IMMUNITY PERCENTAGE}%\n',
-  COMMAND_PLUS_ARTHUR_OPENING_CURSED: 'Damage from death of a level 9 Voodoo Dolls: {DAMAGE} ({HEALTH PERCENTAGE}% of max health)\n',
+  COMMAND_PLUS_ARTHUR_OPENING_CURSED: 'Maximum damage from a level 9 Voodoo Dolls: {DAMAGE} ({HEALTH PERCENTAGE}% of max health)\n',
   COMMAND_PLUS_ARTHUR_NOT_HUMAN: 'No effect. Arthur\'s abilities only apply to Human troops.\n',
 };

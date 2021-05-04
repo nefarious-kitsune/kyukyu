@@ -4,6 +4,7 @@ const {troopsStats} = require('../../helpers/troopsStats');
 const {literal} = require('../../helpers/literal');
 
 const MAX_VOODOO_DAMAGE = 17500;
+const MAX_VOODOO_HEALTH = 4375;
 const attackBuffs = [
   0.46, 0.47, 0.48, 0.49, 0.50,
   0.51, 0.52, 0.53, 0.54, 0.55,
@@ -66,6 +67,7 @@ module.exports = {
     if (troopsName != 'voodoo dolls') {
       const voodooDamage =
           Math.round(
+              MAX_VOODOO_HEALTH +
               (MAX_VOODOO_DAMAGE - troops.basic.defense) *
               (1-immunities[heroLevel-1])
           );
