@@ -1,0 +1,15 @@
+{
+  "race": "dark",
+  "basic": {
+    "count": [3, 5, 7, 9],
+    "health": [800, 900, 1200, 1800, 3200, 4600, 6000, 7400, 12950],
+    "attack": [ 110,  130,  170,  230,  270,  320,  360,  400,   700],
+    "defense":[  30,   35,   40,   45,   50,   55,   60,   65,   70],
+    "speed": "fast",
+    "attack_speed": 1.1,
+    "attack_distance": "short",
+    "attack_type": "melee",
+    "damage_type": "physical",
+    "damage_shape": "target"
+  }
+}

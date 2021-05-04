@@ -1,0 +1,20 @@
+{
+  "race": "dark",
+  "basic": {
+    "count": [3, 5, 7, 9],
+    "health": [ 700, 800, 1000, 1500, 2800, 4000, 5500, 7000, 12250],
+    "attack": [ 110, 130,  170,  230,  270,  330,  390,  450,   788],
+    "defense":[  10,  15,   20,   25,   30,   35,   40,   45,    50],
+    "speed": "medium",
+    "attack_speed": 1.2,
+    "attack_distance": "short",
+    "attack_type": "melee",
+    "damage_type": "physical",
+    "damage_shape": "single"
+  },
+  "skill": {
+    "attack_increase": [225, 250, 275, 300, 325, 350, 375, 400, 700],
+    "range": 4,
+    "trigger_number": 6
+  }
+}

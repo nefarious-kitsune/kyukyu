@@ -1,0 +1,15 @@
+{
+  "race": "human",
+  "basic": {
+    "count": [3, 5, 7, 9],
+    "health": [ 600,  700,  950, 1500, 2800, 4100, 5400, 6800, 11900],
+    "attack": [ 120,  140,  180,  240,  280,  340,  400,  460,   805],
+    "defense":[  20,   25,   30,   35,   40,   45,   50,   55,    60],
+    "speed": "very slow",
+    "attack_speed": 0.8,
+    "attack_distance": "infinity",
+    "attack_type": "ranged",
+    "damage_type": "physical",
+    "damage_shape": "single"
+  }
+}
