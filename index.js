@@ -43,6 +43,9 @@ kyukyu.on('message', (msg) => {
 
   if ( msg.content.startsWith(prefix) ) {
     const args = parseArgs(prefix, msg.content);
+
+    if (args.length == 0) return;
+
     const cmdName = args.shift().toLowerCase();
 
     const cmd =
