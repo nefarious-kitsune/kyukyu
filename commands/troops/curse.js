@@ -38,6 +38,7 @@ module.exports = {
     // const curserDisplayName = locale.TROOPS_DISPLAY_NAMES[curserName];
     curser = troopsStats(curserName, curserLevel);
     target = troopsStats(targetName, targetLevel);
+    if ((curser === null) || (target === null)) return;
 
     if (curserName == 'voodoo dolls') {
       if (targetName == 'voodoo dolls') {

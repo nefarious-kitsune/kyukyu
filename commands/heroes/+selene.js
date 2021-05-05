@@ -41,6 +41,7 @@ module.exports = {
 
     const troopsDisplayName = locale.TROOPS_DISPLAY_NAMES[troopsName];
     troops = troopsStats(troopsName, troopsLevel);
+    if (troops === null) return;
 
     const buffedAttck =
       Math.round(troops.basic.attack * (1+attackBuffs[heroLevel-1]));

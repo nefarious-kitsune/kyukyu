@@ -62,6 +62,10 @@ kyukyu.on('message', (msg) => {
       return msg.reply(reply);
     }
 
-    cmd.execute(msg, args).catch((error)=>console.error(error));
+    cmd.execute(msg, args).catch((error)=> {
+      console.error('-------------------------------');
+      console.error(`Error executing '${msg.content}'`);
+      console.error(error);
+    });
   }
 });
