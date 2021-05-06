@@ -1,6 +1,6 @@
 const res = require('../../res/res');
 const locale = res.locale;
-const {troopsStats} = require('../../helpers/troopsStats');
+const {troopsData} = require('../../helpers/troopsData');
 const {literal} = require('../../helpers/literal');
 
 const aoeRanges = [
@@ -37,7 +37,7 @@ module.exports = {
     if (troopsName == false) return;
 
     const troopsDisplayName = locale.TROOPS_DISPLAY_NAMES[troopsName];
-    troops = troopsStats(troopsName, troopsLevel);
+    troops = troopsData(troopsName, troopsLevel);
     if (troops === null) return;
 
     const equivAttackIncrease =

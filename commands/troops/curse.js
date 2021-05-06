@@ -1,6 +1,6 @@
 const res = require('../../res/res');
 const locale = res.locale;
-const {troopsStats} = require('../../helpers/troopsStats');
+const {troopsData} = require('../../helpers/troopsData');
 const {literal} = require('../../helpers/literal');
 
 const VOODOO_CURSE_RATE =
@@ -36,8 +36,8 @@ module.exports = {
 
     const targetDisplayName = locale.TROOPS_DISPLAY_NAMES[targetName];
     // const curserDisplayName = locale.TROOPS_DISPLAY_NAMES[curserName];
-    curser = troopsStats(curserName, curserLevel);
-    target = troopsStats(targetName, targetLevel);
+    curser = troopsData(curserName, curserLevel);
+    target = troopsData(targetName, targetLevel);
     if ((curser === null) || (target === null)) return;
 
     if (curserName == 'voodoo dolls') {

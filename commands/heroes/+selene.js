@@ -1,6 +1,6 @@
 const res = require('../../res/res');
 const locale = res.locale;
-const {troopsStats} = require('../../helpers/troopsStats');
+const {troopsData} = require('../../helpers/troopsData');
 const {literal} = require('../../helpers/literal');
 
 const MAX_VOODOO_DAMAGE = 17500;
@@ -40,7 +40,7 @@ module.exports = {
     if (Number.isNaN(troopsLevel)||(troopsLevel < 0)||(troopsLevel > 9)) return;
 
     const troopsDisplayName = locale.TROOPS_DISPLAY_NAMES[troopsName];
-    troops = troopsStats(troopsName, troopsLevel);
+    troops = troopsData(troopsName, troopsLevel);
     if (troops === null) return;
 
     const buffedAttck =
