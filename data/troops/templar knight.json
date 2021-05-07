@@ -14,7 +14,7 @@
   },
   "skill": {
     "damage": [440, 500, 560, 620, 680, 740, 800, 860, 1505],
-    "knockback_distance": 24,
+    "knockback_distance": 120,
     "range":  [[2, 8]]
   }
 }
