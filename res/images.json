@@ -42,6 +42,7 @@
     "jinn":       "https://cdn.discordapp.com/attachments/833978786395586600/835071265973862422/138_Jinn.png"
   },
   "troops_icon": {
+    "locked":            "https://cdn.discordapp.com/attachments/667757428816871434/839658816069173298/aow_locked.png",
     "infantry":          "https://cdn.discordapp.com/attachments/833978786395586600/833980558736490516/Infantry.png",
     "archers":           "https://cdn.discordapp.com/attachments/833978786395586600/833980463500492810/Archers.png",
     "iron guards":       "https://cdn.discordapp.com/attachments/833978786395586600/833980563265552445/IronGuards.png",
@@ -77,7 +78,8 @@
     "pumpkin guard":     "https://cdn.discordapp.com/attachments/833978786395586600/833980608153255966/PumpkinGuard.png",
     "dark witch":        "https://cdn.discordapp.com/attachments/833978786395586600/833980506554105856/DarkWitch.png",
     "nun":               "https://cdn.discordapp.com/attachments/833978786395586600/833980574792155146/Nun.png",
-    "pirate ship":       "",
+    "pirate ship":       "https://cdn.discordapp.com/attachments/833978786395586600/840043711717965884/PirateShip.png",
+    "pirate":            "https://cdn.discordapp.com/attachments/833978786395586600/840043707125334046/Pirate.png",
     "demon":             "https://cdn.discordapp.com/attachments/833978786395586600/833980507313405982/Demon.png",
     "beast master":      "https://cdn.discordapp.com/attachments/833978786395586600/839341645765279794/BeastMaster.png",
     "beast partner":     "https://cdn.discordapp.com/attachments/833978786395586600/839341643257217034/Beast.png",
