@@ -14,6 +14,9 @@ module.exports = {
     const lastEmbed = embeds[embeds.length-1];
     if (!lastEmbed.embed.hasOwnProperty('footer')) {
       lastEmbed.embed['footer'] = {text: locale.EMBED_FOOTER};
+    } else {
+      embed.embed.footer.text =
+        literal(embed.embed.footer.text, '{PREFIX}', process.env.prefix);
     }
     embeds.forEach( (embed) => {
       msg.channel.send(embed);

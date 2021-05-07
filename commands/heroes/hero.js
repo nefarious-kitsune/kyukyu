@@ -16,6 +16,9 @@ module.exports = {
       );
       if (!embed.embed.hasOwnProperty('footer')) {
         embed.embed['footer'] = {text: locale.EMBED_FOOTER};
+      } else {
+        embed.embed.footer.text =
+          literal(embed.embed.footer.text, '{PREFIX}', process.env.prefix);
       }
       msg.channel.send(embed);
     } else {
