@@ -177,7 +177,7 @@ module.exports = {
   COMMAND_CURSE_VOODOO: 'Curser: Voodoo Dolls (Level {VOODOO LEVEL})\nTarget: {TARGET} (Level {TARGET LEVEL})\nCurse Success Rate: {RATE}%\nMaximum Damage to Target: {DAMAGE} ({HEALTH PERCENTAGE}% of total health)',
 
   COMMAND_PLUS_SEONDEOK_DESC: 'Calculate the effect of Seondeok on troops.',
-  COMMAND_PLUS_SEONDEOK_USAGE: '<hero level> <troops name> <troops level>',
+  COMMAND_PLUS_SEONDEOK_USAGE: '[hero level] <troops name> [troops level]',
   COMMAND_PLUS_SEONDEOK_USAGE_EXAMPLE: '15 \'undead soldier\' 9',
   COMMAND_PLUS_SEONDEOK_ALIASES: ['+seon'],
   COMMAND_PLUS_SEONDEOK_INTRO: 'When a level {TROOPS LEVEL} {TROOPS} is used with level {HERO LEVEL} Seondeok, the effect is as followed.\n\n',
@@ -190,7 +190,7 @@ module.exports = {
   COMMAND_PLUS_SEONDEOK_NORMAL_RECT: 'AoE Range: {AOE W}x{AOE L} (Area: {AOE AREA})\n',
 
   COMMAND_PLUS_SELENE_DESC: 'Calculate the effect of Selene on troops.',
-  COMMAND_PLUS_SELENE_USAGE: '<hero level> <troops name> <troops level>',
+  COMMAND_PLUS_SELENE_USAGE: '[hero level] <troops name> [troops level]',
   COMMAND_PLUS_SELENE_USAGE_EXAMPLE: '15 \'undead soldier\' 9',
   COMMAND_PLUS_SELENE_ALIASES: [],
   COMMAND_PLUS_SELENE_INTRO: 'When a level {TROOPS LEVEL} {TROOPS} is used with level {HERO LEVEL} Selene, the effect is as followed.\n\n',
@@ -199,7 +199,7 @@ module.exports = {
   COMMAND_PLUS_SELENE_OPENING_CURSED: 'Maximum damage from a level 9 Voodoo Dolls: {DAMAGE} ({HEALTH PERCENTAGE}% of max health)\n',
 
   COMMAND_PLUS_ARTHUR_DESC: 'Calculate the effect of Arthur on troops.',
-  COMMAND_PLUS_ARTHUR_USAGE: '<hero level> <troops name> <troops level>',
+  COMMAND_PLUS_ARTHUR_USAGE: '[hero level] <troops name> [troops level]',
   COMMAND_PLUS_ARTHUR_USAGE_EXAMPLE: '15 \'peltasts\' 9',
   COMMAND_PLUS_ARTHUR_ALIASES: [],
   COMMAND_PLUS_ARTHUR_INTRO: 'When a level {TROOPS LEVEL} {TROOPS} is used with level {HERO LEVEL} Arthur, the effect is as followed.\n\n',

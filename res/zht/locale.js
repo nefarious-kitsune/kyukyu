@@ -179,7 +179,7 @@ module.exports = {
   COMMAND_CURSE_VOODOO: '詛咒者：巫毒娃娃（{VOODOO LEVEL}級）\n目標：{TARGET}（{TARGET LEVEL}級）\n詛咒成功率：{RATE}%\n最高傷害：{DAMAGE}（目標最高生命的{HEALTH PERCENTAGE}%）',
 
   COMMAND_PLUS_SEONDEOK_DESC: '計算善德對友軍的效能。',
-  COMMAND_PLUS_SEONDEOK_USAGE: '<英雄等級> <部隊> <部隊等級>',
+  COMMAND_PLUS_SEONDEOK_USAGE: '[英雄等級] <部隊> [部隊等級]',
   COMMAND_PLUS_SEONDEOK_USAGE_EXAMPLE: '15 夜魔衛兵 9',
   COMMAND_PLUS_SEONDEOK_ALIASES: ['+seon', '+善德'],
   COMMAND_PLUS_SEONDEOK_INTRO: '當等級{TROOPS LEVEL}的{TROOPS}搭配等級{HERO LEVEL}的善德時，其效果如下。\n\n',
@@ -192,7 +192,7 @@ module.exports = {
   COMMAND_PLUS_SEONDEOK_NORMAL_RECT: '群傷範圍：{AOE W}x{AOE L}（面積 {AOE AREA}）\n',
 
   COMMAND_PLUS_SELENE_DESC: '計算賽勒涅對友軍的效能。',
-  COMMAND_PLUS_SELENE_USAGE: '英雄等級> <部隊> <部隊等級>',
+  COMMAND_PLUS_SELENE_USAGE: '[英雄等級] <部隊> [部隊等級]',
   COMMAND_PLUS_SELENE_USAGE_EXAMPLE: '15 夜魔衛兵 9',
   COMMAND_PLUS_SELENE_ALIASES: ['+賽勒涅', '+月神'],
   COMMAND_PLUS_SELENE_INTRO: '當等級{TROOPS LEVEL}的{TROOPS}搭配等級{HERO LEVEL}的賽勒涅時，其效果如下。\n\n',
@@ -201,7 +201,7 @@ module.exports = {
   COMMAND_PLUS_SELENE_OPENING_CURSED: '一個9級巫毒娃娃可造成的最高傷害：{DAMAGE}（最高生命的{HEALTH PERCENTAGE}%）\n',
 
   COMMAND_PLUS_ARTHUR_DESC: '計算亞瑟對友軍的效能。',
-  COMMAND_PLUS_ARTHUR_USAGE: '英雄等級> <部隊> <部隊等級>',
+  COMMAND_PLUS_ARTHUR_USAGE: '[英雄等級] <部隊> [部隊等級]',
   COMMAND_PLUS_ARTHUR_USAGE_EXAMPLE: '15 投茅者 9',
   COMMAND_PLUS_ARTHUR_ALIASES: ['+亞瑟'],
   COMMAND_PLUS_ARTHUR_INTRO: '當等級{TROOPS LEVEL}的{TROOPS}搭配等級{HERO LEVEL}的亞瑟時，其效果如下。\n\n',

@@ -5,15 +5,20 @@ const {literal} = require('../../helpers/literal');
 
 const MAX_VOODOO_DAMAGE = 17500;
 const MAX_VOODOO_HEALTH = 4375;
+const MAX_HERO_LEVEL = 15;
+const MAX_TROOPS_LEVEL = 9;
+
 const attackBuffs = [
   0.46, 0.47, 0.48, 0.49, 0.50,
   0.51, 0.52, 0.53, 0.54, 0.55,
   0.56, 0.57, 0.58, 0.59, 0.60];
+
 const immunities = [
   0.61, 0.62, 0.63, 0.64, 0.65,
   0.66, 0.67, 0.68, 0.69, 0.70,
   0.71, 0.72, 0.73, 0.74, 0.75,
 ];
+
 const durations = [
   3, 3, 3,
   4, 4, 4,
@@ -30,18 +35,53 @@ module.exports = {
   aliases: locale.COMMAND_PLUS_SELENE_ALIASES,
   args: true,
   async execute(msg, args) {
-    if (args.length < 3) return;
+    if (args.length < 1) return;
 
-    const heroLevel = parseInt(args[0]);
-    const troopsName = res.findTroops(args[1]);
-    const troopsLevel = parseInt(args[2]);
+    let argIdx = 0;
+    let temp;
 
-    if (Number.isNaN(heroLevel)||(heroLevel < 0)||(heroLevel > 15)) return;
-    if (Number.isNaN(troopsLevel)||(troopsLevel < 0)||(troopsLevel > 9)) return;
+    temp = parseInt(args[0]);
+    if (Number.isNaN(temp)) {
+      temp = MAX_HERO_LEVEL;
+    } else if ((temp >=1) && (temp <= MAX_HERO_LEVEL)) {
+      argIdx++;
+    } else {
+      throw new Error(
+          `Invalid command. Hero level must be 1…${MAX_HERO_LEVEL}.`);
+    }
+    const heroLevel = temp;
+
+    if (argIdx >= args.length) {
+      throw new Error(`Invalid command. Troops not provided.`);
+    }
+    temp = res.findTroops(args[argIdx]);
+    if (!temp) {
+      throw new Error(`Invalid command. Troops "${args[argIdx]}" not found.`);
+    }
+    argIdx++;
+    const troopsName = temp;
+
+    if (argIdx >= args.length) {
+      temp = MAX_TROOPS_LEVEL;
+    } else {
+      temp = parseInt(args[argIdx]);
+      if (Number.isNaN(temp)) {
+        temp = 9;
+      } else if ((temp >=1) && (temp <= MAX_TROOPS_LEVEL)) {
+        argIdx++;
+      } else {
+        throw new Error(
+            `Invalid command. Troops level must be 1…${MAX_TROOPS_LEVEL}.`);
+      }
+    }
+    const troopsLevel = temp;
 
     const troopsDisplayName = locale.TROOPS_DISPLAY_NAMES[troopsName];
     troops = troopsData(troopsName, troopsLevel);
-    if (troops === null) return;
+    if (troops === null) {
+      throw new Error(
+          `Cannot find data for ${troopsName}.`);
+    }
 
     const buffedAttck =
       Math.round(troops.basic.attack * (1+attackBuffs[heroLevel-1]));
