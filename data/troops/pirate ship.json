@@ -1,0 +1,21 @@
+{
+  "race": "human",
+  "basic": {
+    "count": 1,
+    "health": [2000, 4000, 7000, 11000, 15000, 20000, 25000, 30000, 52500],
+    "attack": [ 200,  300,  400,   600,   800,  1100,  1400,  1800,  3150],
+    "defense":[  45,   50,   55,    60,    65,    70,    75,   800,    85],
+    "speed": "very slow",
+    "attack_speed": 0.2,
+    "shooting_range": 10,
+    "attack_type": "ranged",
+    "damage_type": "physical",
+    "damage_shape": "rounded",
+    "damage_range": 4
+  },
+  "skill": {
+    "name": "victory ship",
+    "note": "- Can protect pirates & take damage\n- Can be thrown to cause damage & stun enemies",
+    "duration": 3
+  }
+}
