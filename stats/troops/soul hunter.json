@@ -1,0 +1,21 @@
+{
+  "race": "dark",
+  "basic": {
+    "count": 1,
+    "health": [2000, 4000, 7500, 12000, 16500, 27500, 35000, 52500],
+    "attack": [ 200,  240,  280,   320,   360,   460,   520,  1000],
+    "defense":[  30,   35,   40,    45,    50,    75,    80,   160],
+    "speed": "medium",
+    "attack_speed": 1.2,
+    "attack_distance": "short",
+    "attack_type": "melee",
+    "damage_type": "physical",
+    "damage_shape": "rounded",
+    "damage_range": 4
+  },
+"skill": {
+    "name": "life_steal",
+    "description": "each attack of the soul hunter steals the life of his target",
+    "life_steal_percentage": [20, 22, 24, 25, 27, 28, 32]
+  }
+}
