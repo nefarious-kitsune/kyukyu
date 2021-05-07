@@ -13,7 +13,7 @@
     "damage_shape": "single"
   },
   "skill": {
-    "attack_increase": [225, 250, 275, 300, 325, 350, 375, 400, 700],
+    "damage": [225, 250, 275, 300, 325, 350, 375, 400, 700],
     "range": 4,
     "trigger_number": 6
   }
