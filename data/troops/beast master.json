@@ -16,7 +16,7 @@
     "name": "wild axes",
     "ability": "- Can be thrown to cause damage",
     "damage": [550, 575, 600, 625, 675, 725, 775, 875, 1531],
-    "range": "6 x 12",
+    "range": [[6, 12]],
     "trigger_number": 3
   }
 }
