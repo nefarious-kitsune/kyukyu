@@ -7,7 +7,7 @@
     "defense":[  15,   20,   25,   30,   35,   40,   45,   50,   55],
     "speed": "very slow",
     "attack_speed": 0.2,
-    "attack_distance": "infinity",
+    "shooting_range": "infinity",
     "attack_type": "ranged",
     "damage_type": "physical",
     "damage_shape": "rounded",
