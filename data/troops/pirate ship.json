@@ -15,7 +15,7 @@
   },
   "skill": {
     "name": "victory ship",
-    "note": "- Can protect pirates & take damage\n- Can be thrown to cause damage & stun enemies",
+    "ability": "- Can protect pirates & take damage\n- Can be thrown to cause damage & stun enemies",
     "duration": 3
   }
 }
