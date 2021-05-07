@@ -11,7 +11,7 @@ module.exports = {
   GREETING: GREETING,
   EMBED_FOOTER: 'Information contributed by AoW players.',
 
-  NO_INFO: 'I have no information for {TEXT}',
+  NO_INFO: 'I have no information for “{TEXT}”',
   NO_COMMENT: 'I have no comment!',
 
   TROOPS_ALIASES: [
@@ -136,6 +136,19 @@ module.exports = {
     path.resolve(__dirname, 'building', 'building2.json'),
     path.resolve(__dirname, 'building', 'building3.json'),
   ],
+
+  COMMAND_FORMATION_DESC: 'Tips for army formation',
+  COMMAND_FORMATION_USAGE: 'beginner|leveling',
+  COMMAND_FORMATION_ALIASES: ['form'],
+  COMMAND_FORMATION_MAP: {
+    'beginner': path.resolve(__dirname, 'formation', 'beginner.json'),
+    'basic': path.resolve(__dirname, 'formation', 'beginner.json'),
+    'level': path.resolve(__dirname, 'formation', 'leveling.json'),
+    'leveling': path.resolve(__dirname, 'formation', 'leveling.json'),
+    '8k': path.resolve(__dirname, 'formation', '8k.json'),
+    '8000': path.resolve(__dirname, 'formation', '8k.json'),
+    'farming': path.resolve(__dirname, 'formation', '8k.json'),
+  },
 
   COMMAND_WOF_ALIASES: ['wheel'],
   COMMAND_WOF_PLUS: 'The probability of getting {HIT_RANGE} or more {UNIT} in {SPIN_COUNT} spins is {PROB}%.',

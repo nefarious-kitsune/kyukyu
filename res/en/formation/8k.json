@@ -1,0 +1,18 @@
+{
+  "embed": {
+    "title": "Farming Formtion",
+    "description": "Tips on getting 3-star wins in level 8000.",
+    "image": {
+      "url": "https://cdn.discordapp.com/attachments/833978786395586600/840043700775551006/formation_8k.png"
+    },
+    "fields": [
+      {
+        "name": "Tips",
+        "value": "• Put Hohenheim on the side, and protect him with two Pilgrims.\n• Use troops that help you win with speed and power: Undead Soldier, Peltasts, Taurus Witcher, Ballista, and Priest Mage.\n• Avoid speed-control units: Dark Witch, Ice Mage, and Frost Archers.\n• Avoid using single-load tank units (i.e. Stone Golem) except for crowd control (i.e. Witchraft Totem).\n• Minimize the uses of sacrificial troops (Goblikazes and Voodoo Dolls).\n• Use one or two Necromancer to ensure 50% troops survival rate."
+      }
+    ],
+    "footer": {
+      "text": "Use `{PREFIX}formation leveling` for tips about passing levels before level 8000."
+    }
+  }
+}
