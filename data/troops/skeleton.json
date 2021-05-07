@@ -9,6 +9,6 @@
     "shooting_range": "short",
     "attack_type": "melee",
     "damage_type": "physical",
-    "damage_shape": "single target"
+    "damage_shape": "single"
   }
 }
