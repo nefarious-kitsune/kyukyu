@@ -138,7 +138,7 @@ module.exports = {
   ],
 
   COMMAND_FORMATION_DESC: 'Tips for army formation',
-  COMMAND_FORMATION_USAGE: 'beginner|leveling',
+  COMMAND_FORMATION_USAGE: 'beginner|leveling|farming',
   COMMAND_FORMATION_ALIASES: ['form'],
   COMMAND_FORMATION_MAP: {
     'beginner': path.resolve(__dirname, 'formation', 'beginner.json'),
@@ -148,6 +148,17 @@ module.exports = {
     '8k': path.resolve(__dirname, 'formation', '8k.json'),
     '8000': path.resolve(__dirname, 'formation', '8k.json'),
     'farming': path.resolve(__dirname, 'formation', '8k.json'),
+  },
+
+  COMMAND_HH_DESC: 'Tips for honor hunting',
+  COMMAND_HH_USAGE: 'beginner|cerberus|cyclops|\'spider queen\'',
+  COMMAND_HH_ALIASES: ['honor hunting'],
+  COMMAND_HH_MAP: {
+    'beginner': path.resolve(__dirname, 'formation', 'hh_beginner.json'),
+    'beginners': path.resolve(__dirname, 'formation', 'hh_beginner.json'),
+    'basic': path.resolve(__dirname, 'formation', 'hh_beginner.json'),
+    'cyclops': path.resolve(__dirname, 'formation', 'hh_cyclops.json'),
+    'cerberus': path.resolve(__dirname, 'formation', 'hh_cerberus.json'),
   },
 
   COMMAND_WOF_ALIASES: ['wheel'],

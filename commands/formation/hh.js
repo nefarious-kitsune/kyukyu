@@ -3,7 +3,7 @@ const {locale} = require('../../res/res');
 const {literal} = require('../../helpers/literal');
 
 module.exports = {
-  name: 'formation',
+  name: 'hh',
   description: locale.COMMAND_HH_DESC,
   usage: locale.COMMAND_HH_USAGE,
   aliases: locale.COMMAND_HH_ALIASES,

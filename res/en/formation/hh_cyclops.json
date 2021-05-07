@@ -1,0 +1,28 @@
+{
+  "embed": {
+    "title": "Cyclops Tips",
+    "description": "Tips on Cyclops Honor Hunting formation.",
+    "url": "https://sites.google.com/view/arena-masters/tips/honor-hunting",
+    "image": {
+      "url": "https://cdn.discordapp.com/attachments/833978786395586600/840063427837165598/formation-cyclops.png"
+    },
+    "fields": [
+      {
+        "name": "Best Heroes",
+        "value": "• Drake, Aly, Hoheheim"
+      },
+      {
+        "name": "Tips",
+        "value": "• Use 2 Pilgrims (3 if they are level-8).\n• Use 3 Brawlers (4 if they are level-8).\n• Use as many Voodoo Dolls as you can.\n• Use as many level-9 long-range units (preferably Peltasts and Taurus Witchers) as you can.\n• Use level-9 Ghost Assassins as filler troops. Put them at the back row(s).\n• Use level-9 Undead Soldier as filler troops.\n• Do not use the Evade button."
+      },
+      {
+        "name": "Stages",
+        "value": "• Stage 1: day 1-3\n• Stage 2: day 4-6\n• Stage 3: day 7"
+      }
+    ],
+    "footer": {
+      "text": "Use `{PREFIX}hh beginner` for additional tips."
+    }
+  }
+}
+

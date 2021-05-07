@@ -1,0 +1,17 @@
+{
+  "embed": {
+    "title": "Honor Hunting Basics",
+    "description": "Tips on Honor Hunting formation for new players.",
+    "url": "https://sites.google.com/view/arena-masters/tips/honor-hunting",
+    "fields": [
+      {
+        "name": "Tips",
+        "value": "• Use as many Voodoo Dolls as you can. In general, 2 level-7 > 1 level-8, and 2 level-8 > 1 level-9. (Note: Voodoo Dolls are unlocked at level 5000.)\n• Keep a record of your damages ([template](https://docs.google.com/spreadsheets/d/1aOZSyGjXMXAROVeVlt36GNVFUOcOZKZdx-FiiIKBvBU/edit?usp=sharing)). Ideally you want to keep making improvement.\n• Ask your clan mates for help with your formation.\n• Pause and back out of an attack if you aren't getting the result you wanted."
+      }
+    ],
+    "footer": {
+      "text": "Use {PREFIX}hh cerberus, {PREFIX}hh cyclops, and {PREFIX}hh 'spider queen' for additional tips."
+    }
+  }
+}
+

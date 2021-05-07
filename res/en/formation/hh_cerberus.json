@@ -1,0 +1,28 @@
+{
+  "embed": {
+    "title": "Cerberus Tips",
+    "description": "Tips on Cerberus Honor Hunting formation.",
+    "url": "https://sites.google.com/view/arena-masters/tips/honor-hunting",
+    "image": {
+      "url": "https://cdn.discordapp.com/attachments/833978786395586600/840063434107519017/formation-cerberus.png"
+    },
+    "fields": [
+      {
+        "name": "Best Heroes",
+        "value": "• Hoheheim, Seondeok, Dracula, Aly, Diana"
+      },
+      {
+        "name": "Tips",
+        "value": "• Use 2 Pilgrims (3 if they are level-8).\n• Use 3 Brawlers (4 if they are level-8).\n• Use as many Voodoo Dolls as you can.\n• Use 1 or 2 Pumpkin Guard units (to lower Cerberus's defense).\n• Use as many level-9 Necromancer as you can.\n• Use as many level-9 Taurus Witchers as you can.\n• Use 1 or 2 Nun units.\n• Use level-9 Peltasts as filler troops.\n• Use level-9 Ghost Assassins as filler troops. Put them at the back row(s).\n• Use level-9 Undead Soldier as filler troops."
+      },
+      {
+        "name": "Stages",
+        "value": "• Stage 1: day 1-2\n• Stage 2: day 3-4\n• Stage 3: day 5-7"
+      }
+    ],
+    "footer": {
+      "text": "Use `{PREFIX}hh beginner` for additional tips."
+    }
+  }
+}
+
