@@ -1,0 +1,21 @@
+{
+  "race": "human",
+  "basic": {
+    "count": [3, 5, 7, 9],
+    "health": [1200, 1500, 2200,  3500,  5400,  7300,  9200, 11100, 19425],
+    "attack": [ 140,  160,  210,   280,   320,   370,   410,   440,   770],
+    "defense":[  65,   70,   75,    80,    85,    90,    95,   100,   175],
+    "speed": "medium",
+    "attack_speed": 1,
+    "attack_distance": "short",
+    "attack_type": "melee",
+    "damage_type": "physical",
+    "damage_shape": "single"
+  },
+  "skill": {
+    "range": 2,
+    "trigger": 4,
+    "duration":  4
+  }
+}
+
