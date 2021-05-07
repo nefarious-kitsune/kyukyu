@@ -11,6 +11,6 @@
     "attack_type": "melee",
     "damage_type": "physical",
     "damage_shape": "rectangular",
-    "damage_range": "2 x 5"
+    "damage_range": [[2, 5]]
   }
 }
