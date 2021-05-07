@@ -1,0 +1,15 @@
+{
+  "race": "wild",
+  "basic": {
+    "count": 1,
+    "health": [],
+    "attack": [],
+    "defense":[],
+    "speed": "medium",
+    "attack_speed": 0.9,
+    "shooting_range": "short",
+    "attack_type": "melee",
+    "damage_type": "physical",
+    "damage_shape": "single target"
+  }
+}
