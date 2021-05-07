@@ -10,7 +10,7 @@
     "shooting_range": 7,
     "attack_type": "ranged",
     "damage_type": "physical",
-    "damage_shape": "single target"
+    "damage_shape": "single"
   },
   "skill": {
     "name": "wild axes",
