@@ -14,7 +14,7 @@
   },
   "skill": {
     "range": 2,
-    "trigger": 4,
+    "trigger_number": 4,
     "duration":  4
   }
 }
