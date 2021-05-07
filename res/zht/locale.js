@@ -138,7 +138,7 @@ module.exports = {
     path.resolve(__dirname, 'building', 'building3.json'),
   ],
 
-  COMMAND_FORMATION_DESC: '軍隊陣形的技巧',
+  COMMAND_FORMATION_DESC: '軍隊陣形的訣竅',
   COMMAND_FORMATION_USAGE: '基本|破關|刷金',
   COMMAND_FORMATION_ALIASES: ['form', '陣形'],
   COMMAND_FORMATION_MAP: {
