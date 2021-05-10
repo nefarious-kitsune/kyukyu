@@ -1,0 +1,14 @@
+{
+  "race": "dark",
+  "basic": {
+    "count": 1,
+    "health": [1000, 1800, 2600, 3800, 5000, 6200, 7400, 8600, 15050],
+    "defense":[  25,   30,   35,   40,   45,   50,   55,   60,    65],
+    "speed": "very slow",
+    "attack_speed": 0.35,
+    "attack_distance": "infinity",
+    "attack_type": "ranged",
+    "damage_type": "magical",
+    "damage_shape": "single"
+  }
+}

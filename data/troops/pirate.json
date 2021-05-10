@@ -1,0 +1,16 @@
+{
+  "race": "human",
+  "basic": {
+    "count": 7,
+    "health": [1000, 1250, 1750, 2800, 3750, 5000, 7250, 9000, 15750],
+    "attack": [ 200,  250,  300,  360,  430,  510,  600,  700,  1225],
+    "defense":[  25,   30,   35,   40,   45,   50,   55,   60,   105],
+    "speed": "medium",
+    "attack_speed": 0.6,
+    "shooting_range": "short",
+    "attack_type": "melee",
+    "damage_type": "physical",
+    "damage_shape": "rectangular",
+    "damage_range": [[2, 5]]
+  }
+}

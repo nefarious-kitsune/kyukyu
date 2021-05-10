@@ -7,9 +7,9 @@
     "defense":[  35,   40,   45,    50,    55,    60,    65,    70,    75],
     "speed": "very slow",
     "attack_speed": 0.8,
-    "attack_distance": "infinity",
+    "shooting_range": "infinity",
     "attack_type": "ranged",
-    "damage_type": "magical",
+    "damage_type": "physical",
     "damage_shape": "single"
   },
   "skill": {
