@@ -181,7 +181,7 @@ module.exports = {
     'selene': path.resolve(__dirname, 'heroes', 'selene.json'),
   },
 
-  COMMAND_TROOPS_DESC: 'Information about troops.',
+  COMMAND_TROOPS_DESC: 'Information about troops.\n(meta, paladin, pilgrims, peltasts, brawlers, nun, voodoo dolls)',
   COMMAND_TROOPS_USAGE: '<troops name>',
   COMMAND_TROOPS_ALIASES: ['troop'],
   COMMAND_TROOPS_BLACKLIST: 'infantry,iron guards,hell jailers,fire mage,viking warrior,scholar,templar knight',
@@ -213,7 +213,7 @@ module.exports = {
   COMMAND_PLUS_SEONDEOK_NORMAL: '\n**Basic Attack** (original)\n',
   COMMAND_PLUS_SEONDEOK_NORMAL_ATTACK: 'Attack: {ATTACK}\n',
   COMMAND_PLUS_SEONDEOK_NORMAL_CIRCLE: 'AoE Radius: {AOE RADIUS} (Area: {AOE AREA})\n',
-  COMMAND_PLUS_SEONDEOK_NORMAL_RECT: 'AoE Range: {AOE W}x{AOE L} (Area: {AOE AREA})\n',
+  COMMAND_PLUS_SEONDEOK_NORMAL_RECT: 'AoE Range: {AOE W}×{AOE L} (Area: {AOE AREA})\n',
 
   COMMAND_PLUS_SELENE_DESC: 'Calculate the effect of Selene on troops.',
   COMMAND_PLUS_SELENE_USAGE: '[hero level] <troops name> [troops level]',
