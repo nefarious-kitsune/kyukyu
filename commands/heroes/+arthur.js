@@ -1,12 +1,10 @@
 const res = require('../../res/res');
 const locale = res.locale;
-const {troopsData} = require('../../helpers/troopsData');
 const {literal} = require('../../helpers/literal');
+const {plusHero} = require('../../helpers/plusHero');
 
 const MAX_VOODOO_DAMAGE = 17500;
 const MAX_VOODOO_HEALTH = 4375;
-const MAX_HERO_LEVEL = 15;
-const MAX_TROOPS_LEVEL = 9;
 
 const immunities = [
   0.16, 0.17, 0.18, 0.19, 0.20,
@@ -29,53 +27,11 @@ module.exports = {
   aliases: locale.COMMAND_PLUS_ARTHUR_ALIASES,
   args: true,
   async execute(msg, args) {
-    if (args.length < 1) return;
-
-    let argIdx = 0;
-    let temp;
-
-    temp = parseInt(args[0]);
-    if (Number.isNaN(temp)) {
-      temp = MAX_HERO_LEVEL;
-    } else if ((temp >=1) && (temp <= MAX_HERO_LEVEL)) {
-      argIdx++;
-    } else {
-      throw new Error(
-          `Invalid command. Hero level must be 1…${MAX_HERO_LEVEL}.`);
-    }
-    const heroLevel = temp;
-
-    if (argIdx >= args.length) {
-      throw new Error(`Invalid command. Troops not provided.`);
-    }
-    temp = res.findTroops(args[argIdx]);
-    if (!temp) {
-      throw new Error(`Invalid command. Troops "${args[argIdx]}" not found.`);
-    }
-    argIdx++;
-    const troopsName = temp;
-
-    if (argIdx >= args.length) {
-      temp = MAX_TROOPS_LEVEL;
-    } else {
-      temp = parseInt(args[argIdx]);
-      if (Number.isNaN(temp)) {
-        temp = 9;
-      } else if ((temp >=1) && (temp <= MAX_TROOPS_LEVEL)) {
-        argIdx++;
-      } else {
-        throw new Error(
-            `Invalid command. Troops level must be 1…${MAX_TROOPS_LEVEL}.`);
-      }
-    }
-    const troopsLevel = temp;
-
-    const troopsDisplayName = locale.TROOPS_DISPLAY_NAMES[troopsName];
-    troops = troopsData(troopsName, troopsLevel);
-    if (troops === null) {
-      throw new Error(
-          `Cannot find data for ${troopsName}.`);
-    }
+    const plus = plusHero(args);
+    const heroLevel = plus.heroLevel;
+    const troops = plus.troops;
+    const troopsLevel = plus.troopsLevel;
+    const troopsDisplayName = plus.troopsDisplayName;
 
     let text =
       literal(
@@ -87,6 +43,7 @@ module.exports = {
 
     if (troops.race == 'human') {
       const immunPercentage = immunities[heroLevel-1] * 100;
+      const healthRegen = Math.round(regen[heroLevel-1] * troops.basic.health);
 
       const voodooDamage =
           Math.round(
@@ -102,6 +59,7 @@ module.exports = {
           literal(
               locale.COMMAND_PLUS_ARTHUR_PASSIVE,
               '{IMMUNITY PERCENTAGE}', immunPercentage,
+              '{HEALTH REGEN}', healthRegen,
           ) +
           literal(
               locale.COMMAND_PLUS_SELENE_OPENING_CURSED,
