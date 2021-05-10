@@ -11,6 +11,52 @@ module.exports = {
   GREETING: GREETING,
   EMBED_FOOTER: 'Information contributed by AoW players.',
 
+  COMMAND_STATS_HEADER: '{TROOPS} (Level {LEVEL})',
+  COMMAND_STATS_BASIC_HEADER: 'Basic',
+  STATS: {
+    'race': 'Race',
+    'human': 'Human',
+    'dark': 'Dark',
+    'wild': 'Wild',
+    'sacred': 'Sacred',
+    'count': 'Count',
+    'health': 'Health',
+    'attack': 'Attack',
+    'defense': 'Defense',
+    'speed': 'Speed',
+    'attack_speed': 'Attack Speed',
+    'attack_distance': 'Attack Distance',
+    'shooting_range': 'Shooting Range',
+    'attack_type': 'Attack Type',
+    'damage_type': 'Damage Type',
+    'damage_shape': 'Damage Shape',
+    // speed
+    'very slow': 'Very Slow',
+    'slow': 'Slow',
+    'medium': 'Medium',
+    'fast': 'Fast',
+    'very fast': 'Very Fast',
+    // attack/shooting range
+    'short': 'Short',
+    'infinity': 'Infinity',
+    // attack type
+    'ranged': 'Ranged',
+    'melee': 'Melee',
+    // damage type
+    'physical': 'Physical',
+    // damage shape
+    'single': 'Single Target',
+    'puncture': 'Puncture',
+    'rounded': 'Rounded',
+    'rectangular': 'Rectangular',
+    'range': 'Range',
+    'trigger_number': 'Trigger Number',
+    'duration': 'Duration',
+    'duration_2': 'Duration',
+    'lasting_damage': 'Lasting Damage',
+    'attack_increase': 'Attack Increase',
+  },
+
   NO_INFO: 'I have no information for “{TEXT}”',
   NO_COMMENT: 'I have no comment!',
 
