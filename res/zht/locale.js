@@ -52,7 +52,7 @@ module.exports = {
     ['dark witch', 'dw', '黑魔女'],
     ['nun', 'nuns', '修女'],
     ['pirate ship', 'ps', '海盜船'],
-    ['pirate', '海盜'],
+    ['pirate', 'pirates', '海盜'],
     ['demon'],
     ['beast master', 'bm'],
     ['the beast partner'],
