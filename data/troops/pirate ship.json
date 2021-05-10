@@ -14,8 +14,6 @@
     "damage_range": 4
   },
   "skill": {
-    "name": "victory ship",
-    "ability": "- Can protect pirates & take damage\n- Can be thrown to cause damage & stun enemies",
     "duration": 3
   }
 }

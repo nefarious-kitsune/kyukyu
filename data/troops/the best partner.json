@@ -13,8 +13,6 @@
     "damage_shape": "single"
   },
   "skill": {
-    "name": "lunge",
-    "ability": "- Causes damage to enemies",
     "damage": [175, 200, 225, 250, 275, 300, 325, 350, 613],
     "range": 4,
     "trigger_number": 4
