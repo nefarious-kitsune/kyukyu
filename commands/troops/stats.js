@@ -26,10 +26,13 @@ function formatAttribute(k, v) {
   } else if (typeof v === 'string' || v instanceof String) {
     value = locale.COMMAND_STATS_LABELS[v];
   } else {
-    if (PERCENT_ATTRS.includes(v)) {
+    if (PERCENT_ATTRS.includes(k)) {
       v = Number(v) * 100;
       value =
-        v.toLocaleString('en-US', {minimumSignificantDigits: 2}) +
+        v.toLocaleString('en-US', {
+          minimumSignificantDigits: 2,
+          maximumSignificantDigits: 3,
+        }) +
         '%';
     } else {
       value = v.toString();
