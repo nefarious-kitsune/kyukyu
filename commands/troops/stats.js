@@ -5,12 +5,45 @@ const {troopsData} = require('../../helpers/troopsData');
 
 const MAX_TROOPS_LEVEL = 9;
 
+const PERCENT_ATTRS =
+    ['attack_increase', 'attack_reduction',
+      'attack_speed_increase', 'attack_speed_reduction',
+      'movement_speed_increase', 'movement_speed_reduction',
+      'life_steal_percentage', 'damage_resistance',
+      'critical_rate', 'critical_damage_rate',
+      'damage_reflection'];
+
+/**
+* @param {string} k
+* @param {string} v
+* @return {string}
+*/
+function formatAttribute(k, v) {
+  const key = locale.COMMAND_STATS_LABELS[k];
+  let value;
+  if (Array.isArray(v)) {
+    value = v.join(' × ');
+  } else if (typeof v === 'string' || v instanceof String) {
+    value = locale.COMMAND_STATS_LABELS[v];
+  } else {
+    if (PERCENT_ATTRS.includes(v)) {
+      v = Number(v) * 100;
+      value =
+        v.toLocaleString('en-US', {minimumSignificantDigits: 2}) +
+        '%';
+    } else {
+      value = v.toString();
+    }
+  }
+  return `${key}: **${value}**\n`;
+}
+
 module.exports = {
   name: 'stats',
-  // description: locale.COMMAND_STATS_DESC,
-  // usage: locale.COMMAND_STATS_USAGE,
-  // usage_example: locale.COMMAND_STATS_USAGE_EXAMPLE,
-  // aliases: locale.COMMAND_STATS_ALIASES,
+  description: locale.COMMAND_STATS_DESC,
+  usage: locale.COMMAND_STATS_USAGE,
+  usage_example: locale.COMMAND_STATS_USAGE_EXAMPLE,
+  aliases: locale.COMMAND_STATS_ALIASES,
   args: true,
   async execute(msg, args) {
     let argIdx = 0;
@@ -49,21 +82,14 @@ module.exports = {
       throw new Error('Invalid command. No troops found.');
     }
 
+    const DM = ((list.length > 4) || (msg.channel.type == 'dm'));
+
     for (let i=0; i<list.length; i++) {
       let textBasic = '';
       const troops = list[i].troops;
       for (const [k, v] of Object.entries(troops.basic)) {
-        const key = locale.STATS[k];
-        let value;
-        if (Array.isArray(v)) {
-          value = v.join(' × ');
-        } else if (typeof v === 'string' || v instanceof String) {
-          value = locale.STATS[v];
-        } else {
-          value = v.toString();
-        }
-        textBasic += `${key}: **${value}**\n`;
-      } // for ([k, v])
+        textBasic += formatAttribute(k, v);
+      }
 
       const embed = {
         'title':
@@ -79,7 +105,27 @@ module.exports = {
           },
         ],
       };
-      msg.channel.send({embed: embed});
+
+      if (DM && troops.skill) {
+        let textSkill = '';
+        for (const [k, v] of Object.entries(troops.skill)) {
+          textSkill += formatAttribute(k, v);
+        }
+        embed.fields.push({
+          name: locale.COMMAND_STATS_SKILL_HEADER,
+          value: textSkill,
+        });
+      }
+
+      if (DM) {
+        msg.author.send({embed: embed});
+      } else {
+        msg.channel.send({embed: embed});
+      }
+    }
+
+    if (DM && (msg.channel.type != 'dm')) {
+      msg.channel.send(locale.COMMAND_STATS_DM);
     }
   },
 };
