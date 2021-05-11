@@ -62,6 +62,7 @@ module.exports = {
     'trigger_number': '觸發所需攻擊次數',
     'duration': '持續時間',
     'duration_2': '持續時間',
+    'damage': '傷害',
     'lasting_damage': '持續傷害',
     'attack_increase': '攻擊加成',
     'attack_reduction': '攻擊降低',

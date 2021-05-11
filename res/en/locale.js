@@ -62,6 +62,7 @@ module.exports = {
     'trigger_number': 'Trigger Number',
     'duration': 'Duration',
     'duration_2': 'Duration',
+    'damage': 'Damage',
     'lasting_damage': 'Lasting Damage',
     'attack_increase': 'Attack Increase',
     'attack_reduction': 'Attack Reduction',
