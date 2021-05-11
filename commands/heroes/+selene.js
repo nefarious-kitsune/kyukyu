@@ -33,11 +33,8 @@ module.exports = {
   aliases: locale.COMMAND_PLUS_SELENE_ALIASES,
   args: true,
   async execute(msg, args) {
-    const plus = plusHero(args);
-    const heroLevel = plus.heroLevel;
-    const troops = plus.troops;
-    const troopsLevel = plus.troopsLevel;
-    const troopsDisplayName = plus.troopsDisplayName;
+    const {heroLevel, troops, troopsName, troopsLevel, troopsDisplayName} =
+        plusHero(args);
 
     const buffedAttck =
       Math.round(troops.basic.attack * (1+attackBuffs[heroLevel-1]));

@@ -27,11 +27,8 @@ module.exports = {
   aliases: locale.COMMAND_PLUS_ARTHUR_ALIASES,
   args: true,
   async execute(msg, args) {
-    const plus = plusHero(args);
-    const heroLevel = plus.heroLevel;
-    const troops = plus.troops;
-    const troopsLevel = plus.troopsLevel;
-    const troopsDisplayName = plus.troopsDisplayName;
+    const {heroLevel, troops, troopsLevel, troopsDisplayName} =
+        plusHero(args);
 
     let text =
       literal(

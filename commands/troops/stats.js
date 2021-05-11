@@ -51,6 +51,7 @@ module.exports = {
 
     for (let i=0; i<list.length; i++) {
       let textBasic = '';
+      const troops = list[i].troops;
       for (const [k, v] of Object.entries(troops.basic)) {
         const key = locale.STATS[k];
         let value;

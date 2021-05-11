@@ -62,6 +62,7 @@ function plusHero(args) {
   return {
     heroLevel: heroLevel,
     troops: troops,
+    troopsName: troopsName,
     troopsLevel: troopsLevel,
     troopsDisplayName: troopsDisplayName,
   };
