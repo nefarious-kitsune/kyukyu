@@ -189,7 +189,8 @@ module.exports = {
 
   COMMAND_RELOAD_DESC: '重載指令。',
   COMMAND_RELOAD_NOT_FOUND: '沒有名稱或別名是「{TEXT}」的指令',
-
+  COMMAND_CLEAR_DESC: '（限定DM）刪除機器人的訊息（最多十筆）。',
+  COMMAND_CLEAR_ALIASES: [],
   COMMAND_HELP_DESC: '顯示某特定指令的協助訊息。',
   COMMAND_HELP_USAGE: '[指令名稱]',
   COMMAND_HELP_ALIASES: ['h', 'commands', '幫助'],

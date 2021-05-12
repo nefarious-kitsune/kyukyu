@@ -188,7 +188,8 @@ module.exports = {
 
   COMMAND_RELOAD_DESC: 'Reloads a command.',
   COMMAND_RELOAD_NOT_FOUND: 'There is no command with name or alias of "{TEXT}"',
-
+  COMMAND_CLEAR_DESC: '(DM-only) Delete bot\'s own messages (max 10).',
+  COMMAND_CLEAR_ALIASES: [],
   COMMAND_HELP_DESC: 'Show help for a specified command..',
   COMMAND_HELP_USAGE: '[command name]',
   COMMAND_HELP_ALIASES: ['h', 'commands'],
