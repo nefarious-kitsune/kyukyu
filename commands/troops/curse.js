@@ -51,8 +51,10 @@ module.exports = {
 
       let voodooDamage;
       if ((target.skill) && (target.skill.damage_resistance)) {
-        voodooDamage = damageFromHealthLoss +
-          Math.round(damageFromCurse * (1-target.skill.damage_resistance));
+        voodooDamage = Math.round(
+            (damageFromHealthLoss + damageFromCurse) *
+            (1-target.skill.damage_resistance),
+        );
       } else {
         voodooDamage = damageFromHealthLoss + damageFromCurse;
       }

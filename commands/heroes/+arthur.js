@@ -45,8 +45,7 @@ module.exports = {
 
       const voodooDamage =
           Math.round(
-              MAX_VOODOO_HEALTH +
-              (MAX_VOODOO_DAMAGE - troops.basic.defense) *
+              (MAX_VOODOO_HEALTH + MAX_VOODOO_DAMAGE - troops.basic.defense) *
               (1-immunities[heroLevel-1]),
           );
 
