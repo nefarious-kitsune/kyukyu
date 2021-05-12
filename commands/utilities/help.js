@@ -1,5 +1,6 @@
 const {locale} = require('../../res/res');
 const {literal} = require('../../helpers/literal');
+const {sendMessage} = require('../../helpers/sendMessage');
 const prefix = process.env.prefix;
 
 const BLACKLIST = ['reload', 'greet'];
@@ -19,19 +20,25 @@ module.exports = {
           .filter((cmd)=>!BLACKLIST.includes(cmd.name))
           .forEach((cmd)=>commandArray.push(prefix + cmd.name));
 
-      return msg.channel.send(
-          literal(
-              locale.COMMAND_HELP_HELP,
-              '{PREFIX}', process.env.prefix,
-              '{COMMANDS}', commandArray.join(', '),
-          )
+      // return msg.channel.send(
+      //     literal(
+      //         locale.COMMAND_HELP_HELP,
+      //         '{PREFIX}', process.env.prefix,
+      //         '{COMMANDS}', commandArray.join(', '),
+      //     ),
+      // );
+      const help = literal(
+          locale.COMMAND_HELP_HELP,
+          '{PREFIX}', process.env.prefix,
+          '{COMMANDS}', commandArray.join(', '),
       );
+      sendMessage(msg.channel, help, msg.author.id);
     } else {
       const cmdName = args[0].toLowerCase();
       const cmd =
             commands.get(cmdName) ||
             commands.find(
-                (cmd) => cmd.aliases && cmd.aliases.includes(cmdName)
+                (cmd) => cmd.aliases && cmd.aliases.includes(cmdName),
             );
 
       if (!cmd) return msg.reply(locale.COMMAND_HELP_NOT_FOUND);
@@ -53,7 +60,7 @@ module.exports = {
         help += `\n**${locale.COMMAND_HELP_LABEL_EXAMPLE}:** ` +
           `\`${prefix}${cmd.name} ${cmd.usage_example}\``;
       }
-      msg.channel.send(help);
+      sendMessage(msg.channel, help, msg.author.id);
     }
   },
 };

@@ -2,6 +2,7 @@ const res = require('../../res/res');
 const locale = res.locale;
 const {troopsData} = require('../../helpers/troopsData');
 const {literal} = require('../../helpers/literal');
+const {sendMessage} = require('../../helpers/sendMessage');
 
 const VOODOO_CURSE_RATE =
   [1, 0.58, 0.34, 0.20, 0.011, 0.066, 0.038, 0.022, 0.013];
@@ -76,7 +77,8 @@ module.exports = {
             '{DAMAGE}', voodooDamage,
             '{HEALTH PERCENTAGE}', healthPercentage,
         );
-      msg.channel.send(text);
+      // sendMessage(msg.channel, text, msg.author.id);
+      sendMessage(msg.channel, text, msg.author.id);
     } else {
 
     }

@@ -11,12 +11,12 @@ module.exports = {
     const cmd =
       msg.client.commands.get(cmdName) ||
       msg.client.commands.find(
-          (cmd) => cmd.aliases && cmd.aliases.includes(cmdName)
+          (cmd) => cmd.aliases && cmd.aliases.includes(cmdName),
       );
 
     if (!cmd) {
       return msg.reply(
-          literal(locale.COMMAND_RELOAD_NOT_FOUND, '{TEXT}', cmdName)
+          literal(locale.COMMAND_RELOAD_NOT_FOUND, '{TEXT}', cmdName),
       );
     }
 
@@ -25,7 +25,7 @@ module.exports = {
             (folder) => {
               return fs.readdirSync(`./commands/${folder}`)
                   .includes(`${cmdName}.js`);
-            }
+            },
         );
 
     delete require.cache[require.resolve(`../${folderName}/${cmd.name}.js`)];

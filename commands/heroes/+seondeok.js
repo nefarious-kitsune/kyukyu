@@ -1,6 +1,7 @@
 const res = require('../../res/res');
 const locale = res.locale;
 const {literal} = require('../../helpers/literal');
+const {sendMessage} = require('../../helpers/sendMessage');
 const {plusHero} = require('../../helpers/plusHero');
 
 const aoeRanges = [
@@ -33,7 +34,7 @@ module.exports = {
         Math.round(
             100 *
             (troops.basic.health * 0.05) /
-            (troops.basic.attack - troops.basic.defense)
+            (troops.basic.attack - troops.basic.defense),
         );
 
     let text =
@@ -94,6 +95,6 @@ module.exports = {
       }
     }
 
-    msg.channel.send(text);
+    sendMessage(msg.channel, text, msg.author.id);
   },
 };

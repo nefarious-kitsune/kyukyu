@@ -1,6 +1,7 @@
 const res = require('../../res/res');
 const locale = res.locale;
 const {literal} = require('../../helpers/literal');
+const {sendMessage} = require('../../helpers/sendMessage');
 const {troopsData} = require('../../helpers/troopsData');
 
 const MAX_TROOPS_LEVEL = 9;
@@ -121,9 +122,10 @@ module.exports = {
       }
 
       if (DM) {
-        msg.author.send({embed: embed});
+        sendMessage(msg.author, {embed: embed}, msg.author.id);
+        // msg.author.send({embed: embed});
       } else {
-        msg.channel.send({embed: embed});
+        sendMessage(msg.channel, {embed: embed}, msg.author.id);
       }
     }
 

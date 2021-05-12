@@ -1,5 +1,6 @@
 const fs = require('fs');
 const {locale} = require('../../res/res');
+const {sendMessage} = require('../../helpers/sendMessage');
 
 module.exports = {
   name: 'building',
@@ -19,7 +20,7 @@ module.exports = {
         literal(embed.embed.footer.text, '{PREFIX}', process.env.prefix);
     }
     embeds.forEach( (embed) => {
-      msg.channel.send(embed);
+      sendMessage(msg.channel, embed, msg.author.id);
     });
   },
 };

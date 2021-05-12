@@ -1,6 +1,7 @@
 const res = require('../../res/res');
 const locale = res.locale;
 const {literal} = require('../../helpers/literal');
+const {sendMessage} = require('../../helpers/sendMessage');
 const {plusHero} = require('../../helpers/plusHero');
 
 const MAX_VOODOO_DAMAGE = 17500;
@@ -46,7 +47,7 @@ module.exports = {
           Math.round(
               MAX_VOODOO_HEALTH +
               (MAX_VOODOO_DAMAGE - troops.basic.defense) *
-              (1-immunities[heroLevel-1])
+              (1-immunities[heroLevel-1]),
           );
 
       const healthPercentage =
@@ -67,6 +68,6 @@ module.exports = {
       text += locale.COMMAND_PLUS_ARTHUR_NOT_HUMAN;
     }
 
-    msg.channel.send(text);
+    sendMessage(msg.channel, text, msg.author.id);
   },
 };

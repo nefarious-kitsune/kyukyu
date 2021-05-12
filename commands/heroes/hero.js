@@ -1,6 +1,7 @@
 const fs = require('fs');
 const {locale} = require('../../res/res');
 const {literal} = require('../../helpers/literal');
+const {sendMessage} = require('../../helpers/sendMessage');
 
 module.exports = {
   name: 'hero',
@@ -12,7 +13,7 @@ module.exports = {
     const heroName = args[0].toLowerCase();
     if (locale.COMMAND_HERO_MAP.hasOwnProperty(heroName)) {
       const embed = JSON.parse(
-          fs.readFileSync(locale.COMMAND_HERO_MAP[heroName])
+          fs.readFileSync(locale.COMMAND_HERO_MAP[heroName]),
       );
       if (!embed.embed.hasOwnProperty('footer')) {
         embed.embed['footer'] = {text: locale.EMBED_FOOTER};
@@ -20,10 +21,10 @@ module.exports = {
         embed.embed.footer.text =
           literal(embed.embed.footer.text, '{PREFIX}', process.env.prefix);
       }
-      msg.channel.send(embed);
+      sendMessage(msg.channel, embed, msg.author.id);
     } else {
       msg.reply(
-          literal(locale.NO_INFO, '{TEXT}', heroName)
+          literal(locale.NO_INFO, '{TEXT}', heroName),
       );
       return;
     }

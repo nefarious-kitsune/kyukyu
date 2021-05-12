@@ -1,6 +1,7 @@
 const res = require('../../res/res');
 const locale = res.locale;
 const {literal} = require('../../helpers/literal');
+const {sendMessage} = require('../../helpers/sendMessage');
 const {plusHero} = require('../../helpers/plusHero');
 
 const MAX_VOODOO_DAMAGE = 17500;
@@ -77,6 +78,6 @@ module.exports = {
         );
     }
 
-    msg.channel.send(text);
+    sendMessage(msg.channel, text, msg.author.id);
   },
 };

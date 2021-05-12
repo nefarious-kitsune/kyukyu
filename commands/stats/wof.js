@@ -1,5 +1,6 @@
 const {locale, images} = require('../../res/res');
 const {literal} = require('../../helpers/literal');
+const {sendMessage} = require('../../helpers/sendMessage');
 
 const MIN_PROB = 0.0005;
 
@@ -157,7 +158,7 @@ module.exports = {
               '{TOTAL_QTY}', resultQty,
               '{UNIT}', unit,
               '{PROB}', Math.round(prevProb*1000)/10,
-          )
+          ),
       );
       return;
     }
@@ -188,7 +189,7 @@ module.exports = {
               '{HIT_RANGE}', resultRange[1],
               '{UNIT}', unit,
               '{PROB}', Math.round(totalProb*1000)/10,
-          )
+          ),
       );
     } else if ((resultRange[2] == '-')||(resultRange[2] == '~')) {
       let resultQty1;
@@ -221,7 +222,7 @@ module.exports = {
               '{UNIT}', unit,
               '{SPIN_COUNT}', spinCount,
               '{PROB}', Math.round(totalProb*1000)/10,
-          )
+          ),
       );
     } else {
       let log = '';
@@ -241,14 +242,16 @@ module.exports = {
         }
         totalProb += prob;
       }
-      msg.channel.send(
+      sendMessage(
+          msg.channel,
           literal(locale.COMMAND_WOF_EXACT,
               '{SPIN_COUNT}', spinCount,
               '{HIT_RANGE}', resultRange[1],
               '{UNIT}', unit,
               '{PROB}', Math.round(totalProb*1000)/10,
               '{LOG}', log,
-          )
+          ),
+          msg.author.id,
       );
     }
   },

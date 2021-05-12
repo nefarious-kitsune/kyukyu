@@ -1,4 +1,5 @@
 const fs = require('fs');
+const {sendMessage} = require('../../helpers/sendMessage');
 
 module.exports = {
   name: 'purchase',
@@ -6,6 +7,6 @@ module.exports = {
   description: 'Help with purchases.',
   async execute(msg, args) {
     const embed = JSON.parse(fs.readFileSync(__dirname + '/purchase.json'));
-    msg.channel.send(embed);
+    sendMessage(msg.channel, embed, msg.author.id);
   },
 };
