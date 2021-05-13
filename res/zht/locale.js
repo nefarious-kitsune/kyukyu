@@ -217,7 +217,7 @@ module.exports = {
     ['genichiro', 'sakura blade'],
     ['zeus'],
     ['dracula', 'drac'],
-    ['chione'],
+    ['chione', '齊昂妮', '冰女'],
     ['nezha'],
     ['mephisto', 'meph'],
     ['horus'],
@@ -285,10 +285,8 @@ module.exports = {
   COMMAND_HERO_MAP: {
     'meta': path.resolve(__dirname, 'heroes', 'meta.json'),
     'aly': path.resolve(__dirname, 'heroes', 'aly.json'),
-    '阿狸': path.resolve(__dirname, 'heroes', 'aly.json'),
     'selene': path.resolve(__dirname, 'heroes', 'selene.json'),
-    '月神': path.resolve(__dirname, 'heroes', 'selene.json'),
-    '賽勒涅': path.resolve(__dirname, 'heroes', 'selene.json'),
+    'chione': path.resolve(__dirname, 'heroes', 'chione.json'),
   },
 
   COMMAND_TROOPS_DESC: '顯示部隊的相關資訊。',

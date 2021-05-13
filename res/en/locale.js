@@ -292,6 +292,7 @@ module.exports = {
   COMMAND_HERO_MAP: {
     'meta': path.resolve(__dirname, 'heroes', 'meta.json'),
     'aly': path.resolve(__dirname, 'heroes', 'aly.json'),
+    'chione': path.resolve(__dirname, 'heroes', 'chione.json'),
     'selene': path.resolve(__dirname, 'heroes', 'selene.json'),
   },
 
