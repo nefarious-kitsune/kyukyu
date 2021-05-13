@@ -4,6 +4,7 @@ const {troopsData} = require('../../helpers/troopsData');
 const {literal} = require('../../helpers/literal');
 const {sendMessage} = require('../../helpers/sendMessage');
 
+const MAX_TROOPS_LEVEL = 9;
 const VOODOO_CURSE_RATE =
   [1, 0.58, 0.34, 0.20, 0.011, 0.066, 0.038, 0.022, 0.013];
 
@@ -15,24 +16,50 @@ module.exports = {
   aliases: locale.COMMAND_CURSE_ALIASES,
   args: true,
   async execute(msg, args) {
-    if ((args.length != 2) && (args.length != 4)) return;
-
     const targetName = res.findTroops(args[0]);
-    if (targetName == false) return;
+    if (!targetName) return;
 
-    const targetLevel = parseInt(args[1]);
-    if (Number.isNaN(targetLevel)||(targetLevel<0)||(targetLevel>9)) return;
+    let argIdx = 1;
+    let targetLevel;
+    if (args.length == argIdx) {
+      targetLevel = MAX_TROOPS_LEVEL;
+    } else {
+      targetLevel = parseInt(args[argIdx]);
+      if (Number.isNaN(targetLevel)) {
+        targetLevel = MAX_TROOPS_LEVEL;
+      } else if ((targetLevel >=1) && (targetLevel <= MAX_TROOPS_LEVEL)) {
+        argIdx++;
+      } else {
+        return;
+      }
+    }
 
     let curserName;
     let curserLevel;
-    if (args.length == 4) {
-      curserName = res.findTroops(args[2]);
-      if (curserName == false) return;
-      curserLevel = parseInt(args[3]);
-      if (Number.isNaN(curserLevel)||(curserLevel<0)||(curserLevel>9)) return;
+    if (args.length > argIdx) {
+      curserName = res.findTroops(args[argIdx]);
+      if (!curserName) {
+        curserName = 'voodoo dolls';
+        curserLevel = MAX_TROOPS_LEVEL;
+      } else {
+        argIdx++;
+
+        if (args.length == argIdx) {
+          curserLevel = MAX_TROOPS_LEVEL;
+        } else {
+          curserLevel = parseInt(args[argIdx]);
+          if (Number.isNaN(curserLevel)) {
+            curserLevel = MAX_TROOPS_LEVEL;
+          } else if ((curserLevel >=1) && (curserLevel <= MAX_TROOPS_LEVEL)) {
+            //
+          } else {
+            return;
+          }
+        }
+      }
     } else {
       curserName = 'voodoo dolls';
-      curserLevel = 9;
+      curserLevel = MAX_TROOPS_LEVEL;
     }
 
     const targetDisplayName = locale.TROOPS_DISPLAY_NAMES[targetName];

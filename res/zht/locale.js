@@ -302,7 +302,7 @@ module.exports = {
   },
 
   COMMAND_CURSE_DESC: '計算詛咒對敵方部隊的效能。',
-  COMMAND_CURSE_USAGE: '<目標> <目標等級> [詛咒者] [詛咒者等級]',
+  COMMAND_CURSE_USAGE: '<目標> [目標等級] [詛咒者] [詛咒者等級]',
   COMMAND_CURSE_USAGE_EXAMPLE: '\'岩石巨人\' 9 巫毒 8',
   COMMAND_CURSE_ALIASES: ['詛咒'],
   COMMAND_CURSE_VOODOO_CANNOT_BE_CURSED: '巫毒娃娃不能夠詛咒另一個巫毒娃娃。',

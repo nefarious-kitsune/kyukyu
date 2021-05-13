@@ -311,7 +311,7 @@ module.exports = {
   },
 
   COMMAND_CURSE_DESC: 'Calculate the effect of curse on troops.',
-  COMMAND_CURSE_USAGE: '<target> <target level> [curser] [curser level]',
+  COMMAND_CURSE_USAGE: '<target> [target level] [curser] [curser level]',
   COMMAND_CURSE_USAGE_EXAMPLE: '\'stone golem\' 9 voodoo 8',
   COMMAND_CURSE_ALIASES: [],
   COMMAND_CURSE_VOODOO_CANNOT_BE_CURSED: 'A Voodoo Dolls unit cannot curse another Voodoo Dolls unit.',
