@@ -1,5 +1,6 @@
 const fs = require('fs');
-const {locale} = require('../../res/res');
+const res = require('../../res/res');
+const {images, locale} = res;
 const {literal} = require('../../helpers/literal');
 const {sendMessage} = require('../../helpers/sendMessage');
 
@@ -10,18 +11,21 @@ module.exports = {
   aliases: locale.COMMAND_HERO_ALIASES,
   args: true,
   async execute(msg, args) {
-    const heroName = args[0].toLowerCase();
+    const heroName = res.findHero(args[0]);
+    if (heroName == false) return;
+
     if (locale.COMMAND_HERO_MAP.hasOwnProperty(heroName)) {
-      const embed = JSON.parse(
+      const content = JSON.parse(
           fs.readFileSync(locale.COMMAND_HERO_MAP[heroName]),
       );
-      if (!embed.embed.hasOwnProperty('footer')) {
-        embed.embed['footer'] = {text: locale.EMBED_FOOTER};
+      if (!content.embed.hasOwnProperty('footer')) {
+        content.embed['footer'] = {text: locale.EMBED_FOOTER};
       } else {
-        embed.embed.footer.text =
-          literal(embed.embed.footer.text, '{PREFIX}', process.env.prefix);
+        content.embed.footer.text =
+          literal(content.embed.footer.text, '{PREFIX}', process.env.prefix);
       }
-      sendMessage(msg.channel, embed, msg.author.id);
+      content.embed.thumbnail = {'url': images.hero_icons[heroName]};
+      sendMessage(msg.channel, content, msg.author.id);
     } else {
       msg.reply(
           literal(locale.NO_INFO, '{TEXT}', heroName),
