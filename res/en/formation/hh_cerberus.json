@@ -12,8 +12,12 @@
         "value": "• Hoheheim, Seondeok, Dracula, Aly, Diana"
       },
       {
-        "name": "Tips",
-        "value": "• Use 2 Pilgrims (3 if they are level-8).\n• Use 3 Brawlers (4 if they are level-8).\n• Use as many Voodoo Dolls as you can.\n• Use 1 or 2 Pumpkin Guard units (to lower Cerberus's defense).\n• Use as many level-9 Necromancer as you can.\n• Use as many level-9 Taurus Witchers as you can.\n• Use 1 or 2 Nun units.\n• Use level-9 Peltasts as filler troops.\n• Use level-9 Ghost Assassins as filler troops. Put them at the back row(s).\n• Use level-9 Undead Soldier as filler troops."
+        "name": "Best Troops",
+        "value": "• Pilgrims: 2 level-9 or 3 level-8\n• Brawlers: 3 level-9 or 4 level-8\n• Pumpkin Guard: 1 or 2\n• Voodoo Dolls: a lot of level-9\n• Necromancer: a lot of level-9\n• Taurus Witcher: a lot of level-9\n• Nun: a few"
+      },
+      {
+        "name": "Filler Troops",
+        "value": "• Voodoo Dolls: level-8\n• Peltasts: level-9\n• Ghost Assassins: level-9\n• Undead Soldier: level-9\n• Other 9-load troops, preferably level-9"
       },
       {
         "name": "Stages",

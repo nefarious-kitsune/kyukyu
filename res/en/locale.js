@@ -272,6 +272,8 @@ module.exports = {
     'beginners': path.resolve(__dirname, 'formation', 'hh_beginner.json'),
     'basic': path.resolve(__dirname, 'formation', 'hh_beginner.json'),
     'cyclops': path.resolve(__dirname, 'formation', 'hh_cyclops.json'),
+    'spider queen': path.resolve(__dirname, 'formation', 'hh_spider.json'),
+    'spider': path.resolve(__dirname, 'formation', 'hh_spider.json'),
     'cerberus': path.resolve(__dirname, 'formation', 'hh_cerberus.json'),
   },
 
