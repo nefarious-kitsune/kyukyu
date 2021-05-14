@@ -279,6 +279,11 @@ module.exports = {
   COMMAND_WOF_UNIT_VOUCHERS: '張兌換卷',
   COMMAND_WOF_UNIT_SHARDS: '個碎片',
 
+  COMMAND_AOE_DESC: '顯示士兵或是英雄的AoE範圍的參考圖。',
+  COMMAND_AOE_USAGE: '<士兵名稱|英雄名稱>',
+  COMMAND_AOE_USAGE_EXAMPLE: '齊昂妮',
+  COMMAND_AOE_ALIASES: ['範圍'],
+
   COMMAND_HERO_DESC: '顯示英雄的相關資訊。',
   COMMAND_HERO_USAGE: '阿狸|賽勒涅',
   COMMAND_HERO_ALIASES: ['英雄'],

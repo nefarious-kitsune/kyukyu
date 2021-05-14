@@ -286,6 +286,11 @@ module.exports = {
   COMMAND_WOF_UNIT_VOUCHERS: 'vouchers',
   COMMAND_WOF_UNIT_SHARDS: 'shards',
 
+  COMMAND_AOE_DESC: 'Show reference graphic of hero and troops\' AoE range',
+  COMMAND_AOE_USAGE: '<troops name|hero name>',
+  COMMAND_AOE_USAGE_EXAMPLE: 'chione',
+  COMMAND_AOE_ALIASES: [],
+
   COMMAND_HERO_DESC: 'Information about heroes.',
   COMMAND_HERO_USAGE: 'aly|selene',
   COMMAND_HERO_ALIASES: [],
