@@ -15,7 +15,8 @@ Get formation tips.
 
 Examples:
 - `?formation beginner` (formation tips for absolute beginners)
-- `?formation leveling` (formation tips for leveling)
+- `?formation leveling` (formation tips for leveling (1~7999))
+- `?formation farming` (formation tips for level 8000)
 
 ## ?hh command
 
@@ -35,6 +36,7 @@ Get detailed troops description
 (meta, brawlers, nun, paladin, peltasts, pilgrims, voodoo dolls).
 
 Examples:
+- `?troops meta` (information about the current meta)
 - `?troops 'voodoo dolls'` (information about Voodoo Dolls)
 - `?troops 'voodoo'` (information about Voodoo Dolls)
 - `?troops voodoo` (information about Voodoo Dolls)
@@ -62,10 +64,11 @@ Examples:
 
 ## ?hero command
 
-Get detailed description of a hero.
+Get detailed description of a hero
+(Selene, Chione, and Aly).
 
 Examples:
-- `?hero meta` (information on the best heroes)
+- `?hero meta` (information about the current meta)
 - `?hero aly` (information on Aly)
 
 ## ?+ command
