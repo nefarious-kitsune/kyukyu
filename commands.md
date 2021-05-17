@@ -42,9 +42,9 @@ Examples:
 ## ?stats command
 
 Get troops stats.
-If the command is sent in a text channel, and there are four or fewer troops,
+- If the command is sent in a text channel, and there are four or fewer troops,
 then the bot displays the basic stats.
-If the command is sent in a DM channel, or if there are more than four troops,
+- If the command is sent in a DM channel, or if there are more than four troops,
 then the bot displays the basic and skill stats by DM.
 
 Examples:
@@ -54,7 +54,7 @@ Examples:
 ## ?aoe command
 
 Get reference graphics of AoE effects of troops and some heroes
-(Davison, Selene, Chione, and Aly).
+(Davison, Selene, and Chione).
 
 Examples:
 - `?aoe 'ice mage'`
