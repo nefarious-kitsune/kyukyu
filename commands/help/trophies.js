@@ -10,6 +10,8 @@ module.exports = {
   aliases: locale.COMMAND_TROPHIES_ALIASES,
   args: true,
   async execute(msg, args) {
+    if (msg.channel.type != 'dm') return;
+
     if (args.length < 2) return;
     myTrophies = parseInt(args[0]);
     oppTrophies = parseInt(args[1]);
