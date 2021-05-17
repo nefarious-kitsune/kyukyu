@@ -1,18 +1,24 @@
 {
   "embed": {
     "title": "Selene",
+    "description": "A burst hero who provides massive attack increase and damage immunity to friendly troops in the battle opening",
     "color": 16431948,
-    "thumbnail": {
-      "url": "https://cdn.discordapp.com/attachments/833978786395586600/835071333259542551/117_Selene.png"
-    },
     "fields": [
       {
-        "name": "Description",
-        "value": "A burst hero who provides massive attack increase and damage immunity to friendly troops in the battle opening"
+        "name": "Basic Attack",
+        "value": "• Range: 3"
       },
       {
-        "name": "Passive Skill Duration",
-        "value": "3/3/3/4/4/4/5/5/5/6/6/6/7/7/7"
+        "name": "Active Skill: Moonlight Shackles",
+        "value": "• Selene’s <Moonlight Shackles> skill will stun the enemy in the targeted arena and bind them in place for several seconds.\n• Range: 5"
+      },
+      {
+        "name": "Passive Skill: Moonlight Projection",
+        "value": "• At the start of the battle, Selene will give allied units partial damage immunity and increase attack power for a period of time.\nDamage immunity applies to all forms of damages, including health steal, reflection, and curse.\n• Duration: 3/3/3/4/4/4/5/5/5/6/6/6/7/7/7"
+      },,
+      {
+        "name": "Legendary Skill: Moonlight Dance",
+        "value": "• After several basic attacks, awakened Selene will trigger the <Moonlight Dance> skill to damage enemy units in front of her and reduce their attack.\n• Trigger Number: 5/4/3/3/3\n• Range: 4×8"
       },
       {
         "name": "Strong Against",
@@ -26,7 +32,7 @@
       },
       {
         "name": "Arena Troops",
-        "value": "Rhino Knight, Witchcraft Totem, Voodoo Dolls, Peltasts, Taurus Witchers, Pirate Ship, Priest Mage, Ballista, Undead Soldier, Magic Apprentice, Ghost Assassins"
+        "value": "• Magic Apprentice, Undead Soldier, Ballista\n• Priest Mage, Peltasts, Taurus Witchers, Pirate Ship\n• Witchcraft Totem, Rhino Knight"
       }
     ]
   }
