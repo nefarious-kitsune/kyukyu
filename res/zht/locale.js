@@ -272,7 +272,7 @@ module.exports = {
   COMMAND_TROPHIES_USAGE: '<你的獎盃數量> <你的獎盃數量>',
   COMMAND_TROPHIES_USAGE_EXAMPLE: '3600 3800',
   COMMAND_TROPHIES_ALIASES: ['trophy', 'score', 'scores', '獎盃', '計分'],
-  COMMAND_TROPHIES_RESULT: '勝利：**{GAIN}**分，失敗：**{LOSS}**分',
+  COMMAND_TROPHIES_RESULT: '進攻方：勝利 {MY GAIN}，失敗 {MY LOSS}\n防守方：勝利 {OPP GAIN}，失敗 {OPP LOSS}',
 
   COMMAND_WOF_ALIASES: ['wheel', '轉盤'],
   COMMAND_WOF_PLUS: '輪盤共轉{SPIN_COUNT}次時，得到{HIT_RANGE}{UNIT}或以上的的機率是{PROB}%。',

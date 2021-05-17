@@ -281,7 +281,7 @@ module.exports = {
   COMMAND_TROPHIES_USAGE: '<your trophy count> <opponent\'s trophy count>',
   COMMAND_TROPHIES_USAGE_EXAMPLE: '3600 3800',
   COMMAND_TROPHIES_ALIASES: ['trophy', 'score', 'scores'],
-  COMMAND_TROPHIES_RESULT: 'Win: **{GAIN}** points, Loss: **{LOSS}** points',
+  COMMAND_TROPHIES_RESULT: '```Attacker: Win {MY GAIN} , Loss {MY LOSS}\nDefender: Win {OPP GAIN} , Loss {OPP LOSS}```',
 
   COMMAND_WOF_ALIASES: ['wheel'],
   COMMAND_WOF_PLUS: 'The probability of getting {HIT_RANGE} or more {UNIT} in {SPIN_COUNT} spins is {PROB}%.',
