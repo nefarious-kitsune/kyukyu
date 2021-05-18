@@ -1,4 +1,4 @@
-const {locale, images} = require('../../res/res');
+const {images} = require('../../res/res');
 const {literal} = require('../../helpers/literal');
 const {sendMessage} = require('../../helpers/sendMessage');
 
@@ -8,8 +8,8 @@ module.exports = {
   name: 'wof',
   args: true,
   async execute(cmdRes, settings, msg, args) {
-    const VOUCHERS = locale.COMMAND_WOF_VOUCHERS;
-    const SHARDS = locale.COMMAND_WOF_SHARDS;
+    const VOUCHERS = cmdRes.vouchers;
+    const SHARDS = cmdRes.shards;
 
     const resultType = args[0].toLowerCase();
     if (!VOUCHERS.includes(resultType) && !SHARDS.includes(resultType)) return;
@@ -127,16 +127,16 @@ module.exports = {
       prob1 = 0.19; // probability of 1× voucher
       qty2 = 3;
       prob2 = 0.06; // probability of 3× vouchers
-      unit = locale.COMMAND_WOF_UNIT_VOUCHERS;
+      unit = cmdRes.voucherUnit;
     } else {
       qty1 = 1;
       prob1 = 0.016; // probability of 1× shard
       qty2 = 2;
       prob2 = 0.004; // probability of 2× shardss
-      unit = locale.COMMAND_WOF_UNIT_SHARDS;
+      unit = cmdRes.shardUnit;
     }
 
-    if ( ['mode', 'm'].includes(args[1].toLowerCase()) ) {
+    if ( cmdRes.mode.includes(args[1].toLowerCase()) ) {
       let resultQty = 0;
       let prevProb;
       let thisProb = 0;
@@ -150,7 +150,7 @@ module.exports = {
       --resultQty;
 
       msg.channel.send(
-          literal(locale.COMMAND_WOF_MODE,
+          literal(cmdRes.responseMode,
               '{SPIN_COUNT}', spinCount,
               '{TOTAL_QTY}', resultQty,
               '{UNIT}', unit,
@@ -181,7 +181,7 @@ module.exports = {
         resultQty++;
       } while ((thisProb > MIN_PROB) || (thisProb > prevProb));
       msg.channel.send(
-          literal(locale.COMMAND_WOF_PLUS,
+          literal(cmdRes.responsePlus,
               '{SPIN_COUNT}', spinCount,
               '{HIT_RANGE}', resultRange[1],
               '{UNIT}', unit,
@@ -213,7 +213,7 @@ module.exports = {
         ((thisProb > MIN_PROB) || (thisProb > prevProb))
       );
       msg.channel.send(
-          literal(locale.COMMAND_WOF_RANGE,
+          literal(cmdRes.responseRange,
               '{HIT_RANGE_1}', resultQty1,
               '{HIT_RANGE_2}', resultQty2,
               '{UNIT}', unit,
@@ -230,7 +230,7 @@ module.exports = {
         const prob = bin2(spinCount, prob1, hit1, prob2, hit2);
         if (prob >= 0.001) {
           log +=
-              literal(locale.COMMAND_WOF_EXACT_LOG,
+              literal(cmdRes.responseExactDetail,
                   '{QTY_1}', qty1, '{HIT_1}', hit1,
                   '{QTY_2}', qty2, '{HIT_2}', hit2,
                   '{UNIT}', unit,
@@ -241,7 +241,7 @@ module.exports = {
       }
       sendMessage(
           msg.channel,
-          literal(locale.COMMAND_WOF_EXACT,
+          literal(cmdRes.responseExact,
               '{SPIN_COUNT}', spinCount,
               '{HIT_RANGE}', resultRange[1],
               '{UNIT}', unit,

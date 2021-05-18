@@ -201,16 +201,17 @@ module.exports = {
 
     // wof
     {
-      aliases: ['wof', 'wheel', '轉盤'],
-      COMMAND_WOF_PLUS: 'The probability of getting {HIT_RANGE} or more {UNIT} in {SPIN_COUNT} spins is {PROB}%.',
-      COMMAND_WOF_RANGE: 'The probability of getting {HIT_RANGE_1} to {HIT_RANGE_2} {UNIT} in {SPIN_COUNT} spins is {PROB}%.',
-      COMMAND_WOF_EXACT: 'The probability of getting exactly {HIT_RANGE} {UNIT} in {SPIN_COUNT} spins is {PROB}%.\n{LOG}',
-      COMMAND_WOF_EXACT_LOG: '{PROB}% probability of {HIT_1}×{QTY_1} + {HIT_2}×{QTY_2} {UNIT}\n',
-      COMMAND_WOF_MODE: 'With {SPIN_COUNT} spins, the __mode__ is {TOTAL_QTY} {UNIT} ({PROB}% probability).',
-      COMMAND_WOF_VOUCHERS: ['voucher', 'vouchers'],
-      COMMAND_WOF_SHARDS: ['hero', 'shards', 'shard'],
-      COMMAND_WOF_UNIT_VOUCHERS: 'vouchers',
-      COMMAND_WOF_UNIT_SHARDS: 'shards',
+      aliases: ['wof', 'wheel'],
+      mode: ['mode', 'm'],
+      responsePlus: 'The probability of getting {HIT_RANGE} or more {UNIT} in {SPIN_COUNT} spins is {PROB}%.',
+      responseRange: 'The probability of getting {HIT_RANGE_1} to {HIT_RANGE_2} {UNIT} in {SPIN_COUNT} spins is {PROB}%.',
+      responseExact: 'The probability of getting exactly {HIT_RANGE} {UNIT} in {SPIN_COUNT} spins is {PROB}%.\n{LOG}',
+      responseExactDetail: '{PROB}% probability of {HIT_1}×{QTY_1} + {HIT_2}×{QTY_2} {UNIT}\n',
+      responseMode: 'With {SPIN_COUNT} spins, the __mode__ is {TOTAL_QTY} {UNIT} ({PROB}% probability).',
+      vouchers: ['voucher', 'vouchers'],
+      shards: ['hero', 'shards', 'shard'],
+      voucherUnit: 'vouchers',
+      shardUnit: 'shards',
     },
 
     // hero

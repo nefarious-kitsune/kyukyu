@@ -197,15 +197,16 @@ module.exports = {
     // wof
     {
       aliases: ['wof', 'wheel', '轉盤'],
-      COMMAND_WOF_PLUS: '輪盤共轉{SPIN_COUNT}次時，得到{HIT_RANGE}{UNIT}或以上的的機率是{PROB}%。',
-      COMMAND_WOF_RANGE: '輪盤共轉{SPIN_COUNT}次時，得到{HIT_RANGE_1}到{HIT_RANGE_2}{UNIT}的機率是{PROB}%。',
-      COMMAND_WOF_EXACT: '輪盤共轉{SPIN_COUNT}次時，得到正好{HIT_RANGE}{UNIT}的機率是{PROB}%。\n{LOG}',
-      COMMAND_WOF_EXACT_LOG: '{PROB}%機率得到{HIT_1}×{QTY_1}+{HIT_2}×{QTY_2}{UNIT}\n',
-      COMMAND_WOF_MODE: '輪盤共轉{SPIN_COUNT}次時的__眾數__是{TOTAL_QTY}{UNIT}({PROB}% 機率)。',
-      COMMAND_WOF_VOUCHERS: ['voucher', 'vouchers'],
-      COMMAND_WOF_SHARDS: ['hero', 'shards', 'shard', '碎片'],
-      COMMAND_WOF_UNIT_VOUCHERS: '張兌換卷',
-      COMMAND_WOF_UNIT_SHARDS: '個碎片',
+      mode: ['mode', 'm', '眾數'],
+      responsePlus: '輪盤共轉{SPIN_COUNT}次時，得到{HIT_RANGE}{UNIT}或以上的的機率是{PROB}%。',
+      responseRange: '輪盤共轉{SPIN_COUNT}次時，得到{HIT_RANGE_1}到{HIT_RANGE_2}{UNIT}的機率是{PROB}%。',
+      responseExact: '輪盤共轉{SPIN_COUNT}次時，得到正好{HIT_RANGE}{UNIT}的機率是{PROB}%。\n{LOG}',
+      responseExactDetail: '{PROB}%機率得到{HIT_1}×{QTY_1}+{HIT_2}×{QTY_2}{UNIT}\n',
+      responseMode: '輪盤共轉{SPIN_COUNT}次時的__眾數__是{TOTAL_QTY}{UNIT}({PROB}% 機率)。',
+      vouchers: ['voucher', 'vouchers', '高級卡包禮卷', '禮卷'],
+      shards: ['hero', 'shards', 'shard', '碎片', '英雄碎片', '英雄'],
+      voucherUnit: '張兌換卷',
+      shardUnit: '個碎片',
     },
 
     // hero
