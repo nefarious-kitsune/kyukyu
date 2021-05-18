@@ -1,3 +1,4 @@
+const res = require('../../res/res');
 const {images} = require('../../res/res');
 const {literal} = require('../../helpers/literal');
 const {sendMessage} = require('../../helpers/sendMessage');
@@ -23,7 +24,6 @@ module.exports = {
         }
       }
     }
-
-    msg.reply(literal(res.l10n[settings.lang].NO_INFO, '{TEXT}', unitName));
+    msg.reply(literal(l10n.NO_INFO, '{TEXT}', unitName));
   },
 };
