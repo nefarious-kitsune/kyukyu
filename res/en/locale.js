@@ -64,11 +64,11 @@ module.exports = {
       desc: 'Show stats of a troops.',
       usage: '<troops name 1> [level] <troops name 2> <level>...',
       usage_example: 'archers 9 \'frost archers\' 8',
-      COMMAND_STATS_HEADER: 'Level-{LEVEL} {TROOPS}',
-      COMMAND_STATS_BASIC_HEADER: 'Basic',
-      COMMAND_STATS_SKILL_HEADER: 'Skill',
-      COMMAND_STATS_DM: 'Troops stats sent by DM',
-      COMMAND_STATS_LABELS: {
+      header: 'Level-{LEVEL} {TROOPS}',
+      basicHeader: 'Basic',
+      skillHeader: 'Skill',
+      sentByDM: 'Troops stats sent by DM',
+      labels: {
         'race': 'Race',
         'human': 'Human',
         'dark': 'Dark',

@@ -1,5 +1,4 @@
 const res = require('../../res/res');
-const locale = res.locale;
 const {literal} = require('../../helpers/literal');
 const {sendMessage} = require('../../helpers/sendMessage');
 const {troopsData} = require('../../helpers/troopsData');
@@ -14,49 +13,47 @@ const PERCENT_ATTRS =
       'critical_rate', 'critical_damage_rate',
       'damage_reflection'];
 
-/**
-* @param {string} k
-* @param {string} v
-* @return {string}
-*/
-function formatAttribute(k, v) {
-  const key = locale.COMMAND_STATS_LABELS[k];
-  let value;
-  if (Array.isArray(v)) {
-    value = v.join(' × ');
-  } else if (typeof v === 'string' || v instanceof String) {
-    value = locale.COMMAND_STATS_LABELS[v];
-  } else {
-    if (PERCENT_ATTRS.includes(k)) {
-      v = Number(v) * 100;
-      value =
-        v.toLocaleString('en-US', {
-          minimumSignificantDigits: 2,
-          maximumSignificantDigits: 3,
-        }) +
-        '%';
-    } else {
-      value = v.toString();
-    }
-  }
-  return `${key}: **${value}**\n`;
-}
-
 module.exports = {
   name: 'stats',
-  description: locale.COMMAND_STATS_DESC,
-  usage: locale.COMMAND_STATS_USAGE,
-  usage_example: locale.COMMAND_STATS_USAGE_EXAMPLE,
-  aliases: locale.COMMAND_STATS_ALIASES,
   args: true,
   async execute(cmdRes, settings, msg, args) {
+    /**
+    * @param {string} k
+    * @param {string} v
+    * @return {string}
+    */
+    function formatAttribute(k, v) {
+      const key = cmdRes.labels[k];
+      let value;
+      if (Array.isArray(v)) {
+        value = v.join(' × ');
+      } else if (typeof v === 'string' || v instanceof String) {
+        value = cmdRes.labels[v];
+      } else {
+        if (PERCENT_ATTRS.includes(k)) {
+          v = Number(v) * 100;
+          value =
+            v.tocmdResString('en-US', {
+              minimumSignificantDigits: 2,
+              maximumSignificantDigits: 3,
+            }) +
+            '%';
+        } else {
+          value = v.toString();
+        }
+      }
+      return `${key}: **${value}**\n`;
+    }
+
+    const l10n = res.l10n[settings.lang];
+
     let argIdx = 0;
     const list = [];
 
     do {
       const troopsName = res.findTroops(settings.lang, args[argIdx]);
       if (!troopsName) break;
-      const troopsDisplayName = locale.TROOPS_DISPLAY_NAMES[troopsName];
+      const troopsDisplayName = l10n.TROOPS_DISPLAY_NAMES[troopsName];
       argIdx++;
 
       let troopsLevel;
@@ -97,14 +94,13 @@ module.exports = {
 
       const embed = {
         'title':
-          literal(
-              locale.COMMAND_STATS_HEADER,
+          literal(cmdRes.header,
               '{TROOPS}', list[i].troopsDisplayName,
               '{LEVEL}', list[i].troopsLevel,
           ),
         'fields': [
           {
-            name: locale.COMMAND_STATS_BASIC_HEADER,
+            name: cmdRes.basicHeader,
             value: textBasic,
           },
         ],
@@ -116,7 +112,7 @@ module.exports = {
           textSkill += formatAttribute(k, v);
         }
         embed.fields.push({
-          name: locale.COMMAND_STATS_SKILL_HEADER,
+          name: cmdRes.skillHeader,
           value: textSkill,
         });
       }
@@ -130,7 +126,7 @@ module.exports = {
     }
 
     if (DM && (msg.channel.type != 'dm')) {
-      msg.channel.send(locale.COMMAND_STATS_DM);
+      msg.channel.send(cmdRes.sentByDM);
     }
   },
 };
