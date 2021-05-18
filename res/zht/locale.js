@@ -54,8 +54,8 @@ module.exports = {
       desc: '計算詛咒對敵方部隊的效能。',
       usage: '<目標> [目標等級] [詛咒者] [詛咒者等級]',
       usage_example: '\'岩石巨人\' 9 巫毒 8',
-      COMMAND_CURSE_VOODOO_CANNOT_BE_CURSED: '巫毒娃娃不能夠詛咒另一個巫毒娃娃。',
-      COMMAND_CURSE_VOODOO: '詛咒者：巫毒娃娃（{VOODOO LEVEL}級）\n目標：{TARGET}（{TARGET LEVEL}級）\n詛咒成功率：{RATE}%\n最高傷害：{DAMAGE}（目標最高生命的{HEALTH PERCENTAGE}%）',
+      responseVoodooCannotBeCurse: '巫毒娃娃不能夠詛咒另一個巫毒娃娃。',
+      responseVoodoo: '詛咒者：巫毒娃娃（{VOODOO LEVEL}級）\n目標：{TARGET}（{TARGET LEVEL}級）\n詛咒成功率：{RATE}%\n最高傷害：{DAMAGE}（目標最高生命的{HEALTH PERCENTAGE}%）',
     },
 
     // stats
@@ -135,8 +135,8 @@ module.exports = {
       aliases: ['troops', 'troop', '士兵', '部隊'],
       desc: '顯示部隊的相關資訊。',
       usage: '<部隊名稱>',
-      COMMAND_TROOPS_BLACKLIST: 'infantry,iron guards,hell jailers,fire mage,viking warrior,scholar,templar knight',
-      COMMAND_TROOPS_FILES: {
+      blackList: 'infantry,iron guards,hell jailers,fire mage,viking warrior,scholar,templar knight',
+      files: {
         'paladin': path.resolve(__dirname, 'troops', 'paladin.json'),
         'pilgrims': path.resolve(__dirname, 'troops', 'pilgrims.json'),
         'brawlers': path.resolve(__dirname, 'troops', 'brawlers.json'),

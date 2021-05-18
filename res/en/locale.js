@@ -54,8 +54,8 @@ module.exports = {
       desc: 'Calculate the effect of curse on troops.',
       usage: '<target> [target level] [curser] [curser level]',
       usage_example: '\'stone golem\' 9 voodoo 8',
-      COMMAND_CURSE_VOODOO_CANNOT_BE_CURSED: 'A Voodoo Dolls unit cannot curse another Voodoo Dolls unit.',
-      COMMAND_CURSE_VOODOO: 'Curser: Voodoo Dolls (Level {VOODOO LEVEL})\nTarget: {TARGET} (Level {TARGET LEVEL})\nCurse Success Rate: {RATE}%\nMaximum Damage to Target: {DAMAGE} ({HEALTH PERCENTAGE}% of total health)',
+      responseVoodooCannotBeCurse: 'A Voodoo Dolls unit cannot curse another Voodoo Dolls unit.',
+      responseVoodoo: 'Curser: Voodoo Dolls (Level {VOODOO LEVEL})\nTarget: {TARGET} (Level {TARGET LEVEL})\nCurse Success Rate: {RATE}%\nMaximum Damage to Target: {DAMAGE} ({HEALTH PERCENTAGE}% of total health)',
     },
 
     // stats
@@ -135,8 +135,8 @@ module.exports = {
       aliases: ['troops', 'troop'],
       desc: 'Information about troops.\n(meta, paladin, pilgrims, peltasts, brawlers, nun, voodoo dolls)',
       usage: '<troops name>',
-      COMMAND_TROOPS_BLACKLIST: 'infantry,iron guards,hell jailers,fire mage,viking warrior,scholar,templar knight',
-      COMMAND_TROOPS_FILES: {
+      blackList: 'infantry,iron guards,hell jailers,fire mage,viking warrior,scholar,templar knight',
+      files: {
         'meta': path.resolve(__dirname, 'troops', 'meta.json'),
         'paladin': path.resolve(__dirname, 'troops', 'paladin.json'),
         'pilgrims': path.resolve(__dirname, 'troops', 'pilgrims.json'),

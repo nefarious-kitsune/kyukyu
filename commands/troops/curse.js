@@ -1,8 +1,7 @@
 const res = require('../../res/res');
-const locale = res.locale;
-const {troopsData} = require('../../helpers/troopsData');
 const {literal} = require('../../helpers/literal');
 const {sendMessage} = require('../../helpers/sendMessage');
+const {troopsData} = require('../../helpers/troopsData');
 
 const MAX_TROOPS_LEVEL = 9;
 const VOODOO_CURSE_RATE =
@@ -10,12 +9,9 @@ const VOODOO_CURSE_RATE =
 
 module.exports = {
   name: 'curse',
-  description: locale.COMMAND_CURSE_DESC,
-  usage: locale.COMMAND_CURSE_USAGE,
-  usage_example: locale.COMMAND_CURSE_USAGE_EXAMPLE,
-  aliases: locale.COMMAND_CURSE_ALIASES,
   args: true,
   async execute(cmdRes, settings, msg, args) {
+    const l10n = res.l10n[settings.lang];
     const targetName = res.findTroops(settings.lang, args[0]);
     if (!targetName) return;
 
@@ -62,15 +58,14 @@ module.exports = {
       curserLevel = MAX_TROOPS_LEVEL;
     }
 
-    const targetDisplayName = locale.TROOPS_DISPLAY_NAMES[targetName];
-    // const curserDisplayName = locale.TROOPS_DISPLAY_NAMES[curserName];
+    const targetDisplayName = l10n.TROOPS_DISPLAY_NAMES[targetName];
     curser = troopsData(settings.lang, curserName, curserLevel);
     target = troopsData(settings.lang, targetName, targetLevel);
     if ((curser === null) || (target === null)) return;
 
     if (curserName == 'voodoo dolls') {
       if (targetName == 'voodoo dolls') {
-        msg.channel.send(locale.COMMAND_CURSE_VOODOO_CANNOT_BE_CURSED);
+        msg.channel.send(cmdRes.responseVoodooCannotBeCurse);
         return;
       }
       const damageFromHealthLoss = curser.basic.health;
@@ -97,8 +92,7 @@ module.exports = {
           Math.round(VOODOO_CURSE_RATE[levelDifference] * 100);
 
       const text =
-        literal(
-            locale.COMMAND_CURSE_VOODOO,
+        literal(cmdRes.responseVoodoo,
             '{VOODOO LEVEL}', curserLevel,
             '{TARGET}', targetDisplayName,
             '{TARGET LEVEL}', targetLevel,
