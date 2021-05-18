@@ -59,7 +59,7 @@ kyukyu.on('message', (msg) => {
     settings = {
       id: msg.author.id,
       prefix: '?',
-      lang: 'en',
+      lang: config.lang,
     };
   }
 
@@ -68,15 +68,10 @@ kyukyu.on('message', (msg) => {
 
     if (args.length == 0) return;
 
-    const cmdName = args.shift().toLowerCase();
-
-    const cmd =
-        kyukyu.commands.get(cmdName) ||
-        kyukyu.commands.find(
-            (cmd) => cmd.aliases && cmd.aliases.includes(cmdName),
-        );
-
-    if (!cmd) return;
+    const cmdName = args.shift().toLowerCase().trim();
+    const cmdRes = res.getCommandRes(settings.lang, cmdName);
+    if (!cmdRes) return;
+    const cmd = kyukyu.commands.get(cmdRes.aliases[0]);
 
     if (cmd.args && ! args.length) {
       let reply = `You didn't provide any arguments`;
@@ -87,7 +82,7 @@ kyukyu.on('message', (msg) => {
       return msg.reply(reply);
     }
 
-    cmd.execute(settings, msg, args).catch((error)=> {
+    cmd.execute(cmdRes, settings, msg, args).catch((error) => {
       console.error('--------------------------------------------------');
       console.error(`Error executing '${msg.content}'`);
       console.error('> ' + error.message);

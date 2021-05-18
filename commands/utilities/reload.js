@@ -6,7 +6,7 @@ module.exports = {
   name: 'reload',
   description: locale.COMMAND_RELOAD_DESC,
   args: true,
-  async execute(settings, msg, args) {
+  async execute(cmdRes, settings, msg, args) {
     const cmdName = args[0].toLowerCase();
     const cmd =
       msg.client.commands.get(cmdName) ||

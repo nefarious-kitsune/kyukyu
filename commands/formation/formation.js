@@ -1,32 +1,18 @@
 const fs = require('fs');
-const {locale} = require('../../res/res');
-const {literal} = require('../../helpers/literal');
+const {touchEmbed} = require('../../helpers/touchEmbed');
 const {sendMessage} = require('../../helpers/sendMessage');
 
 module.exports = {
   name: 'formation',
-  description: locale.COMMAND_FORMATION_DESC,
-  usage: locale.COMMAND_FORMATION_USAGE,
-  aliases: locale.COMMAND_FORMATION_ALIASES,
   args: true,
-  async execute(settings, msg, args) {
-    const formName = args[0].toLowerCase();
-    if (locale.COMMAND_FORMATION_MAP.hasOwnProperty(formName)) {
-      const embed = JSON.parse(
-          fs.readFileSync(locale.COMMAND_FORMATION_MAP[formName]),
-      );
-      if (!embed.embed.hasOwnProperty('footer')) {
-        embed.embed['footer'] = {text: locale.EMBED_FOOTER};
-      } else {
-        embed.embed.footer.text =
-          literal(embed.embed.footer.text, '{PREFIX}', process.env.prefix);
-      }
-      sendMessage(msg.channel, embed, msg.author.id);
+  async execute(cmdRes, settings, msg, args) {
+    const formName = args[0].toLowerCase().trim();
+    if (cmdRes.files.hasOwnProperty(formName)) {
+      const content = JSON.parse(fs.readFileSync(cmdRes.files[formName]));
+      touchEmbed(settings, content);
+      sendMessage(msg.channel, content, msg.author.id);
     } else {
-      msg.reply(
-          literal(locale.NO_INFO, '{TEXT}', formName),
-      );
-      return;
+      // NO_INFO
     }
   },
 };

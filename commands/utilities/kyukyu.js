@@ -2,7 +2,7 @@ const guildConfig = require('../../helpers/config');
 
 module.exports = {
   name: 'kyukyu',
-  async execute(settings, msg, args) {
+  async execute(cmdRes, settings, msg, args) {
     if (msg.channel.type !== 'text') {
       throw new Error('Cannot execute kyukyu command in none-text channel.');
     }

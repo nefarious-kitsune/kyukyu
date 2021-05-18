@@ -8,16 +8,21 @@ const GREETING = fs.readFileSync(path.resolve(__dirname, 'greeting.md'), 'utf8')
 module.exports = {
   GREETING: GREETING,
 
-  commands: {
-    // Dev tools
-    'reload': {
+  commands: [
+    // kyukyu
+    {
+      aliases: ['kyukyu'],
+    },
+
+    // reload
+    {
       aliases: ['reload'],
       desc: 'Reloads a command.',
       COMMAND_RELOAD_NOT_FOUND: 'There is no command with name or alias of "{TEXT}"',
     },
 
-    // Utility
-    'help': {
+    // help
+    {
       aliases: ['help', 'h', 'commands'],
       desc: 'Show help for a specified command..',
       usage: '[command name]',
@@ -29,20 +34,22 @@ module.exports = {
       COMMAND_HELP_NOT_FOUND: 'This command does not exist.',
     },
 
-    'clear': {
+    // clear
+    {
       aliases: ['clear'],
       desc: '(DM-only) Delete bot\'s own messages (max 10).',
     },
 
-    // Troops
-    'aoe': {
+    // aoe
+    {
       aliases: ['aoe'],
       desc: 'Show reference graphic of hero and troops\' AoE range',
       usage: '<troops name|hero name>',
       usage_example: 'chione',
     },
 
-    'curse': {
+    // curser
+    {
       aliases: ['curse'],
       desc: 'Calculate the effect of curse on troops.',
       usage: '<target> [target level] [curser] [curser level]',
@@ -51,7 +58,8 @@ module.exports = {
       COMMAND_CURSE_VOODOO: 'Curser: Voodoo Dolls (Level {VOODOO LEVEL})\nTarget: {TARGET} (Level {TARGET LEVEL})\nCurse Success Rate: {RATE}%\nMaximum Damage to Target: {DAMAGE} ({HEALTH PERCENTAGE}% of total health)',
     },
 
-    'stats': {
+    // stats
+    {
       aliases: ['stats', 'stat'],
       desc: 'Show stats of a troops.',
       usage: '<troops name 1> [level] <troops name 2> <level>...',
@@ -122,7 +130,8 @@ module.exports = {
       },
     },
 
-    'troops': {
+    // troops
+    {
       aliases: ['troops', 'troop'],
       desc: 'Information about troops.\n(meta, paladin, pilgrims, peltasts, brawlers, nun, voodoo dolls)',
       usage: '<troops name>',
@@ -138,15 +147,12 @@ module.exports = {
       },
     },
 
-    // Formation
-    'formtion': {
+    // formation
+    {
       aliases: ['formation', 'form'],
       desc: 'Tips for army formation',
       usage: 'beginner|leveling|farming',
-      COMMAND_FORMATION_DESC: '軍隊陣形的訣竅',
-      COMMAND_FORMATION_USAGE: '基本|破關|刷金',
-      COMMAND_FORMATION_ALIASES: ['form', '陣形'],
-      COMMAND_FORMATION_MAP: {
+      files: {
         'beginner': path.resolve(__dirname, 'formation', 'beginner.json'),
         'basic': path.resolve(__dirname, 'formation', 'beginner.json'),
         'level': path.resolve(__dirname, 'formation', 'leveling.json'),
@@ -157,11 +163,12 @@ module.exports = {
       },
     },
 
-    'hh': {
+    // hh
+    {
       aliases: ['honor hunting'],
       desc: 'Tips for honor hunting',
       usage: 'beginner|cerberus|cyclops|\'spider queen\'',
-      COMMAND_HH_MAP: {
+      files: {
         'beginner': path.resolve(__dirname, 'formation', 'hh_beginner.json'),
         'beginners': path.resolve(__dirname, 'formation', 'hh_beginner.json'),
         'basic': path.resolve(__dirname, 'formation', 'hh_beginner.json'),
@@ -172,27 +179,28 @@ module.exports = {
       },
     },
 
-    // Help
-    'building': {
+    // building
+    {
       aliases: ['building'],
       desc: 'Tips for building your barrack.',
-      COMMAND_BUILDING_FILES: [
+      files: [
         path.resolve(__dirname, 'building', 'building1.json'),
         path.resolve(__dirname, 'building', 'building2.json'),
         path.resolve(__dirname, 'building', 'building3.json'),
       ],
     },
 
-    'trophies': {
+    // troophies
+    {
       aliases: ['trophies', 'trophy', 'score', 'scores'],
       desc: 'Calculate expected trophy gain/loss from a battle',
       usage: '<your trophy count> <opponent\'s trophy count>',
       usage_example: '3600 3800',
-      COMMAND_TROPHIES_RESULT: '```Attacker: Win {MY GAIN} , Loss {MY LOSS}\nDefender: Win {OPP GAIN} , Loss {OPP LOSS}```',
+      response: '```Attacker: Win {MY GAIN} , Loss {MY LOSS}\nDefender: Win {OPP GAIN} , Loss {OPP LOSS}```',
     },
 
-    // Stats
-    'wof': {
+    // wof
+    {
       aliases: ['wof', 'wheel', '轉盤'],
       COMMAND_WOF_PLUS: 'The probability of getting {HIT_RANGE} or more {UNIT} in {SPIN_COUNT} spins is {PROB}%.',
       COMMAND_WOF_RANGE: 'The probability of getting {HIT_RANGE_1} to {HIT_RANGE_2} {UNIT} in {SPIN_COUNT} spins is {PROB}%.',
@@ -205,12 +213,12 @@ module.exports = {
       COMMAND_WOF_UNIT_SHARDS: 'shards',
     },
 
-    // Heroes
-    'hero': {
+    // hero
+    {
       aliases: ['hero'],
       desc: 'Information about heroes.',
       usage: 'aly|selene',
-      COMMAND_HERO_MAP: {
+      files: {
         'meta': path.resolve(__dirname, 'heroes', 'meta.json'),
         'aly': path.resolve(__dirname, 'heroes', 'aly.json'),
         'chione': path.resolve(__dirname, 'heroes', 'chione.json'),
@@ -218,43 +226,46 @@ module.exports = {
       },
     },
 
-    '+arthur': {
-      aliases: ['+arthur', '+亞瑟', '+亞瑟王'],
-      desc: '計算亞瑟對友軍的效能。',
-      COMMAND_PLUS_ARTHUR_USAGE: '[英雄等級] <部隊> [部隊等級]',
-      COMMAND_PLUS_ARTHUR_USAGE_EXAMPLE: '15 投茅者 9',
-      COMMAND_PLUS_ARTHUR_INTRO: '當等級{TROOPS LEVEL}的{TROOPS}搭配等級{HERO LEVEL}的亞瑟時，其效果如下。\n\n',
-      COMMAND_PLUS_ARTHUR_PASSIVE: '免傷：{IMMUNITY PERCENTAGE}%\n生命值恢復：每秒{HEALTH REGEN}\n',
-      COMMAND_PLUS_ARTHUR_OPENING_CURSED: '一個9級巫毒娃娃可造成的最高傷害：{DAMAGE}（最高生命的{HEALTH PERCENTAGE}%）\n',
-      COMMAND_PLUS_ARTHUR_NOT_HUMAN: '無效果。亞瑟的能力只對人族部隊有效。\n',
+    // +arthur
+    {
+      aliases: ['+arthur'],
+      desc: 'Calculate the effect of Arthur on troops.',
+      usage: '[hero level] <troops name> [troops level]',
+      usge_example: '15 \'peltasts\' 9',
+      responseIntro: 'When a level {TROOPS LEVEL} {TROOPS} is used with level {HERO LEVEL} Arthur, the effect is as followed.\n\n',
+      responsePassive: 'Damage Immunity: {IMMUNITY PERCENTAGE}%\nHealth Regen: {HEALTH REGEN} per second\n',
+      responseCursed: 'Maximum damage from a level 9 Voodoo Dolls: {DAMAGE} ({HEALTH PERCENTAGE}% of max health)\n',
+      responseTroopsNotHuman: 'No effect. Arthur\'s abilities only apply to Human troops.\n',
     },
 
-    '+selene': {
-      aliases: ['+selene', '+賽勒涅', '+月神'],
-      desc: '計算賽勒涅對友軍的效能。',
-      usage: '[英雄等級] <部隊> [部隊等級]',
-      usage_example: '15 夜魔衛兵 9',
-      COMMAND_PLUS_SELENE_INTRO: '當等級{TROOPS LEVEL}的{TROOPS}搭配等級{HERO LEVEL}的賽勒涅時，其效果如下。\n\n',
-      COMMAND_PLUS_SELENE_OPENING: '**{DURATION}秒開局加成**\n',
-      COMMAND_PLUS_SELENE_OPENING_ATK: '攻擊：{ATTACK}（{INCREASE}%加成）\n',
-      COMMAND_PLUS_SELENE_OPENING_CURSED: '一個9級巫毒娃娃可造成的最高傷害：{DAMAGE}（最高生命的{HEALTH PERCENTAGE}%）\n',
+    // +selene
+    {
+      aliases: ['+selene'],
+      desc: 'Calculate the effect of Selene on troops.',
+      usage: '[hero level] <troops name> [troops level]',
+      usage_example: '15 \'undead soldier\' 9',
+      responseIntro: 'When a level {TROOPS LEVEL} {TROOPS} is used with level {HERO LEVEL} Selene, the effect is as followed.\n\n',
+      responseOpening: '**{DURATION}-Second Opening Buff**\n',
+      responseOpeningAttack: 'Attack: {ATTACK} ({INCREASE}% increase)\n',
+      responseCursed: 'Maximum damage from a level 9 Voodoo Dolls: {DAMAGE} ({HEALTH PERCENTAGE}% of max health)\n',
     },
 
-    '+seondeok': {
+    // +seondeok
+    {
       aliases: ['+seondeok', '+seon'],
       desc: 'Calculate the effect of Seondeok on troops.',
       usage: '[hero level] <troops name> [troops level]',
       usage_example: '15 \'undead soldier\' 9',
-      COMMAND_PLUS_SEONDEOK_INTRO: 'When a level {TROOPS LEVEL} {TROOPS} is used with level {HERO LEVEL} Seondeok, the effect is as followed.\n\n',
-      COMMAND_PLUS_SEONDEOK_OPENING: '**8-Second Opening Buff**\n',
-      COMMAND_PLUS_SEONDEOK_OPENING_DMG: 'Damage = ({ATTACK} - *enemy unit\'s defense*) + {ADD DAMAGE}\n  *(about {EQUIV INCREASE}% attack increase)*\n',
-      COMMAND_PLUS_SEONDEOK_OPENING_AOE: 'AoE Radius: {AOE RADIUS} (Area: {AOE AREA})\nAoE Attack: {AOE ATTACK}\n',
-      COMMAND_PLUS_SEONDEOK_NORMAL: '\n**Basic Attack** (original)\n',
-      COMMAND_PLUS_SEONDEOK_NORMAL_ATTACK: 'Attack: {ATTACK}\n',
-      COMMAND_PLUS_SEONDEOK_NORMAL_CIRCLE: 'AoE Radius: {AOE RADIUS} (Area: {AOE AREA})\n',
-      COMMAND_PLUS_SEONDEOK_NORMAL_RECT: 'AoE Range: {AOE W}×{AOE L} (Area: {AOE AREA})\n',
+      responseIntro: 'When a level {TROOPS LEVEL} {TROOPS} is used with level {HERO LEVEL} Seondeok, the effect is as followed.\n\n',
+      responseOpening: '**8-Second Opening Buff**\n',
+      responseOpeningDamage: 'Damage = ({ATTACK} - *enemy unit\'s defense*) + {ADD DAMAGE}\n  *(about {EQUIV INCREASE}% attack increase)*\n',
+      responseOpeningAoE: 'AoE Radius: {AOE RADIUS} (Area: {AOE AREA})\nAoE Attack: {AOE ATTACK}\n',
+      responseNormal: '\n**Basic Attack** (original)\n',
+      responseNormalAttack: 'Attack: {ATTACK}\n',
+      responseNormalCircle: 'AoE Radius: {AOE RADIUS} (Area: {AOE AREA})\n',
+      responseNormalRect: 'AoE Range: {AOE W}×{AOE L} (Area: {AOE AREA})\n',
     },
-  },
+  ],
 
   EMBED_FOOTER: 'Information contributed by AoW players.',
   NO_INFO: 'I have no information for “{TEXT}”',
@@ -406,25 +417,3 @@ module.exports = {
     ['jinn'],
   ],
 };
-/*
-module.exports = {
-  COMMAND_PLUS_SELENE_DESC: 'Calculate the effect of Selene on troops.',
-  COMMAND_PLUS_SELENE_USAGE: '[hero level] <troops name> [troops level]',
-  COMMAND_PLUS_SELENE_USAGE_EXAMPLE: '15 \'undead soldier\' 9',
-  COMMAND_PLUS_SELENE_ALIASES: [],
-  COMMAND_PLUS_SELENE_INTRO: 'When a level {TROOPS LEVEL} {TROOPS} is used with level {HERO LEVEL} Selene, the effect is as followed.\n\n',
-  COMMAND_PLUS_SELENE_OPENING: '**{DURATION}-Second Opening Buff**\n',
-  COMMAND_PLUS_SELENE_OPENING_ATK: 'Attack: {ATTACK} ({INCREASE}% increase)\n',
-  COMMAND_PLUS_SELENE_OPENING_CURSED: 'Maximum damage from a level 9 Voodoo Dolls: {DAMAGE} ({HEALTH PERCENTAGE}% of max health)\n',
-
-  COMMAND_PLUS_ARTHUR_DESC: 'Calculate the effect of Arthur on troops.',
-  COMMAND_PLUS_ARTHUR_USAGE: '[hero level] <troops name> [troops level]',
-  COMMAND_PLUS_ARTHUR_USAGE_EXAMPLE: '15 \'peltasts\' 9',
-  COMMAND_PLUS_ARTHUR_ALIASES: [],
-  COMMAND_PLUS_ARTHUR_INTRO: 'When a level {TROOPS LEVEL} {TROOPS} is used with level {HERO LEVEL} Arthur, the effect is as followed.\n\n',
-  COMMAND_PLUS_ARTHUR_PASSIVE: 'Damage Immunity: {IMMUNITY PERCENTAGE}%\nHealth Regen: {HEALTH REGEN} per second\n',
-  COMMAND_PLUS_ARTHUR_OPENING_CURSED: 'Maximum damage from a level 9 Voodoo Dolls: {DAMAGE} ({HEALTH PERCENTAGE}% of max health)\n',
-  COMMAND_PLUS_ARTHUR_NOT_HUMAN: 'No effect. Arthur\'s abilities only apply to Human troops.\n',
-};
-
-*/

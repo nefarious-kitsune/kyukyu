@@ -49,12 +49,12 @@ module.exports = {
   usage_example: locale.COMMAND_STATS_USAGE_EXAMPLE,
   aliases: locale.COMMAND_STATS_ALIASES,
   args: true,
-  async execute(settings, msg, args) {
+  async execute(cmdRes, settings, msg, args) {
     let argIdx = 0;
     const list = [];
 
     do {
-      const troopsName = res.findTroops(args[argIdx]);
+      const troopsName = res.findTroops(settings.lang, args[argIdx]);
       if (!troopsName) break;
       const troopsDisplayName = locale.TROOPS_DISPLAY_NAMES[troopsName];
       argIdx++;
@@ -73,7 +73,7 @@ module.exports = {
         }
       }
 
-      const troops = troopsData(troopsName, troopsLevel);
+      const troops = troopsData(settings.lang, troopsName, troopsLevel);
       if (troops === null) break;
       list.push({
         troopsDisplayName: troopsDisplayName,

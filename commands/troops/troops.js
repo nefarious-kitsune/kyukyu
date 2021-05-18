@@ -10,8 +10,8 @@ module.exports = {
   usage: locale.COMMAND_TROOPS_USAGE,
   aliases: locale.COMMAND_TROOPS_ALIASES,
   args: true,
-  async execute(settings, msg, args) {
-    const troopsName = res.findTroops(args[0]);
+  async execute(cmdRes, settings, msg, args) {
+    const troopsName = res.findTroops(settings.lang, args[0]);
     const blackList = locale.COMMAND_TROOPS_BLACKLIST.split(',');
 
     if (blackList.includes(troopsName)) {
@@ -23,7 +23,7 @@ module.exports = {
           fs.readFileSync(locale.COMMAND_TROOPS_FILES[troopsName]),
       );
       if (!embed.embed.hasOwnProperty('footer')) {
-        embed.embed['footer'] = {text: locale.EMBED_FOOTER};
+        embed.embed['footer'] = {text: l10n.EMBED_FOOTER};
       } else {
         embed.embed.footer.text =
           literal(embed.embed.footer.text, '{PREFIX}', process.env.prefix);
@@ -31,7 +31,7 @@ module.exports = {
       sendMessage(msg.channel, embed, msg.author.id);
     } else {
       msg.reply(
-          literal(locale.NO_INFO, '{TEXT}', args[0].trim()),
+          literal(res.l10n[settings.lang].NO_INFO, '{TEXT}', args[0].trim()),
       );
       return;
     }

@@ -8,16 +8,21 @@ const GREETING = fs.readFileSync(path.resolve(__dirname, 'greeting.md'), 'utf8')
 module.exports = {
   GREETING: GREETING,
 
-  commands: {
-    // Dev tools
-    'reload': {
+  commands: [
+    // kyukyu
+    {
+      aliases: ['kyukyu'],
+    },
+
+    // reload
+    {
       aliases: ['reload'],
       desc: '重載指令。',
       COMMAND_RELOAD_NOT_FOUND: '沒有名稱或別名是「{TEXT}」的指令',
     },
 
-    // Utility
-    'help': {
+    // help
+    {
       aliases: ['help', 'h', 'commands', '幫助'],
       desc: '顯示某特定指令的協助訊息。',
       usage: '[指令名稱]',
@@ -29,20 +34,22 @@ module.exports = {
       COMMAND_HELP_NOT_FOUND: '此指令不存在。',
     },
 
-    'clear': {
+    // clear
+    {
       aliases: ['clear'],
       desc: '（限定DM）刪除機器人的訊息（最多十筆）。',
     },
 
-    // Troops
-    'aoe': {
+    // aoe
+    {
       aliases: ['aoe', '範圍'],
       desc: '顯示士兵或是英雄的AoE範圍的參考圖。',
       usage: '<士兵名稱|英雄名稱>',
       usage_example: '齊昂妮',
     },
 
-    'curse': {
+    // curse
+    {
       aliases: ['curse', '詛咒'],
       desc: '計算詛咒對敵方部隊的效能。',
       usage: '<目標> [目標等級] [詛咒者] [詛咒者等級]',
@@ -51,7 +58,8 @@ module.exports = {
       COMMAND_CURSE_VOODOO: '詛咒者：巫毒娃娃（{VOODOO LEVEL}級）\n目標：{TARGET}（{TARGET LEVEL}級）\n詛咒成功率：{RATE}%\n最高傷害：{DAMAGE}（目標最高生命的{HEALTH PERCENTAGE}%）',
     },
 
-    'stats': {
+    // stats
+    {
       desc: '顯示士兵數據。',
       usage: '<士兵名稱1> [星級1] <士兵名稱2> [星級2]...',
       usage_example: '弓箭手 9 冰霜弓箭手 8',
@@ -122,7 +130,8 @@ module.exports = {
       },
     },
 
-    'troops': {
+    // troops
+    {
       aliases: ['troops', 'troop', '士兵', '部隊'],
       desc: '顯示部隊的相關資訊。',
       usage: '<部隊名稱>',
@@ -136,14 +145,12 @@ module.exports = {
       },
     },
 
-    // Formation
-    'formtion': {
+    // formtion
+    {
       aliases: ['formation', 'form', '陣形'],
       desc: '關於軍營建設的秘訣',
-      COMMAND_FORMATION_DESC: '軍隊陣形的訣竅',
-      COMMAND_FORMATION_USAGE: '基本|破關|刷金',
-      COMMAND_FORMATION_ALIASES: ['form', '陣形'],
-      COMMAND_FORMATION_MAP: {
+      usage: '基本|破關|刷金',
+      files: {
         '8k': path.resolve(__dirname, 'formation', '8k.json'),
         '8000': path.resolve(__dirname, 'formation', '8k.json'),
         'farming': path.resolve(__dirname, 'formation', '8k.json'),
@@ -151,11 +158,12 @@ module.exports = {
       },
     },
 
-    'hh': {
+    // hh
+    {
       aliases: ['honor hunting'],
       desc: 'Tips for honor hunting',
       usage: 'beginner|cerberus|cyclops|\'spider queen\'',
-      COMMAND_HH_MAP: {
+      files: {
         'beginner': path.resolve(__dirname, 'formation', 'hh_beginner.json'),
         'beginners': path.resolve(__dirname, 'formation', 'hh_beginner.json'),
         'basic': path.resolve(__dirname, 'formation', 'hh_beginner.json'),
@@ -166,27 +174,28 @@ module.exports = {
       },
     },
 
-    // Help
-    'building': {
+    // building
+    {
       aliases: ['building', '軍營'],
       desc: '關於軍營建設的秘訣',
-      COMMAND_BUILDING_FILES: [
+      files: [
         path.resolve(__dirname, 'building', 'building1.json'),
         path.resolve(__dirname, 'building', 'building2.json'),
         path.resolve(__dirname, 'building', 'building3.json'),
       ],
     },
 
-    'trophies': {
+    // trophies
+    {
       aliases: ['trophies', 'trophy', 'score', 'scores', '獎盃', '計分'],
       desc: '計算對戰後的預期的獎盃增減。',
       usage: '<你的獎盃數量> <你的獎盃數量>',
       usage_example: '3600 3800',
-      COMMAND_TROPHIES_RESULT: '進攻方：勝利 {MY GAIN}，失敗 {MY LOSS}\n防守方：勝利 {OPP GAIN}，失敗 {OPP LOSS}',
+      response: '進攻方：勝利 {MY GAIN}，失敗 {MY LOSS}\n防守方：勝利 {OPP GAIN}，失敗 {OPP LOSS}',
     },
 
-    // Stats
-    'wof': {
+    // wof
+    {
       aliases: ['wof', 'wheel', '轉盤'],
       COMMAND_WOF_PLUS: '輪盤共轉{SPIN_COUNT}次時，得到{HIT_RANGE}{UNIT}或以上的的機率是{PROB}%。',
       COMMAND_WOF_RANGE: '輪盤共轉{SPIN_COUNT}次時，得到{HIT_RANGE_1}到{HIT_RANGE_2}{UNIT}的機率是{PROB}%。',
@@ -199,12 +208,12 @@ module.exports = {
       COMMAND_WOF_UNIT_SHARDS: '個碎片',
     },
 
-    // Heroes
-    'hero': {
+    // hero
+    {
       aliases: ['hero', '英雄'],
       desc: '顯示英雄的相關資訊。',
       usage: '阿狸|賽勒涅',
-      COMMAND_HERO_MAP: {
+      files: {
         'meta': path.resolve(__dirname, 'heroes', 'meta.json'),
         'aly': path.resolve(__dirname, 'heroes', 'aly.json'),
         'selene': path.resolve(__dirname, 'heroes', 'selene.json'),
@@ -212,43 +221,46 @@ module.exports = {
       },
     },
 
-    '+arthur': {
+    // +arthur
+    {
       aliases: ['+arthur', '+亞瑟', '+亞瑟王'],
       desc: '計算亞瑟對友軍的效能。',
-      COMMAND_PLUS_ARTHUR_USAGE: '[英雄等級] <部隊> [部隊等級]',
-      COMMAND_PLUS_ARTHUR_USAGE_EXAMPLE: '15 投茅者 9',
-      COMMAND_PLUS_ARTHUR_INTRO: '當等級{TROOPS LEVEL}的{TROOPS}搭配等級{HERO LEVEL}的亞瑟時，其效果如下。\n\n',
-      COMMAND_PLUS_ARTHUR_PASSIVE: '免傷：{IMMUNITY PERCENTAGE}%\n生命值恢復：每秒{HEALTH REGEN}\n',
-      COMMAND_PLUS_ARTHUR_OPENING_CURSED: '一個9級巫毒娃娃可造成的最高傷害：{DAMAGE}（最高生命的{HEALTH PERCENTAGE}%）\n',
-      COMMAND_PLUS_ARTHUR_NOT_HUMAN: '無效果。亞瑟的能力只對人族部隊有效。\n',
+      usage: '[英雄等級] <部隊> [部隊等級]',
+      usage_example: '15 投茅者 9',
+      responseIntro: '當等級{TROOPS LEVEL}的{TROOPS}搭配等級{HERO LEVEL}的亞瑟時，其效果如下。\n\n',
+      responsePassive: '免傷：{IMMUNITY PERCENTAGE}%\n生命值恢復：每秒{HEALTH REGEN}\n',
+      responseCursed: '一個9級巫毒娃娃可造成的最高傷害：{DAMAGE}（最高生命的{HEALTH PERCENTAGE}%）\n',
+      responseTroopsNotHuman: '無效果。亞瑟的能力只對人族部隊有效。\n',
     },
 
-    '+selene': {
+    // +selene
+    {
       aliases: ['+selene', '+賽勒涅', '+月神'],
       desc: '計算賽勒涅對友軍的效能。',
       usage: '[英雄等級] <部隊> [部隊等級]',
       usage_example: '15 夜魔衛兵 9',
-      COMMAND_PLUS_SELENE_INTRO: '當等級{TROOPS LEVEL}的{TROOPS}搭配等級{HERO LEVEL}的賽勒涅時，其效果如下。\n\n',
-      COMMAND_PLUS_SELENE_OPENING: '**{DURATION}秒開局加成**\n',
-      COMMAND_PLUS_SELENE_OPENING_ATK: '攻擊：{ATTACK}（{INCREASE}%加成）\n',
-      COMMAND_PLUS_SELENE_OPENING_CURSED: '一個9級巫毒娃娃可造成的最高傷害：{DAMAGE}（最高生命的{HEALTH PERCENTAGE}%）\n',
+      responseIntro: '當等級{TROOPS LEVEL}的{TROOPS}搭配等級{HERO LEVEL}的賽勒涅時，其效果如下。\n\n',
+      responseOpening: '**{DURATION}秒開局加成**\n',
+      responseOpeningAttack: '攻擊：{ATTACK}（{INCREASE}%加成）\n',
+      responseCursed: '一個9級巫毒娃娃可造成的最高傷害：{DAMAGE}（最高生命的{HEALTH PERCENTAGE}%）\n',
     },
 
-    '+seondeok': {
+    // +seondeok
+    {
       aliases: ['+seondeok', '+seon', '+善德'],
       desc: '計算善德對友軍的效能。',
       usage: '[英雄等級] <部隊> [部隊等級]',
       usage_example: '15 夜魔衛兵 9',
-      COMMAND_PLUS_SEONDEOK_INTRO: '當等級{TROOPS LEVEL}的{TROOPS}搭配等級{HERO LEVEL}的善德時，其效果如下。\n\n',
-      COMMAND_PLUS_SEONDEOK_OPENING: '**8秒開局加成**\n',
-      COMMAND_PLUS_SEONDEOK_OPENING_DMG: '傷害 = ({ATTACK} - 敵方護甲) + {ADD DAMAGE}\n  （等同約{EQUIV INCREASE}%攻擊加成）\n',
-      COMMAND_PLUS_SEONDEOK_OPENING_AOE: '群傷半徑：{AOE RADIUS}（面積 {AOE AREA}）\n群傷：{AOE ATTACK}\n',
-      COMMAND_PLUS_SEONDEOK_NORMAL: '\n**普通攻擊** (原始值)\n',
-      COMMAND_PLUS_SEONDEOK_NORMAL_ATTACK: '攻擊：{ATTACK}\n',
-      COMMAND_PLUS_SEONDEOK_NORMAL_CIRCLE: '群傷半徑：{AOE RADIUS}（面積 {AOE AREA}）\n',
-      COMMAND_PLUS_SEONDEOK_NORMAL_RECT: '群傷範圍：{AOE W}×{AOE L}（面積 {AOE AREA}）\n',
+      responseIntro: '當等級{TROOPS LEVEL}的{TROOPS}搭配等級{HERO LEVEL}的善德時，其效果如下。\n\n',
+      responseOpening: '**8秒開局加成**\n',
+      responseOpeningDamage: '傷害 = ({ATTACK} - 敵方護甲) + {ADD DAMAGE}\n  （等同約{EQUIV INCREASE}%攻擊加成）\n',
+      responseOpeningAoE: '群傷半徑：{AOE RADIUS}（面積 {AOE AREA}）\n群傷：{AOE ATTACK}\n',
+      responseNormal: '\n**普通攻擊** (原始值)\n',
+      responseNormalAttack: '攻擊：{ATTACK}\n',
+      responseNormalCircle: '群傷半徑：{AOE RADIUS}（面積 {AOE AREA}）\n',
+      responseNormalRect: '群傷範圍：{AOE W}×{AOE L}（面積 {AOE AREA}）\n',
     },
-  },
+  ],
 
   EMBED_FOOTER: '資訊由AoW玩家提供。',
   NO_INFO: '我沒有關於「{TEXT}」的訊息。',

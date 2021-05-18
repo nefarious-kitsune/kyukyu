@@ -1,13 +1,14 @@
 const res = require('../res/res');
-const locale = res.locale;
 const {troopsData} = require('./troopsData');
 
 /**
  * Parse command arguments
+ * @param {object} settings
  * @param {[string]} args
  * @return {object}
  */
-function plusHero(args) {
+function plusHero(settings, args) {
+  const l10n = res.l10n[settings.lang];
   const MAX_HERO_LEVEL = 15;
   const MAX_TROOPS_LEVEL = 9;
 
@@ -31,7 +32,7 @@ function plusHero(args) {
   if (argIdx >= args.length) {
     throw new Error(`Invalid command. Troops not provided.`);
   }
-  const troopsName = res.findTroops(args[argIdx]);
+  const troopsName = res.findTroops(settings.lang, args[argIdx]);
   if (!troopsName) {
     throw new Error(`Invalid command. Troops "${args[argIdx]}" not found.`);
   }
@@ -52,8 +53,8 @@ function plusHero(args) {
     }
   }
 
-  const troopsDisplayName = locale.TROOPS_DISPLAY_NAMES[troopsName];
-  const troops = troopsData(troopsName, troopsLevel);
+  const troopsDisplayName = l10n.TROOPS_DISPLAY_NAMES[troopsName];
+  const troops = troopsData(settings.lang, troopsName, troopsLevel);
   if (troops === null) {
     throw new Error(
         `Cannot find data for ${troopsName}.`);

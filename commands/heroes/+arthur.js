@@ -1,5 +1,3 @@
-const res = require('../../res/res');
-const locale = res.locale;
 const {literal} = require('../../helpers/literal');
 const {sendMessage} = require('../../helpers/sendMessage');
 const {plusHero} = require('../../helpers/plusHero');
@@ -22,18 +20,13 @@ const regen = [
 
 module.exports = {
   name: '+arthur',
-  description: locale.COMMAND_PLUS_ARTHUR_DESC,
-  usage: locale.COMMAND_PLUS_ARTHUR_USAGE,
-  usage_example: locale.COMMAND_PLUS_ARTHUR_USAGE_EXAMPLE,
-  aliases: locale.COMMAND_PLUS_ARTHUR_ALIASES,
   args: true,
-  async execute(settings, msg, args) {
+  async execute(cmdRes, settings, msg, args) {
     const {heroLevel, troops, troopsLevel, troopsDisplayName} =
-        plusHero(args);
+        plusHero(settings, args);
 
     let text =
-      literal(
-          locale.COMMAND_PLUS_ARTHUR_INTRO,
+      literal(cmdRes.responseIntro,
           '{TROOPS}', troopsDisplayName,
           '{TROOPS LEVEL}', troopsLevel,
           '{HERO LEVEL}', heroLevel,
@@ -53,18 +46,16 @@ module.exports = {
           Math.round(100 * voodooDamage / troops.basic.health);
 
       text +=
-          literal(
-              locale.COMMAND_PLUS_ARTHUR_PASSIVE,
+          literal(cmdRes.responsePassive,
               '{IMMUNITY PERCENTAGE}', immunPercentage,
               '{HEALTH REGEN}', healthRegen,
           ) +
-          literal(
-              locale.COMMAND_PLUS_SELENE_OPENING_CURSED,
+          literal(cmdRes.responseCursed,
               '{DAMAGE}', voodooDamage,
               '{HEALTH PERCENTAGE}', healthPercentage,
           );
     } else {
-      text += locale.COMMAND_PLUS_ARTHUR_NOT_HUMAN;
+      text += cmdRes.responseTroopsNotHuman;
     }
 
     sendMessage(msg.channel, text, msg.author.id);

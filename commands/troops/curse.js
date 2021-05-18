@@ -15,8 +15,8 @@ module.exports = {
   usage_example: locale.COMMAND_CURSE_USAGE_EXAMPLE,
   aliases: locale.COMMAND_CURSE_ALIASES,
   args: true,
-  async execute(settings, msg, args) {
-    const targetName = res.findTroops(args[0]);
+  async execute(cmdRes, settings, msg, args) {
+    const targetName = res.findTroops(settings.lang, args[0]);
     if (!targetName) return;
 
     let argIdx = 1;
@@ -37,7 +37,7 @@ module.exports = {
     let curserName;
     let curserLevel;
     if (args.length > argIdx) {
-      curserName = res.findTroops(args[argIdx]);
+      curserName = res.findTroops(settings.lang, args[argIdx]);
       if (!curserName) {
         curserName = 'voodoo dolls';
         curserLevel = MAX_TROOPS_LEVEL;
@@ -64,8 +64,8 @@ module.exports = {
 
     const targetDisplayName = locale.TROOPS_DISPLAY_NAMES[targetName];
     // const curserDisplayName = locale.TROOPS_DISPLAY_NAMES[curserName];
-    curser = troopsData(curserName, curserLevel);
-    target = troopsData(targetName, targetLevel);
+    curser = troopsData(settings.lang, curserName, curserLevel);
+    target = troopsData(settings.lang, targetName, targetLevel);
     if ((curser === null) || (target === null)) return;
 
     if (curserName == 'voodoo dolls') {

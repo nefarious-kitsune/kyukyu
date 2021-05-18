@@ -1,5 +1,3 @@
-const res = require('../../res/res');
-const locale = res.locale;
 const {literal} = require('../../helpers/literal');
 const {sendMessage} = require('../../helpers/sendMessage');
 const {plusHero} = require('../../helpers/plusHero');
@@ -28,14 +26,10 @@ const durations = [
 
 module.exports = {
   name: '+selene',
-  description: locale.COMMAND_PLUS_SELENE_DESC,
-  usage: locale.COMMAND_PLUS_SELENE_USAGE,
-  usage_example: locale.COMMAND_PLUS_SELENE_USAGE_EXAMPLE,
-  aliases: locale.COMMAND_PLUS_SELENE_ALIASES,
   args: true,
-  async execute(settings, msg, args) {
+  async execute(cmdRes, settings, msg, args) {
     const {heroLevel, troops, troopsName, troopsLevel, troopsDisplayName} =
-        plusHero(args);
+        plusHero(settings, args);
 
     const buffedAttck =
       Math.round(troops.basic.attack * (1+attackBuffs[heroLevel-1]));
@@ -43,18 +37,15 @@ module.exports = {
       Math.round(attackBuffs[heroLevel-1]*100);
 
     let text =
-      literal(
-          locale.COMMAND_PLUS_SELENE_INTRO,
+      literal(cmdRes.responseIntro,
           '{TROOPS}', troopsDisplayName,
           '{TROOPS LEVEL}', troopsLevel,
           '{HERO LEVEL}', heroLevel,
       ) +
-      literal(
-          locale.COMMAND_PLUS_SELENE_OPENING,
+      literal(cmdRes.responseOpening,
           '{DURATION}', durations[heroLevel-1],
       ) +
-      literal(
-          locale.COMMAND_PLUS_SELENE_OPENING_ATK,
+      literal(cmdRes.responseOpeningAttack,
           '{ATTACK}', buffedAttck,
           '{INCREASE}', buffPercentage,
       );
@@ -71,7 +62,7 @@ module.exports = {
 
       text +=
         literal(
-            locale.COMMAND_PLUS_SELENE_OPENING_CURSED,
+            cmdRes.responseCursed,
             '{DAMAGE}', voodooDamage,
             '{HEALTH PERCENTAGE}', healthPercentage,
         );

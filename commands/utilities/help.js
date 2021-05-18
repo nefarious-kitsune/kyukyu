@@ -11,7 +11,7 @@ module.exports = {
   usage: locale.COMMAND_HELP_USAGE,
   usage_example: `building`,
   aliases: locale.COMMAND_HELP_ALIASES,
-  async execute(settings, msg, args) {
+  async execute(cmdRes, settings, msg, args) {
     const {commands} = msg.client;
 
     if (!args[0]) {

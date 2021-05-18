@@ -4,7 +4,7 @@ const prefix = process.env.prefix;
 module.exports = {
   name: 'greet',
   aliases: ['greeting'],
-  async execute(settings, msg, args) {
+  async execute(cmdRes, settings, msg, args) {
     let greeting = locale.GREETING;
 
     let avatarUrl;

@@ -8,8 +8,8 @@ const res = require('../res/res');
  * @param {number} level
  * @return {object|null}
  */
-function troopsData(name, level) {
-  const troopsName = res.findTroops(name);
+function troopsData(lang, name, level) {
+  const troopsName = res.findTroops(lang, name);
 
   if (!troopsName) return null;
   if ((level > 9) || (level < 1)) return null;

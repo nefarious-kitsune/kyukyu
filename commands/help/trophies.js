@@ -1,15 +1,10 @@
-const {locale} = require('../../res/res');
 const {literal} = require('../../helpers/literal');
 const {sendMessage} = require('../../helpers/sendMessage');
 
 module.exports = {
   name: 'trophies',
-  description: locale.COMMAND_TROPHIES_DESC,
-  usage: locale.COMMAND_TROPHIES_USAGE,
-  usage_example: locale.COMMAND_TROPHIES_USAGE_EXAMPLE,
-  aliases: locale.COMMAND_TROPHIES_ALIASES,
   args: true,
-  async execute(settings, msg, args) {
+  async execute(cmdRes, settings, msg, args) {
     if (msg.channel.type != 'dm') return;
 
     if (args.length < 2) return;
@@ -31,7 +26,7 @@ module.exports = {
 
     const text =
       literal(
-          locale.COMMAND_TROPHIES_RESULT,
+          cmdRes.response,
           '{MY GAIN}', myGain,
           '{MY LOSS}', myLoss,
           '{OPP GAIN}', oppGain,

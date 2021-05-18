@@ -1,5 +1,3 @@
-const res = require('../../res/res');
-const locale = res.locale;
 const {literal} = require('../../helpers/literal');
 const {sendMessage} = require('../../helpers/sendMessage');
 const {plusHero} = require('../../helpers/plusHero');
@@ -21,14 +19,10 @@ const aoeRatios = [
 
 module.exports = {
   name: '+seondeok',
-  description: locale.COMMAND_PLUS_SEONDEOK_DESC,
-  usage: locale.COMMAND_PLUS_SEONDEOK_USAGE,
-  usage_example: locale.COMMAND_PLUS_SEONDEOK_USAGE_EXAMPLE,
-  aliases: locale.COMMAND_PLUS_SEONDEOK_ALIASES,
   args: true,
-  async execute(settings, msg, args) {
+  async execute(cmdRes, settings, msg, args) {
     const {heroLevel, troops, troopsLevel, troopsDisplayName} =
-        plusHero(args);
+        plusHero(settings, args);
 
     const equivAttackIncrease =
         Math.round(
@@ -38,15 +32,13 @@ module.exports = {
         );
 
     let text =
-      literal(
-          locale.COMMAND_PLUS_SEONDEOK_INTRO,
+      literal(cmdRes.responseIntro,
           '{TROOPS}', troopsDisplayName,
           '{TROOPS LEVEL}', troopsLevel,
           '{HERO LEVEL}', heroLevel,
       ) +
-      locale.COMMAND_PLUS_SEONDEOK_OPENING +
-      literal(
-          locale.COMMAND_PLUS_SEONDEOK_OPENING_DMG,
+      cmdRes.responseOpening +
+      literal(cmdRes.responseOpeningDamage,
           '{ATTACK}', troops.basic.attack,
           '{ADD DAMAGE}', Math.round(troops.basic.health * 0.05),
           '{EQUIV INCREASE}', equivAttackIncrease,
@@ -57,8 +49,7 @@ module.exports = {
       const range = (aoeRanges[heroLevel-1]/5); // diameter
       const area = Math.round(range * range * 0.25 * 3.14 *10)/10;
       text +=
-        literal(
-            locale.COMMAND_PLUS_SEONDEOK_OPENING_AOE,
+        literal(cmdRes.responseOpeningAoE,
             '{AOE RADIUS}', range/2,
             '{AOE AREA}', area,
             '{AOE ATTACK}', aoeRatios[heroLevel-1] * troops.basic.attack,
@@ -66,9 +57,8 @@ module.exports = {
     }
 
     text +=
-        locale.COMMAND_PLUS_SEONDEOK_NORMAL +
-        literal(
-            locale.COMMAND_PLUS_SEONDEOK_NORMAL_ATTACK,
+        cmdRes.responseNormal +
+        literal(cmdRes.responseNormalAttack,
             '{ATTACK}', troops.basic.attack,
         );
     if (troops.basic.damage_shape) {
@@ -76,8 +66,7 @@ module.exports = {
         const range = (troops.basic.damage_range);
         const area = Math.round(range * range * 0.25 * 3.14 * 10)/10;
         text +=
-          literal(
-              locale.COMMAND_PLUS_SEONDEOK_NORMAL_CIRCLE,
+          literal(cmdRes.responseNormalCircle,
               '{AOE RADIUS}', range/2,
               '{AOE AREA}', area,
           );
@@ -86,8 +75,7 @@ module.exports = {
         const l = troops.basic.damage_range[1];
         const area = Math.round(w * l *10)/10;
         text +=
-          literal(
-              locale.COMMAND_PLUS_SEONDEOK_NORMAL_RECT,
+          literal(cmdRes.responseNormalRect,
               '{AOE W}', w,
               '{AOE L}', l,
               '{AOE AREA}', area,
