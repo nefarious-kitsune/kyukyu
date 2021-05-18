@@ -10,7 +10,7 @@ module.exports = {
   usage_example: locale.COMMAND_AOE_USAGE_EXAMPLE,
   aliases: locale.COMMAND_AOE_ALIASES,
   args: true,
-  async execute(msg, args) {
+  async execute(settings, msg, args) {
     let unitName = res.findHero(args[0]);
     if (unitName) {
       const url = images.hero_aoe[unitName];

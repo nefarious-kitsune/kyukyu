@@ -10,7 +10,7 @@ module.exports = {
   usage: '<hero|voucher> <desired quantity> <number of spins>',
   aliases: locale.COMMAND_WOF_ALIASES,
   args: true,
-  async execute(msg, args) {
+  async execute(settings, msg, args) {
     const VOUCHERS = locale.COMMAND_WOF_VOUCHERS;
     const SHARDS = locale.COMMAND_WOF_SHARDS;
 

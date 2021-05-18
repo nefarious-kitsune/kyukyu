@@ -27,7 +27,7 @@ module.exports = {
   usage_example: locale.COMMAND_PLUS_ARTHUR_USAGE_EXAMPLE,
   aliases: locale.COMMAND_PLUS_ARTHUR_ALIASES,
   args: true,
-  async execute(msg, args) {
+  async execute(settings, msg, args) {
     const {heroLevel, troops, troopsLevel, troopsDisplayName} =
         plusHero(args);
 

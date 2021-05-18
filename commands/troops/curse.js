@@ -15,7 +15,7 @@ module.exports = {
   usage_example: locale.COMMAND_CURSE_USAGE_EXAMPLE,
   aliases: locale.COMMAND_CURSE_ALIASES,
   args: true,
-  async execute(msg, args) {
+  async execute(settings, msg, args) {
     const targetName = res.findTroops(args[0]);
     if (!targetName) return;
 

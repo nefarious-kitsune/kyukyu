@@ -9,7 +9,7 @@ module.exports = {
   usage: locale.COMMAND_FORMATION_USAGE,
   aliases: locale.COMMAND_FORMATION_ALIASES,
   args: true,
-  async execute(msg, args) {
+  async execute(settings, msg, args) {
     const formName = args[0].toLowerCase();
     if (locale.COMMAND_FORMATION_MAP.hasOwnProperty(formName)) {
       const embed = JSON.parse(

@@ -3,6 +3,11 @@ const path = require('path');
 
 const locale = require(path.resolve(__dirname, process.env.lang, 'locale'));
 
+const l10n = {
+  'en': require('./en/locale'),
+  'zht': require('./zht/locale'),
+};
+
 const images = JSON.parse(
     fs.readFileSync(path.resolve(__dirname, 'images.json')),
 );
@@ -10,6 +15,7 @@ const images = JSON.parse(
 module.exports = {
   locale: locale,
   images: images,
+  l10n: l10n,
   findTroops(troopsName) {
     name = troopsName.toLowerCase().trim();
     map = this.locale.TROOPS_ALIASES;

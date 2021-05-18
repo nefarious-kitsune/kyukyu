@@ -10,7 +10,7 @@ module.exports = {
   usage: locale.COMMAND_HERO_USAGE,
   aliases: locale.COMMAND_HERO_ALIASES,
   args: true,
-  async execute(msg, args) {
+  async execute(settings, msg, args) {
     const heroName = res.findHero(args[0]);
     if (heroName == false) return;
 

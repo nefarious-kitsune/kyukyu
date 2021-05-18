@@ -9,7 +9,7 @@ module.exports = {
   usage_example: locale.COMMAND_TROPHIES_USAGE_EXAMPLE,
   aliases: locale.COMMAND_TROPHIES_ALIASES,
   args: true,
-  async execute(msg, args) {
+  async execute(settings, msg, args) {
     if (msg.channel.type != 'dm') return;
 
     if (args.length < 2) return;

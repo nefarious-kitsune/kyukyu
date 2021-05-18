@@ -9,7 +9,7 @@ module.exports = {
   usage: locale.COMMAND_HH_USAGE,
   aliases: locale.COMMAND_HH_ALIASES,
   args: true,
-  async execute(msg, args) {
+  async execute(settings, msg, args) {
     const formName = args[0].toLowerCase();
     if (locale.COMMAND_HH_MAP.hasOwnProperty(formName)) {
       const embed = JSON.parse(

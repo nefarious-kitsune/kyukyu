@@ -49,7 +49,7 @@ module.exports = {
   usage_example: locale.COMMAND_STATS_USAGE_EXAMPLE,
   aliases: locale.COMMAND_STATS_ALIASES,
   args: true,
-  async execute(msg, args) {
+  async execute(settings, msg, args) {
     let argIdx = 0;
     const list = [];
 

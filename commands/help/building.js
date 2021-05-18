@@ -7,7 +7,7 @@ module.exports = {
   description: locale.COMMAND_BUILDING_DESC,
   aliases: locale.COMMAND_BUILDING_ALIASES,
   args: false,
-  async execute(msg, args) {
+  async execute(settings, msg, args) {
     const embeds = [];
     locale.COMMAND_BUILDING_FILES.forEach( (fPath) => {
       embeds.push(JSON.parse(fs.readFileSync(fPath)));

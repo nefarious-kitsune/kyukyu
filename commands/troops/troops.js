@@ -10,7 +10,7 @@ module.exports = {
   usage: locale.COMMAND_TROOPS_USAGE,
   aliases: locale.COMMAND_TROOPS_ALIASES,
   args: true,
-  async execute(msg, args) {
+  async execute(settings, msg, args) {
     const troopsName = res.findTroops(args[0]);
     const blackList = locale.COMMAND_TROOPS_BLACKLIST.split(',');
 

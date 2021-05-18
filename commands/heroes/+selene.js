@@ -33,7 +33,7 @@ module.exports = {
   usage_example: locale.COMMAND_PLUS_SELENE_USAGE_EXAMPLE,
   aliases: locale.COMMAND_PLUS_SELENE_ALIASES,
   args: true,
-  async execute(msg, args) {
+  async execute(settings, msg, args) {
     const {heroLevel, troops, troopsName, troopsLevel, troopsDisplayName} =
         plusHero(args);
 

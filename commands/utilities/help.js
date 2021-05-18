@@ -3,7 +3,7 @@ const {literal} = require('../../helpers/literal');
 const {sendMessage} = require('../../helpers/sendMessage');
 const prefix = process.env.prefix;
 
-const BLACKLIST = ['reload', 'greet'];
+const BLACKLIST = ['reload', 'greet', 'kyukyu'];
 
 module.exports = {
   name: 'help',
@@ -11,7 +11,7 @@ module.exports = {
   usage: locale.COMMAND_HELP_USAGE,
   usage_example: `building`,
   aliases: locale.COMMAND_HELP_ALIASES,
-  async execute(msg, args) {
+  async execute(settings, msg, args) {
     const {commands} = msg.client;
 
     if (!args[0]) {

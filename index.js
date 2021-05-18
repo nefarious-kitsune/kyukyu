@@ -3,6 +3,15 @@ const path = require('path');
 
 const Discord = require('discord.js');
 
+const guildConfig = require('./helpers/config.js');
+guildConfig.load();
+setInterval(
+    function() {
+      guildConfig.save();
+    },
+    1000*60*5,
+);
+
 let configFilePath = path.resolve(__dirname, 'config.json');
 const processArgs = process.argv.slice(2);
 if (processArgs && processArgs[0]) {
@@ -35,14 +44,27 @@ fs.readdirSync('./commands').forEach( (folder) => {
 kyukyu.login(process.env.TOKEN);
 
 kyukyu.on('ready', () => {
-  console.log(res.locale.SPLASH);
+  console.log(
+      fs.readFileSync(path.resolve(__dirname, 'splash.md'), 'utf8'),
+  );
 });
 
 kyukyu.on('message', (msg) => {
   if (msg.author.bot) return;
 
-  if ( msg.content.startsWith(prefix) ) {
-    const args = parseArgs(prefix, msg.content);
+  let settings;
+  if (msg.channel.type === 'text') {
+    settings = guildConfig.getGuildSettings(msg.guild);
+  } else {
+    settings = {
+      id: msg.author.id,
+      prefix: '?',
+      lang: 'en',
+    };
+  }
+
+  if ( msg.content.startsWith(settings.prefix||'?') ) {
+    const args = parseArgs(settings.prefix, msg.content);
 
     if (args.length == 0) return;
 
@@ -51,7 +73,7 @@ kyukyu.on('message', (msg) => {
     const cmd =
         kyukyu.commands.get(cmdName) ||
         kyukyu.commands.find(
-            (cmd) => cmd.aliases && cmd.aliases.includes(cmdName)
+            (cmd) => cmd.aliases && cmd.aliases.includes(cmdName),
         );
 
     if (!cmd) return;
@@ -65,7 +87,7 @@ kyukyu.on('message', (msg) => {
       return msg.reply(reply);
     }
 
-    cmd.execute(msg, args).catch((error)=> {
+    cmd.execute(settings, msg, args).catch((error)=> {
       console.error('--------------------------------------------------');
       console.error(`Error executing '${msg.content}'`);
       console.error('> ' + error.message);
