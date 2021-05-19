@@ -7,6 +7,8 @@
 async function sendMessage(channel, content, replyTo) {
   const message = await channel.send(content);
 
+  if (channel.type == 'dm') return;
+
   message.react('🗑️');
 
   const filter = (reaction, user) => {
