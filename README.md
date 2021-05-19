@@ -14,7 +14,7 @@ anyone can modify the code and run the bot him/herself.
 
 ## Commands
 
-- [Commands](commands.md)
+- [Commands](commands.md), [administrator commands](admin-commands.md)
 - [指令](commands.zh.md)
 
 ## Adding the bot
