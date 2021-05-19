@@ -1,64 +1,49 @@
-const {locale} = require('../../res/res');
+const res = require('../../res/res');
 const {literal} = require('../../helpers/literal');
 const {sendMessage} = require('../../helpers/sendMessage');
-const prefix = process.env.prefix;
 
-const BLACKLIST = ['reload', 'greet', 'kyukyu'];
+const ADMIN_COMMANDS = ['reload', 'greet', 'kyukyu'];
 
 module.exports = {
   name: 'help',
-  description: locale.COMMAND_HELP_DESC,
-  usage: locale.COMMAND_HELP_USAGE,
-  usage_example: `building`,
-  aliases: locale.COMMAND_HELP_ALIASES,
   async execute(cmdRes, settings, msg, args) {
-    const {commands} = msg.client;
+    const prefix = settings.prefix;
+    const l10n = res.l10n[settings.lang];
+    const commands = l10n.commands;
 
     if (!args[0]) {
-      const commandArray = [];
-      commands
-          .filter((cmd)=>!BLACKLIST.includes(cmd.name))
-          .forEach((cmd)=>commandArray.push(prefix + cmd.name));
+      const list =
+          commands
+              .filter((cmd)=>!ADMIN_COMMANDS.includes(cmd.name))
+              .map((cmd)=>prefix + cmd.aliases[0])
+              .join(', ');
 
-      // return msg.channel.send(
-      //     literal(
-      //         locale.COMMAND_HELP_HELP,
-      //         '{PREFIX}', process.env.prefix,
-      //         '{COMMANDS}', commandArray.join(', '),
-      //     ),
-      // );
-      const help = literal(
-          locale.COMMAND_HELP_HELP,
-          '{PREFIX}', process.env.prefix,
-          '{COMMANDS}', commandArray.join(', '),
+      const help = literal(cmdRes.response,
+          '{PREFIX}', prefix,
+          '{COMMANDS}', list,
       );
       sendMessage(msg.channel, help, msg.author.id);
     } else {
-      const cmdName = args[0].toLowerCase();
-      const cmd =
-            commands.get(cmdName) ||
-            commands.find(
-                (cmd) => cmd.aliases && cmd.aliases.includes(cmdName),
-            );
+      const foundCmdRes = res.getCommandRes(settings.lang, args[0]);
 
-      if (!cmd) return msg.reply(locale.COMMAND_HELP_NOT_FOUND);
+      if (!foundCmdRes) return msg.reply(cmdRes.commandNotFound);
 
-      let help = `**Name:** ${cmd.name}`;
-      if (cmd.aliases) {
-        help += `\n**${locale.COMMAND_HELP_LABEL_ALIASES}:** ` +
-          cmd.aliases.join(', ');
+      const displayName = foundCmdRes.aliases[0];
+      let help = `${cmdRes.labelName}${displayName}`;
+      if (foundCmdRes.aliases.length > 1) {
+        help += `\n${cmdRes.labelAliases}` +
+          foundCmdRes.aliases.slice(1).join(', ');
       }
-      if (cmd.description) {
-        help += `\n**${locale.COMMAND_HELP_LABEL_DESC}:** ` +
-          `${cmd.description}`;
+      if (foundCmdRes.desc) {
+        help += `\n${cmdRes.labelDesc}${foundCmdRes.desc}`;
       }
-      if (cmd.usage) {
-        help += `\n**${locale.COMMAND_HELP_LABEL_USAGE}:** ` +
-          `\`${prefix}${cmd.name} ${cmd.usage}\``;
+      if (foundCmdRes.usage) {
+        help += `\n${cmdRes.labelUsae}` +
+          `\`${prefix}${displayName} ${foundCmdRes.usage}\``;
       }
-      if (cmd.usage_example) {
-        help += `\n**${locale.COMMAND_HELP_LABEL_EXAMPLE}:** ` +
-          `\`${prefix}${cmd.name} ${cmd.usage_example}\``;
+      if (foundCmdRes.usage_example) {
+        help += `\n${cmdRes.labelExample}` +
+          `\`${prefix}${displayName} ${foundCmdRes.usage_example}\``;
       }
       sendMessage(msg.channel, help, msg.author.id);
     }
