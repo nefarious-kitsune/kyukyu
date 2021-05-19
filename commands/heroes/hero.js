@@ -13,7 +13,7 @@ module.exports = {
       const content = JSON.parse(
           fs.readFileSync(cmdRes.files[heroName]),
       );
-      touchEmbed(content);
+      touchEmbed(settings, content);
       content.embed.thumbnail = {'url': res.images.hero_icons[heroName]};
       sendMessage(msg.channel, content, msg.author.id);
     } else {
