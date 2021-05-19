@@ -11,46 +11,53 @@ module.exports = {
   commands: [
     // kyukyu
     {
+      name: 'kyukyu',
       aliases: ['kyukyu'],
     },
 
     // reload
     {
+      name: 'reload',
       aliases: ['reload'],
       desc: '重載指令。',
-      COMMAND_RELOAD_NOT_FOUND: '沒有名稱或別名是「{TEXT}」的指令',
+      commandNotFound: '沒有名稱或別名是「{TEXT}」的指令',
     },
 
     // help
     {
-      aliases: ['help', 'h', 'commands', '幫助'],
+      name: 'help',
+      aliases: ['幫助', 'help', 'h', 'commands'],
       desc: '顯示某特定指令的協助訊息。',
       usage: '[指令名稱]',
-      COMMAND_HELP_HELP: '鍵入\`{PREFIX}help <指令名稱>\`以取得某指令的相關訊息。\n\n**指令名稱；**\n{COMMANDS}',
-      COMMAND_HELP_LABEL_ALIASES: '別名',
-      COMMAND_HELP_LABEL_DESC: '敘述',
-      COMMAND_HELP_LABEL_USAGE: '使用方法',
-      COMMAND_HELP_LABEL_EXAMPLE: '範例',
-      COMMAND_HELP_NOT_FOUND: '此指令不存在。',
+      response: '鍵入\`{PREFIX}help <指令名稱>\`以取得某指令的相關訊息。\n\n**指令名稱；**\n{COMMANDS}',
+      labelName: '名稱：',
+      labelAliases: '別名：',
+      labelDesc: '敘述：',
+      labelUsae: '使用方法：',
+      labelExample: '範例：',
+      commandNotFound: '此指令不存在。',
     },
 
     // clear
     {
+      name: 'clear',
       aliases: ['clear'],
       desc: '（限定DM）刪除機器人的訊息（最多十筆）。',
     },
 
     // aoe
     {
-      aliases: ['aoe', '範圍'],
-      desc: '顯示士兵或是英雄的AoE範圍的參考圖。',
+      name: 'aoe',
+      aliases: ['範圍', 'aoe'],
+      desc: '顯示士兵或是英雄的傷害範圍的參考圖。',
       usage: '<士兵名稱|英雄名稱>',
       usage_example: '齊昂妮',
     },
 
     // curse
     {
-      aliases: ['curse', '詛咒'],
+      name: 'curse',
+      aliases: ['詛咒', 'curse'],
       desc: '計算詛咒對敵方部隊的效能。',
       usage: '<目標> [目標等級] [詛咒者] [詛咒者等級]',
       usage_example: '\'岩石巨人\' 9 巫毒 8',
@@ -60,10 +67,11 @@ module.exports = {
 
     // stats
     {
+      name: 'stats',
+      aliases: ['數據', 'stats', 'stat'],
       desc: '顯示士兵數據。',
       usage: '<士兵名稱1> [星級1] <士兵名稱2> [星級2]...',
       usage_example: '弓箭手 9 冰霜弓箭手 8',
-      aliases: ['stats', 'stat', '數據'],
       header: '{LEVEL}星{TROOPS}',
       basicHeader: '基礎屬性',
       skillHeader: '技能',
@@ -132,7 +140,8 @@ module.exports = {
 
     // troops
     {
-      aliases: ['troops', 'troop', '士兵', '部隊'],
+      name: 'troops',
+      aliases: ['士兵', '部隊', 'troops', 'troop'],
       desc: '顯示部隊的相關資訊。',
       usage: '<部隊名稱>',
       blackList: 'infantry,iron guards,hell jailers,fire mage,viking warrior,scholar,templar knight',
@@ -147,7 +156,8 @@ module.exports = {
 
     // formtion
     {
-      aliases: ['formation', 'form', '陣形'],
+      name: 'formation',
+      aliases: ['陣形', 'formation', 'form'],
       desc: '關於軍營建設的秘訣',
       usage: '基本|破關|刷金',
       files: {
@@ -160,7 +170,8 @@ module.exports = {
 
     // hh
     {
-      aliases: ['honor hunting'],
+      name: 'hh',
+      aliases: ['榮耀狩獵', '狩獵', 'hh', 'honor hunting'],
       desc: 'Tips for honor hunting',
       usage: 'beginner|cerberus|cyclops|\'spider queen\'',
       files: {
@@ -176,7 +187,8 @@ module.exports = {
 
     // building
     {
-      aliases: ['building', '軍營'],
+      name: 'building',
+      aliases: ['軍營', 'building', 'barrack'],
       desc: '關於軍營建設的秘訣',
       files: [
         path.resolve(__dirname, 'building', 'building1.json'),
@@ -187,7 +199,8 @@ module.exports = {
 
     // trophies
     {
-      aliases: ['trophies', 'trophy', 'score', 'scores', '獎盃', '計分'],
+      name: 'trophies',
+      aliases: ['獎盃', '計分', 'trophies', 'trophy', 'score', 'scores'],
       desc: '計算對戰後的預期的獎盃增減。',
       usage: '<你的獎盃數量> <你的獎盃數量>',
       usage_example: '3600 3800',
@@ -196,7 +209,8 @@ module.exports = {
 
     // wof
     {
-      aliases: ['wof', 'wheel', '轉盤'],
+      name: 'wof',
+      aliases: ['轉盤', '輪盤', 'wof', 'wheel'],
       mode: ['mode', 'm', '眾數'],
       responsePlus: '輪盤共轉{SPIN_COUNT}次時，得到{HIT_RANGE}{UNIT}或以上的的機率是{PROB}%。',
       responseRange: '輪盤共轉{SPIN_COUNT}次時，得到{HIT_RANGE_1}到{HIT_RANGE_2}{UNIT}的機率是{PROB}%。',
@@ -211,7 +225,8 @@ module.exports = {
 
     // hero
     {
-      aliases: ['hero', '英雄'],
+      name: 'hero',
+      aliases: ['英雄', 'hero'],
       desc: '顯示英雄的相關資訊。',
       usage: '阿狸|賽勒涅',
       files: {
@@ -224,7 +239,8 @@ module.exports = {
 
     // +arthur
     {
-      aliases: ['+arthur', '+亞瑟', '+亞瑟王'],
+      name: '+arthur',
+      aliases: ['+亞瑟', '+亞瑟王', '+arthur'],
       desc: '計算亞瑟對友軍的效能。',
       usage: '[英雄等級] <部隊> [部隊等級]',
       usage_example: '15 投茅者 9',
@@ -236,7 +252,8 @@ module.exports = {
 
     // +selene
     {
-      aliases: ['+selene', '+賽勒涅', '+月神'],
+      name: '+selene',
+      aliases: ['+賽勒涅', '+月神', '+selene'],
       desc: '計算賽勒涅對友軍的效能。',
       usage: '[英雄等級] <部隊> [部隊等級]',
       usage_example: '15 夜魔衛兵 9',
@@ -248,7 +265,8 @@ module.exports = {
 
     // +seondeok
     {
-      aliases: ['+seondeok', '+seon', '+善德'],
+      name: '+seondeok',
+      aliases: ['+善德', '+seondeok', '+seon'],
       desc: '計算善德對友軍的效能。',
       usage: '[英雄等級] <部隊> [部隊等級]',
       usage_example: '15 夜魔衛兵 9',
