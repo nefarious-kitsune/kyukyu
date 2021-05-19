@@ -33,7 +33,7 @@ module.exports = {
         if (PERCENT_ATTRS.includes(k)) {
           v = Number(v) * 100;
           value =
-            v.tocmdResString('en-US', {
+            v.toLocaleString('en-US', {
               minimumSignificantDigits: 2,
               maximumSignificantDigits: 3,
             }) +
