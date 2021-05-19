@@ -11,8 +11,8 @@ module.exports = {
       contents.push(JSON.parse(fs.readFileSync(fPath)));
     });
     touchEmbed(settings, contents[contents.length-1]);
-    embeds.forEach( (embed) => {
-      sendMessage(msg.channel, embed, msg.author.id);
+    contents.forEach( (c) => {
+      sendMessage(msg.channel, c, msg.author.id);
     });
   },
 };
