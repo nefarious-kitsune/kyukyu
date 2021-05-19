@@ -11,43 +11,37 @@ module.exports = {
   commands: [
     // kyukyu
     {
-      name: 'kyukyu',
       aliases: ['kyukyu'],
     },
 
     // reload
     {
-      name: 'reload',
       aliases: ['reload'],
       desc: 'Reloads a command.',
-      commandNotFound: 'There is no command with name or alias of "{TEXT}"',
+      COMMAND_RELOAD_NOT_FOUND: 'There is no command with name or alias of "{TEXT}"',
     },
 
     // help
     {
-      name: 'help',
       aliases: ['help', 'h', 'commands'],
       desc: 'Show help for a specified command..',
       usage: '[command name]',
-      response: 'Type \`{PREFIX}help <command>\` to get more information about a specific command.\n\n**Commands available:**\n{COMMANDS}',
-      labelName: 'Name: ',
-      labelAliases: '**Aliases: **',
-      labelDesc: '**Description: **',
-      labelUsae: '**Usage: **',
-      labelExample: '**Example: **',
-      commandNotFound: 'This command does not exist.',
+      COMMAND_HELP_HELP: 'Type \`{PREFIX}help <command>\` to get more information about a specific command.\n\n**Commands available:**\n{COMMANDS}',
+      COMMAND_HELP_LABEL_ALIASES: 'Aliases',
+      COMMAND_HELP_LABEL_DESC: 'Description',
+      COMMAND_HELP_LABEL_USAGE: 'Usage',
+      COMMAND_HELP_LABEL_EXAMPLE: 'Example',
+      COMMAND_HELP_NOT_FOUND: 'This command does not exist.',
     },
 
     // clear
     {
-      name: 'clear',
       aliases: ['clear'],
       desc: '(DM-only) Delete bot\'s own messages (max 10).',
     },
 
     // aoe
     {
-      name: 'aoe',
       aliases: ['aoe'],
       desc: 'Show reference graphic of hero and troops\' AoE range',
       usage: '<troops name|hero name>',
@@ -56,7 +50,6 @@ module.exports = {
 
     // curser
     {
-      name: 'curse',
       aliases: ['curse'],
       desc: 'Calculate the effect of curse on troops.',
       usage: '<target> [target level] [curser] [curser level]',
@@ -67,7 +60,6 @@ module.exports = {
 
     // stats
     {
-      name: 'stats',
       aliases: ['stats', 'stat'],
       desc: 'Show stats of a troops.',
       usage: '<troops name 1> [level] <troops name 2> <level>...',
@@ -140,7 +132,6 @@ module.exports = {
 
     // troops
     {
-      name: 'troops',
       aliases: ['troops', 'troop'],
       desc: 'Information about troops.\n(meta, paladin, pilgrims, peltasts, brawlers, nun, voodoo dolls)',
       usage: '<troops name>',
@@ -158,7 +149,6 @@ module.exports = {
 
     // formation
     {
-      name: 'formation',
       aliases: ['formation', 'form'],
       desc: 'Tips for army formation',
       usage: 'beginner|leveling|farming',
@@ -175,8 +165,7 @@ module.exports = {
 
     // hh
     {
-      name: 'hh',
-      aliases: ['hh', 'honor hunting'],
+      aliases: ['honor hunting'],
       desc: 'Tips for honor hunting',
       usage: 'beginner|cerberus|cyclops|\'spider queen\'',
       files: {
@@ -192,8 +181,7 @@ module.exports = {
 
     // building
     {
-      name: 'building',
-      aliases: ['building', 'barrack'],
+      aliases: ['building'],
       desc: 'Tips for building your barrack.',
       files: [
         path.resolve(__dirname, 'building', 'building1.json'),
@@ -204,7 +192,6 @@ module.exports = {
 
     // troophies
     {
-      name: 'trophies',
       aliases: ['trophies', 'trophy', 'score', 'scores'],
       desc: 'Calculate expected trophy gain/loss from a battle',
       usage: '<your trophy count> <opponent\'s trophy count>',
@@ -214,7 +201,6 @@ module.exports = {
 
     // wof
     {
-      name: 'wof',
       aliases: ['wof', 'wheel'],
       mode: ['mode', 'm'],
       responsePlus: 'The probability of getting {HIT_RANGE} or more {UNIT} in {SPIN_COUNT} spins is {PROB}%.',
@@ -230,7 +216,6 @@ module.exports = {
 
     // hero
     {
-      name: 'hero',
       aliases: ['hero'],
       desc: 'Information about heroes.',
       usage: 'aly|selene',
@@ -244,7 +229,6 @@ module.exports = {
 
     // +arthur
     {
-      name: '+arthur',
       aliases: ['+arthur'],
       desc: 'Calculate the effect of Arthur on troops.',
       usage: '[hero level] <troops name> [troops level]',
@@ -257,7 +241,6 @@ module.exports = {
 
     // +selene
     {
-      name: '+selene',
       aliases: ['+selene'],
       desc: 'Calculate the effect of Selene on troops.',
       usage: '[hero level] <troops name> [troops level]',
@@ -270,7 +253,6 @@ module.exports = {
 
     // +seondeok
     {
-      name: '+seondeok',
       aliases: ['+seondeok', '+seon'],
       desc: 'Calculate the effect of Seondeok on troops.',
       usage: '[hero level] <troops name> [troops level]',

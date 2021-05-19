@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
+const locale = require(path.resolve(__dirname, process.env.lang, 'locale'));
+
 const l10n = {
   'en': require('./en/locale'),
   'zht': require('./zht/locale'),
@@ -11,13 +13,13 @@ const images = JSON.parse(
 );
 
 module.exports = {
+  locale: locale,
   images: images,
   l10n: l10n,
   getCommandRes(lang, cmdName) {
-    name = cmdName.toLowerCase().trim();
     const commands = this.l10n[lang].commands;
     for (let i = 0; i < commands.length; i++ ) {
-      if (commands[i].aliases.includes(name)) return commands[i];
+      if (commands[i].aliases.includes(cmdName)) return commands[i];
     }
     return false;
   },

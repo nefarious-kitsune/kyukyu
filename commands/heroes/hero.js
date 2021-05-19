@@ -1,5 +1,5 @@
 const fs = require('fs');
-const res = require('../../res/res');
+const {images} = require('../../res/res');
 const {touchEmbed} = require('../../helpers/touchEmbed');
 const {sendMessage} = require('../../helpers/sendMessage');
 
@@ -14,7 +14,7 @@ module.exports = {
           fs.readFileSync(cmdRes.files[heroName]),
       );
       touchEmbed(content);
-      content.embed.thumbnail = {'url': res.images.hero_icons[heroName]};
+      content.embed.thumbnail = {'url': images.hero_icons[heroName]};
       sendMessage(msg.channel, content, msg.author.id);
     } else {
       // NO_INFO

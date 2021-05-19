@@ -7,7 +7,6 @@ module.exports = {
   name: 'aoe',
   args: true,
   async execute(cmdRes, settings, msg, args) {
-    const l10n = res.l10n[settings.lang];
     let unitName = res.findHero(settings.lang, args[0]);
     if (unitName) {
       const url = images.hero_aoe[unitName];

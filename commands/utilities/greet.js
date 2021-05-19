@@ -1,10 +1,11 @@
-const res = require('../../res/res');
+const {locale} = require('../../res/res');
+const prefix = process.env.prefix;
 
 module.exports = {
   name: 'greet',
   aliases: ['greeting'],
   async execute(cmdRes, settings, msg, args) {
-    let greeting = res.l10n[settings.lang].GREETING;
+    let greeting = locale.GREETING;
 
     let avatarUrl;
     let nickname;
