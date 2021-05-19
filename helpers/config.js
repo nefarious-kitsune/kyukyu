@@ -1,7 +1,11 @@
 const fs = require('fs');
 const path = require('path');
+const res = require('../res/res');
 
 const CONFIG_FILE_PATH = path.resolve(__dirname, '../guilds.json');
+
+// these commands should not be disabled
+const UTILITY_COMMANDS = ['reload', 'greet', 'kyukyu', 'help', 'clear'];
 
 module.exports = {
   guildConfig: {guilds: []},
@@ -41,12 +45,12 @@ module.exports = {
     }
     if (i >= this.guildConfig.guilds.length) {
       settings = {
-        id: guildId,
-        name: guild.name,
-        lang: 'en',
-        enable: [],
-        disable: [],
-        prefix: '?',
+        'id': guildId,
+        'name': guild.name,
+        'lang': 'en',
+        'disable': [],
+        'bot-channel': [],
+        'prefix': '?',
       };
       this.guildConfig.guilds.push(settings);
     }
@@ -58,9 +62,9 @@ module.exports = {
   },
 
   setGuildBotChannel(guild, settings, values) {
-    if (values[0].toLowerCase() == 'all') {
+    if (values[0].toLowerCase().trim() == 'all') {
       settings['bot-channel'] = [];
-      return;
+      return true;
     }
     const regex = /^<#(\d+)>$/;
     const channels = [];
@@ -95,6 +99,41 @@ module.exports = {
     return false;
   },
 
+  disableCommands(guild, settings, values) {
+    let success = false;
+    values.forEach( (v) => {
+      const cmdRes = res.getCommandRes(settings.lang, v);
+      if (
+        (cmdRes) &&
+        (!UTILITY_COMMANDS.includes(cmdRes.name)) &&
+        !settings.disable.includes(cmdRes.name)
+      ) {
+        settings.disable.push(cmdRes.name);
+        success = true;
+      }
+    });
+    return success;
+  },
+
+  enableCommands(guild, settings, values) {
+    if (values[0].toLowerCase().trim() == 'all') {
+      settings['disable'] = [];
+      return true;
+    }
+    let success = false;
+    values.forEach( (v) => {
+      const cmdRes = res.getCommandRes(settings.lang, v);
+      if (cmdRes) {
+        i = settings.disable.indexOf(cmdRes.name);
+        if (i >= 0) {
+          settings.disable.splice(i, 1);
+          success = true;
+        }
+      }
+    });
+    return success;
+  },
+
   setGuild(guild, param, values) {
     const settings = this.getGuildSettings(guild);
     switch (param) {
@@ -105,7 +144,9 @@ module.exports = {
       case 'lang':
         return this.setGuildLang(guild, settings, values);
       case 'enable':
+        return this.enableCommands(guild, settings, values);
       case 'disable':
+        return this.disableCommands(guild, settings, values);
       default:
     }
     return false;
