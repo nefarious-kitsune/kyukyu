@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const res = require('./res/res');
 
 const Discord = require('discord.js');
 
@@ -18,12 +19,7 @@ if (processArgs && processArgs[0]) {
   configFilePath = path.resolve(__dirname, processArgs[0]);
 }
 const config = JSON.parse(fs.readFileSync(configFilePath));
-const prefix = config.prefix || '?';
-process.env.prefix = prefix;
-process.env.lang = config.lang || 'en';
-process.env.TOKEN = config['login token'];
 
-const res = require('./res/res');
 
 const {parseArgs} = require('./helpers/parseArgs.js');
 
@@ -41,7 +37,7 @@ fs.readdirSync('./commands').forEach( (folder) => {
       });
 });
 
-kyukyu.login(process.env.TOKEN);
+kyukyu.login(config['login token']);
 
 kyukyu.on('ready', () => {
   console.log(
@@ -62,16 +58,23 @@ kyukyu.on('message', (msg) => {
       lang: config.lang,
     };
   }
+  const prefix = settings.prefix || '?';
 
-  if ( msg.content.startsWith(settings.prefix||'?') ) {
-    const args = parseArgs(settings.prefix, msg.content);
+  if ( msg.content.startsWith(prefix) ) {
+    const args = parseArgs(prefix, msg.content);
 
     if (args.length == 0) return;
 
-    const cmdName = args.shift().toLowerCase().trim();
+    const cmdName = args.shift();
     const cmdRes = res.getCommandRes(settings.lang, cmdName);
     if (!cmdRes) return;
-    const cmd = kyukyu.commands.get(cmdRes.aliases[0]);
+
+    if (settings.disable && settings.disable.includes(cmdRes.name)) {
+      // Command disabled
+      return;
+    }
+
+    const cmd = kyukyu.commands.get(cmdRes.name);
 
     if (cmd.args && ! args.length) {
       let reply = `You didn't provide any arguments`;
