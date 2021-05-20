@@ -9,6 +9,13 @@ Below are some commands.
 
 讓小九跟大家說哈囉。
 
+## ?faq 指令
+
+關於各類事物說明。
+
+範例；
+- `?faq building` (關於軍營建設的秘訣)
+
 ## ?formation 指令
 
 Get formation tips.
@@ -16,10 +23,6 @@ Get formation tips.
 範例；
 - `?formation basic` (formation tips for absolute beginners)
 - `?formation leveling` (formation tips for leveling)
-
-## ?軍營 指令
-
-關於軍營建設的秘訣。
 
 ## ?部隊 指令
 

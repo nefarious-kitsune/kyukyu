@@ -9,6 +9,13 @@ Below are some commands.
 
 Have Kyukyu greet the community.
 
+## ?faq command
+
+Get information on various subjects.
+Examples:
+- `?faq building` (Tips for building your barrack)
+- `?faq purchase` (Help with purchasing problems)
+
 ## ?formation command
 
 Get formation tips.
@@ -25,10 +32,6 @@ Get Honor Hunting tips.
 Examples:
 - `?hh beginner` (Honor Hunting tips for beginners)
 - `?hh 'spider queen'` (Honor Hunting tips for Spider Queen)
-
-## ?building command
-
-Get tips on building a barrack.
 
 ## ?troops command
 

@@ -1,0 +1,16 @@
+{
+  "embed": {
+    "title": "Purchasing Help",
+    "url": "http://www.armyneedyou.com/support/question/",
+    "fields": [
+      {
+        "name": "Trouble with making purchases?",
+        "value": "If you cannot make purchases, visit visit [Google Support](https://support.google.com/googleplay/answer/1050566) or[App Store support page](https://support.apple.com/billing) for help."
+      },
+      {
+        "name": "Trouble with delivery?",
+        "value": "Send an e-mail to armies_help@boooea.com\nalong with the following information:\n1. What kind of product you have purchased.\n2. Screenshot with the payment info (order number)\n3.Your PvP ID."
+      }
+    ]
+  }
+}

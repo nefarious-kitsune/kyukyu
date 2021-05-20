@@ -190,15 +190,31 @@ module.exports = {
       },
     },
 
-    // building
+    // faq
     {
-      name: 'building',
-      aliases: ['building', 'barrack'],
-      desc: 'Tips for building your barrack.',
-      files: [
-        path.resolve(__dirname, 'building', 'building1.json'),
-        path.resolve(__dirname, 'building', 'building2.json'),
-        path.resolve(__dirname, 'building', 'building3.json'),
+      name: 'info',
+      aliases: ['info', 'faq'],
+      desc: 'Information/tips on various subjects.',
+      items: [
+        {
+          aliases: ['building', 'barrack'],
+          desc: 'Tips for building your barrack',
+          files: [
+            path.resolve(__dirname, 'faq', 'building1.json'),
+            path.resolve(__dirname, 'faq', 'building2.json'),
+            path.resolve(__dirname, 'faq', 'building3.json'),
+          ],
+        },
+        {
+          aliases: ['purchase', 'purchases', 'purchasing'],
+          desc: 'Help with purchasing problems',
+          files: [path.resolve(__dirname, 'faq', 'purchase.json')],
+        },
+        {
+          aliases: ['gems', 'gem'],
+          desc: 'Help with gems',
+          files: [path.resolve(__dirname, 'faq', 'gems.md')],
+        },
       ],
     },
 

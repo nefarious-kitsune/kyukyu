@@ -185,15 +185,21 @@ module.exports = {
       },
     },
 
-    // building
+    // faq
     {
-      name: 'building',
-      aliases: ['軍營', 'building', 'barrack'],
-      desc: '關於軍營建設的秘訣',
-      files: [
-        path.resolve(__dirname, 'building', 'building1.json'),
-        path.resolve(__dirname, 'building', 'building2.json'),
-        path.resolve(__dirname, 'building', 'building3.json'),
+      name: 'info',
+      aliases: ['說明', 'info', 'faq'],
+      desc: '關於各類事物說明。',
+      items: [
+        {
+          aliases: ['軍營', 'building', 'barrack'],
+          desc: '關於軍營建設的秘訣',
+          files: [
+            path.resolve(__dirname, 'faq', 'building1.json'),
+            path.resolve(__dirname, 'faq', 'building2.json'),
+            path.resolve(__dirname, 'faq', 'building3.json'),
+          ],
+        },
       ],
     },
 
