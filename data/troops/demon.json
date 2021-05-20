@@ -6,7 +6,7 @@
     "attack": [ 220,  280,  340,   400,   450,   500,   575,   650,  1138],
     "defense":[  35,   40,   45,    55,    60,    65,    70,    75,    80],
     "speed": "medium",
-    "attack_speed": 1,
+    "attack_speed": [ 1, 1, 1.1,   1.1,   1.2,   1.3,   1.4,   1.5,   1.5],
     "attack_distance": "short",
     "attack_type": "melee",
     "damage_type": "physical",
