@@ -74,6 +74,15 @@ kyukyu.on('message', (msg) => {
       return;
     }
 
+    if (
+      (cmdRes.name != 'kyukyu') &&
+      (settings['bot-channel']) &&
+      (settings['bot-channel'].length > 0) &&
+      !(settings['bot-channel'].includes(msg.channel.id))
+    ) {
+      return; // Not in bot channel
+    }
+
     const cmd = kyukyu.commands.get(cmdRes.name);
 
     if (cmd.args && ! args.length) {

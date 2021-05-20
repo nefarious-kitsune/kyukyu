@@ -24,7 +24,8 @@ Disable certain bot commands.
 
 ## Setting bot channels
 
-Set where people can run bot commands
+Set where people can run bot commands.
+`kyukyu` command is not subject to channel restriction.
 
 - `?kyukyu bot-channel` (list all bot channels)
 - `?kyukyu bot-channel all` (allow bot commands in all channels)
