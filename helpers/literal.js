@@ -8,8 +8,7 @@ function literal(template, ...strings) {
   let s = template;
   const str = [].slice.call(strings);
   for (let i = 0; i < str.length; i=i+2) {
-    reg = new RegExp(str[i], 'g');
-    s = s.replace(reg, str[i+1]);
+    s = s.replaceAll(str[i], str[i+1]);
   }
   return s;
 }
