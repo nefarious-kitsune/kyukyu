@@ -2,7 +2,6 @@ const res = require('../../res/res');
 
 module.exports = {
   name: 'greet',
-  aliases: ['greeting'],
   async execute(cmdRes, settings, msg, args) {
     let greeting = res.l10n[settings.lang].GREETING;
 
@@ -20,8 +19,8 @@ module.exports = {
     }
 
     greeting = greeting
-        .replace(/{BOT NAME}/g, nickname)
-        .replace(/{PREFIX}/g, prefix);
+        .replaceAll('{BOT NAME}', nickname)
+        .replaceAll('{PREFIX}', prefix);
     msg.channel.send({
       embed: {
         description: greeting,

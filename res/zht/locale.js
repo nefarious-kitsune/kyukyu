@@ -15,6 +15,12 @@ module.exports = {
       aliases: ['kyukyu'],
     },
 
+    // greet
+    {
+      name: 'greet',
+      aliases: ['哈囉', '嗨', 'greet', 'greeting', 'hello', 'hi'],
+    },
+
     // reload
     {
       name: 'reload',
