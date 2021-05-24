@@ -25,18 +25,7 @@ async function sendMessage(channel, content, replyTo) {
       })
       .catch(async (collected) => {
         const botId = message.client.user.id;
-        const userReactions =
-          message.reactions.cache
-              .filter(
-                  (reaction) => reaction.users.cache.has(botId),
-              );
-        try {
-          for (const reaction of userReactions.values()) {
-            await reaction.users.remove(botId);
-          }
-        } catch (error) {
-          console.error('Failed to remove reactions.');
-        }
+        await message.reactions.cache.get('🗑️').users.remove(botId);
       });
 }
 
