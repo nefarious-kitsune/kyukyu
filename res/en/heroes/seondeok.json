@@ -1,0 +1,39 @@
+{
+  "embed": {
+    "title": "Queen Seondeok",
+    "description": "A burst hero who provides massive damage to friendly units in the battle opening and heals friendly units during the battle.",
+    "color": 16431948,
+    "fields": [
+      {
+        "name": "Basic Attack",
+        "value": "• Range: 3"
+      },
+      {
+        "name": "Active Skill: Holy Light Blessing",
+        "value": "• Queen Seondeok’s <Holy Light Blessing> skill will recover health of all allied units (troops and heroes). The skill lasts for 6 seconds, during which time Queen Seondeok is immune to all control effects.\n• Range: entire field"
+      },
+      {
+        "name": "Passive Skill: Radiant Power",
+        "value": "• At the start of the battle, Queen Seondeok will allow allied units (troops and heroes) to deal additional damage to enemies equivalent to 5% of the allied units’ max life.\n• The additional damage apply to both basic attacks and skill effects.\n• Melee allied units who do not have AoE basic attacks will also gain a small AoE effect during this time.\n• Duration: 8 seconds"
+      },
+      {
+        "name": "Legendary Skill: Holy Strike",
+        "value": "• When using her active skill, awakened Queen Seondeok will also trigger the <Holy Strike> skill which increase damages to enemy units (troops and heroes)."
+      },
+      {
+        "name": "Strong Against",
+        "value": "---",
+        "inline": true
+      },
+      {
+        "name": "Weak Against",
+        "value": "---",
+        "inline": true
+      },
+      {
+        "name": "Arena Troops",
+        "value": "---"
+      }
+    ]
+  }
+}

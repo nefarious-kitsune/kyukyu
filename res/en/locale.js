@@ -221,6 +221,11 @@ module.exports = {
           desc: 'Help with gems',
           files: [path.resolve(__dirname, 'faq', 'gems.md')],
         },
+        {
+          aliases: ['hero sales', 'hero sale', 'sales'],
+          desc: 'Information about hero sales',
+          files: [path.resolve(__dirname, 'faq', 'hero_sales.md')],
+        },
       ],
     },
 
@@ -255,12 +260,13 @@ module.exports = {
       name: 'hero',
       aliases: ['hero'],
       desc: 'Information about heroes.',
-      usage: 'aly|selene',
+      usage: 'aly|selene|chione|seondeok',
       files: {
         'meta': path.resolve(__dirname, 'heroes', 'meta.json'),
         'aly': path.resolve(__dirname, 'heroes', 'aly.json'),
         'chione': path.resolve(__dirname, 'heroes', 'chione.json'),
         'selene': path.resolve(__dirname, 'heroes', 'selene.json'),
+        'seondeok': path.resolve(__dirname, 'heroes', 'seondeok.json'),
       },
     },
 
