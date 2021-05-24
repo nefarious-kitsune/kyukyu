@@ -240,12 +240,13 @@ module.exports = {
       name: 'hero',
       aliases: ['英雄', 'hero'],
       desc: '顯示英雄的相關資訊。',
-      usage: '阿狸|賽勒涅',
+      usage: '阿狸|賽勒涅|齊昂妮|善德',
       files: {
         'meta': path.resolve(__dirname, 'heroes', 'meta.json'),
         'aly': path.resolve(__dirname, 'heroes', 'aly.json'),
         'selene': path.resolve(__dirname, 'heroes', 'selene.json'),
         'chione': path.resolve(__dirname, 'heroes', 'chione.json'),
+        'seondeok': path.resolve(__dirname, 'heroes', 'seondeok.json'),
       },
     },
 
