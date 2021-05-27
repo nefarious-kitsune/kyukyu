@@ -219,12 +219,37 @@ module.exports = {
         {
           aliases: ['gems', 'gem'],
           desc: 'Help with gems',
-          files: [path.resolve(__dirname, 'faq', 'gems.md')],
+          files: [path.resolve(__dirname, 'faq', 'gems.json')],
         },
         {
-          aliases: ['hero sales', 'hero sale', 'sales'],
+          aliases: ['gem-purchase', 'gems-purchase', 'gem-purchases', 'gems-purchases'],
+          desc: 'Information about gem purchase',
+          files: [path.resolve(__dirname, 'faq', 'gem-purchase.json')],
+        },
+        {
+          aliases: ['gem-battles', 'gem-battle', 'gems-battles', 'gems-battle'],
+          desc: 'Information about gem battles',
+          files: [path.resolve(__dirname, 'faq', 'gem-battles.md')],
+        },
+        {
+          aliases: ['arena-rewards', 'arena-reward'],
+          desc: 'Information about arena rewards',
+          files: [path.resolve(__dirname, 'faq', 'arena-rewards.md')],
+        },
+        {
+          aliases: ['hero-sales', 'hero-sale', 'sales'],
           desc: 'Information about hero sales',
           files: [path.resolve(__dirname, 'faq', 'hero_sales.md')],
+        },
+        {
+          aliases: ['hero-classes', 'hero-class', 'hero-races', 'hero-race'],
+          desc: 'Reference graphic of hero races and classes',
+          files: [path.resolve(__dirname, 'faq', 'hero_classes.url')],
+        },
+        {
+          aliases: ['troops-classes', 'troops-class', 'troops-races', 'troops-race'],
+          desc: 'Reference graphic of troops races',
+          files: [path.resolve(__dirname, 'faq', 'troops_classes.url')],
         },
       ],
     },

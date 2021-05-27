@@ -1,0 +1,13 @@
+{
+  "embed": {
+    "title": "Gem Purchases",
+    "description": "A list of some gem-related IAPs",
+    "image": {
+      "url": "https://cdn.discordapp.com/attachments/833978786395586600/847394615812161576/info-gems-purchase.png"
+    },
+    "footer": {
+      "text": "Use `{PREFIX}info gem`, `{PREFIX}info idle-rewards`, `{PREFIX}info gem-battles` for related information."
+    }
+  }
+}
+
