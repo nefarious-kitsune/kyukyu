@@ -1,0 +1,39 @@
+{
+  "embed": {
+    "title": "Athena",
+    "description": "---",
+    "color": 16431948,
+    "fields": [
+      {
+        "name": "Basic Attack",
+        "value": "• Range: none"
+      },
+      {
+        "name": "Active Skill: ",
+        "value": "• Athena’s <> skill .\n• Range: 3 / 9 / 9"
+      },
+      {
+        "name": "Passive Skill: ",
+        "value": "• Athena will \n• Range: 3"
+      },
+      {
+        "name": "Legendary Skill: Frost Prison",
+        "value": "• When using her active skill, awakened Athena will also trigger the <> skill"
+      },
+      {
+        "name": "Strong Against",
+        "value": "---",
+        "inline": true
+      },
+      {
+        "name": "Weak Against",
+        "value": "---",
+        "inline": true
+      },
+      {
+        "name": "Arena Troops",
+        "value": "---"
+      }
+    ]
+  }
+}
