@@ -242,6 +242,11 @@ module.exports = {
           files: [path.resolve(__dirname, 'faq', 'hero_sales.md')],
         },
         {
+          aliases: ['hero-event', 'hero-events', 'cm', 'wof', 'wheel', 'card-master', 'wheel-of-fortune'],
+          desc: 'Information about hero events',
+          files: [path.resolve(__dirname, 'faq', 'hero-event.json')],
+        },
+        {
           aliases: ['hero-classes', 'hero-class', 'hero-races', 'hero-race'],
           desc: 'Reference graphic of hero races and classes',
           files: [path.resolve(__dirname, 'faq', 'hero_classes.url')],
