@@ -9,7 +9,7 @@ async function sendMessage(channel, content, replyTo) {
 
   if (channel.type == 'dm') return;
 
-  message.react('🗑️');
+  await message.react('🗑️');
 
   const filter = (reaction, user) => {
     return (('🗑️' === reaction.emoji.name) && (user.id === replyTo));
@@ -20,7 +20,10 @@ async function sendMessage(channel, content, replyTo) {
       .then(async (collected) => {
         const reaction = collected.first();
         if ((reaction) && (reaction.emoji.name === '🗑️')) {
-          message.delete().catch(console.error);
+          await message.delete();
+        } else {
+          const botId = message.client.user.id;
+          await message.reactions.cache.get('🗑️').users.remove(botId);
         }
       })
       .catch(async (collected) => {
