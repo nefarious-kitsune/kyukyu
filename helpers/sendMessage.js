@@ -19,8 +19,8 @@ async function sendMessage(channel, content, replyTo) {
       .awaitReactions(filter, {max: 1, time: 60000})
       .then(async (collected) => {
         const reaction = collected.first();
-        if (reaction.emoji.name === '🗑️') {
-          await message.delete();
+        if ((reaction) && (reaction.emoji.name === '🗑️')) {
+          message.delete().catch(console.error);
         }
       })
       .catch(async (collected) => {
