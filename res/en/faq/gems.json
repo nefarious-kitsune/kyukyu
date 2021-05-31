@@ -1,18 +1,22 @@
 {
   "embed": {
     "title": "Gem",
+    "description": "Gems are precious currency. Use them wisely.",
+    "image": {
+      "url": "https://cdn.discordapp.com/attachments/833978786395586600/848764967565000745/info-gems.png"
+    },
     "fields": [
       {
-        "name": "Daily Gem Income",
-        "value": "(level 6001~8000)\n` 500` <:aowgem:847363788592119838> - For completing headhunts.\n` 390` <:aowgem:847363788592119838> - For completing daily challenges.\n`1200` <:aowgem:847363788592119838> - For being active with idle chest.\n` 250` <:aowgem:847363788592119838> - If you have a VIP subscription."
+        "name": "Dos",
+        "value": "• Acquiring hero shards through hero events (about 320k <:aowgem:847363788592119838> to get one hero to level 15).\n• Temple of fusion (after you get a hero to level 15).\n• Leveling troops to level-9.\n• Extra arena battles"
       },
       {
-        "name": "Tips",
-        "value": "Gems are best used for hero shards in events (card master, wheel) and Temple of Fusion! Save temple for endgame though. It can get expensive."
+        "name": "Don'ts",
+        "value": "• Opening hero/troops chests.\n• Opening Super Cards.\n• Clan Wheel.\n• Buying gold in the Shop page.\n• Buying troops in the Shop page.\n• Buying additional troops during Lucky Draws.\n• Honor Hunting demo"
       }
     ],
     "footer": {
-      "text": "Use `{PREFIX}info gem-purchase`, `{PREFIX}info idle-rewards`, `{PREFIX}info gem-battles` for related information."
+      "text": "Use `{PREFIX}info gem-purchase`, `{PREFIX}info idle-rewards`, `{PREFIX}info gem-battles`, `{PREFIX}info hero-event` for related information."
     }
   }
 }

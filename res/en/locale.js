@@ -242,6 +242,11 @@ module.exports = {
           files: [path.resolve(__dirname, 'faq', 'hero_sales.md')],
         },
         {
+          aliases: ['hero-upgrade', 'hero-upgrades', 'hero-level', 'hero-levels', 'hero-leveling'],
+          desc: 'Information about hero upgrades',
+          files: [path.resolve(__dirname, 'faq', 'hero-upgrade.json')],
+        },
+        {
           aliases: ['hero-event', 'hero-events', 'cm', 'wof', 'wheel', 'card-master', 'wheel-of-fortune'],
           desc: 'Information about hero events',
           files: [path.resolve(__dirname, 'faq', 'hero-event.json')],
