@@ -201,6 +201,7 @@ module.exports = {
       name: 'info',
       aliases: ['info', 'faq'],
       desc: 'Information/tips on various subjects.',
+      response: 'Type \`{PREFIX}info <topic>\` to get information on a specific topic.\n\n**Topics available:**\n',
       items: [
         {
           aliases: ['building', 'barrack'],
@@ -217,7 +218,7 @@ module.exports = {
           files: [path.resolve(__dirname, 'faq', 'purchase.json')],
         },
         {
-          aliases: ['gems', 'gem'],
+          aliases: ['gem', 'gems'],
           desc: 'Help with gems',
           files: [path.resolve(__dirname, 'faq', 'gems.json')],
         },
@@ -227,8 +228,8 @@ module.exports = {
           files: [path.resolve(__dirname, 'faq', 'gem-purchase.json')],
         },
         {
-          aliases: ['gem-battles', 'gem-battle', 'gems-battles', 'gems-battle'],
-          desc: 'Information about gem battles',
+          aliases: ['gem-battle', 'gem-battles', 'gems-battle', 'gems-battles'],
+          desc: 'Information about arena gem battles',
           files: [path.resolve(__dirname, 'faq', 'gem-battles.md')],
         },
         {
@@ -260,6 +261,21 @@ module.exports = {
           aliases: ['troops-classes', 'troops-class', 'troops-races', 'troops-race'],
           desc: 'Reference graphic of troops races',
           files: [path.resolve(__dirname, 'faq', 'troops_classes.url')],
+        },
+        {
+          aliases: ['exp-point', 'exp-points', 'xp-point', 'xp-points', 'exp', 'xp'],
+          desc: 'Information on Exp points',
+          files: [path.resolve(__dirname, 'faq', 'exp-point.json')],
+        },
+        {
+          aliases: ['exp-level', 'exp-levels', 'xp-level', 'xp-levels'],
+          desc: 'Information on Exp levels',
+          files: [path.resolve(__dirname, 'faq', 'exp-level.json')],
+        },
+        {
+          aliases: ['troops-draw', 'troops-draws', 'troop-draw', 'troop-draws', 'lucky-draws', 'lucky-draw'],
+          desc: 'Information on 4-star troops draws',
+          files: [path.resolve(__dirname, 'faq', 'troops-draw.json')],
         },
       ],
     },

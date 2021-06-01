@@ -5,8 +5,16 @@ const {touchEmbed} = require('../../helpers/touchEmbed');
 
 module.exports = {
   name: 'info',
-  args: true,
   async execute(cmdRes, settings, msg, args) {
+    if (args.length == 0) {
+      let text = literal(cmdRes.response, '{PREFIX}', settings.prefix);
+      for (let i = 0; i < cmdRes.items.length; i++) {
+        text +=`**${cmdRes.items[i].aliases[0]}**: ${cmdRes.items[i].desc}\n`;
+      }
+      sendMessage(msg.channel, text, msg.author.id);
+      return;
+    }
+
     const keyword = args[0].toLowerCase().trim();
     let item = false;
     for (let i = 0; i < cmdRes.items.length; i++) {

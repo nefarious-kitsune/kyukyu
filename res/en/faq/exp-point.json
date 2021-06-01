@@ -1,0 +1,19 @@
+{
+  "embed": {
+    "title": "Exp Point",
+    "description": "EXP points are gained when you acquire a new troops or level up a hero.",
+    "fields": [
+      {
+        "name": "How do I gain EXP points?",
+        "value": "You gain Exp points when you\n• level up a hero,\n• acquire a new troops from the shop,\n• acquire a new troops from super cards,\n• acquire a new troops from the troops box,\n• acquire a new troops from an event, or\n• acquire a new troops from the mail box.\nYou do not gain Exp points from the Temple of Fusion"
+      },
+    ],
+    "footer": {
+      "text": "Use `{PREFIX}info exp-level` for related information."
+    }
+  }
+}
+
+
+
+

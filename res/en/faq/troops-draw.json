@@ -1,0 +1,22 @@
+{
+  "embed": {
+    "title": "4-Star Troops Draws.",
+    "description": "The following is a figure of actual troops draws by an AoW player spending 180M coins between March 23 and March 26, 2021",
+    "image": {
+      "url": "https://cdn.discordapp.com/attachments/833978786395586600/849136758536011816/troops-draw.png"
+    },
+    "fields": [
+      {
+        "name": "Tips",
+        "value": "• Do not spend gems on lucky draws (fusion is cheaper).\n• When in doubt, choose a legendary troops over epic troops.\n• When in doubt, choose a 9-load troops over single-load troops"
+      },
+      {
+        "name": "Info",
+        "value": "• 1 lucky draw for every 2.7 4-star troops draw"
+      }
+    ],
+    "footer": {
+      "text": "Use `{PREFIX}info exp-level` `{PREFIX}info building` for related information."
+    }
+  }
+}
