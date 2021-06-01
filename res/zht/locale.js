@@ -199,12 +199,17 @@ module.exports = {
       items: [
         {
           aliases: ['軍營', 'building', 'barrack'],
-          desc: '關於軍營建設的秘訣',
+          desc: '關於軍營建設的秘訣。',
           files: [
             path.resolve(__dirname, 'faq', 'building1.json'),
             path.resolve(__dirname, 'faq', 'building2.json'),
             path.resolve(__dirname, 'faq', 'building3.json'),
           ],
+        },
+        {
+          aliases: ['英雄分類', '英雄種族', 'hero classes', 'hero class', 'hero races', 'hero race'],
+          desc: '英雄種族與類別的參考圖。',
+          files: [path.resolve(__dirname, '../en/faq', 'hero_classes.url')],
         },
       ],
     },
