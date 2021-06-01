@@ -238,6 +238,16 @@ module.exports = {
           files: [path.resolve(__dirname, 'faq', 'arena-rewards.md')],
         },
         {
+          aliases: ['power-rating', 'power', 'fist'],
+          desc: 'Information about power rating',
+          files: [path.resolve(__dirname, 'faq', 'arena-power.json')],
+        },
+        {
+          aliases: ['clan-point', 'honor-point', 'clan-points', 'honor-points'],
+          desc: 'Information about clan point',
+          files: [path.resolve(__dirname, 'faq', 'clan-point.json')],
+        },
+        {
           aliases: ['hero-sales', 'hero-sale', 'sales'],
           desc: 'Information about hero sales',
           files: [path.resolve(__dirname, 'faq', 'hero_sales.md')],
