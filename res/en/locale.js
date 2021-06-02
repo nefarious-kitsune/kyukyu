@@ -220,7 +220,7 @@ module.exports = {
         {
           aliases: ['gem', 'gems'],
           desc: 'Help with gems',
-          files: [path.resolve(__dirname, 'faq', 'gems.json')],
+          files: [path.resolve(__dirname, 'faq', 'gem.json')],
         },
         {
           aliases: ['gem-purchase', 'gems-purchase', 'gem-purchases', 'gems-purchases'],
@@ -248,9 +248,9 @@ module.exports = {
           files: [path.resolve(__dirname, 'faq', 'clan-point.json')],
         },
         {
-          aliases: ['hero-sales', 'hero-sale', 'sales'],
+          aliases: ['hero-sale', 'hero-sales'],
           desc: 'Information about hero sales',
-          files: [path.resolve(__dirname, 'faq', 'hero_sales.md')],
+          files: [path.resolve(__dirname, 'faq', 'hero-sale.md')],
         },
         {
           aliases: ['hero-upgrade', 'hero-upgrades', 'hero-level', 'hero-levels', 'hero-leveling'],
@@ -263,14 +263,14 @@ module.exports = {
           files: [path.resolve(__dirname, 'faq', 'hero-event.json')],
         },
         {
-          aliases: ['hero-classes', 'hero-class', 'hero-races', 'hero-race'],
+          aliases: ['hero-class', 'hero-classes', 'hero-race', 'hero-races'],
           desc: 'Reference graphic of hero races and classes',
-          files: [path.resolve(__dirname, 'faq', 'hero_classes.url')],
+          files: [path.resolve(__dirname, 'faq', 'hero-class.url')],
         },
         {
-          aliases: ['troops-classes', 'troops-class', 'troops-races', 'troops-race'],
+          aliases: ['troops-class', 'troops-classes', 'troops-race', 'troops-races'],
           desc: 'Reference graphic of troops races',
-          files: [path.resolve(__dirname, 'faq', 'troops_classes.url')],
+          files: [path.resolve(__dirname, 'faq', 'troops-class.url')],
         },
         {
           aliases: ['exp-point', 'exp-points', 'xp-point', 'xp-points', 'exp', 'xp'],
