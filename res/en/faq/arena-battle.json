@@ -8,7 +8,7 @@
       },
       {
         "name": "Time Limit",
-        "value": "• Each battle has a time limit of 2 minutes and 30 seconds.\n• After 2 minutes of fighting, Grim Reaper will come to the battlefield, and all units will lose 10% of their and maximum life every second.\n• If a battle reaches the time limit, the defender automatically wins."
+        "value": "• Each battle has a time limit of 2 minutes and 30 seconds.\n• After 2 minutes of fighting, Grim Reaper will come to the battlefield, and all units will lose 10% of their maximum life every second (Grim Reaper will ignore any damage immunity).\n• If a battle reaches the time limit, the defender automatically wins."
       },
       {
         "name": "Network Error / Game Crashing",
