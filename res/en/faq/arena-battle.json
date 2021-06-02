@@ -1,0 +1,22 @@
+{
+  "embed": {
+    "title": "Arena Battle",
+    "fields": [
+      {
+        "name": "Gem Battle",
+        "value": "Each day, a player can do up to 10 additional arena battles with gems. The gem cost is 10 / 10 / 10 / 20 / 20 / 30 / 30 / 40 / 40 / 50 (total **260 gems**)."
+      },
+      {
+        "name": "Time Limit",
+        "value": "• Each battle has a time limit of 2 minutes and 30 seconds.\n• After 2 minutes of fighting, Grim Reaper will come to the battlefield, and all units will lose 10% of their and maximum life every second.\n• If a battle reaches the time limit, the defender automatically wins."
+      },
+      {
+        "name": "Network Error / Game Crashing",
+        "value": "• If a battle fails to finish due to network error or game crashing, the server will determine that the defender wins the battle after 5 minute. This mechanism was implemented to address a common past abuse where players would intentionally quit battles to avoid losses."
+      }
+    ],
+    "footer": {
+      "text": "Use `{PREFIX}info arena-point` for related information."
+    }
+  }
+}

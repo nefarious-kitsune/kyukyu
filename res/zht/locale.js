@@ -209,7 +209,7 @@ module.exports = {
         {
           aliases: ['英雄分類', '英雄種族', 'hero classes', 'hero class', 'hero races', 'hero race'],
           desc: '英雄種族與類別的參考圖。',
-          files: [path.resolve(__dirname, '../en/faq', 'hero_classes.url')],
+          files: [path.resolve(__dirname, '../en/faq', 'hero-class.json')],
         },
       ],
     },

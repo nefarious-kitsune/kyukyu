@@ -1,4 +1,4 @@
-***Arena Rewards***
+**Arena Rewards**
 You can unlock different levels of arena rewards by accumulating wins. You need a total of **380** wins to unlock all levels (230 wins to unlock level-20).
 
 __With Battle Pass__: If you have Battle Pass, consider doing **33** attacks each day. On Day 13, you should be close to unlocking all rewards, and on Day 14 you can focus on pushing for arena rank. In case you miss a day of attack, you can also recover easily.

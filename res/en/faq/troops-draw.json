@@ -1,7 +1,6 @@
 {
   "embed": {
     "title": "4-Star Troops Draws.",
-    "description": "The following is a figure of actual troops draws by an AoW player spending 180M coins between March 23 and March 26, 2021",
     "image": {
       "url": "https://cdn.discordapp.com/attachments/833978786395586600/849136758536011816/troops-draw.png"
     },
@@ -13,6 +12,10 @@
       {
         "name": "Info",
         "value": "• 1 lucky draw for every 2.7 4-star troops draw"
+      },
+      {
+        "name": "Example",
+        "value": "Attached is a figure of actual troops draws by an AoW player spending 180M coins between March 23 and March 26, 2021"
       }
     ],
     "footer": {

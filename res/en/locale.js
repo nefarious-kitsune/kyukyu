@@ -228,12 +228,12 @@ module.exports = {
           files: [path.resolve(__dirname, 'faq', 'gem-purchase.json')],
         },
         {
-          aliases: ['gem-battle', 'gem-battles', 'gems-battle', 'gems-battles'],
-          desc: 'Information about arena gem battles',
-          files: [path.resolve(__dirname, 'faq', 'gem-battles.md')],
+          aliases: ['arena-battle', 'arena-battles'],
+          desc: 'Information about arena arena battles',
+          files: [path.resolve(__dirname, 'faq', 'arena-battle.json')],
         },
         {
-          aliases: ['arena-rewards', 'arena-reward'],
+          aliases: ['arena-reward', 'arena-rewards'],
           desc: 'Information about arena rewards',
           files: [path.resolve(__dirname, 'faq', 'arena-rewards.md')],
         },
@@ -241,6 +241,11 @@ module.exports = {
           aliases: ['power-rating', 'power', 'fist'],
           desc: 'Information about power rating',
           files: [path.resolve(__dirname, 'faq', 'arena-power.json')],
+        },
+        {
+          aliases: ['arena-point', 'arena-points', 'arena-score', 'arena-scores'],
+          desc: 'Information about clan point',
+          files: [path.resolve(__dirname, 'faq', 'clan-point.json')],
         },
         {
           aliases: ['clan-point', 'honor-point', 'clan-points', 'honor-points'],
@@ -265,12 +270,12 @@ module.exports = {
         {
           aliases: ['hero-class', 'hero-classes', 'hero-race', 'hero-races'],
           desc: 'Reference graphic of hero races and classes',
-          files: [path.resolve(__dirname, 'faq', 'hero-class.url')],
+          files: [path.resolve(__dirname, 'faq', 'hero-class.json')],
         },
         {
           aliases: ['troops-class', 'troops-classes', 'troops-race', 'troops-races'],
           desc: 'Reference graphic of troops races',
-          files: [path.resolve(__dirname, 'faq', 'troops-class.url')],
+          files: [path.resolve(__dirname, 'faq', 'troops-class.json')],
         },
         {
           aliases: ['exp-point', 'exp-points', 'xp-point', 'xp-points', 'exp', 'xp'],
