@@ -1,4 +1,5 @@
 const res = require('../../res/res');
+const {literal} = require('../../helpers/literal');
 
 module.exports = {
   name: 'greet',
@@ -18,9 +19,10 @@ module.exports = {
       avatarUrl = me.avatarURL;
     }
 
-    greeting = greeting
-        .replaceAll('{BOT NAME}', nickname)
-        .replaceAll('{PREFIX}', prefix);
+    greeting = literal(greeting,
+        '{BOT NAME}', nickname,
+        '{PREFIX}', settings.prefix,
+    );
     msg.channel.send({
       embed: {
         description: greeting,

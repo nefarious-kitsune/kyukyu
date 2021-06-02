@@ -23,7 +23,7 @@
     "davison":    "https://cdn.discordapp.com/attachments/833978786395586600/835071334576816158/119_Davsion.png",
     "minotaur":   "https://cdn.discordapp.com/attachments/833978786395586600/839306616260132904/120_Minotaur.png",
     "green":      "https://cdn.discordapp.com/attachments/833978786395586600/839306618554417182/121_Green.png",
-    "seondeok":   "https://cdn.discordapp.com/attachments/833978786395586600/835071268650090496/139_Seondeok.png",
+    "diana":      "https://cdn.discordapp.com/attachments/833978786395586600/839306620831662110/122_Diana.png",
     "cassandra":  "https://cdn.discordapp.com/attachments/833978786395586600/839306621598957568/123_Cassandra.png",
     "miller":     "https://cdn.discordapp.com/attachments/833978786395586600/839306623360958514/124_Miller.png",
     "genichiro":  "https://cdn.discordapp.com/attachments/833978786395586600/839307705721683978/125_Genichiro.png",
@@ -39,7 +39,8 @@
     "odin":       "https://cdn.discordapp.com/attachments/833978786395586600/839309559478878258/135_Odin.png",
     "aly":        "https://cdn.discordapp.com/attachments/833978786395586600/835071270470418432/136_Aly.png",
     "kraken":     "https://cdn.discordapp.com/attachments/833978786395586600/835071262950162452/137_Kraken.png",
-    "jinn":       "https://cdn.discordapp.com/attachments/833978786395586600/835071265973862422/138_Jinn.png"
+    "jinn":       "https://cdn.discordapp.com/attachments/833978786395586600/835071265973862422/138_Jinn.png",
+    "seondeok":   "https://cdn.discordapp.com/attachments/833978786395586600/835071268650090496/139_Seondeok.png"
   },
   "troops_icon": {
     "locked":            "https://cdn.discordapp.com/attachments/667757428816871434/839658816069173298/aow_locked.png",
@@ -113,7 +114,7 @@
     "davison":    "https://cdn.discordapp.com/attachments/833978786395586600/842604406142926918/hero-aoe-davison.png",
     "minotaur":   "",
     "green":      "",
-    "seondeok":   "",
+    "diana":      "",
     "cassandra":  "",
     "miller":     "",
     "genichiro":  "",
@@ -129,7 +130,8 @@
     "odin":       "",
     "aly":        "https://cdn.discordapp.com/attachments/833978786395586600/847663549274259466/aly-aoe.gif",
     "kraken":     "",
-    "jinn":       ""
+    "jinn":       "",
+    "seondeok":   "https://cdn.discordapp.com/attachments/833978786395586600/847762482893553674/seondeok-aoe.gif"
   },
   "troops_aoe": {
     "bomber":            "",
