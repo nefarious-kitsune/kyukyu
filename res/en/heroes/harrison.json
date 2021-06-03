@@ -5,19 +5,19 @@
     "fields": [
       {
         "name": "Basic Attack",
-        "value": "• Range: 2.4 (single-target)"
+        "value": "• Range: 2.4 (single-target)\n• Attack Speed: 1.3"
       },
       {
         "name": "Space Annihilation",
-        "value": "• Harrison’s <Space Annihilation> skill will freeze enemy units within range and deal large damage to enemy units.\n• Range: 7"
+        "value": "• Harrison’s <Space Annihilation> skill will create a temporal vacuum around him.\n• Enemy units within the vacuum will not be able to attack or move.\n• Enemy units outside the vacuum will not be able to enter.\n• The vacuum lasts 4 seconds and will deal large damage to enemy units at the end.\n• The vaccum will not stun enemy units (i.e. will not cause Aly to drop fire bomb to the ground).\n• Range: 7"
       },
       {
         "name": "Passive Skill: Time Walker",
-        "value": "• Harrison will reduces the cooldown of active skills with each attack."
+        "value": "• Harrison will reduces the cooldown of active skills with each basic attack or active skill."
       },
       {
         "name": "Legendary Skill: Tea Party Time",
-        "value": "• Upon death, awakened Harrison will trigger the <Tea Party Time> skill which revives himself and some of his troops.\n• Trigger Number: 35/45/55/65/76"
+        "value": "• Upon death, awakened Harrison will trigger the <Tea Party Time> skill which revives himself and some of his troops.\n• Harrison will revive troops who are present at the start of the battle (i.e. Pirate Ship and Necromancer). Troops spawned during the battle (i.e. Pirate and Skeleton) will not be revived.\n• Undead Soldier who are revived by Harrison can revive once.\n• Number of Troops Revived: 35/45/55/65/76"
       }
     ]
   }
