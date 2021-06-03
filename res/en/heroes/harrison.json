@@ -1,0 +1,24 @@
+{
+  "embed": {
+    "title": "Harrison",
+    "color": 16431948,
+    "fields": [
+      {
+        "name": "Basic Attack",
+        "value": "• Range: 2.4 (single-target)"
+      },
+      {
+        "name": "Space Annihilation",
+        "value": "• Harrison’s <Space Annihilation> skill will freeze enemy units within range and deal large damage to enemy units.\n• Range: 7"
+      },
+      {
+        "name": "Passive Skill: Time Walker",
+        "value": "• Harrison will reduces the cooldown of active skills with each attack."
+      },
+      {
+        "name": "Legendary Skill: Tea Party Time",
+        "value": "• Upon death, awakened Harrison will trigger the <Tea Party Time> skill which revives himself and some of his troops.\n• Trigger Number: 35/45/55/65/76"
+      }
+    ]
+  }
+}

@@ -10,7 +10,7 @@
       },
       {
         "name": "Active Skill: Trial of Flames",
-        "value": "• Aly will accumulate power for 3 seconds to form a fire bomb, then throw the fire bomb at the enemy.\n• The fire bomb will deal damage to the targeted enemy units and stun them.\n• The fire bomb will leave a burning flame on the ground and continue to damage the opponent’s troops within the range for a period of time.\n• If Aly is affected by a stun effect during the fire ball accumulating process, the fire bomb will fall to the ground, and the damage and range will be reduced by half.\n• Stun duration: 3 seconds\n• Range: 9"
+        "value": "• Aly will accumulate power for 3 seconds to form a fire bomb, then throw the fire bomb at the enemy.\n• The fire bomb will deal damage to the targeted enemy units and stun them.\n• The fire bomb will leave a burning flame on the ground and continue to damage enemy units within the range for a period of time.\n• If Aly is affected by a stun effect during the fire ball accumulating process, the fire bomb will fall to the ground, and the damage and range will be reduced by half.\n• Stun duration: 3 seconds\n• Range: 9"
       },
       {
         "name": "Passive Skill: Fox's Charming Fire",
@@ -18,7 +18,7 @@
       },
       {
         "name": "Legendary Skill: Power of Nine Tails",
-        "value": "• Every time Aly cumulatively losses 10% of her life, she will stimulate the power of a tail to increase all her damage.\n• The power increase stacks up to 9 times.\n• When Aly cumulatively loses 90% of her life, all enemies on the battlefield will be bewitched (stunned), and the ignited enemy units will be detonated, damaging the enemy units and surrounding units.\n• Bewitching and detonation only trigger once per battle.\n• The damage caused by the detonation will not cause the enemy to be ignited.\n• After the ignited enemy unit is detonated, the ignition effect on the unit will disappear.\n• Bewitch (stun) duration: 2 seconds\n• Range (self-detonation): 3"
+        "value": "• Every time Aly cumulatively losses 10% of her life, she will stimulate the power of a tail to increase her damage.\n• The power increase stacks up to 9 times.\n• When Aly cumulatively loses 90% of her life, all enemies on the battlefield will be bewitched (stunned), and the ignited enemy units will be detonated, damaging the enemy units and surrounding units.\n• Bewitching and detonation only trigger once per battle.\n• The damage caused by the detonation will not cause the enemy to be ignited.\n• After the ignited enemy unit is detonated, the ignition effect on the unit will disappear.\n• Bewitch (stun) duration: 2 seconds\n• Range (self-detonation): 3"
       },
       {
         "name": "Strong Against",
@@ -32,7 +32,7 @@
       },
       {
         "name": "Arena Troops",
-        "value": "• Ghost Assassins, Magic Apprentice, Undead Soldier, Goblikazes\n• Peltasts, Nun, Pirate Ship\n• Demon, Witchcraft Totem, Meteor Golem, Frost Archers, Rhino Knight, Stone Golem"
+        "value": "• Magic Apprentice, Undead Soldier, Goblikazes\n• Peltasts, Nun, Pirate Ship\n• Demon, Witchcraft Totem, Meteor Golem, Frost Archers, Rhino Knight, Stone Golem"
       }
     ]
   }
