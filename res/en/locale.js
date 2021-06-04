@@ -330,7 +330,7 @@ module.exports = {
       name: 'hero',
       aliases: ['hero'],
       desc: 'Information about heroes.',
-      usage: 'aly|selene|chione|seondeok',
+      usage: 'aly|selene|chione|seondeok|harrison|mephisto',
       files: {
         'meta': path.resolve(__dirname, 'heroes', 'meta.json'),
         'aly': path.resolve(__dirname, 'heroes', 'aly.json'),

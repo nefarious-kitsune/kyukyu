@@ -31,6 +31,10 @@ async function sendMessage(channel, content, replyTo) {
               const botId = message.client.user.id;
               await message.reactions.cache.get('🗑️').users.remove(botId);
             });
+      })
+      .catch(() => {
+        err = `Cannot react to message in guild "${message.guild.name}"`;
+        console.error(err);
       });
 }
 
