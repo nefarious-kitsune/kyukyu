@@ -244,7 +244,7 @@ module.exports = {
         {
           aliases: ['arena-point', 'arena-points', 'arena-score', 'arena-scores'],
           desc: 'Information about clan point',
-          files: [path.resolve(__dirname, 'faq', 'clan-point.json')],
+          files: [path.resolve(__dirname, 'faq', 'arena-point.json')],
         },
         {
           aliases: ['clan-point', 'honor-point', 'clan-points', 'honor-points'],
