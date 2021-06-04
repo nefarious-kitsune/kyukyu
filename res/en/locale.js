@@ -148,11 +148,10 @@ module.exports = {
     {
       name: 'troops',
       aliases: ['troops', 'troop'],
-      desc: 'Information about troops.\n(meta, paladin, pilgrims, peltasts, brawlers, nun, voodoo dolls)',
+      desc: 'Information about troops.\n(paladin, pilgrims, peltasts, brawlers, nun, voodoo dolls)',
       usage: '<troops name>',
       blackList: 'infantry,iron guards,hell jailers,fire mage,viking warrior,scholar,templar knight',
       files: {
-        'meta': path.resolve(__dirname, 'troops', 'meta.json'),
         'paladin': path.resolve(__dirname, 'troops', 'paladin.json'),
         'pilgrims': path.resolve(__dirname, 'troops', 'pilgrims.json'),
         'peltasts': path.resolve(__dirname, 'troops', 'peltasts.json'),
@@ -273,6 +272,11 @@ module.exports = {
           files: [path.resolve(__dirname, 'faq', 'hero-class.json')],
         },
         {
+          aliases: ['troops', 'troop', 'troops-meta'],
+          desc: 'Current meta troops',
+          files: [path.resolve(__dirname, 'faq', 'troops.json')],
+        },
+        {
           aliases: ['troops-class', 'troops-classes', 'troops-race', 'troops-races'],
           desc: 'Reference graphic of troops races',
           files: [path.resolve(__dirname, 'faq', 'troops-class.json')],
@@ -388,7 +392,6 @@ module.exports = {
 
   TROOPS_ALIASES: [
     // first item is the correct spelling, the rest alternate spellings
-    ['meta'],
     ['infantry'],
     ['archers', 'archer'],
     ['iron guards', 'iron guard'],
@@ -439,7 +442,6 @@ module.exports = {
   ],
 
   TROOPS_DISPLAY_NAMES: {
-    'meta': 'meta',
     'infantry': 'Infantry',
     'archers': 'Archers',
     'iron guards': 'Iron Guards',
