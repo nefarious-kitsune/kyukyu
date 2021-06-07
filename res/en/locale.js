@@ -277,6 +277,11 @@ module.exports = {
           files: [path.resolve(__dirname, 'faq', 'hero-class.json')],
         },
         {
+          aliases: ['hero', 'heroes', 'hero-meta'],
+          desc: 'Current meta heroes',
+          files: [path.resolve(__dirname, 'faq', 'hero.json')],
+        },
+        {
           aliases: ['troops', 'troop', 'troops-meta'],
           desc: 'Current meta troops',
           files: [path.resolve(__dirname, 'faq', 'troops.json')],
@@ -337,7 +342,6 @@ module.exports = {
       desc: 'Information about heroes.',
       usage: 'aly|selene|chione|seondeok|harrison|mephisto',
       files: {
-        'meta': path.resolve(__dirname, 'heroes', 'meta.json'),
         'aly': path.resolve(__dirname, 'heroes', 'aly.json'),
         'chione': path.resolve(__dirname, 'heroes', 'chione.json'),
         'selene': path.resolve(__dirname, 'heroes', 'selene.json'),
@@ -498,7 +502,6 @@ module.exports = {
 
   HERO_ALIASES: [
     // first item is the correct spelling, the rest alternate spellings
-    ['meta'],
     ['kelvins'],
     ['illum'],
     ['moshe'],
