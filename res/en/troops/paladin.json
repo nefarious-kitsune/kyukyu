@@ -1,12 +1,6 @@
 {
   "embed": {
     "title": "Paladin",
-    "image": {
-      "url": "https://cdn.discordapp.com/attachments/667757428816871434/831738190548697128/paladin-range.png"
-    },
-    "thumbnail": {
-      "url": "https://cdn.discordapp.com/attachments/831064145637539860/831430422977314856/Paladin.png"
-    },
     "fields": [
       {
         "name": "Skill Description",

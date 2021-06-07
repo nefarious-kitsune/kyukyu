@@ -1,12 +1,6 @@
 {
   "embed": {
     "title": "Nun",
-    "image": {
-      "url": "https://media.discordapp.net/attachments/667757428816871434/831456757917679616/nun-range.png"
-    },
-    "thumbnail": {
-      "url": "https://media.discordapp.net/attachments/831064145637539860/831430395684716574/Nun.png"
-    },
     "fields": [
       {
         "name": "Skill Description",

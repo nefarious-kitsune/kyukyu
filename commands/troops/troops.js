@@ -21,6 +21,7 @@ module.exports = {
           fs.readFileSync(cmdRes.files[troopsName]),
       );
       touchEmbed(settings, content);
+      content.embed.thumbnail = {'url': res.images.troops_icons[troopsName]};
       sendMessage(msg.channel, content, msg.author.id);
     } else {
       msg.reply(

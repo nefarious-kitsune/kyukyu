@@ -1,12 +1,6 @@
 {
   "embed": {
     "title": "Brawlers",
-    "image": {
-      "url": "https://cdn.discordapp.com/attachments/667757428816871434/831436406458810378/brawlers-range.png"
-    },
-    "thumbnail": {
-      "url": "https://cdn.discordapp.com/attachments/831064145637539860/831430031254487060/Brawlers.png"
-    },
     "fields": [
       {
         "name": "Skill Description",
@@ -14,7 +8,7 @@
       },
       {
         "name": "Main Uses",
-        "value": "• Brawlers are essential in Honor Hunting. Typically 3-4 Brawlers are recommanded.\n• Brawlers are heavily used in Arthur formation due to Arthur's healing ability"
+        "value": "• Brawlers are essential in Honor Hunting. Typically 3-4 Brawlers are recommanded.\n• Brawlers are heavily used in Arthur formation due to Arthur’s healing ability"
       }
     ]
   }

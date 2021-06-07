@@ -42,7 +42,7 @@
     "jinn":       "https://cdn.discordapp.com/attachments/833978786395586600/835071265973862422/138_Jinn.png",
     "seondeok":   "https://cdn.discordapp.com/attachments/833978786395586600/835071268650090496/139_Seondeok.png"
   },
-  "troops_icon": {
+  "troops_icons": {
     "locked":            "https://cdn.discordapp.com/attachments/667757428816871434/839658816069173298/aow_locked.png",
     "infantry":          "https://cdn.discordapp.com/attachments/833978786395586600/833980558736490516/Infantry.png",
     "archers":           "https://cdn.discordapp.com/attachments/833978786395586600/833980463500492810/Archers.png",
