@@ -1,0 +1,24 @@
+{
+  "embed": {
+    "title": "Zues",
+    "color": 16431948,
+    "fields": [
+      {
+        "name": "Basic Attack",
+        "value": "• Range: ??"
+      },
+      {
+        "name": "Active Skill: Nimbus",
+        "value": "• Zues’s <Nimbus> skill will creates multiple lightening strikes in a targeted area, dealing damage and stunning the enemy.\nStun duration: 5 seconds\n• Range: 13\n"
+      },
+      {
+        "name": "Passive Skill: ",
+        "value": "• Zues will increase the attack speed of allied units and reduce the enemy’s attack.\n• Every 5 seconds, Zeus will also summon a lightening strike to a random area, dealing damage and stunning the enemy.\nStun duration: ?? seconds\n• Range: ??\n"
+      },
+      {
+        "name": "Legendary Skill: ",
+        "value": "• The lightening strikes of awakened Zeus will deal enemy units additonal damage that is proportional to their maximum health.\n• Health Proportion: 6% / 7% / 8% / 9% / 10%"
+      }
+    ]
+  }
+}
