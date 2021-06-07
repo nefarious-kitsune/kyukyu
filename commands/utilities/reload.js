@@ -1,4 +1,5 @@
 const {literal} = require('../../helpers/literal');
+const {safeReact} = require('../../helpers/safeReact');
 const fs = require('fs');
 
 module.exports = {
@@ -31,10 +32,10 @@ module.exports = {
     try {
       const newCmd = require(`../${folderName}/${cmd.name}.js`);
       msg.client.commands.set(newCmd.name, newCmd);
-      await msg.react('✅');
+      safeReact(msg, '✅');
     } catch (error) {
       console.error(error);
-      await msg.react('❌');
+      safeReact(msg, '❌');
     }
   },
 };

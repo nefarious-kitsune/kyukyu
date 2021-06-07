@@ -1,3 +1,5 @@
+const {safeReact} = require('./safeReact');
+
 /**
  * Parse command arguments
  * @param {Channel} channel
@@ -9,9 +11,20 @@ async function sendMessage(channel, content, replyTo) {
 
   if (channel.type == 'dm') return;
 
-  message
-      .react('🗑️')
-      .then(() => {
+  removeBin = () => {
+    message.reactions.cache.get('🗑️').users
+        .remove(message.client.user.id)
+        .catch(() => {
+          console.error(
+              `Cannot remove reactions in guild "${message.guild.name}"`,
+          );
+        });
+  };
+
+  safeReact(
+      message,
+      '🗑️',
+      () => {
         const filter = (reaction, user) => {
           return (('🗑️' === reaction.emoji.name) && (user.id === replyTo));
         };
@@ -23,19 +36,14 @@ async function sendMessage(channel, content, replyTo) {
               if ((reaction) && (reaction.emoji.name === '🗑️')) {
                 await message.delete();
               } else {
-                const botId = message.client.user.id;
-                await message.reactions.cache.get('🗑️').users.remove(botId);
+                removeBin();
               }
             })
             .catch(async (collected) => {
-              const botId = message.client.user.id;
-              await message.reactions.cache.get('🗑️').users.remove(botId);
+              removeBin();
             });
-      })
-      .catch(() => {
-        err = `Cannot react to message in guild "${message.guild.name}"`;
-        console.error(err);
-      });
+      },
+  );
 }
 
 exports.sendMessage = sendMessage;

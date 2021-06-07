@@ -1,4 +1,5 @@
 const guildConfig = require('../../helpers/config');
+const {safeReact} = require('../../helpers/safeReact');
 const res = require('../../res/res');
 
 module.exports = {
@@ -60,9 +61,9 @@ module.exports = {
     );
 
     if (result) {
-      await msg.react('✅');
+      safeReact(msg, '✅');
     } else {
-      await msg.react('❌');
+      safeReact(msg, '❌');
     }
   },
 };
