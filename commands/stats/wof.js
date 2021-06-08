@@ -1,5 +1,6 @@
 const {images} = require('../../res/res');
 const {literal} = require('../../helpers/literal');
+const {formatNumber} = require('../../helpers/formatNumber');
 const {sendMessage} = require('../../helpers/sendMessage');
 
 const MIN_PROB = 0.0005;
@@ -154,7 +155,7 @@ module.exports = {
               '{SPIN_COUNT}', spinCount,
               '{TOTAL_QTY}', resultQty,
               '{UNIT}', unit,
-              '{PROB}', Math.round(prevProb*1000)/10,
+              '{PROB}', formatNumber(prevProb * 100, 1),
           ),
       );
       return;
@@ -185,7 +186,7 @@ module.exports = {
               '{SPIN_COUNT}', spinCount,
               '{HIT_RANGE}', resultRange[1],
               '{UNIT}', unit,
-              '{PROB}', Math.round(totalProb*1000)/10,
+              '{PROB}', formatNumber(totalProb * 100, 1),
           ),
       );
     } else if ((resultRange[2] == '-')||(resultRange[2] == '~')) {
@@ -218,7 +219,7 @@ module.exports = {
               '{HIT_RANGE_2}', resultQty2,
               '{UNIT}', unit,
               '{SPIN_COUNT}', spinCount,
-              '{PROB}', Math.round(totalProb*1000)/10,
+              '{PROB}', formatNumber(totalProb * 100, 1),
           ),
       );
     } else {
@@ -234,7 +235,7 @@ module.exports = {
                   '{QTY_1}', qty1, '{HIT_1}', hit1,
                   '{QTY_2}', qty2, '{HIT_2}', hit2,
                   '{UNIT}', unit,
-                  '{PROB}', Math.round(prob * 1000)/10,
+                  '{PROB}', (prob * 100).toFixed(2),
               );
         }
         totalProb += prob;
@@ -245,7 +246,7 @@ module.exports = {
               '{SPIN_COUNT}', spinCount,
               '{HIT_RANGE}', resultRange[1],
               '{UNIT}', unit,
-              '{PROB}', Math.round(totalProb*1000)/10,
+              '{PROB}', formatNumber(totalProb * 100, 1),
               '{LOG}', log,
           ),
           msg.author.id,

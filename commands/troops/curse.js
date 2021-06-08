@@ -1,5 +1,6 @@
 const res = require('../../res/res');
 const {literal} = require('../../helpers/literal');
+const {formatNumber} = require('../../helpers/formatNumber');
 const {sendMessage} = require('../../helpers/sendMessage');
 const {troopsData} = require('../../helpers/troopsData');
 
@@ -81,24 +82,22 @@ module.exports = {
         voodooDamage = damageFromHealthLoss + damageFromCurse;
       }
 
-      const healthPercentage =
-          Math.round((voodooDamage / target.basic.health) * 100);
+      const healthRatio = voodooDamage / troops.basic.health;
 
       const levelDifference =
           (targetLevel > curserLevel)?
           targetLevel - curserLevel:
           0;
-      const curseRate =
-          Math.round(VOODOO_CURSE_RATE[levelDifference] * 100);
+      const curseRate = VOODOO_CURSE_RATE[levelDifference];
 
       const text =
         literal(cmdRes.responseVoodoo,
             '{VOODOO LEVEL}', curserLevel,
             '{TARGET}', targetDisplayName,
             '{TARGET LEVEL}', targetLevel,
-            '{RATE}', curseRate,
+            '{RATE}', formatNumber(curseRate * 100, 0),
             '{DAMAGE}', voodooDamage,
-            '{HEALTH PERCENTAGE}', healthPercentage,
+            '{HEALTH PERCENTAGE}', formatNumber(healthRatio * 100, 0),
         );
       // sendMessage(msg.channel, text, msg.author.id);
       sendMessage(msg.channel, text, msg.author.id);

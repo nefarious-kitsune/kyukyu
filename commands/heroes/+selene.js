@@ -1,4 +1,5 @@
 const {literal} = require('../../helpers/literal');
+const {formatNumber} = require('../../helpers/formatNumber');
 const {sendMessage} = require('../../helpers/sendMessage');
 const {plusHero} = require('../../helpers/plusHero');
 
@@ -31,10 +32,9 @@ module.exports = {
     const {heroLevel, troops, troopsName, troopsLevel, troopsDisplayName} =
         plusHero(settings, args);
 
-    const buffedAttck =
-      Math.round(troops.basic.attack * (1+attackBuffs[heroLevel-1]));
-    const buffPercentage =
-      Math.round(attackBuffs[heroLevel-1]*100);
+    const immunity = immunities[heroLevel-1];
+    const buff = attackBuffs[heroLevel-1];
+    const buffedAttck = Math.round(troops.basic.attack * (1 + buff));
 
     let text =
       literal(cmdRes.responseIntro,
@@ -45,26 +45,28 @@ module.exports = {
       literal(cmdRes.responseOpening,
           '{DURATION}', durations[heroLevel-1],
       ) +
+      literal(cmdRes.responseOpeningImmunity,
+          '{IMMUNITY PERCENTAGE}', formatNumber(immunity * 100),
+      ) +
       literal(cmdRes.responseOpeningAttack,
           '{ATTACK}', buffedAttck,
-          '{INCREASE}', buffPercentage,
+          '{INCREASE}', formatNumber(buff * 100, 0),
       );
 
     if (troopsName != 'voodoo dolls') {
       const voodooDamage =
           Math.round(
               (MAX_VOODOO_HEALTH + MAX_VOODOO_DAMAGE - troops.basic.defense) *
-              (1-immunities[heroLevel-1]),
+              (1-immunity),
           );
 
-      const healthPercentage =
-          Math.round(100 * voodooDamage / troops.basic.health);
+      const healthRatio = voodooDamage / troops.basic.health;
 
       text +=
         literal(
             cmdRes.responseCursed,
             '{DAMAGE}', voodooDamage,
-            '{HEALTH PERCENTAGE}', healthPercentage,
+            '{HEALTH PERCENTAGE}', formatNumber(healthRatio * 100, 0),
         );
     }
 

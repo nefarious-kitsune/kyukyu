@@ -1,5 +1,6 @@
 const res = require('../../res/res');
 const {literal} = require('../../helpers/literal');
+const {formatNumber} = require('../../helpers/formatNumber');
 const {sendMessage} = require('../../helpers/sendMessage');
 const {troopsData} = require('../../helpers/troopsData');
 
@@ -31,13 +32,7 @@ module.exports = {
         value = cmdRes.labels[v];
       } else {
         if (PERCENT_ATTRS.includes(k)) {
-          v = Number(v) * 100;
-          value =
-            v.toLocaleString('en-US', {
-              minimumSignificantDigits: 2,
-              maximumSignificantDigits: 3,
-            }) +
-            '%';
+          value = formatNumber(v * 100, 1) + '%';
         } else {
           value = v.toString();
         }

@@ -1,4 +1,5 @@
 const {literal} = require('../../helpers/literal');
+const {formatNumber} = require('../../helpers/formatNumber');
 const {sendMessage} = require('../../helpers/sendMessage');
 const {plusHero} = require('../../helpers/plusHero');
 
@@ -24,12 +25,9 @@ module.exports = {
     const {heroLevel, troops, troopsLevel, troopsDisplayName} =
         plusHero(settings, args);
 
+    const additionalDamage = Math.round(troops.basic.health * 0.05);
     const equivAttackIncrease =
-        Math.round(
-            100 *
-            (troops.basic.health * 0.05) /
-            (troops.basic.attack - troops.basic.defense),
-        );
+            additionalDamage / (troops.basic.attack - troops.basic.defense);
 
     let text =
       literal(cmdRes.responseIntro,
@@ -40,19 +38,20 @@ module.exports = {
       cmdRes.responseOpening +
       literal(cmdRes.responseOpeningDamage,
           '{ATTACK}', troops.basic.attack,
-          '{ADD DAMAGE}', Math.round(troops.basic.health * 0.05),
-          '{EQUIV INCREASE}', equivAttackIncrease,
+          '{ADD DAMAGE}', additionalDamage,
+          '{EQUIV INCREASE}', formatNumber(equivAttackIncrease * 100, 0),
       );
 
     if ((troops.basic.attack_type == 'melee') &&
       (troops.basic.damage_shape == 'single')) {
-      const range = (aoeRanges[heroLevel-1]/5); // diameter
-      const area = Math.round(range * range * 0.25 * 3.14 *10)/10;
+      const radius = (aoeRanges[heroLevel-1]/5); // diameter
+      const area = radius * radius * 3.14;
+      const aoeDamage = aoeRatios[heroLevel-1] * troops.basic.attack;
       text +=
         literal(cmdRes.responseOpeningAoE,
-            '{AOE RADIUS}', range/2,
-            '{AOE AREA}', area,
-            '{AOE ATTACK}', aoeRatios[heroLevel-1] * troops.basic.attack,
+            '{AOE RADIUS}', formatNumber(radius, 1),
+            '{AOE AREA}', formatNumber(area, 1),
+            '{AOE ATTACK}', formatNumber(aoeDamage, 0),
         );
     }
 
@@ -63,22 +62,22 @@ module.exports = {
         );
     if (troops.basic.damage_shape) {
       if (troops.basic.damage_shape == 'rounded') {
-        const range = (troops.basic.damage_range);
-        const area = Math.round(range * range * 0.25 * 3.14 * 10)/10;
+        const radius = Number(troops.basic.damage_range);
+        const area = radius * radius * 3.14;
         text +=
           literal(cmdRes.responseNormalCircle,
-              '{AOE RADIUS}', range/2,
-              '{AOE AREA}', area,
+              '{AOE RADIUS}', formatNumber(radius, 1),
+              '{AOE AREA}', formatNumber(area, 1),
           );
       } else if (troops.basic.damage_shape == 'rectangular') {
-        const w = troops.basic.damage_range[0];
-        const l = troops.basic.damage_range[1];
-        const area = Math.round(w * l *10)/10;
+        const w = Number(troops.basic.damage_range[0]);
+        const l = Number(troops.basic.damage_range[1]);
+        const area = w * l;
         text +=
           literal(cmdRes.responseNormalRect,
-              '{AOE W}', w,
-              '{AOE L}', l,
-              '{AOE AREA}', area,
+              '{AOE W}', formatNumber(w, 1),
+              '{AOE L}', formatNumber(l, 1),
+              '{AOE AREA}', formatNumber(area, 1),
           );
       }
     }

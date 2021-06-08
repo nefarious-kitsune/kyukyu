@@ -278,6 +278,7 @@ module.exports = {
       usage_example: '15 夜魔衛兵 9',
       responseIntro: '當等級{TROOPS LEVEL}的{TROOPS}搭配等級{HERO LEVEL}的賽勒涅時，其效果如下。\n\n',
       responseOpening: '**{DURATION}秒開局加成**\n',
+      responseOpeningImmunity: '免傷：{IMMUNITY PERCENTAGE}%\n',
       responseOpeningAttack: '攻擊：{ATTACK}（{INCREASE}%加成）\n',
       responseCursed: '一個9級巫毒娃娃可造成的最高傷害：{DAMAGE}（最高生命的{HEALTH PERCENTAGE}%）\n',
     },

@@ -1,4 +1,5 @@
 const {literal} = require('../../helpers/literal');
+const {formatNumber} = require('../../helpers/formatNumber');
 const {sendMessage} = require('../../helpers/sendMessage');
 const {plusHero} = require('../../helpers/plusHero');
 
@@ -33,26 +34,25 @@ module.exports = {
       );
 
     if (troops.race == 'human') {
-      const immunPercentage = immunities[heroLevel-1] * 100;
+      const immunity = immunities[heroLevel-1];
       const healthRegen = Math.round(regen[heroLevel-1] * troops.basic.health);
 
       const voodooDamage =
           Math.round(
               (MAX_VOODOO_HEALTH + MAX_VOODOO_DAMAGE - troops.basic.defense) *
-              (1-immunities[heroLevel-1]),
+              (1-immunity),
           );
 
-      const healthPercentage =
-          Math.round(100 * voodooDamage / troops.basic.health);
+      const healthRatio = voodooDamage / troops.basic.health;
 
       text +=
           literal(cmdRes.responsePassive,
-              '{IMMUNITY PERCENTAGE}', immunPercentage,
+              '{IMMUNITY PERCENTAGE}', formatNumber(immunity * 100),
               '{HEALTH REGEN}', healthRegen,
           ) +
           literal(cmdRes.responseCursed,
               '{DAMAGE}', voodooDamage,
-              '{HEALTH PERCENTAGE}', healthPercentage,
+              '{HEALTH PERCENTAGE}', formatNumber(healthRatio * 100, 0),
           );
     } else {
       text += cmdRes.responseTroopsNotHuman;
