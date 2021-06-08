@@ -19,10 +19,12 @@ anyone can modify the code and run the bot him/herself.
 
 ## Adding the bot
 
-Follow the appropriate link to add the bot to your own Discord server.
+Follow the link below to add the bot to your own Discord server.
 
 - [Add Kyukyu to your server](https://discord.com/api/oauth2/authorize?client_id=829893154869215272&permissions=317504&scope=bot)
+<!--
 - [把小九加入你的伺服器](https://discord.com/api/oauth2/authorize?client_id=836044156525871124&permissions=317504&scope=bot)
+-->
 
 ## Contribution
 

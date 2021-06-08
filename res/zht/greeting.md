@@ -3,8 +3,9 @@
 以下是我的指令的一些範例；
 - `{PREFIX}部隊 鬥爭者`
 - `{PREFIX}英雄 阿狸`
-- `{PREFIX}formation leveling`
-- `{PREFIX}軍營`
+- `{PREFIX}數據 弓箭手 9 冰霜弓箭手 8`
+- `{PREFIX}陣形 刷金`
+- `{PREFIX}說明 軍營`
 - `{PREFIX}轉盤 碎片 8-12 200`
 
 有關指令的詳細資料，請看[這頁](https://github.com/nefarious-kitsune/kyukyu/blob/main/commands.zh.md)。
