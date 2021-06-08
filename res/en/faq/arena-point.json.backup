@@ -19,7 +19,7 @@
       }
     ],
     "footer": {
-      "text": "Use `{PREFIX}info clan-point` for related information.\nUse `{PREFIX}trophies <your point> <opponent point>` to calculate point gain/loss from a battle."
+      "text": "Related command:\n {PREFIX}info clan-point\n {PREFIX}trophies <your point> <opponent point>"
     }
   }
 }

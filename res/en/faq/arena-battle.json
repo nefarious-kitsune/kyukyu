@@ -16,7 +16,7 @@
       }
     ],
     "footer": {
-      "text": "Use `{PREFIX}info arena-point` for related information."
+      "text": "Related command:\n {PREFIX}info arena-point"
     }
   }
 }

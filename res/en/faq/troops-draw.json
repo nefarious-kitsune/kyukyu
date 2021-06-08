@@ -19,7 +19,7 @@
       }
     ],
     "footer": {
-      "text": "Use `{PREFIX}info exp-level` `{PREFIX}info building` for related information."
+      "text": "Related command:\n {PREFIX}info exp-level\n {PREFIX}info building"
     }
   }
 }

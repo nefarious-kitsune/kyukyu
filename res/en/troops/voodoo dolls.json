@@ -12,7 +12,7 @@
       }
     ],
     "footer": {
-      "text": "Use `{PREFIX}curse <troops name> [troops level] 'voodoo dolls' [voodoo's level]` to see the effect of a Voodoo Dolls unit on a targeted enemy unit."
+      "text": "Related command:\n {PREFIX}curse <troops name> [troops level] 'voodoo dolls' [voodoo's level]"
     }
   }
 }

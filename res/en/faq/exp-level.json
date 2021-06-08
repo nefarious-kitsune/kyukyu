@@ -6,7 +6,7 @@
       "url": "https://cdn.discordapp.com/attachments/833978786395586600/849104406737190933/exp-level-gold.png"
     },
     "footer": {
-      "text": "Use `{PREFIX}info exp-level` for related information."
+      "text": "Related command:\n {PREFIX}info exp-level"
     }
   }
 }

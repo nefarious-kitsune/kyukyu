@@ -16,7 +16,7 @@
       }
     ],
     "footer": {
-      "text": "Use `{PREFIX}info gem-purchase`, `{PREFIX}info idle-rewards`, `{PREFIX}info gem-battles`, `{PREFIX}info hero-event` for related information."
+      "text": "Related command:\n {PREFIX}info gem-purchase\n {PREFIX}info gem-battles\n {PREFIX}info hero-event"
     }
   }
 }

@@ -6,7 +6,7 @@
       "url": "https://cdn.discordapp.com/attachments/833978786395586600/850218296632541214/example_form.jpg"
     },
     "footer": {
-      "text": "Use `{PREFIX}info hero` for related information."
+      "text": "Related command:\n {PREFIX}info troops-class\n {PREFIX}info hero"
     }
   }
 }
