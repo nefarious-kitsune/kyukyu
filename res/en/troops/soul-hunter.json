@@ -1,0 +1,11 @@
+{
+  "embed": {
+    "title": "Soul Hunter",
+    "fields": [
+      {
+        "name": "Skill Description",
+        "value": "• Soul Hunter activates the <Life Steal> skill with every 1 basic attack\n• The skill takes a percentage of the damage on all enemy units within range and add it to the Soul Hunter’s health.\n• If the Soul Hunter hits one enemy unit with his basic attack, then life steal is\n   Life Steal Percentage ×\n  (Attack - Defense)\n• If the Soul Hunter hits multiple enemy units with his basic attack, then life steal from *each* enemy unit is\n  1/3 × Life Steal Percentage ×\n  (Attack - Defense)"
+      }
+    ]
+  }
+}

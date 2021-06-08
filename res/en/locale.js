@@ -158,6 +158,7 @@ module.exports = {
         'brawlers': path.resolve(__dirname, 'troops', 'brawlers.json'),
         'nun': path.resolve(__dirname, 'troops', 'nun.json'),
         'voodoo dolls': path.resolve(__dirname, 'troops', 'voodoo dolls.json'),
+        '-soul hunter-': path.resolve(__dirname, 'troops', 'soul-hunter.json'),
       },
     },
 
@@ -373,6 +374,7 @@ module.exports = {
       usage_example: '15 \'undead soldier\' 9',
       responseIntro: 'When a level {TROOPS LEVEL} {TROOPS} is used with level {HERO LEVEL} Selene, the effect is as followed.\n\n',
       responseOpening: '**{DURATION}-Second Opening Buff**\n',
+      responseOpeningImmunity: 'Damage Immunity: {IMMUNITY PERCENTAGE}%\n',
       responseOpeningAttack: 'Attack: {ATTACK} ({INCREASE}% increase)\n',
       responseCursed: 'Maximum damage from a level 9 Voodoo Dolls: {DAMAGE} ({HEALTH PERCENTAGE}% of max health)\n',
     },
