@@ -213,6 +213,11 @@ module.exports = {
           ],
         },
         {
+          aliases: ['vip-restore-ios', 'vip-restore'],
+          desc: 'Help with restoring ᴠɪᴘ',
+          files: [path.resolve(__dirname, 'faq', 'vip-restore-ios.json')],
+        },
+        {
           aliases: ['purchase', 'purchases', 'purchasing'],
           desc: 'Help with purchasing problems',
           files: [path.resolve(__dirname, 'faq', 'purchase.json')],
