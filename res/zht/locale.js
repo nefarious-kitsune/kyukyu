@@ -253,6 +253,7 @@ module.exports = {
         'chione': path.resolve(__dirname, 'heroes', 'chione.json'),
         'seondeok': path.resolve(__dirname, 'heroes', 'seondeok.json'),
         'harrison': path.resolve(__dirname, 'heroes', 'harrison.json'),
+        'zeus': path.resolve(__dirname, 'heroes', 'zeus.json'),
       },
     },
 
