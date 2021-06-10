@@ -14,21 +14,11 @@
       },
       {
         "name": "Passive Skill: Radiant Power",
-        "value": "• At the start of the battle, Queen Seondeok will enable allied units (troops and heroes) to deal additional damage equivalent to 5% of the allied units’ max life.\n• The additional damage apply to basic attacks only (not skill effects).\n• Melee allied units who do not have AoE basic attacks will also gain a small AoE effect during this time.\n• Duration: 8 seconds"
+        "value": "• At the start of the battle, Queen Seondeok will enable allied units (troops and heroes) to deal additional damage equivalent to 5% of the allied units’ max life.\n• The additional damage apply to basic attacks only (not skill effects).\n• Melee allied units who do not have AoE basic attacks will also gain a small AoE effect during this time.\n• Duration: 5/5.2/5.4/5.6/5.8/6/6.2/6.4/6.6/6.8/7/7.2/7.4/7.7/8 seconds"
       },
       {
         "name": "Legendary Skill: Holy Strike",
         "value": "• When using her active skill, awakened Queen Seondeok will also trigger the <Holy Strike> skill.\n• <Holy Strike> enables allied units (troops and heroes) to deal increased damage.\n• The additional damage apply to **both** basic attacks and skill effects.\n• Damage increase: 4% / 8% / 12% / 16% / 20%"
-      },
-      {
-        "name": "Strong Against",
-        "value": "---",
-        "inline": true
-      },
-      {
-        "name": "Weak Against",
-        "value": "---",
-        "inline": true
       },
       {
         "name": "Arena Troops",

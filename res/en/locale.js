@@ -354,6 +354,7 @@ module.exports = {
         'seondeok': path.resolve(__dirname, 'heroes', 'seondeok.json'),
         'harrison': path.resolve(__dirname, 'heroes', 'harrison.json'),
         'mephisto': path.resolve(__dirname, 'heroes', 'mephisto.json'),
+        'zeus': path.resolve(__dirname, 'heroes', 'zeus.json'),
       },
     },
 
