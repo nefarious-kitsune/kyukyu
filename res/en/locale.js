@@ -361,6 +361,7 @@ module.exports = {
         'harrison': path.resolve(__dirname, 'heroes', 'harrison.json'),
         'mephisto': path.resolve(__dirname, 'heroes', 'mephisto.json'),
         'zeus': path.resolve(__dirname, 'heroes', 'zeus.json'),
+        'davison': path.resolve(__dirname, 'heroes', 'davison.json'),
       },
     },
 
