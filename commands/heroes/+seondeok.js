@@ -18,6 +18,12 @@ const aoeRatios = [
   0.20, 0.20, 0.20,
 ];
 
+const durations = [
+  5.0, 5.2, 5.4, 5.6, 5.8,
+  6.0, 6.2, 6.4, 6.6, 6.8,
+  7.0, 7.2, 7.4, 7.7, 8.0,
+];
+
 module.exports = {
   name: '+seondeok',
   args: true,
@@ -35,7 +41,9 @@ module.exports = {
           '{TROOPS LEVEL}', troopsLevel,
           '{HERO LEVEL}', heroLevel,
       ) +
-      cmdRes.responseOpening +
+      literal(cmdRes.responseOpening,
+          '{DURATION}', formatNumber(durations[heroLevel-1], 1),
+      ) +
       literal(cmdRes.responseOpeningDamage,
           '{ATTACK}', troops.basic.attack,
           '{ADD DAMAGE}', additionalDamage,

@@ -179,6 +179,12 @@ module.exports = {
       },
     },
 
+    {
+      name: 'art',
+      aliases: ['art'],
+      desc: '',
+    },
+
     // hh
     {
       name: 'hh',
@@ -393,7 +399,7 @@ module.exports = {
       usage: '[hero level] <troops name> [troops level]',
       usage_example: '15 \'undead soldier\' 9',
       responseIntro: 'When a level {TROOPS LEVEL} {TROOPS} is used with level {HERO LEVEL} Seondeok, the effect is as followed.\n\n',
-      responseOpening: '**8-Second Opening Buff**\n',
+      responseOpening: '**{DURATION}-Second Opening Buff**\n',
       responseOpeningDamage: 'Damage = ({ATTACK} - *enemy unit\'s defense*) + {ADD DAMAGE}\n  *(about {EQUIV INCREASE}% attack increase)*\n',
       responseOpeningAoE: 'AoE Radius: {AOE RADIUS} (Area: {AOE AREA})\nAoE Attack: {AOE ATTACK}\n',
       responseNormal: '\n**Basic Attack** (original)\n',

@@ -10,7 +10,7 @@
       },
       {
         "name": "Active Skill: Trial of Flames",
-        "value": "• Aly will accumulate power for 3 seconds to form a fire bomb, then throw the fire bomb at the enemy.\n• The fire bomb will deal damage to the targeted enemy units and stun them.\n• The fire bomb will leave a burning flame on the ground and continue to damage enemy units within the range for a period of time.\n• If Aly is affected by a stun effect during the fire ball accumulating process, the fire bomb will fall to the ground, and the damage and range will be reduced by half.\n• Stun duration: 3 seconds\n• Range: 9"
+        "value": "• Aly will accumulate power for 3 seconds to form a fire bomb, then throw the fire bomb at the enemy.\n• The fire bomb will deal damage to the targeted enemy units and stun them.\n• The fire bomb will leave a burning flame on the ground and continue to damage enemy units within the range for a period of time.\n• If Aly is affected by a stun effect during the fire ball accumulating process, the fire bomb will drop to the ground, and the damage and range will be reduced by half.\n• Stun duration: 3 seconds\n• Range: 9"
       },
       {
         "name": "Passive Skill: Fox's Charming Fire",

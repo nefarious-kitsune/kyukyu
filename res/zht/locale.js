@@ -292,7 +292,7 @@ module.exports = {
       usage: '[英雄等級] <部隊> [部隊等級]',
       usage_example: '15 夜魔衛兵 9',
       responseIntro: '當等級{TROOPS LEVEL}的{TROOPS}搭配等級{HERO LEVEL}的善德時，其效果如下。\n\n',
-      responseOpening: '**8秒開局加成**\n',
+      responseOpening: '**{DURATION}秒開局加成**\n',
       responseOpeningDamage: '傷害 = ({ATTACK} - 敵方護甲) + {ADD DAMAGE}\n  （等同約{EQUIV INCREASE}%攻擊加成）\n',
       responseOpeningAoE: '群傷半徑：{AOE RADIUS}（面積 {AOE AREA}）\n群傷：{AOE ATTACK}\n',
       responseNormal: '\n**普通攻擊** (原始值)\n',

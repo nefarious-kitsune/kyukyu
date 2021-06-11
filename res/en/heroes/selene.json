@@ -10,11 +10,11 @@
       },
       {
         "name": "Active Skill: Moonlight Shackles",
-        "value": "• Selene’s <Moonlight Shackles> skill will stun the enemy in the targeted arena and bind them in place for several seconds.\n• Range: 5"
+        "value": "• Selene will stun the enemy in the targeted arena and bind them in place for several seconds.\n• Range: 5"
       },
       {
         "name": "Passive Skill: Moonlight Projection",
-        "value": "• At the start of the battle, Selene will give allied units partial damage immunity and increase attack power for a period of time.\nDamage immunity applies to all forms of damages, including health steal, reflection, and curse.\n• Duration: 3/3/3/4/4/4/5/5/5/6/6/6/7/7/7 seconds"
+        "value": "• For a period of time after the start of the battle, Selene will give allied units partial damage immunity and increase attack power.\nDamage immunity applies to all forms of damages, including reflection and curse.\n• Duration: 3/3/3/4/4/4/5/5/5/6/6/6/7/7/7 seconds"
       },
       {
         "name": "Legendary Skill: Moonlight Dance",
@@ -32,7 +32,7 @@
       },
       {
         "name": "Arena Troops",
-        "value": "• Magic Apprentice, Undead Soldier, Ballista\n• Priest Mage, Peltasts, Taurus Witchers, Nun, Pirate Ship\n• Witchcraft Totem, Rhino Knight, Stone Golem"
+        "value": "• Magic Apprentice, Undead Soldier, Ballista\n• Priest Mage, Peltasts, Taurus Witchers, Nun\n• Frost Archers, Rhino Knight, Stone Golem"
       }
     ]
   }
