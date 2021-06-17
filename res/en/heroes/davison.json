@@ -5,7 +5,7 @@
     "fields": [
       {
         "name": "Basic Attack",
-        "value": "• Range: 4×12\n• Attack Speed: 0.8"
+        "value": "• Range: none"
       },
       {
         "name": "Active Skill: Dragon Swoop",
@@ -17,7 +17,7 @@
       },
       {
         "name": "Legendary Skill: Dragon Rage",
-        "value": "• After several basic attacks, awakened Davison will breathe fire and damage enemy units within range.\n When Davison cumulatively loses 50% of his life, he will become enraged and activate his <Dragon Swoop> active skill once.\n• Trigger Number (fire breadth): ??\n• Range: 6×8"
+        "value": "• After 4 basic attacks, awakened Davison will breathe fire and damage enemy units within range.\n• Damage (basic): 850/920/1000/1080/1020\n• Damage (fire breath): 1000/1250/1500/1750/2000; Range: 6×8\n\nWhen Davison cumulatively loses 50% of his life,\n• he will become enraged and release his <Dragon Swoop> active skill once,\n• he gains damage immunity (50%/55%/60%/65%/70%), and\n• his baisc attack becomes fire breathe (Damage: 850/920/1000/1080/1020; Range: 6×8)"
       }
     ]
   }
