@@ -32,10 +32,10 @@ module.exports = {
     try {
       const newCmd = require(`../${folderName}/${cmd.name}.js`);
       msg.client.commands.set(newCmd.name, newCmd);
-      safeReact(msg, '✅', null, msg.reply('✅'));
+      safeReact(msg, '✅', null, () => msg.reply('✅'));
     } catch (error) {
       console.error(error);
-      safeReact(msg, '❌', null, msg.reply('❌'));
+      safeReact(msg, '❌', null, () => msg.reply('❌'));
     }
   },
 };

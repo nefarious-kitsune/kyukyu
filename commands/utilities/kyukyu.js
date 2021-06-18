@@ -61,9 +61,9 @@ module.exports = {
     );
 
     if (result) {
-      safeReact(msg, '✅', null, msg.reply('✅'));
+      safeReact(msg, '✅', null, () => msg.reply('✅'));
     } else {
-      safeReact(msg, '❌', null, msg.reply('❌'));
+      safeReact(msg, '❌', null, () => msg.reply('❌'));
     }
   },
 };
