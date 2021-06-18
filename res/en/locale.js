@@ -29,6 +29,13 @@ module.exports = {
       commandNotFound: 'There is no command with name or alias of "{TEXT}"',
     },
 
+    // event
+    {
+      name: 'event',
+      aliases: ['event', 'events'],
+      desc: '...',
+    },
+
     // help
     {
       name: 'help',
