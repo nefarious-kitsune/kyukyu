@@ -34,6 +34,28 @@ module.exports = {
       name: 'event',
       aliases: ['event', 'events'],
       desc: '...',
+      responseNextCM: 'Heroes in the next Card Master: {HERO}\n',
+      responseNextWheel: 'Hero in the next Wheel of Fortune: {HERO}\n',
+      responseCurrentCM: 'Heroes in this Card Master: {HERO}\n',
+      responseCurrentWheel: 'Hero in this Wheel of Fortune: {HERO}\n',
+      responseNextEvent: 'The next hero event will be announced soon (usually around Friday).',
+      responseRecent14: '**# of appearances in the 14 most recent events:**\n',
+      responseRecent13: '**# of appearances in the 13 most recent events:**\n',
+    },
+    {
+      name: 'event-add',
+      aliases: ['event-add', 'events-add'],
+      desc: '...',
+    },
+    {
+      name: 'event-list',
+      aliases: ['event-list', 'events-list'],
+      desc: '...',
+    },
+    {
+      name: 'event-delete',
+      aliases: ['event-delete', 'event-del', 'events-delete', 'events-del'],
+      desc: '...',
     },
 
     // help
