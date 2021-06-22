@@ -432,6 +432,7 @@ module.exports = {
       responsePassiveHeader: 'Passive Skill (0s ~ {Passive End}s)',
       responsePassiveTarget: 'Target Damage: {ATTACK} - *D*',
       responsePassiveSplash: 'Splash Damage: {ATTACK} - *D*',
+      responsePassiveSplash2: 'Splash Damage: ({ATTACK} - *D*) × {MULTIPLIER}',
       responsePassiveSplashCircle: 'Splash Area: ● r = {AOE RADIUS}',
       responsePassiveSplashRect: 'Splash Area: ▮ {AOE W} × {AOE L}',
       responseAwakenedDoubleHeader: 'Passive + Legendary Skills (2.8s ~ {END}s)',

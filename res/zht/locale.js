@@ -303,6 +303,7 @@ module.exports = {
       responsePassiveHeader: '被動技能（0-{Passive End}秒）',
       responsePassiveTarget: '目標傷害：{ATTACK} - 護甲',
       responsePassiveSplash: '飛濺傷害：{ATTACK} - 護甲',
+      responsePassiveSplash2: '飛濺傷害：({ATTACK} - 護甲) × {MULTIPLIER}',
       responsePassiveSplashCircle: '飛濺範圍：● 半徑 = {AOE RADIUS}',
       responsePassiveSplashRect: '飛濺範圍：▮ {AOE W} × {AOE L}',
       responseAwakenedDoubleHeader: '被動加傳奇技能（2.8-{END}秒）',
