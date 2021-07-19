@@ -1,5 +1,3 @@
-const {formatDate} = require('./event');
-
 module.exports = {
   name: 'utc',
   async execute(cmdRes, settings, msg, args) {
