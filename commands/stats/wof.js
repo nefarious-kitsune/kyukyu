@@ -10,15 +10,20 @@ module.exports = {
   args: true,
   async execute(cmdRes, settings, msg, args) {
     const VOUCHERS = cmdRes.vouchers;
-    const SHARDS = cmdRes.shards;
+    const LEGEND_SHARDS = cmdRes.legendShards;
+    const EPIC_SHARDS = cmdRes.epicShards;
 
     const resultType = args[0].toLowerCase();
-    if (!VOUCHERS.includes(resultType) && !SHARDS.includes(resultType)) return;
+    if (!VOUCHERS.includes(resultType) &&
+      !LEGEND_SHARDS.includes(resultType) &&
+      !EPIC_SHARDS.includes(resultType)) {
+      return;
+    }
 
     if (args.length == 1) {
       if (VOUCHERS.includes(resultType)) {
         msg.channel.send(images.IMG_WOF_PROBABILITY_VOUCHER);
-      } else {
+      } else if (LEGEND_SHARDS.includes(resultType)) {
         msg.channel.send(images.IMG_WOF_PROBABILITY_SHARD);
       }
       return;
@@ -105,11 +110,15 @@ module.exports = {
      */
     function getProbability(N, K, probA, qtyA, probB, qtyB) {
       let prob = 0;
-      const combinations = getCombination(K, qtyA, qtyB);
-      for (let i=0; i<combinations.length; i++) {
-        const kA = combinations[i][0];
-        const kB = combinations[i][1];
-        prob += prob = bin2(N, probA, kA, probB, kB);
+      if (qtyB == qtyA) {
+        prob = bin(N, probA, K);
+      } else {
+        const combinations = getCombination(K, qtyA, qtyB);
+        for (let i=0; i<combinations.length; i++) {
+          const kA = combinations[i][0];
+          const kB = combinations[i][1];
+          prob += prob = bin2(N, probA, kA, probB, kB);
+        }
       }
       return prob;
     }
@@ -129,11 +138,17 @@ module.exports = {
       qty2 = 3;
       prob2 = 0.06; // probability of 3× vouchers
       unit = cmdRes.voucherUnit;
-    } else {
+    } else if (LEGEND_SHARDS.includes(resultType)) {
       qty1 = 1;
       prob1 = 0.016; // probability of 1× shard
       qty2 = 2;
-      prob2 = 0.004; // probability of 2× shardss
+      prob2 = 0.004; // probability of 2× LEGEND_SHARDSs
+      unit = cmdRes.shardUnit;
+    } else if (EPIC_SHARDS.includes(resultType)) {
+      qty1 = 1;
+      prob1 = 0.03; // probability of 1× shard
+      qty2 = 1;
+      prob2 = 0.03; // probability of 2× EPIC_SHARDSs
       unit = cmdRes.shardUnit;
     }
 
@@ -224,21 +239,26 @@ module.exports = {
       );
     } else {
       let log = '';
-      const combinations = getCombination(resultRange[1], qty1, qty2);
-      for (let i=0; i<combinations.length; i++) {
-        const hit1 = combinations[i][0];
-        const hit2 = combinations[i][1];
-        const prob = bin2(spinCount, prob1, hit1, prob2, hit2);
-        if (prob >= 0.001) {
-          log +=
-              literal(cmdRes.responseExactDetail,
-                  '{QTY_1}', qty1, '{HIT_1}', hit1,
-                  '{QTY_2}', qty2, '{HIT_2}', hit2,
-                  '{UNIT}', unit,
-                  '{PROB}', (prob * 100).toFixed(2),
-              );
+      if (qty1 != qty2) {
+        const combinations = getCombination(resultRange[1], qty1, qty2);
+        for (let i=0; i<combinations.length; i++) {
+          const hit1 = combinations[i][0];
+          const hit2 = combinations[i][1];
+          const prob = bin2(spinCount, prob1, hit1, prob2, hit2);
+          if (prob >= 0.001) {
+            log +=
+                literal(cmdRes.responseExactDetail,
+                    '{QTY_1}', qty1, '{HIT_1}', hit1,
+                    '{QTY_2}', qty2, '{HIT_2}', hit2,
+                    '{UNIT}', unit,
+                    '{PROB}', (prob * 100).toFixed(2),
+                );
+          }
+          totalProb += prob;
         }
-        totalProb += prob;
+      } else {
+        totalProb = getProbability(
+            spinCount, resultRange[1], prob1, qty1, prob2, qty2);
       }
       sendMessage(
           msg.channel,
