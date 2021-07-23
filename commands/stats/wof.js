@@ -225,7 +225,7 @@ module.exports = {
         totalProb += thisProb;
         resultQty++;
       } while (
-        (resultQty < resultQty2) &&
+        (resultQty <= resultQty2) &&
         ((thisProb > MIN_PROB) || (thisProb > prevProb))
       );
       msg.channel.send(
