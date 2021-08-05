@@ -106,7 +106,7 @@ module.exports = {
         '\n' + cmdRes.responseRecent14 + this.stats(EVENTS.events, 0, 13);
 
       const nag = new Date(eventStart);
-      nag.setUTCDate(nag.getUTCDate() + 4);
+      nag.setUTCDate(nag.getUTCDate() + 2);
       if (now > Number(nag)) {
         response += '\n' + cmdRes.responseNextEvent;
       }

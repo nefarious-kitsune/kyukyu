@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const res = require('../../res/res');
-const {formatDate} = require('./event');
+const {formatDate, proper} = require('./event');
 
 module.exports = {
   name: 'event-add',
@@ -23,8 +23,8 @@ module.exports = {
       EVENTS.events.unshift(newEvent);
       fs.writeFileSync(FILE_PATH, JSON.stringify(EVENTS));
       msg.channel.send(
-          'Added event for ' +
-          `${heroes.join(', ')} starting at ${formatDate(eventDate)}`,
+          `Added event for ${heroes.map((h)=>proper(h)).join(' ')} ` +
+          `starting at ${formatDate(eventDate)}`,
       );
     }
   },

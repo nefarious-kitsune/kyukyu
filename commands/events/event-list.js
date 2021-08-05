@@ -13,6 +13,10 @@ module.exports = {
 
     let response = '';
     for (let i=last; i>=0; i--) {
+      if (response.length > 1800) {
+        msg.channel.send(response);
+        response = '';
+      }
       eventDate = new Date(EVENTS.events[i].date);
       response += formatDate(eventDate) + ': ' +
         EVENTS.events[i].heroes.map((h)=>proper(h)).join(' ') + '\n';

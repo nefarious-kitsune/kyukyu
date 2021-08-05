@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const res = require('../../res/res');
-const {formatDate} = require('./event');
+const {formatDate, proper} = require('./event');
 
 module.exports = {
   name: 'event-delete',
@@ -14,8 +14,8 @@ module.exports = {
       heroes = lastEvent.heroes.map( (h) => res.findHero(settings.lang, h) );
       fs.writeFileSync(FILE_PATH, JSON.stringify(EVENTS));
       msg.channel.send(
-          'Deleted event for ' +
-          `${heroes.join(', ')} starting at ${formatDate(eventDate)}`,
+          `Deleted event for ${heroes.map((h)=>proper(h)).join(' ')} ` +
+          `starting at ${formatDate(eventDate)}`,
       );
     }
   },
