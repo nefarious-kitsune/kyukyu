@@ -378,6 +378,11 @@ module.exports = {
           files: [path.resolve(__dirname, 'faq', 'troops-class.json')],
         },
         {
+          aliases: ['troops-upgrade', 'troops-upgrades', 'troops-level', 'troops-levels', 'troops-leveling'],
+          desc: 'Information about troops upgrades',
+          files: [path.resolve(__dirname, 'faq', 'troops-upgrade.json')],
+        },
+        {
           aliases: ['exp-point', 'exp-points', 'xp-point', 'xp-points', 'exp', 'xp'],
           desc: 'Information on Exp points',
           files: [path.resolve(__dirname, 'faq', 'exp-point.json')],
