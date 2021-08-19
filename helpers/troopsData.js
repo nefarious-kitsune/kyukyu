@@ -4,15 +4,17 @@ const res = require('../res/res');
 
 /**
  * Parse command arguments
+ * @param {string} lang
  * @param {string} name
  * @param {number} level
  * @return {object|null}
  */
 function troopsData(lang, name, level) {
   const troopsName = res.findTroops(lang, name);
+  const MAX_TROOPS_LEVEL = 10;
 
   if (!troopsName) return null;
-  if ((level > 9) || (level < 1)) return null;
+  if ((level > MAX_TROOPS_LEVEL) || (level < 1)) return null;
 
   const troopsDataPath =
       path.resolve(__dirname, '../data/troops/', troopsName + '.json');

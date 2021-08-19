@@ -10,7 +10,7 @@ const {troopsData} = require('./troopsData');
 function plusHero(settings, args) {
   const l10n = res.l10n[settings.lang];
   const MAX_HERO_LEVEL = 15;
-  const MAX_TROOPS_LEVEL = 9;
+  const MAX_TROOPS_LEVEL = 10;
 
   // if (args.length < 1) {
   //   throw new Error(

@@ -3,8 +3,8 @@ const {formatNumber} = require('../../helpers/formatNumber');
 const {sendMessage} = require('../../helpers/sendMessage');
 const {plusHero} = require('../../helpers/plusHero');
 
-const MAX_VOODOO_DAMAGE = 17500;
-const MAX_VOODOO_HEALTH = 4375;
+const MAX_VOODOO_DAMAGE = 21350;
+const MAX_VOODOO_HEALTH = 5340;
 
 const attackBuffs = [
   0.46, 0.47, 0.48, 0.49, 0.50,

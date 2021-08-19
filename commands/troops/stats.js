@@ -4,7 +4,7 @@ const {formatNumber} = require('../../helpers/formatNumber');
 const {sendMessage} = require('../../helpers/sendMessage');
 const {troopsData} = require('../../helpers/troopsData');
 
-const MAX_TROOPS_LEVEL = 9;
+const MAX_TROOPS_LEVEL = 10;
 
 const PERCENT_ATTRS =
     ['attack_increase', 'attack_reduction',

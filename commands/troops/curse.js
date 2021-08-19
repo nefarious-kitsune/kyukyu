@@ -4,9 +4,9 @@ const {formatNumber} = require('../../helpers/formatNumber');
 const {sendMessage} = require('../../helpers/sendMessage');
 const {troopsData} = require('../../helpers/troopsData');
 
-const MAX_TROOPS_LEVEL = 9;
+const MAX_TROOPS_LEVEL = 10;
 const VOODOO_CURSE_RATE =
-  [1, 0.58, 0.34, 0.20, 0.011, 0.066, 0.038, 0.022, 0.013];
+  [1, 0.58, 0.34, 0.20, 0.011, 0.066, 0.038, 0.022, 0.013, 0.007];
 
 module.exports = {
   name: 'curse',
