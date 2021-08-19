@@ -5,6 +5,7 @@ const {sendMessage} = require('../../helpers/sendMessage');
 const {troopsData} = require('../../helpers/troopsData');
 
 const MAX_TROOPS_LEVEL = 10;
+const DEF_TROOPS_LEVEL = 9;
 const VOODOO_CURSE_RATE =
   [1, 0.58, 0.34, 0.20, 0.011, 0.066, 0.038, 0.022, 0.013, 0.007];
 
@@ -19,11 +20,11 @@ module.exports = {
     let argIdx = 1;
     let targetLevel;
     if (args.length == argIdx) {
-      targetLevel = MAX_TROOPS_LEVEL;
+      targetLevel = DEF_TROOPS_LEVEL;
     } else {
       targetLevel = parseInt(args[argIdx]);
       if (Number.isNaN(targetLevel)) {
-        targetLevel = MAX_TROOPS_LEVEL;
+        targetLevel = DEF_TROOPS_LEVEL;
       } else if ((targetLevel >=1) && (targetLevel <= MAX_TROOPS_LEVEL)) {
         argIdx++;
       } else {
@@ -37,16 +38,15 @@ module.exports = {
       curserName = res.findTroops(settings.lang, args[argIdx]);
       if (!curserName) {
         curserName = 'voodoo dolls';
-        curserLevel = MAX_TROOPS_LEVEL;
+        curserLevel = DEF_TROOPS_LEVEL;
       } else {
         argIdx++;
-
         if (args.length == argIdx) {
-          curserLevel = MAX_TROOPS_LEVEL;
+          curserLevel = DEF_TROOPS_LEVEL;
         } else {
           curserLevel = parseInt(args[argIdx]);
           if (Number.isNaN(curserLevel)) {
-            curserLevel = MAX_TROOPS_LEVEL;
+            curserLevel = DEF_TROOPS_LEVEL;
           } else if ((curserLevel >=1) && (curserLevel <= MAX_TROOPS_LEVEL)) {
             //
           } else {
@@ -56,7 +56,7 @@ module.exports = {
       }
     } else {
       curserName = 'voodoo dolls';
-      curserLevel = MAX_TROOPS_LEVEL;
+      curserLevel = DEF_TROOPS_LEVEL;
     }
 
     const targetDisplayName = l10n.TROOPS_DISPLAY_NAMES[targetName];
@@ -80,9 +80,12 @@ module.exports = {
         );
       } else {
         voodooDamage = damageFromHealthLoss + damageFromCurse;
+        if ((target.race == 'human') && (curserLevel == 10)) {
+          voodooDamage = Math.round(voodooDamage * 1.05);
+        }
       }
 
-      const healthRatio = voodooDamage / troops.basic.health;
+      const healthRatio = voodooDamage / target.basic.health;
 
       const levelDifference =
           (targetLevel > curserLevel)?
