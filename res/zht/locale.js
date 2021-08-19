@@ -267,7 +267,7 @@ module.exports = {
       usage_example: '15 投茅者 9',
       responseIntro: '當等級{TROOPS LEVEL}的{TROOPS}搭配等級{HERO LEVEL}的亞瑟時，其效果如下。\n\n',
       responsePassive: '免傷：{IMMUNITY PERCENTAGE}%\n生命值恢復：每秒{HEALTH REGEN}\n',
-      responseCursed: '一個9級巫毒娃娃可造成的最高傷害：{DAMAGE}（最高生命的{HEALTH PERCENTAGE}%）\n',
+      responseCursed: '一個{LEVEL}級巫毒娃娃可造成的最高傷害：{DAMAGE}（最高生命的{HEALTH PERCENTAGE}%）\n',
       responseTroopsNotHuman: '無效果。亞瑟的能力只對人族部隊有效。\n',
     },
 
@@ -282,7 +282,7 @@ module.exports = {
       responseOpening: '**{DURATION}秒開局加成**\n',
       responseOpeningImmunity: '免傷：{IMMUNITY PERCENTAGE}%\n',
       responseOpeningAttack: '攻擊：{ATTACK}（{INCREASE}%加成）\n',
-      responseCursed: '一個9級巫毒娃娃可造成的最高傷害：{DAMAGE}（最高生命的{HEALTH PERCENTAGE}%）\n',
+      responseCursed: '一個{LEVEL}級巫毒娃娃可造成的最高傷害：{DAMAGE}（最高生命的{HEALTH PERCENTAGE}%）\n',
     },
 
     // +seondeok

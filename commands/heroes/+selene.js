@@ -3,8 +3,10 @@ const {formatNumber} = require('../../helpers/formatNumber');
 const {sendMessage} = require('../../helpers/sendMessage');
 const {plusHero} = require('../../helpers/plusHero');
 
-const MAX_VOODOO_DAMAGE = 21350;
-const MAX_VOODOO_HEALTH = 5340;
+const VOODOO_DAMAGE_10 = 21350;
+const VOODOO_HEALTH_10 = 5340;
+const VOODOO_DAMAGE_9 = 17500;
+const VOODOO_HEALTH_9 = 4375;
 
 const attackBuffs = [
   0.46, 0.47, 0.48, 0.49, 0.50,
@@ -54,11 +56,20 @@ module.exports = {
       );
 
     if (troopsName != 'voodoo dolls') {
-      const voodooDamage =
-          Math.round(
-              (MAX_VOODOO_HEALTH + MAX_VOODOO_DAMAGE - troops.basic.defense) *
-              (1-immunity),
-          );
+      let voodooDamage;
+      if (troopsLevel == 10) {
+        voodooDamage =
+            Math.round(
+                (VOODOO_HEALTH_10 + VOODOO_DAMAGE_10 - troops.basic.defense) *
+                ((troops.race == 'human')?1.05:1) * (1-immunity),
+            );
+      } else {
+        voodooDamage =
+            Math.round(
+                (VOODOO_HEALTH_9 + VOODOO_DAMAGE_9 - troops.basic.defense) *
+                (1-immunity),
+            );
+      }
 
       const healthRatio = voodooDamage / troops.basic.health;
 
@@ -66,6 +77,7 @@ module.exports = {
         literal(
             cmdRes.responseCursed,
             '{DAMAGE}', voodooDamage,
+            '{LEVEL}', (troopsLevel == 10)?10:9,
             '{HEALTH PERCENTAGE}', formatNumber(healthRatio * 100, 0),
         );
     }

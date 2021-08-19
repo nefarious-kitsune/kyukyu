@@ -11,6 +11,7 @@ function plusHero(settings, args) {
   const l10n = res.l10n[settings.lang];
   const MAX_HERO_LEVEL = 15;
   const MAX_TROOPS_LEVEL = 10;
+  const DEF_TROOPS_LEVEL = 9;
 
   // if (args.length < 1) {
   //   throw new Error(
@@ -40,11 +41,11 @@ function plusHero(settings, args) {
 
   let troopsLevel;
   if (argIdx >= args.length) {
-    troopsLevel = MAX_TROOPS_LEVEL;
+    troopsLevel = DEF_TROOPS_LEVEL;
   } else {
     troopsLevel = parseInt(args[argIdx]);
     if (Number.isNaN(troopsLevel)) {
-      troopsLevel = 9;
+      troopsLevel = DEF_TROOPS_LEVEL;
     } else if ((troopsLevel >=1) && (troopsLevel <= MAX_TROOPS_LEVEL)) {
       argIdx++;
     } else {

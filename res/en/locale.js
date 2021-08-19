@@ -454,7 +454,7 @@ module.exports = {
       usge_example: '15 \'peltasts\' 9',
       responseIntro: 'When a level {TROOPS LEVEL} {TROOPS} is used with level {HERO LEVEL} Arthur, the effect is as followed.\n\n',
       responsePassive: 'Damage Immunity: {IMMUNITY PERCENTAGE}%\nHealth Regen: {HEALTH REGEN} per second\n',
-      responseCursed: 'Maximum damage from a level 9 Voodoo Dolls: {DAMAGE} ({HEALTH PERCENTAGE}% of max health)\n',
+      responseCursed: 'Maximum damage from a level {LEVEL} Voodoo Dolls: {DAMAGE} ({HEALTH PERCENTAGE}% of max health)\n',
       responseTroopsNotHuman: 'No effect. Arthur\'s abilities only apply to Human troops.\n',
     },
 
@@ -469,7 +469,7 @@ module.exports = {
       responseOpening: '**{DURATION}-Second Opening Buff**\n',
       responseOpeningImmunity: 'Damage Immunity: {IMMUNITY PERCENTAGE}%\n',
       responseOpeningAttack: 'Attack: {ATTACK} ({INCREASE}% increase)\n',
-      responseCursed: 'Maximum damage from a level 9 Voodoo Dolls: {DAMAGE} ({HEALTH PERCENTAGE}% of max health)\n',
+      responseCursed: 'Maximum damage from a level {LEVEL} Voodoo Dolls: {DAMAGE} ({HEALTH PERCENTAGE}% of max health)\n',
     },
 
     // +seondeok
