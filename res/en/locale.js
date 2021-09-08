@@ -65,6 +65,11 @@ module.exports = {
 
     // help
     {
+      name: 'avatar',
+      aliases: ['avatar', 'pfp'],
+      desc: '...',
+    },
+    {
       name: 'help',
       aliases: ['help', 'h', 'commands'],
       desc: 'Show help for a specified command..',
