@@ -1,0 +1,16 @@
+{
+  "race": "wild",
+  "basic": {
+    "count": 1,
+    "health": [500, 1000, 1600, 2400, 3200, 4200, 5200, 6200, 10850, 13020],
+    "attack": [100,  140,  200,  240,  280,  320,  360,  400,   700,   840],
+    "defense":[0],
+    "speed": "very slow",
+    "attack_speed": 1,
+    "shooting_range": "infinity",
+    "attack_type": "ranged",
+    "damage_type": "magical",
+    "damage_shape": "rounded",
+    "damage_range": [5]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "race": "wild",
+  "basic": {
+    "count": 9,
+    "health": [1000, 1300, 1700, 2500, 3900, 5800, 7800, 9900, 17350, 21200],
+    "attack": [ 210,  230,  260,  290,  320,  360,  400,  440,   770,   940],
+    "defense":[  25,   30,   35,   40,   45,   50,   55,   60,   105,   130],
+    "speed": "very fast",
+    "attack_speed": 0.8,
+    "attack_type": "melee",
+    "damage_type": "physical",
+    "damage_shape": "single"
+  },
+"skill": {
+    "damage": [210,230,260,290,320,360,400,440,770,940],
+    "range": 2
+  }
+}
