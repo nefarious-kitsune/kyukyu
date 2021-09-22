@@ -1,0 +1,18 @@
+{
+  "embed": {
+    "title": "Card Master",
+    "image": {
+      "url": "https://cdn.discordapp.com/attachments/833978786395586600/890130015025524756/cm-progress-bar-en.png"
+    },
+    "fields": [
+      {
+        "name": "General",
+        "value": "• End your round when you get the hero shard.\n• Do not start a round if you cannot complete it in the worst-case senario (5100 gems for 9 flips)."
+      },
+      {
+        "name": "Best Strategy",
+        "value": "• Save around 2400 <:aowgem:847363788592119838> and do ~8 rounds (and get **1** extra shard). The average shard cost is 2390 <:aowgem:847363788592119838>\n• Save around 6200 <:aowgem:847363788592119838> and do ~22 rounds (and get **3** extra shard). The average shard cost is 2380 <:aowgem:847363788592119838>"
+      }
+    ]
+  }
+}

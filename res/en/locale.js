@@ -360,7 +360,11 @@ module.exports = {
         {
           aliases: ['hero-event', 'hero-events', 'cm', 'wof', 'wheel', 'card-master', 'wheel-of-fortune'],
           desc: 'Information about hero events',
-          files: [path.resolve(__dirname, 'faq', 'hero-event.json')],
+          files: [
+            path.resolve(__dirname, 'faq', 'hero-event-1.json'),
+            path.resolve(__dirname, 'faq', 'hero-event-2.json'),
+            path.resolve(__dirname, 'faq', 'hero-event-3.json'),
+          ],
         },
         {
           aliases: ['hero-class', 'hero-classes', 'hero-race', 'hero-races'],
