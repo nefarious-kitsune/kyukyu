@@ -406,6 +406,11 @@ module.exports = {
           desc: 'Information on 4-star troops draws',
           files: [path.resolve(__dirname, 'faq', 'troops-draw.json')],
         },
+        {
+          aliases: ['medal', 'medals'],
+          desc: 'Help with medals',
+          files: [path.resolve(__dirname, 'faq', 'medal.json')],
+        },
       ],
     },
 

@@ -1,0 +1,23 @@
+{
+  "embed": {
+    "title": "Medals",
+    "description": "Medals are precious currency. Use them wisely.",
+    "image": {
+      "url": "https://cdn.discordapp.com/attachments/833978786395586600/892251931542687824/info-medals.png"
+    },
+    "fields": [
+      {
+        "name": "Dos",
+        "value": "• Level up troops to level 9 or level 10"
+      },
+      {
+        "name": "Don'ts",
+        "value": "• Exchange medal for anything"
+      }
+    ],
+    "footer": {
+      "text": "Related command:\n {PREFIX}info gem"
+    }
+  }
+}
+
