@@ -441,6 +441,12 @@ module.exports = {
       shardUnit: 'shards',
     },
 
+    // exp
+    {
+      name: 'exp',
+      aliases: ['exp'],
+    },
+
     // hero
     {
       name: 'hero',
