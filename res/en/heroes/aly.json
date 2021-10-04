@@ -19,20 +19,6 @@
       {
         "name": "Legendary Skill: Power of Nine Tails",
         "value": "• Every time Aly cumulatively losses 10% of her life, she will stimulate the power of a tail to increase her damage.\n• The power increase stacks up to 9 times.\n• When Aly cumulatively loses 90% of her life, all enemies on the battlefield will be bewitched (stunned), and the ignited enemy units will be detonated, damaging the enemy units and surrounding units.\n• Bewitching and detonation only trigger once per battle.\n• The damage caused by the detonation will not cause the enemy to be ignited.\n• After the ignited enemy unit is detonated, the ignition effect on the unit will disappear.\n• Bewitch (stun) duration: 2 seconds\n• Range (self-detonation): 3"
-      },
-      {
-        "name": "Strong Against",
-        "value": "Chione",
-        "inline": true
-      },
-      {
-        "name": "Weak Against",
-        "value": "Arthur, Selene, Zeus",
-        "inline": true
-      },
-      {
-        "name": "Arena Troops",
-        "value": "• Magic Apprentice, Undead Soldier, Goblikazes\n• Peltasts, Nun, Pirate Ship\n• Demon, Witchcraft Totem, Meteor Golem, Frost Archers, Rhino Knight, Stone Golem"
       }
     ]
   }

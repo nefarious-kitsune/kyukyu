@@ -14,25 +14,11 @@
       },
       {
         "name": "Passive Skill: Moonlight Projection",
-        "value": "• For a period of time after the start of the battle, Selene will give allied units partial damage immunity and increase attack power.\nDamage immunity applies to all forms of damages, including reflection and curse.\n• Duration: 3/3/3/4/4/4/5/5/5/6/6/6/7/7/7 seconds"
+        "value": "• For a period of time after the start of the battle, Selene will give allied units partial damage immunity and increase attack power.\nDamage immunity applies to all forms of damages, including reflection and curse.\n• Duration: 3 / 3 / 3 / 4 / 4 / 4 / 5 / 5 / 5 / 6 / 6 / 6 / 7 / 7 / 7 (7.07/7.13/7.2) / 7.33 (7.4/7.47/7.53) / 7.67 seconds"
       },
       {
         "name": "Legendary Skill: Moonlight Dance",
         "value": "• After several basic attacks, awakened Selene will trigger the <Moonlight Dance> skill to damage enemy units in front of her and reduce their attack.\n• Trigger Number: 5/4/3/3/3\n• Range: 4×8"
-      },
-      {
-        "name": "Strong Against",
-        "value": "Aly, Davison, Seondeok, Zeus",
-        "inline": true
-      },
-      {
-        "name": "Weak Against",
-        "value": "Chione",
-        "inline": true
-      },
-      {
-        "name": "Arena Troops",
-        "value": "• Magic Apprentice, Undead Soldier, Ballista\n• Priest Mage, Peltasts, Taurus Witchers, Nun\n• Frost Archers, Rhino Knight, Stone Golem"
       }
     ]
   }
