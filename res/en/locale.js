@@ -411,6 +411,11 @@ module.exports = {
           desc: 'Help with medals',
           files: [path.resolve(__dirname, 'faq', 'medal.json')],
         },
+        {
+          aliases: ['growth fund', 'coin fund', 'gem fund', 'medal fund', 'fund'],
+          desc: 'Information on Growth Fund',
+          files: [path.resolve(__dirname, 'faq', 'growth-fund.json')],
+        },
       ],
     },
 

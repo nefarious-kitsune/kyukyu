@@ -16,7 +16,7 @@
       }
     ],
     "footer": {
-      "text": "Related command:\n {PREFIX}info gem-purchase\n {PREFIX}info gem-battles\n {PREFIX}info hero-event"
+      "text": "Related command:\n {PREFIX}info gem-purchase\n {PREFIX}info gem-battles\n {PREFIX}info medal"
     }
   }
 }
