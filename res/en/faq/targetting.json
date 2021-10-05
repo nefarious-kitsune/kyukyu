@@ -1,0 +1,28 @@
+{
+  "embed": {
+    "title": "Targetting",
+    "fields": [
+      {
+        "name": "General",
+        "value": "• Melee and short-ranged troops will target the closest troops.\n• Magic apprentice and Demon are immune while in flight. When in flight, Magic apprentice and Demon cannot be targeted by melee and short-ranged troops. When in flight, Magic apprentice and Demon can be targeted by long-ranged troops but will receieve no damage.\n• Troops will pursue their targets until their targets are killed."
+      },
+      {
+        "name": "Retargetting",
+        "value": "• When a troops unit is affected by *knock-back*, *stun*, or *taunt*, the unit will reselect a new target.\n• Rhino Knight and Pumpkin Guard will select a new target after each attack. Because they force enemy units to retarget with their knock-back/taunt skills, Rhino Knight and Pumpkin Guard can effectively distract many enemy units."
+      },
+      {
+        "name": "Tip - Backline Defense",
+        "value": "• Your backline defenders will not turn back until their first targets are killed.\n• To defend your backline, put your strongest units in the front to kill enemy front line quickly, or use Goblikazes, Pirate Ship, Undead Soldier, or single-load tanks in the back."
+      },
+      {
+        "name": "Tip - Backline Attack",
+        "value": "• Enemy backline defenders will not turn back until their first targets are killed.\n• To increase the effectiveness of your backline attackers, put your strongest units in the front line."
+      },
+      {
+        "name": "Tip - Pirate Ship",
+        "value": "• A Pirate Ship will select a target at start of battle and walk toward the target to throw the boat. It will *not* wait for enemy units to come within range and then choose a target. To effectively use Pirate Ship at front line, don't put them too far back."
+      }
+    ]
+  }
+}
+

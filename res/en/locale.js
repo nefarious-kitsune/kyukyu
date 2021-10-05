@@ -298,6 +298,13 @@ module.exports = {
           ],
         },
         {
+          aliases: ['targetting', 'target'],
+          desc: 'Information on targetting',
+          files: [
+            path.resolve(__dirname, 'faq', 'targetting.json'),
+          ],
+        },
+        {
           aliases: ['vip-restore-ios', 'vip-restore'],
           desc: 'Help with restoring ᴠɪᴘ',
           files: [path.resolve(__dirname, 'faq', 'vip-restore-ios.json')],
