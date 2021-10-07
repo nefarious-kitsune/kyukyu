@@ -572,7 +572,7 @@ module.exports = {
     ['nun', 'nuns'],
     ['pirate ship', 'ps'],
     ['pirate', 'pirates'],
-    ['orc hunters', 'orc hunter'],
+    ['orc hunters', 'orc hunter', 'oh'],
     ['demon'],
     ['beast master', 'bm'],
     ['the beast partner', 'beast partner', 'bear'],

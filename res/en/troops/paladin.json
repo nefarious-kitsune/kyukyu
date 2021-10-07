@@ -4,7 +4,7 @@
     "fields": [
       {
         "name": "Skill Description",
-        "value": "• Paladin activates the <Shield of Light> skill with every 5 basic attacks\n• The skill provides a __health boost__ to the friendly unit with the lowest health within range.\n• Each friendly may receive <Shield of Light> only once.\n• Health increase: 300 / 350 / 400 / 450 / 500 / 50 / 600 / 650 / 1000"
+        "value": "• Paladin activates the <Shield of Light> skill with every 5 basic attacks\n• The skill provides a __health boost__ to the friendly unit with the lowest health within range.\n• Each friendly may receive <Shield of Light> only once.\n• Health increase: 300 / 350 / 400 / 450 / 500 / 50 / 600 / 650 / 1000 / 1420"
       },
       {
         "name": "Main Uses",
