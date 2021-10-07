@@ -423,6 +423,11 @@ module.exports = {
           desc: 'Information on Growth Fund',
           files: [path.resolve(__dirname, 'faq', 'growth-fund.json')],
         },
+        {
+          aliases: ['temple of fusion', 'temple', 'fusion', 'tof', 'cassandra'],
+          desc: 'Information on Temple of Fusion',
+          files: [path.resolve(__dirname, 'faq', 'fusion.json')],
+        },
       ],
     },
 
