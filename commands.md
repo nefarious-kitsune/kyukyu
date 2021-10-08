@@ -107,3 +107,11 @@ Get a estimate of trophy change from a battle. This command is DM only.
 
 Examples:
 - `?trophies 4300 4800` (attacker's trophy count: 4300, defender's trophy count: 4800)
+
+## ?exp command
+
+Get a estimate of the amount gold needed to advance to a higher Exp level.
+
+Examples:
+- `?exp 962200 80` (getting to level 80 with current Exp points of 962,200)
+- `?exp 962200` (getting to next level with current Exp points of 962,200 )

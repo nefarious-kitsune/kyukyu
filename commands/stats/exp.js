@@ -1,3 +1,5 @@
+const {literal} = require('../../helpers/literal');
+
 const EXP_POINTS = [0, 50, 150, 350, 750, 1550,
   2550, 3750, 5150, 6750, 8550,
   10550, 12750, 15150, 17750, 20550, 23550,
@@ -46,13 +48,18 @@ module.exports = {
     const goldToNextLevel = Math.round(pointsToNextLevel / 240);
     if (goldToNextLevel > 5) {
       msg.channel.send(
-          `You are at level ${currLevel}, and you need about ` +
-          `${goldToNextLevel}M gold to level up to ${nextLevel}.`,
+          literal(cmdRes.responseNext,
+              '{CURR LEVEL}', currLevel,
+              '{NEXT LEVEL}', nextLevel,
+              '{GOLD AMOUNT}', goldToNextLevel,
+          ),
       );
     } else {
       msg.channel.send(
-          `You are at level ${currLevel}, and you are very close to ` +
-          `level ${nextLevel}!`,
+          literal(cmdRes.responseURClose,
+              '{CURR LEVEL}', currLevel,
+              '{NEXT LEVEL}', nextLevel,
+          ),
       );
     }
   },

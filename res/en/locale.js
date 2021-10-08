@@ -435,7 +435,7 @@ module.exports = {
     {
       name: 'trophies',
       aliases: ['trophies', 'trophy', 'score', 'scores'],
-      desc: 'Calculate expected trophy gain/loss from a battle',
+      desc: 'Calculate the expected trophy gain/loss from a battle',
       usage: '<your trophy count> <opponent\'s trophy count>',
       usage_example: '3600 3800',
       response: '```Attacker: Win {MY GAIN} , Loss {MY LOSS}\nDefender: Win {OPP GAIN} , Loss {OPP LOSS}```',
@@ -445,6 +445,7 @@ module.exports = {
     {
       name: 'wof',
       aliases: ['wof', 'wheel'],
+      desc: 'Calculate the expected probability of a certain result from a Wheel of Fortune',
       mode: ['mode', 'm'],
       responsePlus: 'The probability of getting {HIT_RANGE} or more {UNIT} in {SPIN_COUNT} spins is {PROB}%.',
       responseRange: 'The probability of getting {HIT_RANGE_1} to {HIT_RANGE_2} {UNIT} in {SPIN_COUNT} spins is {PROB}%.',
@@ -462,6 +463,11 @@ module.exports = {
     {
       name: 'exp',
       aliases: ['exp'],
+      desc: 'Calculate the expected amount of gold needed to advance to a higer Exp level',
+      usage: '[current Exp point] <next level>',
+      usge_example: '962200 80',
+      responseNext: 'You are at level {CURR LEVEL}, and you need about {GOLD AMOUNT}M gold to level up to {NEXT LEVEL}.',
+      responseURClose: 'You are at level {CURR LEVEL}, and you are very close to level {NEXT LEVEL}!',
     },
 
     // hero

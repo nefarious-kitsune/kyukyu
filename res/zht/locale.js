@@ -241,6 +241,16 @@ module.exports = {
       shardUnit: '個碎片',
     },
 
+    {
+      name: 'exp',
+      aliases: ['exp'],
+      desc: '計算升級到下一個經驗值等級需要的金幣數量。',
+      usage: '[目前經驗值] <下一個等級>',
+      usge_example: '962200 80',
+      responseNext: '你目前在{CURR LEVEL}級，你升級到{NEXT LEVEL}級大約需要{GOLD AMOUNT}M金幣。',
+      responseURClose: '你目前在{CURR LEVEL}級，你很接近{NEXT LEVEL}級了！',
+    },
+
     // hero
     {
       name: 'hero',
