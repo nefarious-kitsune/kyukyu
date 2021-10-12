@@ -2,6 +2,9 @@ const {images} = require('../../res/res');
 const {literal} = require('../../helpers/literal');
 const {formatNumber} = require('../../helpers/formatNumber');
 const {sendMessage} = require('../../helpers/sendMessage');
+const Statistics = require('statistics.js');
+
+stats = new Statistics();
 
 const MIN_PROB = 0.0005;
 
@@ -39,19 +42,7 @@ module.exports = {
      * @return {number} probability
      */
     function bin(n, p, k) {
-      const success = Math.pow(p, k);
-      const failure = Math.pow(1-p, n-k);
-
-      // binomial coefficient (n choose k)
-      // (n, 0) = 1
-      // (n, 1) = (n, 0) * (n - 1 + 1) / 1
-      // (n, 2) = (n, 1) * (n - 2 + 1) / 2
-      // :
-      let r = success * failure;
-      for (let i = 1; i <= k; i++) {
-        r = r * (n - i + 1) / i;
-      }
-      return r;
+      return stats.binomialProbabilityMass(k, n, p);
     }
 
     /**
