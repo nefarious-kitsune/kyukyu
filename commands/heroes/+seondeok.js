@@ -107,7 +107,6 @@ module.exports = {
       const aoeRatio = AOE_RATIOS[heroLevel-1];
 
       let basicIsAoe = false;
-      console.log(troops.basic.damage_shape);
       switch (troops.basic.damage_shape) {
         case 'single':
           basicIsAoe = false;

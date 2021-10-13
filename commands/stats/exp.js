@@ -24,7 +24,6 @@ module.exports = {
   args: true,
   async execute(cmdRes, settings, msg, args) {
     const currPoints = parseInt(args[0]);
-    console.log(currPoints);
     if (currPoints <= 0) return;
 
     let currLevel = 0;
