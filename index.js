@@ -3,7 +3,6 @@ const path = require('path');
 const res = require('./res/res');
 
 const {Client, Collection, Intents} = require('discord.js');
-require('./ExtendedMessage');
 
 const guildConfig = require('./helpers/config.js');
 guildConfig.load();
@@ -77,7 +76,11 @@ kyukyu.on('messageCreate', async (msg) => {
             AOW_MSG_LINK.length,
             msg.content.length);
         AOW_CB.messages.fetch(replyId).then((msg) => {
-          msg.inlineReply(secretMessage);
+          // msg.inlineReply(secretMessage);
+          AOW_CB.send({
+            content: secretMessage,
+            reply: {messageReference: msg.id},
+          });
           secretMessage = '';
         });
       }
@@ -104,7 +107,11 @@ kyukyu.on('messageCreate', async (msg) => {
             repliedTo = await msg.channel.messages.fetch(
                 msg.reference.messageID,
             );
-            msg.inlineReplyTo(secretMessage, repliedTo);
+            // msg.inlineReplyTo(secretMessage, repliedTo);
+            msg.channel.send({
+              content: secretMessage,
+              reply: {messageReference: msg.id},
+            });
           } else {
             msg.channel.send(secretMessage);
           }

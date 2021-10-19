@@ -18,7 +18,7 @@ module.exports = {
             {
               'embeds': [
                 {
-                  'title': `Avatar of ${member.nickname}`,
+                  'title': `Avatar of ${member.displayName}`,
                   'image': {
                     'url': member.user.avatarURL(),
                   },
