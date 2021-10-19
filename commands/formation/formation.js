@@ -8,9 +8,9 @@ module.exports = {
   async execute(cmdRes, settings, msg, args) {
     const formName = args[0].toLowerCase().trim();
     if (cmdRes.files.hasOwnProperty(formName)) {
-      const content = JSON.parse(fs.readFileSync(cmdRes.files[formName]));
-      touchEmbed(settings, content);
-      sendMessage(msg.channel, content, msg.author.id);
+      const embed = JSON.parse(fs.readFileSync(cmdRes.files[formName]));
+      touchEmbed(settings, embed);
+      sendMessage(msg.channel, {embeds: [embed]}, msg.author.id);
     } else {
       // NO_INFO
     }

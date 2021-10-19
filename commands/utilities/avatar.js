@@ -16,12 +16,14 @@ module.exports = {
         // const user = await msg.client.users.cache.get(mention);
         msg.channel.send(
             {
-              'embed': {
-                'title': `Avatar of ${member.nickname}`,
-                'image': {
-                  'url': member.user.avatarURL(),
+              'embeds': [
+                {
+                  'title': `Avatar of ${member.nickname}`,
+                  'image': {
+                    'url': member.user.avatarURL(),
+                  },
                 },
-              },
+              ],
             },
         );
       }

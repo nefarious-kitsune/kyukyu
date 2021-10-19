@@ -1,23 +1,20 @@
 {
-  "embed": {
-    "title": "Gem",
-    "description": "Gems are precious currency. Use them wisely.",
-    "image": {
-      "url": "https://cdn.discordapp.com/attachments/833978786395586600/893378334438862898/info-gems.png"
+  "title": "Gem",
+  "description": "Gems are precious currency. Use them wisely.",
+  "image": {
+    "url": "https://cdn.discordapp.com/attachments/833978786395586600/893378334438862898/info-gems.png"
+  },
+  "fields": [
+    {
+      "name": "Dos",
+      "value": "• Acquiring hero shards through hero events (about 320k <:aowgem:847363788592119838> to get one hero to level 15).\n• Temple of fusion (after you get a hero to level 15).\n• Leveling troops to level-9.\n• Extra arena battles"
     },
-    "fields": [
-      {
-        "name": "Dos",
-        "value": "• Acquiring hero shards through hero events (about 320k <:aowgem:847363788592119838> to get one hero to level 15).\n• Temple of fusion (after you get a hero to level 15).\n• Leveling troops to level-9.\n• Extra arena battles"
-      },
-      {
-        "name": "Don'ts",
-        "value": "• Opening hero/troops chests.\n• Opening Super Cards.\n• Clan Wheel.\n• Buying gold coins in the Shop page.\n• Buying anything in the Mystic Shop.\n• Buying troops in the Shop page.\n• Buying additional troops during Lucky Draws.\n• Honor Hunting demo"
-      }
-    ],
-    "footer": {
-      "text": "Related command:\n {PREFIX}info gem-purchase\n {PREFIX}info gem-battles\n {PREFIX}info medal"
+    {
+      "name": "Don'ts",
+      "value": "• Opening hero/troops chests.\n• Opening Super Cards.\n• Clan Wheel.\n• Buying gold coins in the Shop page.\n• Buying anything in the Mystic Shop.\n• Buying troops in the Shop page.\n• Buying additional troops during Lucky Draws.\n• Honor Hunting demo"
     }
+  ],
+  "footer": {
+    "text": "Related command:\n {PREFIX}info gem-purchase\n {PREFIX}info gem-battles\n {PREFIX}info medal"
   }
 }
-

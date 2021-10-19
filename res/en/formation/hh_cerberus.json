@@ -1,32 +1,29 @@
 {
-  "embed": {
-    "title": "Cerberus Tips",
-    "description": "Tips on Cerberus Honor Hunting formation.",
-    "url": "https://sites.google.com/view/arena-masters/tips/honor-hunting",
-    "image": {
-      "url": "https://cdn.discordapp.com/attachments/833978786395586600/840063434107519017/formation-cerberus.png"
+  "title": "Cerberus Tips",
+  "description": "Tips on Cerberus Honor Hunting formation.",
+  "url": "https://sites.google.com/view/arena-masters/tips/honor-hunting",
+  "image": {
+    "url": "https://cdn.discordapp.com/attachments/833978786395586600/840063434107519017/formation-cerberus.png"
+  },
+  "fields": [
+    {
+      "name": "Best Heroes",
+      "value": "• Hoheheim, Seondeok, Dracula, Aly, Diana"
     },
-    "fields": [
-      {
-        "name": "Best Heroes",
-        "value": "• Hoheheim, Seondeok, Dracula, Aly, Diana"
-      },
-      {
-        "name": "Best Troops",
-        "value": "• Pilgrims: 2 level-9 or 3 level-8\n• Brawlers: 3 level-9 or 4 level-8\n• Pumpkin Guard: 1 or 2\n• Voodoo Dolls: a lot of level-9\n• Necromancer: a lot of level-9\n• Taurus Witcher: a lot of level-9\n• Nun: a few"
-      },
-      {
-        "name": "Filler Troops",
-        "value": "• Voodoo Dolls: level-8\n• Peltasts: level-9\n• Ghost Assassins: level-9\n• Undead Soldier: level-9\n• Other 9-load troops, preferably level-9"
-      },
-      {
-        "name": "Stages",
-        "value": "• Stage 1: day 1-2\n• Stage 2: day 3-4\n• Stage 3: day 5-7"
-      }
-    ],
-    "footer": {
-      "text": "Use `{PREFIX}hh beginner` for additional tips."
+    {
+      "name": "Best Troops",
+      "value": "• Pilgrims: 2 level-9 or 3 level-8\n• Brawlers: 3 level-9 or 4 level-8\n• Pumpkin Guard: 1 or 2\n• Voodoo Dolls: a lot of level-9\n• Necromancer: a lot of level-9\n• Taurus Witcher: a lot of level-9\n• Nun: a few"
+    },
+    {
+      "name": "Filler Troops",
+      "value": "• Voodoo Dolls: level-8\n• Peltasts: level-9\n• Ghost Assassins: level-9\n• Undead Soldier: level-9\n• Other 9-load troops, preferably level-9"
+    },
+    {
+      "name": "Stages",
+      "value": "• Stage 1: day 1-2\n• Stage 2: day 3-4\n• Stage 3: day 5-7"
     }
+  ],
+  "footer": {
+    "text": "Related command:\n {PREFIX}hh beginner"
   }
 }
-

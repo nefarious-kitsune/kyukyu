@@ -9,7 +9,7 @@ module.exports = {
     let avatarUrl;
     let nickname;
 
-    if (msg.channel.type == 'text') {
+    if (msg.channel.type == 'GUILD_TEXT') {
       const me = await msg.guild.member(msg.client.user.id);
       nickname = me.displayName || me.user.username;
       avatarUrl = me.user.avatarURL;
@@ -24,10 +24,10 @@ module.exports = {
         '{PREFIX}', settings.prefix,
     );
     msg.channel.send({
-      embed: {
+      embeds: [{
         description: greeting,
         thumbnail: {url: avatarUrl},
-      },
+      }],
     });
   },
 };

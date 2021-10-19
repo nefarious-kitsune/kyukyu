@@ -5,7 +5,7 @@ module.exports = {
   name: 'trophies',
   args: true,
   async execute(cmdRes, settings, msg, args) {
-    if (msg.channel.type != 'dm') return;
+    if (msg.channel.type != 'DM') return;
 
     if (args.length < 2) return;
     myTrophies = parseInt(args[0]);

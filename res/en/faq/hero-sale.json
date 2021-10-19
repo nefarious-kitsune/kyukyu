@@ -1,0 +1,19 @@
+{
+  "title": "Hero Sales",
+  "description": "Players can purchase heroes on the Home Screen",
+  "fields": [
+    {
+      "name": "Rotational Sales",
+      "value": "Harrison, Poseidon, Davison, Dracula, Wukong, Zeus, Drake, Apollo, Nezha
+      (in the order as listed)"
+    },
+    {
+      "name": "Ivan/Arthur Sales",
+      "value": "Ivan and Arthur sales are unlocked after players makes the first purchase."
+    },
+    {
+      "name": "Special Sales",
+      "value": "Legendary heroes not listed above may get limited-time special sales, which will be announced beforehand."
+    }
+  ]
+}

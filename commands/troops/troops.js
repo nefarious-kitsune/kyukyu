@@ -17,12 +17,12 @@ module.exports = {
       return;
     }
     if (troopsName && cmdRes.files.hasOwnProperty(troopsName)) {
-      const content = JSON.parse(
+      const embed = JSON.parse(
           fs.readFileSync(cmdRes.files[troopsName]),
       );
-      touchEmbed(settings, content);
-      content.embed.thumbnail = {'url': res.images.troops_icons[troopsName]};
-      sendMessage(msg.channel, content, msg.author.id);
+      touchEmbed(settings, embed);
+      embed.thumbnail = {'url': res.images.troops_icons[troopsName]};
+      sendMessage(msg.channel, {embeds: [embed]}, msg.author.id);
     } else {
       msg.reply(
           literal(l10n.NO_INFO, '{TEXT}', args[0].trim()),

@@ -1,15 +1,13 @@
 {
-  "embed": {
-    "title": "Peltasts",
-    "fields": [
-      {
-        "name": "Skill Description",
-        "value": "• A Peltasts unit activates the <Fighting Spirit> skill with every attack.\n• The skill increases the unit’s own attack power.\n• The unit can increase its own attack up to 5 times.\n• If the unit’s attack is interrupted, its attack is reset.\n• A level-9 Peltasts unit has a maximum attack of 900 (755 × 1.036 × 1.036 × 1.036 × 1.036 × 1.036)\n• The unit’s basic attack has AoE (penetrating) effect.\n• Attack increase: 2% / 2.2% / 2.4% / 2.6% / 2.8% / 3% / 3.2% / 3.4% / 3.6%"
-      },
-      {
-        "name": "Main Uses",
-        "value": "• Peltasts are one of the most used troops in both Arena and Honor Hunting."
-      }
-    ]
-  }
+  "title": "Peltasts",
+  "fields": [
+    {
+      "name": "Skill Description",
+      "value": "• A Peltasts unit activates the <Fighting Spirit> skill with every attack.\n• The skill increases the unit’s own attack power.\n• The unit can increase its own attack up to 5 times.\n• If the unit’s attack is interrupted, its attack is reset.\n• A level-9 Peltasts unit has a maximum attack of 900 (755 × 1.036 × 1.036 × 1.036 × 1.036 × 1.036)\n• The unit’s basic attack has AoE (penetrating) effect.\n• Attack increase: 2% / 2.2% / 2.4% / 2.6% / 2.8% / 3% / 3.2% / 3.4% / 3.6%"
+    },
+    {
+      "name": "Main Uses",
+      "value": "• Peltasts are one of the most used troops in both Arena and Honor Hunting."
+    }
+  ]
 }

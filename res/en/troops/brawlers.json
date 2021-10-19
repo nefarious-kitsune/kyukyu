@@ -1,15 +1,13 @@
 {
-  "embed": {
-    "title": "Brawlers",
-    "fields": [
-      {
-        "name": "Skill Description",
-        "value": "• Brawlers activate the <Withstand> skill with every 4 basic attacks\n• The skill provides __damage immunity__ all friendly units within range.\n• The skill lasts 4 seconds; as long as Brawlers keep attacking (1 attack each second), the skill would not be dropped.\n• The skill can stack to provide maximum 75% immunity.\n• Damage immunity: 10% / 13% / 16% / 18% / 20% / 21% / 22% / 23% / 25% / 29%"
-      },
-      {
-        "name": "Main Uses",
-        "value": "• Brawlers are essential in Honor Hunting. Typically 3-4 Brawlers are recommanded.\n• Brawlers are essential in Infinity War. Number of units may vary from day to day.\n• Brawlers are heavily used in Arthur formation due to Arthur’s healing ability"
-      }
-    ]
-  }
+  "title": "Brawlers",
+  "fields": [
+    {
+      "name": "Skill Description",
+      "value": "• Brawlers activate the <Withstand> skill with every 4 basic attacks\n• The skill provides __damage immunity__ all friendly units within range.\n• The skill lasts 4 seconds; as long as Brawlers keep attacking (1 attack each second), the skill would not be dropped.\n• The skill can stack to provide maximum 75% immunity.\n• Damage immunity: 10% / 13% / 16% / 18% / 20% / 21% / 22% / 23% / 25% / 29%"
+    },
+    {
+      "name": "Main Uses",
+      "value": "• Brawlers are essential in Honor Hunting. Typically 3-4 Brawlers are recommanded.\n• Brawlers are essential in Infinity War. Number of units may vary from day to day.\n• Brawlers are heavily used in Arthur formation due to Arthur’s healing ability"
+    }
+  ]
 }

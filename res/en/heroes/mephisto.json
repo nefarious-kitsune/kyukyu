@@ -1,24 +1,22 @@
 {
-  "embed": {
-    "title": "Mephisto",
-    "color": 16431948,
-    "fields": [
-      {
-        "name": "Basic Attack",
-        "value": "• Range: 4×12\n• Attack Speed: 0.8"
-      },
-      {
-        "name": "Active Skill: Abyss Roar",
-        "value": "• Mephisto’s <Abyss Roar> skill will deal large damage to enemy units.\n• Range: 18"
-      },
-      {
-        "name": "Passive Skill: Breath of Hell",
-        "value": "• Mephisto will increase the attack and health of all allied units."
-      },
-      {
-        "name": "Legendary Skill: ",
-        "value": "• After several basic attacks, awakened Mephisto will trigger the <Resurrection> skill which resurrects a dead Dark troops as a demon.\n• Trigger Number: 2"
-      }
-    ]
-  }
+  "title": "Mephisto",
+  "color": 16431948,
+  "fields": [
+    {
+      "name": "Basic Attack",
+      "value": "• Range: 4×12\n• Attack Speed: 0.8"
+    },
+    {
+      "name": "Active Skill: Abyss Roar",
+      "value": "• Mephisto’s <Abyss Roar> skill will deal large damage to enemy units.\n• Range: 18"
+    },
+    {
+      "name": "Passive Skill: Breath of Hell",
+      "value": "• Mephisto will increase the attack and health of all allied units."
+    },
+    {
+      "name": "Legendary Skill: ",
+      "value": "• After several basic attacks, awakened Mephisto will trigger the <Resurrection> skill which resurrects a dead Dark troops as a demon.\n• Trigger Number: 2"
+    }
+  ]
 }

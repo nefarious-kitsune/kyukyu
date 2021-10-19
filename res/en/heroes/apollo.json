@@ -1,0 +1,22 @@
+{
+  "title": "Apollo",
+  "color": 16431948,
+  "fields": [
+    {
+      "name": "Basic Attack",
+      "value": "• Range: 30×2"
+    },
+    {
+      "name": "Active Skill: ",
+      "value": "• Apollo will ....\n• Range: 6"
+    },
+    {
+      "name": "Passive Skill: ",
+      "value": "• Apollo will ..."
+    },
+    {
+      "name": "Legendary Skill: ",
+      "value": "• "
+    }
+  ]
+}

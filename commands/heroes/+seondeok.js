@@ -173,6 +173,6 @@ module.exports = {
         embed.addField(h1, t1);
       }
     }
-    sendMessage(msg.channel, embed, msg.author.id);
+    sendMessage(msg.channel, {embeds: [embed]}, msg.author.id);
   },
 };

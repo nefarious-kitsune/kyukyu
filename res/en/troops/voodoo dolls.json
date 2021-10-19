@@ -1,18 +1,16 @@
 {
-  "embed": {
-    "title": "Voodoo Dolls",
-    "fields": [
-      {
-        "name": "Skill Description",
-        "value": "• Voodoo Dolls activate the <Destiny Bond> skill at the start of a battle\n• The skill places a __curse__ on an enemy unit. If the target unit is of same or lower level as the cursing Voodoo Doll, the curse is 100% successful. If the target unit is of higher level, the curse rate is reduced (roughly 60% for one level difference).\n• When a Voodoo Doll is injured, the cursed unit receives the same damage.\n• A Voodoo Doll cannot curse a hero or another Voodoo Doll.\n• If the cursed unit died before the cursing Voodoo Doll dies, the Voodoo Doll curses another unit.\n• Magic Apprentice and Demon are immue to <Destiny Bond> while in flight\n• In Honor Hunting, if a Voodoo Doll died, it deals __direct damage__ to the world boss (the boss’s defense is not factored).\n• In army battles, if a Voodoo Doll died, it deals damage to the cursed unit (the cursed unit’s defense and any damage immunity are factored)."
-      },
-      {
-        "name": "Main Uses",
-        "value": "• Voodoo Dolls are essential in Honor Hunting due to their high attack power and skill."
-      }
-    ],
-    "footer": {
-      "text": "Related command:\n {PREFIX}curse <troops name> [troops level] 'voodoo dolls' [voodoo's level]"
+  "title": "Voodoo Dolls",
+  "fields": [
+    {
+      "name": "Skill Description",
+      "value": "• Voodoo Dolls activate the <Destiny Bond> skill at the start of a battle\n• The skill places a __curse__ on an enemy unit. If the target unit is of same or lower level as the cursing Voodoo Doll, the curse is 100% successful. If the target unit is of higher level, the curse rate is reduced (roughly 60% for one level difference).\n• When a Voodoo Doll is injured, the cursed unit receives the same damage.\n• A Voodoo Doll cannot curse a hero or another Voodoo Doll.\n• If the cursed unit died before the cursing Voodoo Doll dies, the Voodoo Doll curses another unit.\n• Magic Apprentice and Demon are immue to <Destiny Bond> while in flight\n• In Honor Hunting, if a Voodoo Doll died, it deals __direct damage__ to the world boss (the boss’s defense is not factored).\n• In army battles, if a Voodoo Doll died, it deals damage to the cursed unit (the cursed unit’s defense and any damage immunity are factored)."
+    },
+    {
+      "name": "Main Uses",
+      "value": "• Voodoo Dolls are essential in Honor Hunting due to their high attack power and skill."
     }
+  ],
+  "footer": {
+    "text": "Related command:\n {PREFIX}curse <troops name> [troops level] 'voodoo dolls' [voodoo's level]"
   }
 }

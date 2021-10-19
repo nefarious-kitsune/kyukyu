@@ -1,15 +1,13 @@
 {
-  "embed": {
-    "title": "Wheel of Fortune",
-    "fields": [
-      {
-        "name": "General",
-        "value": "• With average luck, a player can get around 8 shards in 200 spins (4 from spins, and 4 from chests).\n• The average cost for 200 spins is 19440 gems.\n• The first spin is always free.\n• On day 2~7 of the event, the first spin costs 60 gems __if you do not have any unused Raffle Ticket__.\n• You can save unused Raffle Ticket for future Wheel events.\n"
-      },
-      {
-        "name": "Best Strategy",
-        "value": "• Have around 19,440 <:aowgem:847363788592119838> ready and do 200 spins. The average shard cost is 2,430 <:aowgem:847363788592119838>\n• Have around 97,200 <:aowgem:847363788592119838> ready and do ~1000 spins. The average shard cost (after the first 200 spins) is 4,860 <:aowgem:847363788592119838>\n• If you aren't after the hero and just want Super Card Vouchers, have around 5,000 <:aowgem:847363788592119838> ready and do 50 spins.\n• Distribute your spins and make sure you use all Raffle Tickets each day so you can take advantage of discount the next day."
-      }
-    ]
-  }
+  "title": "Wheel of Fortune",
+  "fields": [
+    {
+      "name": "General",
+      "value": "• With average luck, a player can get around 8 shards in 200 spins (4 from spins, and 4 from chests).\n• The average cost for 200 spins is 19440 gems.\n• The first spin is always free.\n• On day 2~7 of the event, the first spin costs 60 gems __if you do not have any unused Raffle Ticket__.\n• You can save unused Raffle Ticket for future Wheel events.\n"
+    },
+    {
+      "name": "Best Strategy",
+      "value": "• Have around 19,440 <:aowgem:847363788592119838> ready and do 200 spins. The average shard cost is 2,430 <:aowgem:847363788592119838>\n• Have around 97,200 <:aowgem:847363788592119838> ready and do ~1000 spins. The average shard cost (after the first 200 spins) is 4,860 <:aowgem:847363788592119838>\n• If you aren't after the hero and just want Super Card Vouchers, have around 5,000 <:aowgem:847363788592119838> ready and do 50 spins.\n• Distribute your spins and make sure you use all Raffle Tickets each day so you can take advantage of discount the next day."
+    }
+  ]
 }

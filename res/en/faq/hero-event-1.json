@@ -1,18 +1,16 @@
 {
-  "embed": {
-    "title": "Card Master",
-    "image": {
-      "url": "https://cdn.discordapp.com/attachments/833978786395586600/890130015025524756/cm-progress-bar-en.png"
+  "title": "Card Master",
+  "image": {
+    "url": "https://cdn.discordapp.com/attachments/833978786395586600/890130015025524756/cm-progress-bar-en.png"
+  },
+  "fields": [
+    {
+      "name": "General",
+      "value": "• End your round when you get the hero shard.\n• Do not start a round if you cannot complete it in the worst-case senario (5100 gems for 9 flips)."
     },
-    "fields": [
-      {
-        "name": "General",
-        "value": "• End your round when you get the hero shard.\n• Do not start a round if you cannot complete it in the worst-case senario (5100 gems for 9 flips)."
-      },
-      {
-        "name": "Best Strategy",
-        "value": "• Have around 24,000 <:aowgem:847363788592119838> ready and do ~8 rounds (and get **1** extra shard). The average shard cost is 2,390 <:aowgem:847363788592119838>\n• Have around 62,000 <:aowgem:847363788592119838> ready and do ~22 rounds (and get **3** extra shards). The average shard cost is 2,380 <:aowgem:847363788592119838>"
-      }
-    ]
-  }
+    {
+      "name": "Best Strategy",
+      "value": "• Have around 24,000 <:aowgem:847363788592119838> ready and do ~8 rounds (and get **1** extra shard). The average shard cost is 2,390 <:aowgem:847363788592119838>\n• Have around 62,000 <:aowgem:847363788592119838> ready and do ~22 rounds (and get **3** extra shards). The average shard cost is 2,380 <:aowgem:847363788592119838>"
+    }
+  ]
 }

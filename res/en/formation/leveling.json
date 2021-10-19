@@ -1,19 +1,17 @@
 {
-  "embed": {
-    "title": "Leveling Formtion",
-    "description": "Tips on passing difficult levels.",
-    "url": "https://sites.google.com/view/arena-masters/tips/basic-forms",
-    "image": {
-      "url": "https://media.discordapp.net/attachments/667757428816871434/831008225021263882/leveling.jpg"
-    },
-    "fields": [
-      {
-        "name": "Tips",
-        "value": "• Leveling becomes harder at around level 3000 and very hard at around level 5000. Consider making a leveling form that’s separate from your arena form when leveling becomes difficult for you.\n• Use Hohenheim for leveling whenever possible to maximize coin earning.\n• Make heavy use of AoE (area of effect) troops to soften enemy units: Goblikazes, Ballista, Ice Mage, Priest Mage\n• If you are really stuck at a level, use your arena hero to help you get through."
-      }
-    ],
-    "footer": {
-      "text": "Use `{PREFIX}formation 8k` for tips about farming at level 8000."
+  "title": "Leveling Formtion",
+  "description": "Tips on passing difficult levels.",
+  "url": "https://sites.google.com/view/arena-masters/tips/basic-forms",
+  "image": {
+    "url": "https://media.discordapp.net/attachments/667757428816871434/831008225021263882/leveling.jpg"
+  },
+  "fields": [
+    {
+      "name": "Tips",
+      "value": "• Leveling becomes harder at around level 3000 and very hard at around level 5000. Consider making a leveling form that’s separate from your arena form when leveling becomes difficult for you.\n• Use Hohenheim for leveling whenever possible to maximize coin earning.\n• Make heavy use of AoE (area of effect) troops to soften enemy units: Goblikazes, Ballista, Ice Mage, Priest Mage\n• If you are really stuck at a level, use your arena hero to help you get through."
     }
+  ],
+  "footer": {
+    "text": "Related command:\n {PREFIX}formation 8k"
   }
 }

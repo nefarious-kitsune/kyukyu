@@ -8,7 +8,7 @@ module.exports = {
     // Special case: silent return
     if (args.length == 0) return;
 
-    if (msg.channel.type !== 'text') {
+    if (msg.channel.type !== 'GUILD_TEXT') {
       throw new Error('Cannot execute kyukyu command in none-text channel.');
     }
 

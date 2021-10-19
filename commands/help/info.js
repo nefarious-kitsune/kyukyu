@@ -25,20 +25,14 @@ module.exports = {
     }
     if (!item) return;
 
-    const contents = [];
+    const embeds = [];
     item.files.forEach( (fPath) => {
       fileContent = fs.readFileSync(fPath, 'utf8');
-      if (fPath.endsWith('.json')) {
-        contents.push(JSON.parse(fileContent));
-      } else {
-        contents.push(literal(fileContent, '{PREFIX}', settings.prefix));
-      }
+      embed = JSON.parse(fileContent);
+      touchEmbed(settings, embed);
+      embeds.push(embed);
     });
-    const lastContent = contents[contents.length-1];
-    if (typeof lastContent !== 'string') touchEmbed(settings, lastContent);
     const channel = item.dm?msg.author:msg.channel;
-    contents.forEach( (c) => {
-      sendMessage(channel, c, msg.author.id);
-    });
+    sendMessage(channel, {embeds: embeds}, msg.author.id);
   },
 };

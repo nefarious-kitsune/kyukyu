@@ -1,20 +1,17 @@
 {
-  "embed": {
-    "title": "Temple of Fusion",
-    "description": "Temple of Fusion lets a player to exchange 3 troops for 1 troops of higher rarity.",
-    "image": {
-      "url": "https://cdn.discordapp.com/attachments/833978786395586600/895581686551674930/fusion.png"
+  "title": "Temple of Fusion",
+  "description": "Temple of Fusion lets a player to exchange 3 troops for 1 troops of higher rarity.",
+  "image": {
+    "url": "https://cdn.discordapp.com/attachments/833978786395586600/895581686551674930/fusion.png"
+  },
+  "fields": [
+    {
+      "name": "Wishlist",
+      "value": "• Troops in Wishlist have higher probability of appearing, depending on level of Cassandra.\n• With Cassandra at level *15*, there is __94%__ chance Cassandra will appear *at least once in 10 fusion*, and __99%__ chance Cassandra will appear *at least once in 20 fusion*.\n• With Cassandra at level *10*, there is __80%__ chance Cassandra will appear *at least once in 10 fusion*, __96%__ chance Cassandra will appear *at least once in 20 fusion*, and __99%__ chance Cassandra will appear *at least once in 30 fusion*."
     },
-    "fields": [
-      {
-        "name": "Wishlist",
-        "value": "• Troops in Wishlist have higher probability of appearing, depending on level of Cassandra.\n• With Cassandra at level *15*, there is __94%__ chance Cassandra will appear *at least once in 10 fusion*, and __99%__ chance Cassandra will appear *at least once in 20 fusion*.\n• With Cassandra at level *10*, there is __80%__ chance Cassandra will appear *at least once in 10 fusion*, __96%__ chance Cassandra will appear *at least once in 20 fusion*, and __99%__ chance Cassandra will appear *at least once in 30 fusion*."
-      },
-      {
-        "name": "Best Practices",
-        "value": "• Fusing legendary troops is *not recommended* unless you have a very deep barrack. Legendary troops that you do not use in arena may be useful in a different (or new) game mode, or it may be buffed in the future.\n• For epic/legendary fusion, 888, 777, 666, 555, 444, 333, 222, and 111 combos are the *most expensive*\n• For epic/legendary fusion, 864, 753, 642, 531, 863, 752, 641, 862, 751, 861, 865, 754, 643, 532, and 421 combos are the *most economic*"
-      }
-    ]
-  }
+    {
+      "name": "Best Practices",
+      "value": "• Fusing legendary troops is *not recommended* unless you have a very deep barrack. Legendary troops that you do not use in arena may be useful in a different (or new) game mode, or it may be buffed in the future.\n• For epic/legendary fusion, 888, 777, 666, 555, 444, 333, 222, and 111 combos are the *most expensive*\n• For epic/legendary fusion, 864, 753, 642, 531, 863, 752, 641, 862, 751, 861, 865, 754, 643, 532, and 421 combos are the *most economic*"
+    }
+  ]
 }
-

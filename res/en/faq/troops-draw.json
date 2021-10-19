@@ -1,25 +1,23 @@
 {
-  "embed": {
-    "title": "4-Star Troops Draws.",
-    "image": {
-      "url": "https://cdn.discordapp.com/attachments/833978786395586600/892954687874146314/troops-draw-495.png"
+  "title": "4-Star Troops Draws.",
+  "image": {
+    "url": "https://cdn.discordapp.com/attachments/833978786395586600/892954687874146314/troops-draw-495.png"
+  },
+  "fields": [
+    {
+      "name": "Tips",
+      "value": "• Do not spend gems on lucky draws (fusion is cheaper).\n• When in doubt, choose a legendary troops over epic troops.\n• When in doubt, choose a 9-load troops over single-load troops"
     },
-    "fields": [
-      {
-        "name": "Tips",
-        "value": "• Do not spend gems on lucky draws (fusion is cheaper).\n• When in doubt, choose a legendary troops over epic troops.\n• When in doubt, choose a 9-load troops over single-load troops"
-      },
-      {
-        "name": "Info",
-        "value": "• Around 210-250M gold is needed for a level-8 Frost Archers\n• Around 80-150M gold is needed for a level-8 Peltasts"
-      },
-      {
-        "name": "Example",
-        "value": "Attached is a figure of actual troops draws by an AoW player spending 168M coins on September 28, 2021"
-      }
-    ],
-    "footer": {
-      "text": "Related command:\n {PREFIX}info exp-level\n {PREFIX}info building"
+    {
+      "name": "Info",
+      "value": "• Around 210-250M gold is needed for a level-8 Frost Archers\n• Around 80-150M gold is needed for a level-8 Peltasts"
+    },
+    {
+      "name": "Example",
+      "value": "Attached is a figure of actual troops draws by an AoW player spending 168M coins on September 28, 2021"
     }
+  ],
+  "footer": {
+    "text": "Related command:\n {PREFIX}info exp-level\n {PREFIX}info building"
   }
 }

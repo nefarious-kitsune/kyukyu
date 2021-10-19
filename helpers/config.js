@@ -71,7 +71,7 @@ module.exports = {
     values.forEach( (v) => {
       if (regex.test(v)) {
         channelId = regex.exec(v)[1];
-        if (guild.channels.cache.get(channelId).type == 'text') {
+        if (guild.channels.cache.get(channelId).type == 'GUILD_TEXT') {
           channels.push(channelId);
         } else {
         }

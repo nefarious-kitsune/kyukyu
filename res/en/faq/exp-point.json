@@ -1,12 +1,10 @@
 {
-  "embed": {
-    "title": "Exp Point",
-    "description": "EXP points are gained when you\n• level up a hero,\n• acquire a new troops (except from fusion), or\n• complete an Experience Quest",
-    "image": {
-      "url": "https://cdn.discordapp.com/attachments/833978786395586600/894476560520855552/info-exp-point.png"
-    },
-    "footer": {
-      "text": "Related command:\n {PREFIX}info exp-level"
-    }
+  "title": "Exp Point",
+  "description": "EXP points are gained when you\n• level up a hero,\n• acquire a new troops (except from fusion), or\n• complete an Experience Quest",
+  "image": {
+    "url": "https://cdn.discordapp.com/attachments/833978786395586600/894476560520855552/info-exp-point.png"
+  },
+  "footer": {
+    "text": "Related command:\n {PREFIX}info exp-level"
   }
 }

@@ -1,15 +1,13 @@
 {
-  "embed": {
-    "title": "Nun",
-    "fields": [
-      {
-        "name": "Skill Description",
-        "value": "• Nun activates the <Healing Light> skill with every 2 basic heals\n• The skill __restores lost health__ of all friendly units within range.\n• The skill also __removes control effect__ (e.g. curse) on affected units\n• Basic healing: 130 / 170 / 220 / 270 / 330 / 390 / 450 / 520 / 910\n• Skill healing: 135 / 150 / 165 / 195 / 240 / 300 / 375 / 450 / 790"
-      },
-      {
-        "name": "Main Uses",
-        "value": "• Nuns are commonly used to increase durability of long-range troops and remove curses from Voodoo Dolls."
-      }
-    ]
-  }
+  "title": "Nun",
+  "fields": [
+    {
+      "name": "Skill Description",
+      "value": "• Nun activates the <Healing Light> skill with every 2 basic heals\n• The skill __restores lost health__ of all friendly units within range.\n• The skill also __removes control effect__ (e.g. curse) on affected units\n• Basic healing: 130 / 170 / 220 / 270 / 330 / 390 / 450 / 520 / 910\n• Skill healing: 135 / 150 / 165 / 195 / 240 / 300 / 375 / 450 / 790"
+    },
+    {
+      "name": "Main Uses",
+      "value": "• Nuns are commonly used to increase durability of long-range troops and remove curses from Voodoo Dolls."
+    }
+  ]
 }

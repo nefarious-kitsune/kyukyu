@@ -1,24 +1,22 @@
 {
-  "embed": {
-    "title": "Davison",
-    "color": 16431948,
-    "fields": [
-      {
-        "name": "Basic Attack",
-        "value": "• Range: none"
-      },
-      {
-        "name": "Active Skill: Dragon Swoop",
-        "value": "• Davison will swoop to the ground, knocking back enemy units and stunning them.\n• Range: 5"
-      },
-      {
-        "name": "Passive Skill: Dragon Blood",
-        "value": "• Davison will increase the attack and health of all allied units.\n• Davison and allied units will reflect a percentage of damage from enemy’s basic attacks.\n• When Cactus reflect damage, the reflection percentages are added."
-      },
-      {
-        "name": "Legendary Skill: Dragon Rage",
-        "value": "• After 4 basic attacks, awakened Davison will breathe fire and damage enemy units within range.\n• Damage (basic): 850/920/1000/1080/1020\n• Damage (fire breath): 1000/1250/1500/1750/2000; Range: 6×8\n\nWhen Davison cumulatively loses 50% of his life,\n• he will become enraged and release his <Dragon Swoop> active skill once,\n• he gains damage immunity (50%/55%/60%/65%/70%), and\n• his baisc attack becomes fire breathe (Damage: 850/920/1000/1080/1020; Range: 6×8)"
-      }
-    ]
-  }
+  "title": "Davison",
+  "color": 16431948,
+  "fields": [
+    {
+      "name": "Basic Attack",
+      "value": "• Range: none"
+    },
+    {
+      "name": "Active Skill: Dragon Swoop",
+      "value": "• Davison will swoop to the ground, knocking back enemy units and stunning them.\n• Range: 5"
+    },
+    {
+      "name": "Passive Skill: Dragon Blood",
+      "value": "• Davison will increase the attack and health of all allied units.\n• Davison and allied units will reflect a percentage of damage from enemy’s basic attacks.\n• When Cactus reflect damage, the reflection percentages are added."
+    },
+    {
+      "name": "Legendary Skill: Dragon Rage",
+      "value": "• After 4 basic attacks, awakened Davison will breathe fire and damage enemy units within range.\n• Damage (basic): 850/920/1000/1080/1020\n• Damage (fire breath): 1000/1250/1500/1750/2000; Range: 6×8\n\nWhen Davison cumulatively loses 50% of his life,\n• he will become enraged and release his <Dragon Swoop> active skill once,\n• he gains damage immunity (50%/55%/60%/65%/70%), and\n• his baisc attack becomes fire breathe (Damage: 850/920/1000/1080/1020; Range: 6×8)"
+    }
+  ]
 }

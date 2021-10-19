@@ -9,7 +9,7 @@ const {safeReact} = require('./safeReact');
 async function sendMessage(channel, content, replyTo) {
   const message = await channel.send(content);
 
-  if (channel.type == 'dm') return;
+  if (channel.type == 'DM') return;
 
   removeBin = () => {
     message.reactions.cache.get('🗑️').users
@@ -26,11 +26,12 @@ async function sendMessage(channel, content, replyTo) {
       '🗑️',
       () => {
         const filter = (reaction, user) => {
+          console.log(reaction);
           return (('🗑️' === reaction.emoji.name) && (user.id === replyTo));
         };
 
         message
-            .awaitReactions(filter, {max: 1, time: 60000})
+            .awaitReactions({filter, max: 1, time: 60000})
             .then(async (collected) => {
               const reaction = collected.first();
               if ((reaction) && (reaction.emoji.name === '🗑️')) {

@@ -1,8 +1,6 @@
 {
-  "embed": {
-    "title": "Hero Upgrade",
-    "image": {
-      "url": "https://cdn.discordapp.com/attachments/833978786395586600/883187270616772668/hero-upgrade.png"
-    }
+  "title": "Hero Upgrade",
+  "image": {
+    "url": "https://cdn.discordapp.com/attachments/833978786395586600/883187270616772668/hero-upgrade.png"
   }
 }

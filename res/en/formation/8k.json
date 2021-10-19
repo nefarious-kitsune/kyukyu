@@ -1,26 +1,24 @@
 {
-  "embed": {
-    "title": "Farming Formtion",
-    "description": "Tips on getting 3-star wins in level 8000.",
-    "image": {
-      "url": "https://cdn.discordapp.com/attachments/833978786395586600/850218293964439583/formation_8k.jpg"
+  "title": "Farming Formtion",
+  "description": "Tips on getting 3-star wins in level 8000.",
+  "image": {
+    "url": "https://cdn.discordapp.com/attachments/833978786395586600/850218293964439583/formation_8k.jpg"
+  },
+  "fields": [
+    {
+      "name": "Tips",
+      "value": "• Use Hoheheim.\n• When calculating troops survival rate, the game counts troops spawned during the battles, so each Pirate Ship should be considered as **7-unit**.\n• Focus on winning with speed and power.\n• Avoid using sacrificial troops (Goblikazes and Voodoo Dolls).\n• Daily earning at level 8000 caps at **6 million <:aowcoin:847363788566560798>**. To maximize earning, watch as much advertisements as possible."
     },
-    "fields": [
-      {
-        "name": "Tips",
-        "value": "• Use Hoheheim.\n• When calculating troops survival rate, the game counts troops spawned during the battles, so each Pirate Ship should be considered as **7-unit**.\n• Focus on winning with speed and power.\n• Avoid using sacrificial troops (Goblikazes and Voodoo Dolls).\n• Daily earning at level 8000 caps at **6 million <:aowcoin:847363788566560798>**. To maximize earning, watch as much advertisements as possible."
-      },
-      {
-        "name": "Best Troops",
-        "value": "• Magic Apprentice: some\n• Undead Soldier: some\n• Ballista: some\n• Priest Mage: some\n• Peltasts: many\n• Nun: a few\n• Pirate Ship: 1 or 2\n• Frost Archers: many\n• Rhino Knight: 1 or 2\n• Stone Golem: a few"
-      },
-      {
-        "name": "Filler Troops",
-        "value": "• Ice Mage\n• Taurus Witcher\n• Pumpkin Guard"
-      }
-    ],
-    "footer": {
-      "text": "Use `{PREFIX}formation leveling` for tips about passing levels before level 8000."
+    {
+      "name": "Best Troops",
+      "value": "• Magic Apprentice: some\n• Undead Soldier: some\n• Ballista: some\n• Priest Mage: some\n• Peltasts: many\n• Nun: a few\n• Pirate Ship: 1 or 2\n• Frost Archers: many\n• Rhino Knight: 1 or 2\n• Stone Golem: a few"
+    },
+    {
+      "name": "Filler Troops",
+      "value": "• Ice Mage\n• Taurus Witcher\n• Pumpkin Guard"
     }
+  ],
+  "footer": {
+    "text": "Use `{PREFIX}formation leveling` for tips about passing levels before level 8000."
   }
 }

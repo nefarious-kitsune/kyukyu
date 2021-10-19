@@ -78,7 +78,7 @@ module.exports = {
       throw new Error('Invalid command. No troops found.');
     }
 
-    const DM = ((list.length > 4) || (msg.channel.type == 'dm'));
+    const DM = ((list.length > 4) || (msg.channel.type == 'DM'));
 
     for (let i=0; i<list.length; i++) {
       let textBasic = '';
@@ -113,14 +113,14 @@ module.exports = {
       }
 
       if (DM) {
-        sendMessage(msg.author, {embed: embed}, msg.author.id);
+        sendMessage(msg.author, {embeds: [embed]}, msg.author.id);
         // msg.author.send({embed: embed});
       } else {
-        sendMessage(msg.channel, {embed: embed}, msg.author.id);
+        sendMessage(msg.channel, {embeds: [embed]}, msg.author.id);
       }
     }
 
-    if (DM && (msg.channel.type != 'dm')) {
+    if (DM && (msg.channel.type != 'DM')) {
       msg.channel.send(cmdRes.sentByDM);
     }
   },

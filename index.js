@@ -2,7 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const res = require('./res/res');
 
-const Discord = require('discord.js');
+const {Client, Collection, Intents} = require('discord.js');
+require('./ExtendedMessage');
 
 const guildConfig = require('./helpers/config.js');
 guildConfig.load();
@@ -20,11 +21,20 @@ if (processArgs && processArgs[0]) {
 }
 const config = JSON.parse(fs.readFileSync(configFilePath));
 
-
 const {parseArgs} = require('./helpers/parseArgs.js');
 
-const kyukyu = new Discord.Client();
-kyukyu.commands = new Discord.Collection();
+const kyukyu = new Client(
+    {
+      intents: [
+        Intents.FLAGS.GUILDS,
+        Intents.FLAGS.GUILD_MESSAGES,
+        Intents.FLAGS.DIRECT_MESSAGES,
+        Intents.FLAGS.GUILD_MESSAGE_REACTIONS],
+      partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
+    },
+);
+
+kyukyu.commands = new Collection();
 
 fs.readdirSync('./commands').forEach( (folder) => {
   fs.readdirSync(`./commands/${folder}`)
@@ -32,6 +42,9 @@ fs.readdirSync('./commands').forEach( (folder) => {
       .forEach( (file) => {
         const path = `./commands/${folder}/${file}`;
         const cmd = require(path);
+        if (cmd.interact) {
+          cmd.interact(kyukyu);
+        }
         cmd['path'] = path;
         kyukyu.commands.set(cmd.name, cmd);
       });
@@ -39,17 +52,71 @@ fs.readdirSync('./commands').forEach( (folder) => {
 
 kyukyu.login(config['login token']);
 
-kyukyu.on('ready', () => {
+let secretMessage = '';
+
+const AOW_GUILD_ID = '658594298983350293';
+const AOW_CB_ID = '658969855181193238';
+const AOW_MSG_LINK =
+  `https://discord.com/channels/${AOW_GUILD_ID}/${AOW_CB_ID}/`;
+
+let AOW_CB;
+
+kyukyu.on('ready', async () => {
   console.log(
       fs.readFileSync(path.resolve(__dirname, 'splash.md'), 'utf8'),
   );
+  AOW_CB = await kyukyu.channels.cache.get(AOW_CB_ID);
 });
 
-kyukyu.on('message', (msg) => {
+kyukyu.on('messageCreate', async (msg) => {
   if (msg.author.bot) return;
+  if (msg.author.id == 706106177439924348) {
+    if (msg.content.startsWith(AOW_MSG_LINK)) {
+      if (secretMessage.length > 0) {
+        replyId = msg.content.substring(
+            AOW_MSG_LINK.length,
+            msg.content.length);
+        AOW_CB.messages.fetch(replyId).then((msg) => {
+          msg.inlineReply(secretMessage);
+          secretMessage = '';
+        });
+      }
+      return;
+    }
+
+    if (msg.channel.type == 'dm') {
+      if (msg.content.startsWith('say')) {
+        if (msg.content.length > 4) {
+          what2say = msg.content.substring(4, msg.content.length);
+          AOW_CB.send(what2say);
+        }
+        return;
+      } else if (msg.content.startsWith('msg')) {
+        if (msg.content.length > 4) {
+          secretMessage = msg.content.substring(4, msg.content.length);
+        } else {
+          secretMessage = '';
+        }
+        return;
+      } else {
+        if (secretMessage.length > 0) {
+          if ((msg.reference) && (msg.reference.messageID)) {
+            repliedTo = await msg.channel.messages.fetch(
+                msg.reference.messageID,
+            );
+            msg.inlineReplyTo(secretMessage, repliedTo);
+          } else {
+            msg.channel.send(secretMessage);
+          }
+          secretMessage = '';
+          return;
+        }
+      }
+    }
+  }
 
   let settings;
-  if (msg.channel.type === 'text') {
+  if (msg.channel.type === 'GUILD_TEXT') {
     settings = guildConfig.getGuildSettings(msg.guild);
   } else {
     settings = {
@@ -66,6 +133,7 @@ kyukyu.on('message', (msg) => {
     if (args.length == 0) return;
 
     const cmdName = args.shift();
+
     const cmdRes = res.getCommandRes(settings.lang, cmdName);
     if (!cmdRes) return;
 

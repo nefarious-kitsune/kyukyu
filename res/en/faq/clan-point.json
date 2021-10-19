@@ -1,10 +1,7 @@
 {
-  "embed": {
-    "title": "Clan Point",
-    "description": "Each member in a clan contributes Clan Points (<:aowclancup:849198803638026252>) which equal to the member’s Live Score (<:aowcup:849196168495628309>) multiplied by an index.\nThe index depends on the member’s placement within the clan:\n```0.5   1st place\n0.4   2-10 place\n0.3   11-20 place\n0.2   21-30 place\n0.1   31-40 place\n0.05  41-50 place```\nFor example, if you have 6800 <:aowcup:849196168495628309>, and you are the third-ranked player in your clan, then your Clan Point contribution is 2,720 <:aowclancup:849198803638026252> (6800 × 0.4)",
-    "footer": {
-      "text": "Related command:\n {PREFIX}info arena-point"
-    }
+  "title": "Clan Point",
+  "description": "Each member in a clan contributes Clan Points (<:aowclancup:849198803638026252>) which equal to the member’s Live Score (<:aowcup:849196168495628309>) multiplied by an index.\nThe index depends on the member’s placement within the clan:\n```0.5   1st place\n0.4   2-10 place\n0.3   11-20 place\n0.2   21-30 place\n0.1   31-40 place\n0.05  41-50 place```\nFor example, if you have 6800 <:aowcup:849196168495628309>, and you are the third-ranked player in your clan, then your Clan Point contribution is 2,720 <:aowclancup:849198803638026252> (6800 × 0.4)",
+  "footer": {
+    "text": "Related command:\n {PREFIX}info arena-point"
   }
 }
-

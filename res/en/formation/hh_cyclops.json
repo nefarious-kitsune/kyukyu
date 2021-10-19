@@ -1,36 +1,33 @@
 {
-  "embed": {
-    "title": "Cyclops Tips",
-    "description": "Tips on Cyclops Honor Hunting formation.",
-    "url": "https://sites.google.com/view/arena-masters/tips/honor-hunting",
-    "image": {
-      "url": "https://cdn.discordapp.com/attachments/833978786395586600/840063427837165598/formation-cyclops.png"
+  "title": "Cyclops Tips",
+  "description": "Tips on Cyclops Honor Hunting formation.",
+  "url": "https://sites.google.com/view/arena-masters/tips/honor-hunting",
+  "image": {
+    "url": "https://cdn.discordapp.com/attachments/833978786395586600/840063427837165598/formation-cyclops.png"
+  },
+  "fields": [
+    {
+      "name": "Best Heroes",
+      "value": "• Drake, Aly, Hoheheim, Apollo"
     },
-    "fields": [
-      {
-        "name": "Best Heroes",
-        "value": "• Drake, Aly, Hoheheim, Apollo"
-      },
-      {
-        "name": "Best Troops",
-        "value": "• Pilgrims: 2 level-9 or 3 level-8\n• Brawlers: 3 level-9 or 4 level-8\n• Voodoo Dolls: a lot of level-9\n• Peltasts: a lot of level-9\n• Frost Archers: a few"
-      },
-      {
-        "name": "Filler Troops",
-        "value": "• Voodoo Dolls: level-8\n• Taurus Witcher: level-9\n• Ghost Assassins: level-9\n• Undead Soldier: level-9\n• Other 9-load troops, preferably level-9"
-      },
-      {
-        "name": "Tips",
-        "value": "• Do not use the Evade button."
-      },
-      {
-        "name": "Stages",
-        "value": "• Stage 1: day 1-3\n• Stage 2: day 4-6\n• Stage 3: day 7"
-      }
-    ],
-    "footer": {
-      "text": "Use `{PREFIX}hh beginner` for additional tips."
+    {
+      "name": "Best Troops",
+      "value": "• Pilgrims: 2 level-9 or 3 level-8\n• Brawlers: 3 level-9 or 4 level-8\n• Voodoo Dolls: a lot of level-9\n• Peltasts: a lot of level-9\n• Frost Archers: a few"
+    },
+    {
+      "name": "Filler Troops",
+      "value": "• Voodoo Dolls: level-8\n• Taurus Witcher: level-9\n• Ghost Assassins: level-9\n• Undead Soldier: level-9\n• Other 9-load troops, preferably level-9"
+    },
+    {
+      "name": "Tips",
+      "value": "• Do not use the Evade button."
+    },
+    {
+      "name": "Stages",
+      "value": "• Stage 1: day 1-3\n• Stage 2: day 4-6\n• Stage 3: day 7"
     }
+  ],
+  "footer": {
+    "text": "Related command:\n {PREFIX}hh beginner"
   }
 }
-

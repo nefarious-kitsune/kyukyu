@@ -3,7 +3,7 @@ module.exports = {
   name: 'clear',
   cooldowns: {},
   async execute(cmdRes, settings, msg, args) {
-    if (msg.channel.type == 'dm') {
+    if (msg.channel.type == 'DM') {
       const COOLDOWN = 30000; // 30s cooldown
       if (this.cooldowns[msg.author.id]) {
         if (this.cooldowns[msg.author.id] > Date.now()) {
