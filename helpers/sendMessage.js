@@ -26,7 +26,6 @@ async function sendMessage(channel, content, replyTo) {
       '🗑️',
       () => {
         const filter = (reaction, user) => {
-          console.log(reaction);
           return (('🗑️' === reaction.emoji.name) && (user.id === replyTo));
         };
 

@@ -69,25 +69,23 @@ kyukyu.on('ready', async () => {
 
 kyukyu.on('messageCreate', async (msg) => {
   if (msg.author.bot) return;
+
   if (msg.author.id == 706106177439924348) {
     if (msg.content.startsWith(AOW_MSG_LINK)) {
       if (secretMessage.length > 0) {
         replyId = msg.content.substring(
             AOW_MSG_LINK.length,
             msg.content.length);
-        AOW_CB.messages.fetch(replyId).then((msg) => {
-          // msg.inlineReply(secretMessage);
-          AOW_CB.send({
-            content: secretMessage,
-            reply: {messageReference: msg.id},
-          });
-          secretMessage = '';
+        AOW_CB.send({
+          content: secretMessage,
+          reply: {messageReference: replyId},
         });
+        secretMessage = '';
       }
       return;
     }
 
-    if (msg.channel.type == 'dm') {
+    if (msg.channel.type == 'DM') {
       if (msg.content.startsWith('say')) {
         if (msg.content.length > 4) {
           what2say = msg.content.substring(4, msg.content.length);
@@ -101,23 +99,20 @@ kyukyu.on('messageCreate', async (msg) => {
           secretMessage = '';
         }
         return;
-      } else {
-        if (secretMessage.length > 0) {
-          if ((msg.reference) && (msg.reference.messageID)) {
-            repliedTo = await msg.channel.messages.fetch(
-                msg.reference.messageID,
-            );
-            // msg.inlineReplyTo(secretMessage, repliedTo);
-            msg.channel.send({
-              content: secretMessage,
-              reply: {messageReference: msg.id},
-            });
-          } else {
-            msg.channel.send(secretMessage);
-          }
-          secretMessage = '';
-          return;
+      }
+    } else {
+      if (secretMessage.length > 0) {
+        if ((msg.reference) && (msg.reference.messageId)) {
+          msg.channel.send({
+            content: secretMessage,
+            reply: {messageReference: msg.reference.messageId},
+          });
+        } else {
+          // ECHO
+          msg.channel.send(secretMessage);
         }
+        secretMessage = '';
+        return;
       }
     }
   }
