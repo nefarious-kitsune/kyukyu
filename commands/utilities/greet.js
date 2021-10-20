@@ -73,7 +73,7 @@ module.exports = {
         .then((message) => {
           setTimeout(() => {
             message.edit({embeds: message.embeds, components: []});
-          }, 5 * 1000);
+          }, 30 * 1000);
         });
   },
 };
