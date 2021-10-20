@@ -298,10 +298,10 @@ module.exports = {
           ],
         },
         {
-          aliases: ['targetting', 'target'],
-          desc: 'Information on targetting',
+          aliases: ['targeting', 'target', 'targetting'],
+          desc: 'Information on targeting',
           files: [
-            path.resolve(__dirname, 'faq', 'targetting.json'),
+            path.resolve(__dirname, 'faq', 'targeting.json'),
           ],
         },
         {
