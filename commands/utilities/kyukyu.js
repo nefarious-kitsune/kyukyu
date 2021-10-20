@@ -1,6 +1,7 @@
 const guildConfig = require('../../helpers/config');
 const {safeReact} = require('../../helpers/safeReact');
 const res = require('../../res/res');
+const {Permissions} = require('discord.js');
 
 module.exports = {
   name: 'kyukyu',
@@ -12,8 +13,7 @@ module.exports = {
       throw new Error('Cannot execute kyukyu command in none-text channel.');
     }
 
-    const member = msg.guild.members.cache.get(msg.author.id);
-    if (!member.hasPermission('ADMINISTRATOR')) {
+    if (!msg.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR)) {
       throw new Error('Administrator permission needed.');
     }
 

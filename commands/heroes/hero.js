@@ -63,7 +63,6 @@ module.exports = {
       if (heroName == false) return;
       if (cmdRes.files.hasOwnProperty(heroName)) {
         content = this.getContent(settings.lang, heroName);
-        console.log(content);
         sendMessage(msg.channel, content, msg.author.id);
       }
     }

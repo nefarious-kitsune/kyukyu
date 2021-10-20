@@ -1,8 +1,35 @@
 const res = require('../../res/res');
 const {literal} = require('../../helpers/literal');
+const {MessageActionRow, MessageSelectMenu} = require('discord.js');
 
 module.exports = {
   name: 'greet',
+  interact(client) {
+    client.on('interactionCreate', async (interaction) => {
+      if (
+        (interaction.isSelectMenu()) &&
+        (interaction.customId.startsWith('greet.list.'))
+      ) {
+        const embed = interaction.message.embeds[0];
+
+        // const botUser =
+        //     interaction.message.author.username;
+        const user =
+          interaction.member.nickname ||
+          interaction.member.user.username;
+
+        embed.fields = {
+          name: 'Review',
+          value: interaction.values[0] + ' review by **' + user + '**!',
+        };
+        const content = {
+          embeds: [embed],
+          components: [],
+        };
+        await interaction.message.edit(content);
+      }
+    });
+  },
   async execute(cmdRes, settings, msg, args) {
     let greeting = res.l10n[settings.lang].GREETING;
 
@@ -10,8 +37,8 @@ module.exports = {
     let nickname;
 
     if (msg.channel.type == 'GUILD_TEXT') {
-      const me = await msg.guild.member(msg.client.user.id);
-      nickname = me.displayName || me.user.username;
+      const me = await msg.guild.members.fetch(msg.client.user.id);
+      nickname = me.nickname || me.user.username;
       avatarUrl = me.user.avatarURL;
     } else {
       const me = msg.client.user;
@@ -23,11 +50,44 @@ module.exports = {
         '{BOT NAME}', nickname,
         '{PREFIX}', settings.prefix,
     );
-    msg.channel.send({
-      embeds: [{
-        description: greeting,
-        thumbnail: {url: avatarUrl},
-      }],
-    });
+    const menu = new MessageSelectMenu()
+        .setCustomId('greet.list.' + settings.lang)
+        .setPlaceholder('Please leave a rating')
+        .addOptions([
+          {
+            label: '🟊🟊🟊🟊🟊',
+            value: '🟊🟊🟊🟊🟊',
+          },
+          {
+            label: '☆☆☆☆☆',
+            value: '☆☆☆☆☆',
+          },
+          {
+            label: '✭✭✭✭✭',
+            value: '✭✭✭✭✭',
+          },
+        ]);
+
+    const row = new MessageActionRow().addComponents(menu);
+    msg.channel
+        .send(
+            {
+              embeds: [{
+                description: greeting,
+                thumbnail: {url: avatarUrl},
+              }],
+              components: [row],
+            },
+        )
+        .then((message) => {
+          setTimeout(() => {
+            const content = {
+              embeds: message.embeds,
+              components: [],
+            };
+            message.edit(content);
+          }, 5 * 1000);
+        });
   },
 };
+
