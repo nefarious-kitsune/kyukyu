@@ -5,7 +5,7 @@ const {MessageActionRow, MessageSelectMenu} = require('discord.js');
 module.exports = {
   name: 'greet',
   interact(client) {
-    client.on('interactionCreate', async (interaction) => {
+    client.on('interactionCreate', (interaction) => {
       if (
         (interaction.isSelectMenu()) &&
         (interaction.customId.startsWith('greet.list.'))
@@ -26,7 +26,7 @@ module.exports = {
           embeds: [embed],
           components: [],
         };
-        await interaction.message.edit(content);
+        interaction.message.edit(content);
       }
     });
   },
@@ -54,18 +54,9 @@ module.exports = {
         .setCustomId('greet.list.' + settings.lang)
         .setPlaceholder('Please leave a rating')
         .addOptions([
-          {
-            label: '🟊🟊🟊🟊🟊',
-            value: '🟊🟊🟊🟊🟊',
-          },
-          {
-            label: '☆☆☆☆☆',
-            value: '☆☆☆☆☆',
-          },
-          {
-            label: '✭✭✭✭✭',
-            value: '✭✭✭✭✭',
-          },
+          {label: '🟊🟊🟊🟊🟊', value: '🟊🟊🟊🟊🟊'},
+          {label: '☆☆☆☆☆', value: '☆☆☆☆☆'},
+          {label: '✭✭✭✭✭', value: '✭✭✭✭✭'},
         ]);
 
     const row = new MessageActionRow().addComponents(menu);
@@ -81,11 +72,7 @@ module.exports = {
         )
         .then((message) => {
           setTimeout(() => {
-            const content = {
-              embeds: message.embeds,
-              components: [],
-            };
-            message.edit(content);
+            message.edit({embeds: message.embeds, components: []});
           }, 5 * 1000);
         });
   },
