@@ -1,5 +1,8 @@
 {
   "title": "Card Master",
+  "thumbnail": {
+    "url": "https://cdn.discordapp.com/attachments/833978786395586600/900654569141456916/icon-card-master.png"
+  },
   "image": {
     "url": "https://cdn.discordapp.com/attachments/833978786395586600/890130015025524756/cm-progress-bar-en.png"
   },

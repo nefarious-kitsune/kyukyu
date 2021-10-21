@@ -1,5 +1,8 @@
 {
   "title": "Wheel of Fortune",
+  "thumbnail": {
+    "url": "https://cdn.discordapp.com/attachments/833978786395586600/900654546483826688/icon-wheel.png"
+  },
   "fields": [
     {
       "name": "General",
