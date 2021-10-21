@@ -329,9 +329,15 @@ module.exports = {
         },
         {
           aliases: ['arena-battle', 'arena-battles'],
-          desc: 'Information about arena arena battles',
-          related: ['arena-point', 'battle-report', 'power-rating', 'arena-reward'],
+          desc: 'Information about arena battles',
+          related: ['arena-point', 'battle-report', 'power-rating', 'arena-reward', 'fishing'],
           files: [path.resolve(__dirname, 'faq', 'arena-battle.json')],
+        },
+        {
+          aliases: ['fishing', 'baiting', '5x5'],
+          desc: 'Information about fishing (baiting)',
+          related: ['arena-battle', 'power-rating'],
+          files: [path.resolve(__dirname, 'faq', 'fishing.json')],
         },
         {
           aliases: ['arena-reward', 'arena-rewards'],
@@ -342,7 +348,7 @@ module.exports = {
         {
           aliases: ['power-rating', 'power', 'fist'],
           desc: 'Information about power rating',
-          related: ['arena-battle'],
+          related: ['arena-battle', 'fishing'],
           files: [path.resolve(__dirname, 'faq', 'arena-power.json')],
         },
         {
@@ -400,7 +406,7 @@ module.exports = {
         {
           aliases: ['troops', 'troop', 'troops-meta'],
           desc: 'Current meta troops',
-          related: ['troops-upgrade', 'troops-draw', 'troops-class', "hero", 'building', 'temple-of-fusion'],
+          related: ['troops-upgrade', 'troops-draw', 'troops-class', 'hero', 'building', 'temple-of-fusion'],
           files: [path.resolve(__dirname, 'faq', 'troops.json')],
         },
         {
