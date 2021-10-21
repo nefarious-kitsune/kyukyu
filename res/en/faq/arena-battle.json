@@ -13,6 +13,5 @@
       "name": "Network Error / Game Crashing",
       "value": "• If a battle fails to finish due to network error or game crashing, the server will determine that the defender wins the battle after 5 minute. This mechanism was implemented to address a common past abuse where players would intentionally quit battles to avoid losses."
     }
-  ],
-  "related": ["arena-point", "battle-report", "gem"]
+  ]
 }

@@ -6,6 +6,5 @@
   },
   "footer": {
     "text": "Related command:\n {PREFIX}exp <current exp point> <next level>"
-  },
-  "related": ["exp-point"]
+  }
 }

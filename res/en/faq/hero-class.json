@@ -2,6 +2,5 @@
   "title": "Hero Class",
   "image": {
     "url": "https://cdn.discordapp.com/attachments/833978786395586600/892248028105281556/info-hero-class.png"
-  },
-  "related": ["hero", "troops-class"]
+  }
 }

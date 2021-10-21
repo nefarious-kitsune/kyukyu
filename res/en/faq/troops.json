@@ -3,6 +3,5 @@
   "description": "Troops commonly considered as strong in the current meta\n\n**Front Line**\nPeltasts\n\n**Range**\nFrost Archers\n\n**Tank**\nYasha, Demon, Meteor Golem, Stone Golem\n\n**Crowd Control**\nPumpkin Guard, Pirate Ship, Rhino Knight\n\n**High-power AoE**\nBallista, Priest Mage\n\n**Back Line Attack**\nMagic Apprentice\n\n**Others**\nGhost Assassins, Ice Mage, Undead Soldier, Goblikazes, Taurus Witcher, Voodoo Dolls, Nun",
   "image": {
     "url": "https://cdn.discordapp.com/attachments/833978786395586600/850218296632541214/example_form.jpg"
-  },
-  "related": ["troops-upgrade", "troops-draw", "troops-class", "hero", "building"]
+  }
 }

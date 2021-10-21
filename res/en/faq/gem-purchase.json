@@ -3,6 +3,5 @@
   "description": "A list of some gem-related IAPs",
   "image": {
     "url": "https://cdn.discordapp.com/attachments/833978786395586600/848764962829762581/info-gems-purchase.png"
-  },
-  "related": ["gem", "growth-fund"]
+  }
 }

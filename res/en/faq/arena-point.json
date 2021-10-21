@@ -6,6 +6,5 @@
   },
   "footer": {
     "text": "Related command:\n {PREFIX}trophies <your point> <opponent point>"
-  },
-  "related": ["clan-point", "arena-battle"]
+  }
 }

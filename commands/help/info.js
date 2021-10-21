@@ -22,10 +22,10 @@ module.exports = {
       embeds.push(getEmbed(settings, fPath));
     });
     const content = {embeds: embeds, components: []};
-    if (embeds[embeds.length-1].related) {
+    if (item.related) {
       const menuOptions = [];
 
-      embeds[embeds.length-1].related.forEach((kw) => {
+      item.related.forEach((kw) => {
         related = this.getItem(cmdRes.items, kw);
         if (related) {
           menuOptions.push(

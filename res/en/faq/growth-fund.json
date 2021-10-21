@@ -3,6 +3,5 @@
   "description": "Growth Fund is a paid-tier of Exp rewards.",
   "image": {
     "url": "https://cdn.discordapp.com/attachments/833978786395586600/892244678794158121/info-growth-fund.png"
-  },
-  "related": ["gem-purchase", "gem", "medal"]
+  }
 }
