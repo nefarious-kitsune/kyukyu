@@ -3,5 +3,6 @@
   "description": "• After acquiring plenty of base troops, a player can start focusing on Epic and Legendary troops, and the best way to obtain them is through 4-star troops purchases.\n• On the Battle Screen, a player can tap the Troops Card icon to obtain Epic troops via 4-star troops purchases. When the Lucky Meter fills up, a player also has a chance to obtain Epic or Legendary troops through Lucky Time.",
   "thumbnail": {
     "url": "https://cdn.discordapp.com/attachments/667757428816871434/830848307953795092/120k.png"
-  }
+  },
+  "related": ["troops"]
 }

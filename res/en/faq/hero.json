@@ -1,7 +1,5 @@
 {
   "title": "Hero",
   "description": "**Best Arena Heroes**\nAly, Arthur, Chione, Selene, Seondeok\n\n**Best Starter Heroes**\nChione, Seondeok (useful in arena even at low level)\n\n**Best All-Rounder**\nAly (useful in Arena, Honor Hunting, and Hero Trial)\n\n**Best Leveling Hero**\nHohenheim",
-  "footer": {
-    "text": "Related command:\n {PREFIX}info hero-class\n {PREFIX}info troops"
-  }
+  "related": ["hero-class", "hero-upgrade", "hero-event", "hero-sale", "troops"]
 }

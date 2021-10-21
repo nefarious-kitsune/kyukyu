@@ -15,5 +15,6 @@
       "name": "Special Sales",
       "value": "Legendary heroes not listed above may get limited-time special sales, which will be announced beforehand."
     }
-  ]
+  ],
+  "related": ["hero"]
 }

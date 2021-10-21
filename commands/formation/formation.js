@@ -1,5 +1,4 @@
-const fs = require('fs');
-const {touchEmbed} = require('../../helpers/touchEmbed');
+const {getEmbed} = require('../../helpers/getEmbed');
 const {sendMessage} = require('../../helpers/sendMessage');
 
 module.exports = {
@@ -8,9 +7,8 @@ module.exports = {
   async execute(cmdRes, settings, msg, args) {
     const formName = args[0].toLowerCase().trim();
     if (cmdRes.files.hasOwnProperty(formName)) {
-      const embed = JSON.parse(fs.readFileSync(cmdRes.files[formName]));
-      touchEmbed(settings, embed);
-      sendMessage(msg.channel, {embeds: [embed]}, msg.author.id);
+      const content = {embeds: [getEmbed(settings, cmdRes.files[formName])]};
+      sendMessage(msg.channel, content, msg.author.id);
     } else {
       // NO_INFO
     }

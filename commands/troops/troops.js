@@ -1,7 +1,7 @@
 const fs = require('fs');
 const res = require('../../res/res');
 const {literal} = require('../../helpers/literal');
-const {touchEmbed} = require('../../helpers/touchEmbed');
+const {getEmbed} = require('../../helpers/getEmbed');
 const {sendMessage} = require('../../helpers/sendMessage');
 
 module.exports = {
@@ -17,10 +17,7 @@ module.exports = {
       return;
     }
     if (troopsName && cmdRes.files.hasOwnProperty(troopsName)) {
-      const embed = JSON.parse(
-          fs.readFileSync(cmdRes.files[troopsName]),
-      );
-      touchEmbed(settings, embed);
+      const embed = getEmbed(settings, cmdRes.files[troopsName]);
       embed.thumbnail = {'url': res.images.troops_icons[troopsName]};
       sendMessage(msg.channel, {embeds: [embed]}, msg.author.id);
     } else {

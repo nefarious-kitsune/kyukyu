@@ -41,9 +41,6 @@ fs.readdirSync('./commands').forEach( (folder) => {
       .forEach( (file) => {
         const path = `./commands/${folder}/${file}`;
         const cmd = require(path);
-        if (cmd.interact) {
-          cmd.interact(kyukyu);
-        }
         cmd['path'] = path;
         kyukyu.commands.set(cmd.name, cmd);
       });

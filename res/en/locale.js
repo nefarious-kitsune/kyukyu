@@ -419,12 +419,12 @@ module.exports = {
           files: [path.resolve(__dirname, 'faq', 'medal.json')],
         },
         {
-          aliases: ['growth fund', 'coin fund', 'gem fund', 'medal fund', 'fund'],
+          aliases: ['growth-fund', 'coin fund', 'gem fund', 'medal fund', 'fund'],
           desc: 'Information on Growth Fund',
           files: [path.resolve(__dirname, 'faq', 'growth-fund.json')],
         },
         {
-          aliases: ['temple of fusion', 'temple', 'fusion', 'tof', 'cassandra'],
+          aliases: ['temple-of-fusion', 'temple', 'fusion', 'tof', 'cassandra'],
           desc: 'Information on Temple of Fusion',
           files: [path.resolve(__dirname, 'faq', 'fusion.json')],
         },

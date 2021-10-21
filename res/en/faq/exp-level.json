@@ -5,6 +5,7 @@
     "url": "https://cdn.discordapp.com/attachments/833978786395586600/849104406737190933/exp-level-gold.png"
   },
   "footer": {
-    "text": "Related command:\n {PREFIX}info exp-level\n {PREFIX}exp <current exp point> <next level>"
-  }
+    "text": "Related command:\n {PREFIX}exp <current exp point> <next level>"
+  },
+  "related": ["exp-point"]
 }

@@ -14,7 +14,5 @@
       "value": "• Opening hero/troops chests.\n• Opening Super Cards.\n• Clan Wheel.\n• Buying gold coins in the Shop page.\n• Buying anything in the Mystic Shop.\n• Buying troops in the Shop page.\n• Buying additional troops during Lucky Draws.\n• Honor Hunting demo"
     }
   ],
-  "footer": {
-    "text": "Related command:\n {PREFIX}info gem-purchase\n {PREFIX}info gem-battles\n {PREFIX}info medal"
-  }
+  "related": ["gem-purchase", "arena-battle", "hero-event", "medal", "temple-of-fusion"]
 }

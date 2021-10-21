@@ -17,7 +17,5 @@
       "value": "Attached is a figure of actual troops draws by an AoW player spending 168M coins on September 28, 2021"
     }
   ],
-  "footer": {
-    "text": "Related command:\n {PREFIX}info exp-level\n {PREFIX}info building"
-  }
+  "related": ["troops", "exp-point", "building"]
 }

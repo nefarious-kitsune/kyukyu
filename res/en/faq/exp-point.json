@@ -4,7 +4,5 @@
   "image": {
     "url": "https://cdn.discordapp.com/attachments/833978786395586600/894476560520855552/info-exp-point.png"
   },
-  "footer": {
-    "text": "Related command:\n {PREFIX}info exp-level"
-  }
+  "related": ["exp-level", "troops-draw"]
 }

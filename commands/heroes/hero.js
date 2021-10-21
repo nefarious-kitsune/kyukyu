@@ -1,70 +1,52 @@
-const fs = require('fs');
 const res = require('../../res/res');
-const {touchEmbed} = require('../../helpers/touchEmbed');
-const {sendMessage} = require('../../helpers/sendMessage');
+const {getEmbed} = require('../../helpers/getEmbed');
 const {MessageActionRow, MessageSelectMenu} = require('discord.js');
 
 module.exports = {
   name: 'hero',
-  // args: true,
-  getContent(lang, heroName) {
-    const cmdRes = res.getCommandRes(lang, this.name);
-    const embed = JSON.parse(fs.readFileSync(cmdRes.files[heroName]));
+  getContent(cmdRes, settings, heroName) {
+    const embed = getEmbed(settings, cmdRes.files[heroName]);
     embed.thumbnail = {'url': res.images.hero_icons[heroName]};
-    touchEmbed({lang: lang}, embed);
-    const content = {embeds: [embed]};
-    return content;
+    return {embeds: [embed]};
   },
-  list(cmdRes, settings, msg) {
+  async execute(cmdRes, settings, msg, args) {
     const l10n = res.l10n[settings.lang];
     const menuOptions = [];
     for (const [key] of Object.entries(cmdRes.files)) {
       const heroDisplayName = l10n.HERO_DISPLAY_NAMES[key];
-      menuOptions.push(
-          {
-            label: heroDisplayName,
-            // description: cmdRes.items[i].desc,
-            value: key,
-          },
-      );
+      menuOptions.push({label: heroDisplayName, value: key});
     }
     const menu = new MessageSelectMenu()
-        .setCustomId('hero.list.' + settings.lang)
-        // .setPlaceholder(cmdRes.menuPlaceholder)
+        .setCustomId('hero.list')
         .addOptions(menuOptions);
-
     const row = new MessageActionRow().addComponents(menu);
-    msg.channel.send(
-        {
-          content: cmdRes.menuDesc,
-          components: [row],
-        },
-    );
-  },
-  interact(client) {
-    client.on('interactionCreate', async (interaction) => {
-      if (
-        (interaction.isSelectMenu()) &&
-        (interaction.customId.startsWith('hero.list.'))
-      ) {
-        const lang = (interaction.customId == ('hero.list.zht'))?'zht':'en';
-        content = this.getContent(lang, interaction.values[0]);
-        content.components = [];
-        await interaction.message.edit(content);
-        // await interaction.reply(content);
-      }
-    });
-  },
-  async execute(cmdRes, settings, msg, args) {
-    if (args.length == 0) {
-      this.list(cmdRes, settings, msg);
-    } else {
+
+    let content = {embeds: [{description: cmdRes.menuDesc}]};
+    if (args.length > 0) {
       const heroName = res.findHero(settings.lang, args[0]);
-      if (heroName == false) return;
-      if (cmdRes.files.hasOwnProperty(heroName)) {
-        content = this.getContent(settings.lang, heroName);
-        sendMessage(msg.channel, content, msg.author.id);
+      if (heroName) {
+        if (cmdRes.files.hasOwnProperty(heroName)) {
+          content = this.getContent(cmdRes, settings, heroName);
+        };
       }
     }
+    content.components = [row];
+    const response = await msg.channel.send(content);
+    const collector = response.createMessageComponentCollector({
+      componentType: 'SELECT_MENU',
+      time: 10 * 60 * 1000,
+      idle: 1 * 60 * 1000,
+    });
+    collector.on('collect',
+        async (interaction) => {
+          newContent = this.getContent(cmdRes, settings, interaction.values[0]);
+          content.components = [row];
+          interaction.message.edit(newContent);
+          interaction.deferUpdate();
+        },
+    );
+    collector.on('end', (collected) => {
+      response.edit({embeds: response.embeds, components: []});
+    });
   },
 };

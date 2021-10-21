@@ -14,7 +14,5 @@
       "value": "• Exchange medal for anything"
     }
   ],
-  "footer": {
-    "text": "Related command:\n {PREFIX}info gem"
-  }
+  "related": ["gem", "growth-fund"]
 }
