@@ -14,7 +14,9 @@ module.exports = {
     if (!args[0]) {
       const list =
           commands
-              .filter((cmd)=>!ADMIN_COMMANDS.includes(cmd.name))
+              .filter((cmd)=>
+                (!ADMIN_COMMANDS.includes(cmd.name))&&(!cmd.hidden),
+              )
               .map((cmd)=>prefix + cmd.aliases[0])
               .join(', ');
 

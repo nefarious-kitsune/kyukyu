@@ -33,7 +33,7 @@ module.exports = {
     {
       name: 'event',
       aliases: ['event', 'events'],
-      desc: '...',
+      desc: 'Information on current hero event.',
       responseNextCM: 'Heroes in the next Card Master: {HERO}\n',
       responseNextWheel: 'Hero in the next Wheel of Fortune: {HERO}\n',
       responseCurrentCM: 'Heroes in this Card Master: {HERO}\n',
@@ -44,31 +44,34 @@ module.exports = {
     },
     {
       name: 'event-add',
+      hidden: true,
       aliases: ['event-add', 'events-add'],
-      desc: '...',
     },
     {
       name: 'event-list',
       aliases: ['event-list', 'events-list'],
-      desc: '...',
+      desc: 'List recent hero events.',
     },
     {
       name: 'event-delete',
+      hidden: true,
       aliases: ['event-delete', 'event-del', 'events-delete', 'events-del'],
-      desc: '...',
     },
     {
       name: 'utc',
       aliases: ['utc', 'now', 'time'],
+      desc: 'Display current UTC time.',
+    },
+
+    // avatar
+    {
+      name: 'avatar',
+      hidden: true,
+      aliases: ['avatar', 'pfp'],
       desc: '...',
     },
 
     // help
-    {
-      name: 'avatar',
-      aliases: ['avatar', 'pfp'],
-      desc: '...',
-    },
     {
       name: 'help',
       aliases: ['help', 'h', 'commands'],
@@ -258,10 +261,11 @@ module.exports = {
       },
     },
 
+    // art
     {
       name: 'art',
+      hidden: true,
       aliases: ['art'],
-      desc: '',
     },
 
     // hh
@@ -285,7 +289,7 @@ module.exports = {
     {
       name: 'info',
       aliases: ['info', 'faq'],
-      desc: 'Information/tips on various subjects.',
+      desc: 'Information on various subjects.',
       response: 'Type \`{PREFIX}info <topic>\` to get information on a specific topic.\n\n**Topics available:**\n',
       items: [
         {
@@ -457,6 +461,25 @@ module.exports = {
           related: ['building', 'gem'],
           files: [path.resolve(__dirname, 'faq', 'fusion.json')],
         },
+      ],
+    },
+
+    // tip
+    {
+      name: 'tip',
+      aliases: ['tip'],
+      hidden: true,
+      desc: 'Tips on various subjects.',
+      labelTitle: 'AoW Tip',
+      labelNext: 'Next Tip',
+      items: [
+        'At the start of the season, be beware of “fishing”; some players would lower the power rating of their defense in order bait inexperienced players into attackings',
+        'When doing an Infinity War battle, using the “Heal” button is **not recommanded**.',
+        'Developer usually announces what’s on the next hero event on Thursday or Friday.',
+        'When doing Cyclops battle, using the “Evade” button is **not recommanded**.',
+        'When fighting Davison, avoid using mages and ballista.',
+        'If Daily Quests has “Purchase 2 Super Card Packs” and you do not open any Super Cards for 18 hours after reset, the quest would become “Acquire 7 Troops”',
+        'Whether you do 1× or 10× Super Card openings, each Super Card would give you an average of 27 Honor Medals',
       ],
     },
 
