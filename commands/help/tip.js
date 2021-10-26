@@ -1,6 +1,9 @@
+const res = require('../../res/res');
+
 module.exports = {
   name: 'tip',
   async execute(cmdRes, settings, msg, args) {
+    const l10n = res.l10n[settings.lang];
     let idx = Math.floor(Math.random()*cmdRes.items.length);
     let next = (idx == (cmdRes.items.length-1))?0:(idx+1);
 
@@ -8,6 +11,7 @@ module.exports = {
       embeds: [{
         title: cmdRes.labelTitle,
         description: cmdRes.items[idx],
+        footer: {text: l10n.DISCLAIMER},
       }],
       components: [{
         type: 1,
@@ -32,6 +36,7 @@ module.exports = {
           content.embeds[0].description = cmdRes.items[idx];
           interaction.message.edit(content);
           interaction.deferUpdate();
+          // interaction.reply(content);
         },
     );
     collector.on('end', (collected) => {

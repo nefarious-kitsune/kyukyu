@@ -12,7 +12,7 @@ function getEmbed(settings, fPath) {
     const embed = JSON.parse(fs.readFileSync(fPath, 'utf8'));
     const l10n = res.l10n[settings.lang];
     if (!embed.hasOwnProperty('footer')) {
-      embed.footer = {text: l10n.EMBED_FOOTER};
+      embed.footer = {text: l10n.DISCLAIMER};
     } else {
       embed.footer.text =
         literal(embed.footer.text, '{PREFIX}', settings.prefix);

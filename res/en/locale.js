@@ -467,19 +467,22 @@ module.exports = {
     // tip
     {
       name: 'tip',
-      aliases: ['tip'],
+      aliases: ['tip', 'tips'],
       hidden: true,
       desc: 'Tips on various subjects.',
       labelTitle: 'AoW Tip',
       labelNext: 'Next Tip',
       items: [
-        'At the start of the season, be beware of “fishing”; some players would lower the power rating of their defense in order bait inexperienced players into attackings',
-        'When doing an Infinity War battle, using the “Heal” button is **not recommanded**.',
-        'Developer usually announces what’s on the next hero event on Thursday or Friday.',
-        'When doing Cyclops battle, using the “Evade” button is **not recommanded**.',
+        'At the start of the season, be beware of “*fishing*”; some players would lower the power rating of their defenses in order bait inexperienced players into attacking.',
+        'When doing an Infinity War battle, using the “Heal” button is **not** recommanded.',
+        'Developer usually announces what would be on the next hero event on Thursday or Friday.',
+        'When doing Cyclops battle, using the “Evade” button is **not** recommanded.',
         'When fighting Davison, avoid using mages and ballista.',
-        'If Daily Quests has “Purchase 2 Super Card Packs” and you do not open any Super Cards for 18 hours after reset, the quest would become “Acquire 7 Troops”',
-        'Whether you do 1× or 10× Super Card openings, each Super Card would give you an average of 27 Honor Medals',
+        'If Daily Quests has “Purchase 2 Super Card Packs” and you do not open any Super Cards for 18 hours after reset, the quest would become “Acquire 7 Troops”.',
+        'Whether you do 1× or 10× Super Card openings, each Super Card would give you an average of 27 Honor Medals.',
+        'At level 8000, you can earn a maximum of 6M <:aowcoin:847363788566560798> per day. The daily limit does not include additional earning from <:doublecoin:902093066083659797> or watching advertisements. To maximize your earning, watch advertisements whenever possible.',
+        'When you use Hohenheim or Jinn at main levels and headhunt missions, enemy troops will drop more <:aowcoin:847363788566560798>.',
+        'You can turn off special effect (FX) from <:aowsettings:851720815049310208> to reduce battery consumption.',
       ],
     },
 
@@ -592,7 +595,7 @@ module.exports = {
     },
   ],
 
-  EMBED_FOOTER: 'Information contributed by AoW players.',
+  DISCLAIMER: 'Information contributed by AoW players.',
   NO_INFO: 'I have no information for “{TEXT}”',
   NO_COMMENT: 'I have no comment!',
 

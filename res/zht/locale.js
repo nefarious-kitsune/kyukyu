@@ -333,7 +333,7 @@ module.exports = {
     },
   ],
 
-  EMBED_FOOTER: '資訊由AoW玩家提供。',
+  DISCLAIMER: '資訊由AoW玩家提供。',
   NO_INFO: '我沒有關於「{TEXT}」的訊息。',
   NO_COMMENT: '我不予置評！',
 
