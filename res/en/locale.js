@@ -71,6 +71,14 @@ module.exports = {
       desc: '...',
     },
 
+    // lotr
+    {
+      name: 'ring',
+      hidden: true,
+      aliases: ['ring', 'lotr'],
+      desc: '...',
+    },
+
     // help
     {
       name: 'help',
