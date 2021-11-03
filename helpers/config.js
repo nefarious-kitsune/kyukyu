@@ -5,7 +5,7 @@ const res = require('../res/res');
 const CONFIG_FILE_PATH = path.resolve(__dirname, '../guilds.json');
 
 // these commands should not be disabled
-const UTILITY_COMMANDS = ['reload', 'greet', 'kyukyu', 'help', 'clear'];
+const UTILITY_COMMANDS = ['reload', 'greet', 'kyukyu', 'help', 'clear', 'kill'];
 
 module.exports = {
   guildConfig: {guilds: []},
