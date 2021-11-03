@@ -531,7 +531,7 @@ const SCENARIOS = [
   },
   {
     type: 'help',
-    story: 'You saw an Iron Guard strugging to get something off his feet. Some magnet was stuck to his boot.',
+    story: 'You saw an Iron Guard struggling to get something off his feet. Some magnet was stuck to his boot.',
     choices: [
       'Don\'t help',
       'Help',
@@ -730,13 +730,13 @@ const SCENARIOS = [
         die('You hid behind a tree but accidentally stepped on a snake. Oops.'),
         die('You hid behind a tree. Bad choice! The boulder hit the tree.'),
         live('You hid behind a tree. Good choice! The boulder hit the rock.'),
-        live('You hid behind a tree and the boulder swished pass you.'),
+        live('You hid behind a tree and the boulder swished past you.'),
       ],
       [
-        die('You hid behind a rock and the boulder swished pass you.\n⋮\nYou came out from hiding and saw another boulder coming your way….'),
+        die('You hid behind a rock and the boulder swished past you.\n⋮\nYou came out from hiding and saw another boulder coming your way….'),
         die('You hid behind a rock and the boulder missed you.\n⋮\nWait, some debris hit you.'),
         live('You hid behind a rock. Good choice! The boulder hit the tree.'),
-        live('You hid behind a rock and the boulder swished pass you.'),
+        live('You hid behind a rock and the boulder swished past you.'),
       ],
     ],
   },
