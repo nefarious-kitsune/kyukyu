@@ -55,13 +55,11 @@ const AOW_CB_ID = '658969855181193238';
 const AOW_MSG_LINK =
   `https://discord.com/channels/${AOW_GUILD_ID}/${AOW_CB_ID}/`;
 
-let AOW_CB;
-
 kyukyu.on('ready', async () => {
   console.log(
       fs.readFileSync(path.resolve(__dirname, 'splash.md'), 'utf8'),
   );
-  AOW_CB = await kyukyu.channels.cache.get(AOW_CB_ID);
+  kyukyu.AOW_CB = await kyukyu.channels.cache.get(AOW_CB_ID);
 });
 
 kyukyu.on('messageCreate', async (msg) => {
@@ -73,7 +71,7 @@ kyukyu.on('messageCreate', async (msg) => {
         replyId = msg.content.substring(
             AOW_MSG_LINK.length,
             msg.content.length);
-        AOW_CB.send({
+        kyukyu.AOW_CB.send({
           content: secretMessage,
           reply: {messageReference: replyId},
         });
@@ -86,7 +84,7 @@ kyukyu.on('messageCreate', async (msg) => {
       if (msg.content.startsWith('say')) {
         if (msg.content.length > 4) {
           what2say = msg.content.substring(4, msg.content.length);
-          AOW_CB.send(what2say);
+          kyukyu.AOW_CB.send(what2say);
         }
         return;
       } else if (msg.content.startsWith('msg')) {

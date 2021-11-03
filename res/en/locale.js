@@ -29,6 +29,13 @@ module.exports = {
       commandNotFound: 'There is no command with name or alias of "{TEXT}"',
     },
 
+    // kill
+    {
+      name: 'kill',
+      aliases: ['kill'],
+      desc: 'Stop the bot program.',
+    },
+
     // event
     {
       name: 'event',

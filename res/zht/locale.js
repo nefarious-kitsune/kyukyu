@@ -29,6 +29,13 @@ module.exports = {
       commandNotFound: '沒有名稱或別名是「{TEXT}」的指令',
     },
 
+    // kill
+    {
+      name: 'kill',
+      aliases: ['kill'],
+      desc: '停止機器人程序',
+    },
+
     // help
     {
       name: 'help',

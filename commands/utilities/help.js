@@ -2,7 +2,7 @@ const res = require('../../res/res');
 const {literal} = require('../../helpers/literal');
 const {sendMessage} = require('../../helpers/sendMessage');
 
-const ADMIN_COMMANDS = ['reload', 'greet', 'kyukyu'];
+const ADMIN_COMMANDS = ['reload', 'greet', 'kyukyu', 'kill'];
 
 module.exports = {
   name: 'help',
