@@ -4,7 +4,7 @@ const {formatNumber} = require('../../helpers/formatNumber');
 const {sendMessage} = require('../../helpers/sendMessage');
 const Statistics = require('statistics.js');
 
-stats = new Statistics();
+stats = new Statistics({});
 
 const MIN_PROB = 0.0005;
 
