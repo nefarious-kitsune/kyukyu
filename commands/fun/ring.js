@@ -14,18 +14,18 @@ const RING_IMG_URL =
 // const RESPONSE_TIME = 15;
 // const PAUSE_AFTER_DAY_ENDS = 1;
 // const ENTRY_TIME_LIMIT = 10;
-// const PLAYER_LIMIT = 30;
+// const PLAYER_LIMIT = 20;
 // const WINNER_LIMIT = -1;
 
 // Production
 const PAUSE_BEFORE_GAME_START = 1;
 const RESPONSE_TIME = 25;
-const PAUSE_AFTER_DAY_ENDS = 3;
-const ENTRY_TIME_LIMIT = 60;
-const PLAYER_LIMIT = 100;
+const PAUSE_AFTER_DAY_ENDS = 15;
+const ENTRY_TIME_LIMIT = 90;
+const PLAYER_LIMIT = 25;
 const WINNER_LIMIT = 2;
 
-const SPECIAL_TRIGGER = 2;
+const SPECIAL_TRIGGER = 6;
 
 const ENTROLL_FILTER = {
   time: ENTRY_TIME_LIMIT * 1000,
@@ -40,27 +40,16 @@ const RESPONSE_FILTER = {
 // const DUEL_RESPONSE_FILTER = {max: 1, time: DUEL_RESPONSE_TIME * 1000};
 
 const BLUE = 0x3170a6; // (49, 112, 166)
-const RED = 0xb83a34; // (184, 58, 52)
+// const RED = 0xb83a34; // (184, 58, 52)
 // const GREEN = 0x77993c; // (119, 153, 60)
 
 const RING_MASTER_REVIVE_RATE = 0.08;
 
 const MAX_MEDAL = 5; // maximum number of medals a player can have.
 
-const REVIVE = {
-  description: 'You used an Honor Medal to **revive** yourself.',
-  color: BLUE,
-};
-
-const MASTER_REVIVE = {
-  description: 'The RiNG Master has **revived** you!',
-  color: BLUE,
-};
-
-const DIED = {
-  description: '**You did not make it. Better luck next time.**',
-  color: RED,
-};
+const REVIVE_MSG = '\n\nYou were **revived** with an Honor Medal.';
+const MASTER_REVIVE_MSG = '\n\nYou were **revived** by the RiNG Master!';
+const DEATH_MSG = '\n\n**You did not make it. Better luck next time.**';
 
 const ANNOUNCEMENT_MSG =
 'A round of **Ri**diculously **N**onsensical **G**ame (RiNG) ' +
@@ -85,7 +74,7 @@ const ANNOUNCEMENT = {
       type: 2, // button
       label: 'JOIN',
       style: 1, // Primary (blue)
-      custom_id: 'lotr.join',
+      custom_id: 'join',
     }],
   }],
 };
@@ -100,19 +89,15 @@ const ANNOUNCEMENT_CLOSED = {
   components: [{
     type: 1,
     components: [{
-      type: 2, label: 'JOIN', style: 1, custom_id: 'lotr.join', disabled: true,
+      type: 2, label: 'JOIN', style: 1, custom_id: 'join', disabled: true,
     }],
   }],
 };
 
 const WELCOME = {
-  embeds: [{
-    description:
-        'Welcome to the **RiNG**. ' +
-        'We are still waiting for others to sign up. ' +
-        'The contest will start shortly.',
-    color: BLUE,
-  }],
+  content:
+    'Welcome! We\'re still waiting for others to sign up. ' +
+    'The contest will start shortly.',
   ephemeral: true,
 };
 
@@ -365,6 +350,8 @@ const SPECIAL_SCENARIOS = [
     setPlayers(data, A, B) {
       data.playerA = A;
       data.playerB = B;
+      data.playerAChoice = undefined;
+      data.playerBChoice = undefined;
       // fireStarter.send(`**${A.playerName}** and **${B.playerName}** started a duel.`);
       console.log(`**${A.playerName}** and **${B.playerName}** started a duel.`);
     },
@@ -387,7 +374,13 @@ const SPECIAL_SCENARIOS = [
       const heroes = ['Chione', 'Selene', 'Aly'];
       // fireStarter.send(`${player.playerName} chose ${heroes[choice]}`);
       console.log(`${player.playerName} chose ${heroes[choice]}`);
-      return {result: 'live', message: `You chose ${heroes[choice]}.`};
+
+      if (choice == undefined) {
+        console.error('Argg.......');
+        return die('You forfeited the match.');
+      } else {
+        return {result: 'live', message: `You chose ${heroes[choice]}.`};
+      }
     },
     resolveDuel(data, player) {
       const heroes = ['Chione', 'Selene', 'Aly'];
@@ -403,10 +396,17 @@ const SPECIAL_SCENARIOS = [
         oppChoice = data.playerAChoice;
         oppName = data.playerA.playerName;
       }
+
+      if (myChoice == undefined) {
+        return die('You forfeited the match.');
+      }
+
       if (myChoice == oppChoice) {
         return live(`You and **${oppName}** both chose ${heroes[myChoice]}. It's a draw.`);
       } else {
-        if (((myChoice == 2) && (oppChoice == 0)) || (myChoice < oppChoice)) {
+        if (oppChoice == undefined) {
+          return live(`**${oppName}** forfeited the match. You won.`);
+        } else if (((myChoice == 2) && (oppChoice == 0)) || (myChoice < oppChoice)) {
           return live(`You chose ${heroes[myChoice]} and **${oppName}** chose ${heroes[oppChoice]}. You won.`);
         } else {
           return die(`You chose ${heroes[myChoice]} and **${oppName}** chose ${heroes[oppChoice]}. You lost.`);
@@ -517,14 +517,12 @@ const SCENARIOS = [
     results: [
       [
         die('You moved aside to let the Knight pass.\n⋮\nYou heard another rustle. There was a second Rhino Knight!'),
-        live('You did not move. The Rhino Knight saw you and stopped. That was close.'),
-      ],
-      [
         live('You moved aside and the Rhino Knight whisked by you.'),
-        die('You did not move. The Knight tried to halt his rhino but could\'t. You were trampled over.'),
+        live('You moved aside to let the Rhino Knight pass.'),
       ],
       [
-        live('You moved aside to let the Rhino Knight pass.'),
+        die('You did not move. The Knight tried to halt his rhino but could\'t. You were trampled over.'),
+        live('You did not move. The Rhino Knight saw you and stopped. That was close.'),
         live('False alarm! The Rhino Knight turned sharply and rode away….'),
       ],
     ],
@@ -827,9 +825,9 @@ class Player {
     this.interaction = i;
 
     this.collector = null;
-    this.resolved = false;
     this.defaultChoice = 0;
     this.scenario = null;
+    this.cachedResponse = '';
 
     i.followUp(WELCOME);
     // fireStarter.send(`${playerName} has joined the RiNG.`);
@@ -841,7 +839,6 @@ class Player {
    * @param {object} scenario
    */
   startDay(scenario) {
-    this.resolved = false;
     this.scenario = scenario;
 
     const buttons = [];
@@ -857,6 +854,12 @@ class Player {
     }
     this.defaultChoice = diceRoll(choices.length);
 
+    let response = `**Day ${this.master.days}**\n${story}`;
+    if (this.cachedResponse.length) {
+      response = this.cachedResponse + '\n\n' + response;
+      this.cachedResponse = '';
+    }
+
     for (let bi = 0; bi < choices.length; bi++) {
       buttons.push({
         type: 2, label: choices[bi],
@@ -864,18 +867,10 @@ class Player {
       });
     }
     const content = {
-      embeds: [{
-        title: `Day ${this.master.days}`,
-        description: story,
-        color: BLUE,
-      }],
+      content: response,
       ephemeral: true,
       components: [{type: 1, components: buttons}],
     };
-    // const filter =
-    //   (scenario.type == 'duel')?
-    //   DUEL_RESPONSE_FILTER:
-    //   RESPONSE_FILTER;
     this.interaction.followUp(content).then( (msg) => {
       this.collector = msg.createMessageComponentCollector(RESPONSE_FILTER);
       this.collector.on('collect', (i) => {
@@ -883,11 +878,13 @@ class Player {
         i.deferUpdate();
         this.processChoice(parseInt(i.customId));
       });
-      this.collector.on('end', (collected) => {
-        if (!this.resolved) {
-          this.processChoice(this.defaultChoice);
-        }
-      });
+
+      if (scenario.type != 'duel') { // no timeout for duels!
+        this.collector.on('end', (i, reason) => {
+          // console.log(this.collector.collected.first().customId);
+          if (reason == 'time') this.processChoice(undefined);
+        });
+      }
     });
   }
 
@@ -898,24 +895,31 @@ class Player {
   endDay() {
     if (this.scenario.type == 'duel') {
       const result = this.scenario.resolveDuel(this.master.data, this);
-      const newResponse = {embeds: [], ephemeral: true};
+      let response = result.message;
+
       if (result.result == 'die') {
         if (this.medal) {
           this.medal--;
-          newResponse.embeds.push(REVIVE);
+          response += REVIVE_MSG;
         } else if (Math.random() < RING_MASTER_REVIVE_RATE) {
-          newResponse.embeds.push(MASTER_REVIVE);
+          response += MASTER_REVIVE_MSG;
         } else {
           this.alive = false;
-          newResponse.embeds.push(DIED);
+          response += DEATH_MSG;
           // fireStarter.send(`${this.playerName} has died.`);
         }
       }
-      newResponse.embeds.push({
-        description: result.message, color: BLUE,
-      });
-      this.interaction.followUp(newResponse);
+      this.cachedResponse = response;
     }
+
+    if ((!this.alive) && (this.cachedResponse.length)) {
+      // Send last message (won't be another day)
+      this.interaction.followUp({
+        content: this.cachedResponse,
+        ephemeral: true,
+      });
+    }
+
     return this.alive;
   }
 
@@ -924,35 +928,28 @@ class Player {
    * @param {Integer} choice
   */
   processChoice(choice) {
-    this.resolved = true;
-    const newResponse = {embeds: [], ephemeral: true};
+    let response;
     let result;
-
     const scenario = this.scenario;
+
     if (scenario.type == 'duel') {
-      result = this.scenario.resolveChoice(this.master.data, choice, this);
-      newResponse.embeds.push({
-        description: result.message, color: BLUE,
-      });
-      this.interaction.followUp(newResponse);
+      this.scenario.resolveChoice(this.master.data, choice, this);
       return;
     }
 
+    const CHOICE = (choice == undefined)?this.defaultChoice:choice;
     if (scenario.type == 'single') {
-      result = this.scenario.resolveChoice(this.master.data, choice, this);
+      result = this.scenario.resolveChoice(this.master.data, CHOICE, this);
     } else {
-      const __result = this.scenario.results[choice];
+      const __result = this.scenario.results[CHOICE];
       result = __result[diceRoll(__result.length)];
     } // end normal scenario
 
-    newResponse.embeds.push({
-      description: result.message, color: BLUE,
-    });
+    response = result.message;
 
     switch (result.result) {
       case 'medal':
-        this.medal++;
-        if (this.medal > MAX_MEDAL) this.medal = MAX_MEDAL;
+        if (this.medal < MAX_MEDAL) this.medal++;
         break;
       case 'medal2x':
         this.medal += 2;
@@ -962,22 +959,28 @@ class Player {
         this.medal += 3;
         if (this.medal > MAX_MEDAL) this.medal = MAX_MEDAL;
         break;
-      case 'live':
-        break;
       case 'die':
         if (this.medal) {
           this.medal--;
-          newResponse.embeds.push(REVIVE);
+          response += REVIVE_MSG;
         } else if (Math.random() < RING_MASTER_REVIVE_RATE) {
-          newResponse.embeds.push(MASTER_REVIVE);
+          response += MASTER_REVIVE_MSG;
         } else {
           this.alive = false;
-          newResponse.embeds.push(DIED);
+          response += DEATH_MSG;
           // fireStarter.send(`${this.playerName} has died.`);
         }
         break;
+      case 'live':
+      default:
     }
-    this.interaction.followUp(newResponse);
+
+    if (choice == undefined) {
+      console.log(`${this.playerName} timed out.`);
+      this.cachedResponse = response;
+    } else {
+      this.interaction.followUp({content: response, ephemeral: true});
+    };
   }
 }
 
@@ -995,6 +998,7 @@ class RiNGMaster {
       trapASet: false, trapA: 0, trapABy: '',
       trapBSet: false, trapB: 0, trapBBy: '',
     };
+    this.gameSummary = [];
     channel
         .send(ANNOUNCEMENT)
         .then((msg)=> {
@@ -1012,17 +1016,11 @@ class RiNGMaster {
                   this.players[1].medal = 1;
                   this.players[2].medal = 1;
                   /* eslint-disable max-len */
-                  this.channel.send({
-                    embeds: [{
-                      description:
-                        `**${this.players[0].playerName}**, ` +
-                        `**${this.players[1].playerName}**, and ` +
-                        `**${this.players[2].playerName}** ` +
-                        'have taken a headstart! They each will be awarded an Honor Medal.\n\n' +
-                        'We can\'t let the victory slide without competition. Smash that JOIN button like this was a Phasecast video!',
-                      color: BLUE,
-                    }],
-                  });
+                  this.channel.send(
+                      `**${this.players[0].playerName}**, **${this.players[1].playerName}**, and ` +
+                      `**${this.players[2].playerName}** have taken a headstart! ` +
+                      'They each will be awarded an Honor Medal.',
+                  );
                   /* eslint-enable max-len */
                 }
                 if (this.players.length >= PLAYER_LIMIT) collector.stop();
@@ -1030,14 +1028,9 @@ class RiNGMaster {
           );
           collector.on('end', (collected) => {
             msg.edit(ANNOUNCEMENT_CLOSED);
-            channel.send({
-              embeds: [{
-                description:
-                  'The round of **RiNG** has started.\nBest of luck to our ' +
-                  `**${this.players.length}** participants!`,
-                color: BLUE,
-              }],
-            });
+            channel.send(
+                '**RiNG** has started! Best of luck to all of our ' +
+                `**${this.players.length}** players.`);
             pause(PAUSE_BEFORE_GAME_START).then(() => this.startDay());
           });
         });
@@ -1050,20 +1043,22 @@ class RiNGMaster {
 
     this.playerAIdx = -1;
     this.playerBIdx = -1;
-    if (this.players.length > SPECIAL_TRIGGER) {
-      const special = diceRoll(SPECIAL_SCENARIOS.length+5);
-      if (special < SPECIAL_SCENARIOS.length) {
-        if (special.type == 'single') {
+    if (this.players.length >= SPECIAL_TRIGGER) {
+      const SPECIAL_IDX =
+        (this.days == 1)?4:diceRoll(SPECIAL_SCENARIOS.length + 4);
+      if (SPECIAL_IDX < SPECIAL_SCENARIOS.length) {
+        scenario = SPECIAL_SCENARIOS[SPECIAL_IDX];
+        if (scenario.type == 'single') {
           this.playerAIdx = diceRoll(this.players.length);
-          scenario = SPECIAL_SCENARIOS[special];
+          scenario = SPECIAL_SCENARIOS[SPECIAL_IDX];
           this.players[this.playerAIdx].startDay(scenario);
-        } if (special.type == 'duel') {
+        } if (scenario.type == 'duel') {
           const AIdx = diceRoll(this.players.length);
-          const BIdx = diceRoll(this.players.length);
+          let BIdx = diceRoll(this.players.length);
+          if (AIdx == BIdx) BIdx = diceRoll(this.players.length);
           if (AIdx !== BIdx) {
             this.playerAIdx = AIdx;
             this.playerBIdx = BIdx;
-            scenario = SPECIAL_SCENARIOS[special];
             scenario.setPlayers(
                 this.data,
                 this.players[AIdx],
@@ -1086,49 +1081,63 @@ class RiNGMaster {
   }
 
   /** End a day */
-  endDay() {
+  async endDay() {
     const survivors = [];
     const eliminated = [];
     this.players.forEach((p) => {
       if (p.endDay()) {
         survivors.push(p);
       } else {
-        eliminated.push(p);
+        eliminated.push(p.playerName);
       }
     });
 
-    let SUMMARY = '';
-    if (eliminated.length > 0) {
-      SUMMARY =
-        eliminated.length + ' players eliminated: ' +
-        eliminated.map((p)=>'<@'+p.player.id+'>').join(', ') + '\n';
+    let SUMMARY = '__Day ' + this.days + '__\n';
+    if (eliminated.length == 0) {
+      SUMMARY += 'No player was eliminated.';
+    } else if (eliminated.length == 1) {
+      SUMMARY += `1 player was eliminated: ${eliminated[0]}`;
+    } else {
+      SUMMARY +=
+        eliminated.length + ' players were eliminated: ' +
+        eliminated.join(', ');
     }
-    SUMMARY += survivors.length + ' players remaining.';
+    this.gameSummary.push(SUMMARY);
 
     this.players = survivors;
-    this.channel.send(
-        {
-          embeds: [{
-            title: 'Day ' + this.days,
-            description: SUMMARY,
-            color: BLUE,
-          }],
-        },
-    );
 
+    let gameEnded = false;
     if (survivors.length <= WINNER_LIMIT) {
-      this.channel.send(
-          'The RiNG round has ended! The **Lords of RiNG** are: \n' +
+      gameEnded = true;
+      this.gameSummary.push(
+          '**The RiNG round has ended!** The **Lords of RiNG** are:\n' +
           survivors.map((p)=>'<@'+p.player.id+'>').join(', '),
       );
     } else if (survivors.length == 0) {
-      this.channel.send(
-          'The RiNG round has ended! ' +
+      gameEnded = true;
+      this.gameSummary.push(
+          '**The RiNG round has ended!** ' +
           'Unfortunately none of our players has survived!',
       );
-    } else {
-      pause(PAUSE_AFTER_DAY_ENDS).then(() => this.startDay());
     }
+
+    if (gameEnded) {
+      this.channel.send(this.gameSummary.join('\n\n'));
+      this.gameSummary = [];
+      this.players = [];
+      return;
+    }
+
+    let pauseTime = PAUSE_AFTER_DAY_ENDS;
+    if (this.gameSummary.length >= 5) {
+      await this.channel.send(
+          this.gameSummary.join('\n\n') + '\n\n**' +
+          survivors.length + '** players remaining.',
+      );
+      this.gameSummary = [];
+      pauseTime += 5;
+    }
+    pause(pauseTime).then(() => this.startDay());
   }
 };
 
@@ -1140,10 +1149,10 @@ const lotr = {
       if (msg.channelId == '903150247142903878') {
         const CB = msg.client.AOW_CB;
         CB.send(
-            'A round of RiNG is starting in 20 seconds. ' +
+            'A round of RiNG is starting in 10 seconds. ' +
             'Head over to <#903150247142903878> to play!',
         );
-        pause(20).then(()=>{
+        pause(10).then(()=>{
           CB.send('Alright. Let\'s go! <#903150247142903878>');
           new RiNGMaster(msg.channel);
         });
