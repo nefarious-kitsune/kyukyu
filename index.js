@@ -81,13 +81,13 @@ kyukyu.on('messageCreate', async (msg) => {
     }
 
     if (msg.channel.type == 'DM') {
-      if (msg.content.startsWith('say')) {
+      if (msg.content.toLowerCase().startsWith('say')) {
         if (msg.content.length > 4) {
           what2say = msg.content.substring(4, msg.content.length);
           kyukyu.AOW_CB.send(what2say);
         }
         return;
-      } else if (msg.content.startsWith('msg')) {
+      } else if (msg.content.toLowerCase().startsWith('msg')) {
         if (msg.content.length > 4) {
           secretMessage = msg.content.substring(4, msg.content.length);
         } else {
@@ -156,8 +156,14 @@ kyukyu.on('messageCreate', async (msg) => {
         reply += '\nThe proper usage would be:' +
               `\`${prefix}${cmd.name} ${cmd.usage}\``;
       }
-      return msg.reply(reply);
+      msg.channel.send({
+        content: reply,
+        reply: {messageReference: msg.reference.messageId},
+      });
+      return;
     }
+
+    console.log(`${msg.author.username}: ${msg.content}`);
 
     cmd.execute(cmdRes, settings, msg, args).catch((error) => {
       console.error('--------------------------------------------------');
