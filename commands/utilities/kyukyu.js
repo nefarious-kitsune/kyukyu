@@ -61,20 +61,20 @@ module.exports = {
     );
     msg.channel.send({
       content: cmdRes.commandNotFound,
-      reply: {messageReference: msg.reference.messageId},
+      reply: {messageReference: msg.id},
     });
     if (result) {
       safeReact(msg, '✅', null, () => {
         msg.channel.send({
           content: '✅',
-          reply: {messageReference: msg.reference.messageId},
+          reply: {messageReference: msg.id},
         });
       });
     } else {
       safeReact(msg, '❌', null, () => {
         msg.channel.send({
           content: '❌',
-          reply: {messageReference: msg.reference.messageId},
+          reply: {messageReference: msg.id},
         });
       });
     }

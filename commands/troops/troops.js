@@ -15,7 +15,7 @@ module.exports = {
     if (blackList.includes(troopsName)) {
       msg.channel.send({
         content: l10n.NO_COMMENT,
-        reply: {messageReference: msg.reference.messageId},
+        reply: {messageReference: msg.id},
       });
       return;
     }
@@ -26,7 +26,7 @@ module.exports = {
     } else {
       msg.channel.send({
         content: literal(l10n.NO_INFO, '{TEXT}', args[0].trim()),
-        reply: {messageReference: msg.reference.messageId},
+        reply: {messageReference: msg.id},
       });
       return;
     }

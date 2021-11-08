@@ -16,7 +16,7 @@ module.exports = {
     if (!cmd) {
       msg.channel.send({
         content: literal(cmdRes.commandNotFound, '{TEXT}', cmdName),
-        reply: {messageReference: msg.reference.messageId},
+        reply: {messageReference: msg.id},
       });
     }
 
@@ -36,7 +36,7 @@ module.exports = {
       safeReact(msg, '✅', null, () => {
         msg.channel.send({
           content: '✅',
-          reply: {messageReference: msg.reference.messageId},
+          reply: {messageReference: msg.id},
         });
       });
     } catch (error) {
@@ -44,7 +44,7 @@ module.exports = {
       safeReact(msg, '❌', null, () => {
         msg.channel.send({
           content: '❌',
-          reply: {messageReference: msg.reference.messageId},
+          reply: {messageReference: msg.id},
         });
       });
     }

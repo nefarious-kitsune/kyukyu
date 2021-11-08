@@ -31,7 +31,7 @@ module.exports = {
       if (!foundCmdRes) {
         msg.channel.send({
           content: cmdRes.commandNotFound,
-          reply: {messageReference: msg.reference.messageId},
+          reply: {messageReference: msg.id},
         });
         return;
       };

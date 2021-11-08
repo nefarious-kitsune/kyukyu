@@ -27,7 +27,7 @@ module.exports = {
     }
     msg.channel.send({
       content: literal(l10n.NO_INFO, '{TEXT}', unitName),
-      reply: {messageReference: msg.reference.messageId},
+      reply: {messageReference: msg.id},
     });
   },
 };
