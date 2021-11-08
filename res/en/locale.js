@@ -82,7 +82,7 @@ module.exports = {
     {
       name: 'ring',
       hidden: true,
-      aliases: ['ring', 'lotr'],
+      aliases: ['ring', 'rings', 'lotr'],
       desc: '...',
     },
 

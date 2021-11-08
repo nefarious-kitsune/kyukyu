@@ -36,7 +36,6 @@ module.exports = {
           content.embeds[0].description = cmdRes.items[idx];
           interaction.message.edit(content);
           interaction.deferUpdate();
-          // interaction.reply(content);
         },
     );
     collector.on('end', (collected) => {
