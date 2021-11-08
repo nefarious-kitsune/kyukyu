@@ -24,7 +24,7 @@ module.exports = { // Duel Arena
       data.playerB.playerName:
       data.playerA.playerName;
     return {
-      story: `You arrived at the Duel Arena. Your opponent is **${opponentName}**.\n\nYou needed to choose a hero to fight.`,
+      story: `You arrived at the Duel Arena. Your opponent was **${opponentName}**.\n\nYou needed to choose a hero to fight.`,
       choices: CHOICES,
     };
   },
@@ -35,6 +35,7 @@ module.exports = { // Duel Arena
       data.playerBChoice = choice;
     }
     if (choice == undefined) {
+      console.log(`${player.playerName} forfeited the match.`);
       return eliminated('You forfeited the match.');
     } else {
       console.log(`${player.playerName} chose ${CHOICES[choice]}`);

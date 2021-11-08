@@ -23,7 +23,7 @@ module.exports = { // Duel Arena
       return {
         story:
             'You arrived at the Marble Arena. ' +
-            `Your opponent is **${data.playerA.playerName}**.\n\n` +
+            `Your opponent was **${data.playerA.playerName}**.\n\n` +
             'You needed to pick a marble ball and ' +
             'your oppoent would guess what it was.' +
             'If your opponent guessed correctly, you would lose; ' +
@@ -53,6 +53,7 @@ module.exports = { // Duel Arena
     console.log(`${player.playerName} chose ${COLORS[choice]}`);
 
     if (choice == undefined) {
+      console.log(`${player.playerName} forfeited the match.`);
       return eliminated('You forfeited the match.');
     } else {
       console.log(`${player.playerName} chose ${COLORS[choice]}`);

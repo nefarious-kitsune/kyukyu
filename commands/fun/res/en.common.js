@@ -51,7 +51,10 @@ RESOLUTION_TYPE = {
  * @return {RESOLUTION}
  */
 function survived(msg) {
-  return {type: RESOLUTION_TYPE.SURVIVED, message: msg + APPEND_SURVIVED};
+  return {
+    type: RESOLUTION_TYPE.SURVIVED,
+    message: '*' + msg + APPEND_SURVIVED + '*',
+  };
 }
 
 /**
@@ -59,7 +62,10 @@ function survived(msg) {
  * @return {RESOLUTION}
  */
 function eliminated(msg) {
-  return {type: RESOLUTION_TYPE.ELIMINATED, message: msg + APPEND_ELIMINATED};
+  return {
+    type: RESOLUTION_TYPE.ELIMINATED,
+    message: '*' + msg + APPEND_ELIMINATED + '*',
+  };
 }
 
 
@@ -68,7 +74,10 @@ function eliminated(msg) {
  * @return {RESOLUTION}
  */
 function pending(msg) {
-  return {type: RESOLUTION_TYPE.PENDING, message: msg};
+  return {
+    type: RESOLUTION_TYPE.PENDING,
+    message: '*' + msg + '*',
+  };
 }
 
 /**
@@ -76,7 +85,10 @@ function pending(msg) {
  * @return {RESOLUTION}
  */
 function medalX1(msg) {
-  return {type: RESOLUTION_TYPE.MEDAL_X1, message: msg + APPEND_MEDAL_X1};
+  return {
+    type: RESOLUTION_TYPE.MEDAL_X1,
+    message: '*' + msg + APPEND_MEDAL_X1 + '*',
+  };
 }
 
 /**
@@ -84,7 +96,10 @@ function medalX1(msg) {
  * @return {RESOLUTION}
  */
 function medalX2(msg) {
-  return {type: RESOLUTION_TYPE.MEDAL_X2, message: msg + APPEND_MEDAL_X2};
+  return {
+    type: RESOLUTION_TYPE.MEDAL_X2,
+    message: '*' + msg + APPEND_MEDAL_X2 + '*',
+  };
 }
 
 /**
@@ -92,7 +107,10 @@ function medalX2(msg) {
  * @return {object}
  */
 function medalX3(msg) {
-  return {type: RESOLUTION_TYPE.MEDAL_X3, message: msg + APPEND_MEDAL_X3};
+  return {
+    type: RESOLUTION_TYPE.MEDAL_X3,
+    message: '*' + msg + APPEND_MEDAL_X3 + '*',
+  };
 }
 
 /**
