@@ -4,48 +4,41 @@ const {
   SCENARIO_TYPE, RESOLUTION_TYPE, diceRoll, pause, wait,
 } = require('./res/en.common');
 
+const {enroll} = require('./res/en.enroll');
+
 const SCENARIOS =
   require('./res/en.chance')
       .concat(require('./res/en.danger'));
 
 const GAME_CHANNELS = ['903150247142903878', '831064145637539860'];
 
-/* eslint-disable max-len */
-const RING_IMG_URL = 'https://cdn.discordapp.com/attachments/833978786395586600/903096090977509446/the-ring.png';
-const RING_EMOJI = '<:the_one_ring:906177472490532864>';
-/* eslint-enable max-len */
-
 // Debug
-// const PAUSE_BEFORE_GAME_START = 0.5;
-// const RESPONSE_TIME = 15;
-// const PAUSE_AFTER_DAY_ENDS = 1;
-// const ENTRY_TIME_LIMIT = 10;
-// const PLAYER_LIMIT = 20;
-// const WINNER_LIMIT = -1;
-// const SPECIAL_TRIGGER = 1;
-//
-// Production
-const PAUSE_BEFORE_GAME_START = 1;
-const RESPONSE_TIME = 25;
-const PAUSE_AFTER_DAY_ENDS = 15;
-const ENTRY_TIME_LIMIT = 90;
-const PLAYER_LIMIT = 15;
-const WINNER_LIMIT = 2;
-const SPECIAL_TRIGGER = 5;
+// const GAME_SETTINGS = {
+//   RESPONSE_TIME: 15,
+//   PAUSE_AFTER_DAY_ENDS: 2,
+//   ENTRY_TIME_LIMIT: 10,
+//   PLAYER_LIMIT: 10,
+//   WINNER_LIMIT: -1,
+//   SPECIAL_TRIGGER: 1,
+// };
 
-const ENTROLL_FILTER = {
-  time: ENTRY_TIME_LIMIT * 1000,
-  componentType: 'BUTTON',
+// Production
+const GAME_SETTINGS = {
+  RESPONSE_TIME: 25,
+  PAUSE_AFTER_DAY_ENDS: 15,
+  ENTRY_TIME_LIMIT: 90,
+  PLAYER_LIMIT: 15,
+  WINNER_LIMIT: 2,
+  SPECIAL_TRIGGER: 5,
 };
+
 const RESPONSE_FILTER = {
   max: 1,
-  time: RESPONSE_TIME * 1000,
+  time: GAME_SETTINGS.RESPONSE_TIME * 1000,
   componentType: 'BUTTON',
 };
-// const DUEL_RESPONSE_TIME = 18;
-// const DUEL_RESPONSE_FILTER = {max: 1, time: DUEL_RESPONSE_TIME * 1000};
 
-const BLUE = 0x3170a6; // (49, 112, 166)
+// const BLUE = 0x3170a6; // (49, 112, 166)
 // const RED = 0xb83a34; // (184, 58, 52)
 // const GREEN = 0x77993c; // (119, 153, 60)
 
@@ -56,70 +49,6 @@ const MAX_MEDAL = 5; // maximum number of medals a player can have.
 const REVIVE_MSG = '\n\nYou were **revived** with an Honor Medal.';
 const MASTER_REVIVE_MSG = '\n\nYou were **revived** by the RiNG Master!';
 const DEATH_MSG = '\n\n**You did not make it. Better luck next time.**';
-
-const JOIN = 'JOIN';
-const ANNOUNCEMENT_MSG =
-'A round of **Ri**diculously **N**onsensical **G**ambits (RiNGs) ' +
-'is about to start! Are you ready?\n\n' +
-`If you want to participate in it, tap the ${JOIN} button!\n` +
-`• Entry time limit: **${ENTRY_TIME_LIMIT}** seconds\n` +
-`• Max **${PLAYER_LIMIT}** participants\n` +
-`• Max **${WINNER_LIMIT}** winners\n\n` +
-'Winners of this game will be crowned as **Lord of the RiNGs**!\n\n' +
-'Alright! Let\'s go!';
-
-// const JOIN = '加入';
-// const ANNOUNCEMENT_MSG =
-//   '一場荒謬的賭注（**Ri**diculously **N**onsensical **G**ambits, RiNGs）' +
-//   `即將開始！你準備好了嗎？\n\n如果您想參與其中，請點擊“${JOIN}”按鈕！\n` +
-//   `• 進入時間限制：**${ENTRY_TIME_LIMIT}**秒\n` +
-//   `• 最多**${PLAYER_LIMIT}**名參與者\n` +
-//   `• 最多**${WINNER_LIMIT}**名獲勝者\n\n` +
-//   '這場比賽的獲勝者將被加冕為**Lord of RiNGs**!';
-
-const ANNOUNCEMENT = {
-  embeds: [{
-    title: 'RiNGs',
-    thumbnail: {url: RING_IMG_URL},
-    description: ANNOUNCEMENT_MSG,
-    color: BLUE,
-  }],
-  components: [{
-    type: 1,
-    components: [{
-      type: 2, // button
-      label: JOIN,
-      style: 2, // Secondary (gray)
-      custom_id: 'join',
-      emoji: RING_EMOJI,
-    }],
-  }],
-};
-
-const ANNOUNCEMENT_CLOSED = {
-  embeds: [{
-    title: 'RiNGs',
-    thumbnail: {url: RING_IMG_URL},
-    description: ANNOUNCEMENT_MSG,
-    color: BLUE,
-  }],
-  components: [{
-    type: 1,
-    components: [{
-      type: 2, label: JOIN, style: 2, custom_id: 'join', disabled: true,
-      emoji: RING_EMOJI,
-    }],
-  }],
-};
-
-const WELCOME = {
-  content:
-    'Welcome! We\'re still waiting for others to sign up. ' +
-    'The contest will start shortly.',
-  // content:
-  //   '歡迎。我們還在等其他人加入。賭注很快地就會開始。.',
-  ephemeral: true,
-};
 
 /*
 TRAP
@@ -162,9 +91,6 @@ class Player {
     this.defaultChoice = 0;
     this.scenario = null;
     this.cachedResponse = '';
-
-    i.followUp(WELCOME);
-    console.log(`${playerName} has joined the RiNGs.`);
   }
 
   /**
@@ -350,44 +276,17 @@ class RiNGMaster {
       playerAChoice: undefined, playerBChoice: undefined,
     };
     this.gameSummary = [];
-    channel
-        .send(ANNOUNCEMENT)
-        .then((msg)=> {
-          const contestantIds = [];
-          const collector = msg
-              .createMessageComponentCollector(ENTROLL_FILTER);
-          collector.on('collect',
-              (interaction) => {
-                interaction.deferUpdate();
-                if (contestantIds.includes(interaction.member.id)) return;
-                this.players.push(new Player(this, interaction));
-                contestantIds.push(interaction.member.id);
-                if (this.players.length ==3) {
-                  this.players[0].medal = 1;
-                  this.players[1].medal = 1;
-                  this.players[2].medal = 1;
-                  /* eslint-disable max-len */
-                  this.channel.send(
-                      `**${this.players[0].playerName}**, **${this.players[1].playerName}**, and ` +
-                      `**${this.players[2].playerName}** have taken a headstart! ` +
-                      'They each will be awarded an Honor Medal.',
-                  );
-                  /* eslint-enable max-len */
-                }
-                if (this.players.length >= PLAYER_LIMIT) collector.stop();
-              },
-          );
-          collector.on('end', (collected) => {
-            msg.edit(ANNOUNCEMENT_CLOSED);
-            channel.send(
-                '**RiNGs** has started! Best of luck to all of our ' +
-                `**${this.players.length}** players.`);
-            // channel.send(
-            //     '荒謬的賭注開始了！祝我們' +
-            //     `**${this.players.length}**名玩家玩得愉快！`);
-            pause(PAUSE_BEFORE_GAME_START).then(() => this.startDay());
-          });
-        });
+    enroll(GAME_SETTINGS, this);
+  }
+
+  /**
+   * @param {Interaction} i
+   * @return {PLayer}
+   */
+  addPlayer(i) {
+    player = new Player(this, i);
+    this.players.push(player);
+    return player;
   }
 
   /** Start a day */
@@ -397,7 +296,7 @@ class RiNGMaster {
 
     this.playerAIdx = -1;
     this.playerBIdx = -1;
-    if (this.players.length >= SPECIAL_TRIGGER) {
+    if (this.players.length >= GAME_SETTINGS.SPECIAL_TRIGGER) {
       // const SPECIAL_IDX = diceRoll(SPECIAL_SCENARIOS.length + 2);
 
       const SPECIAL_IDX =
@@ -439,7 +338,7 @@ class RiNGMaster {
         this.players[pi].startDay(scenario);
       }
     }
-    pause(RESPONSE_TIME+0.5).then(() => this.endDay());
+    pause(GAME_SETTINGS.RESPONSE_TIME+0.5).then(() => this.endDay());
   }
 
   /** End a day */
@@ -469,7 +368,7 @@ class RiNGMaster {
     this.players = survivors;
 
     let gameEnded = false;
-    if (survivors.length <= WINNER_LIMIT) {
+    if (survivors.length <= GAME_SETTINGS.WINNER_LIMIT) {
       gameEnded = true;
       if (survivors.length == 1) {
         this.gameSummary.push(
@@ -492,14 +391,14 @@ class RiNGMaster {
 
     if (gameEnded) {
       this.players.forEach((p) => p.lastMessage());
-      wait(PAUSE_AFTER_DAY_ENDS);
+      wait(GAME_SETTINGS.PAUSE_AFTER_DAY_ENDS);
       this.channel.send(this.gameSummary.join('\n\n'));
       this.gameSummary = [];
       this.players = [];
       return;
     }
 
-    let pauseTime = PAUSE_AFTER_DAY_ENDS;
+    let pauseTime = GAME_SETTINGS.PAUSE_AFTER_DAY_ENDS;
     if (this.gameSummary.length >= 5) {
       await this.channel.send(
           this.gameSummary.join('\n\n') + '\n\n**' +
