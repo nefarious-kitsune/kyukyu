@@ -59,11 +59,24 @@ module.exports = {
         args[0].toLowerCase(),
         args.slice(1),
     );
-
+    msg.channel.send({
+      content: cmdRes.commandNotFound,
+      reply: {messageReference: msg.reference.messageId},
+    });
     if (result) {
-      safeReact(msg, '✅', null, () => msg.reply('✅'));
+      safeReact(msg, '✅', null, () => {
+        msg.channel.send({
+          content: '✅',
+          reply: {messageReference: msg.reference.messageId},
+        });
+      });
     } else {
-      safeReact(msg, '❌', null, () => msg.reply('❌'));
+      safeReact(msg, '❌', null, () => {
+        msg.channel.send({
+          content: '❌',
+          reply: {messageReference: msg.reference.messageId},
+        });
+      });
     }
   },
 };

@@ -14,9 +14,10 @@ module.exports = {
       );
 
     if (!cmd) {
-      return msg.reply(
-          literal(cmdRes.commandNotFound, '{TEXT}', cmdName),
-      );
+      msg.channel.send({
+        content: literal(cmdRes.commandNotFound, '{TEXT}', cmdName),
+        reply: {messageReference: msg.reference.messageId},
+      });
     }
 
     const folderName =
@@ -32,10 +33,20 @@ module.exports = {
     try {
       const newCmd = require(`../${folderName}/${cmd.name}.js`);
       msg.client.commands.set(newCmd.name, newCmd);
-      safeReact(msg, '✅', null, () => msg.reply('✅'));
+      safeReact(msg, '✅', null, () => {
+        msg.channel.send({
+          content: '✅',
+          reply: {messageReference: msg.reference.messageId},
+        });
+      });
     } catch (error) {
       console.error(error);
-      safeReact(msg, '❌', null, () => msg.reply('❌'));
+      safeReact(msg, '❌', null, () => {
+        msg.channel.send({
+          content: '❌',
+          reply: {messageReference: msg.reference.messageId},
+        });
+      });
     }
   },
 };

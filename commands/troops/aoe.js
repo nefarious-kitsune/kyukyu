@@ -25,6 +25,9 @@ module.exports = {
         }
       }
     }
-    msg.reply(literal(l10n.NO_INFO, '{TEXT}', unitName));
+    msg.channel.send({
+      content: literal(l10n.NO_INFO, '{TEXT}', unitName),
+      reply: {messageReference: msg.reference.messageId},
+    });
   },
 };

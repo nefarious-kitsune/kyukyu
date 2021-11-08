@@ -28,7 +28,13 @@ module.exports = {
     } else {
       const foundCmdRes = res.getCommandRes(settings.lang, args[0]);
 
-      if (!foundCmdRes) return msg.reply(cmdRes.commandNotFound);
+      if (!foundCmdRes) {
+        msg.channel.send({
+          content: cmdRes.commandNotFound,
+          reply: {messageReference: msg.reference.messageId},
+        });
+        return;
+      };
 
       const displayName = foundCmdRes.aliases[0];
       let help = `${cmdRes.labelName}${displayName}`;

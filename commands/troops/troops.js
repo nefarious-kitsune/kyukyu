@@ -13,7 +13,10 @@ module.exports = {
     const blackList = cmdRes.blackList.split(',');
 
     if (blackList.includes(troopsName)) {
-      msg.reply(l10n.NO_COMMENT);
+      msg.channel.send({
+        content: l10n.NO_COMMENT,
+        reply: {messageReference: msg.reference.messageId},
+      });
       return;
     }
     if (troopsName && cmdRes.files.hasOwnProperty(troopsName)) {
@@ -21,9 +24,10 @@ module.exports = {
       embed.thumbnail = {'url': res.images.troops_icons[troopsName]};
       sendMessage(msg.channel, {embeds: [embed]}, msg.author.id);
     } else {
-      msg.reply(
-          literal(l10n.NO_INFO, '{TEXT}', args[0].trim()),
-      );
+      msg.channel.send({
+        content: literal(l10n.NO_INFO, '{TEXT}', args[0].trim()),
+        reply: {messageReference: msg.reference.messageId},
+      });
       return;
     }
   },
