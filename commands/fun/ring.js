@@ -1,7 +1,7 @@
 // const {literal} = require('../../helpers/literal');
 
 const {
-  SCENARIO_TYPE, RESOLUTION_TYPE, diceRoll, pause,
+  SCENARIO_TYPE, RESOLUTION_TYPE, diceRoll, pause, wait,
 } = require('./res/en.common');
 
 const SCENARIOS =
@@ -12,6 +12,7 @@ const GAME_CHANNELS = ['903150247142903878', '831064145637539860'];
 
 /* eslint-disable max-len */
 const RING_IMG_URL = 'https://cdn.discordapp.com/attachments/833978786395586600/903096090977509446/the-ring.png';
+const RING_EMOJI = '<:the_one_ring:906177472490532864>';
 /* eslint-enable max-len */
 
 // Debug
@@ -87,9 +88,10 @@ const ANNOUNCEMENT = {
     type: 1,
     components: [{
       type: 2, // button
-      label: 'JOIN',
-      style: 1, // Primary (blue)
+      label: JOIN,
+      style: 2, // Secondary (gray)
       custom_id: 'join',
+      emoji: RING_EMOJI,
     }],
   }],
 };
@@ -104,7 +106,8 @@ const ANNOUNCEMENT_CLOSED = {
   components: [{
     type: 1,
     components: [{
-      type: 2, label: JOIN, style: 1, custom_id: 'join', disabled: true,
+      type: 2, label: JOIN, style: 2, custom_id: 'join', disabled: true,
+      emoji: RING_EMOJI,
     }],
   }],
 };
@@ -211,13 +214,23 @@ class Player {
         this.processChoice(parseInt(i.customId));
       });
 
-      if (scenario.type != SCENARIO_TYPE.PVP_DUEL) { // no timeout for duels!
-        this.collector.on('end', (i, reason) => {
-          // console.log(this.collector.collected.first().customId);
-          if (reason == 'time') this.processChoice(undefined);
-        });
-      }
+      this.collector.on('end', (i, reason) => {
+        // console.log(this.collector.collected.first().customId);
+        if (reason == 'time') this.processChoice(undefined);
+      });
     });
+  }
+
+  /**
+   * Send last message
+   */
+  async lastMessage() {
+    if (this.cachedResponse.length) {
+      await this.interaction.followUp({
+        content: this.cachedResponse,
+        ephemeral: true,
+      });
+    }
   }
 
   /**
@@ -265,20 +278,22 @@ class Player {
 
     if (scenario.type == SCENARIO_TYPE.PVP_DUEL) {
       result = this.scenario.resolveChoice(this.master.data, choice, this);
-      this.interaction.followUp({
-        content: result.message,
-        ephemeral: true,
-      });
-      return;
-    }
-
-    const CHOICE = (choice == undefined)?this.defaultChoice:choice;
-    if (scenario.type == SCENARIO_TYPE.SPECIAL) {
-      result = this.scenario.resolveChoice(this.master.data, CHOICE, this);
+      if (choice != undefined) {
+        this.interaction.followUp({
+          content: result.message,
+          ephemeral: true,
+        });
+        return;
+      }
     } else {
-      const __result = this.scenario.results[CHOICE];
-      result = __result[diceRoll(__result.length)];
-    } // end normal scenario
+      const CHOICE = (choice == undefined)?this.defaultChoice:choice;
+      if (scenario.type == SCENARIO_TYPE.SPECIAL) {
+        result = this.scenario.resolveChoice(this.master.data, CHOICE, this);
+      } else {
+        const __result = this.scenario.results[CHOICE];
+        result = __result[diceRoll(__result.length)];
+      } // end normal scenario
+    }
 
     response = result.message;
     switch (result.type) {
@@ -297,7 +312,6 @@ class Player {
         if (this.medal) {
           this.medal--;
           response += REVIVE_MSG;
-          console.log('medal--');
         } else if (Math.random() < RING_MASTER_REVIVE_RATE) {
           response += MASTER_REVIVE_MSG;
         } else {
@@ -457,19 +471,28 @@ class RiNGMaster {
     let gameEnded = false;
     if (survivors.length <= WINNER_LIMIT) {
       gameEnded = true;
-      this.gameSummary.push(
-          '**The RiNGs round has ended!** The **Lords of the RiNGs** are:\n' +
-          survivors.map((p)=>'<@'+p.player.id+'>').join(', '),
-      );
+      if (survivors.length == 1) {
+        this.gameSummary.push(
+            'The RiNGs round has ended! The **Lord of the RiNGs** is: ' +
+            `<@${survivors[0].player.id}>`,
+        );
+      } else {
+        this.gameSummary.push(
+            'The RiNGs round has ended! The **Lords of the RiNGs** are: ' +
+            survivors.map((p)=>`<@${p.player.id}>`).join(', '),
+        );
+      }
     } else if (survivors.length == 0) {
       gameEnded = true;
       this.gameSummary.push(
-          '**The RiNGs round has ended!** ' +
-          'Unfortunately none of our players has survived!',
+          'The RiNGs round has ended! ' +
+          'Unfortunately **none of our players** has survived!',
       );
     }
 
     if (gameEnded) {
+      this.players.forEach((p) => p.lastMessage());
+      wait(PAUSE_AFTER_DAY_ENDS);
       this.channel.send(this.gameSummary.join('\n\n'));
       this.gameSummary = [];
       this.players = [];
