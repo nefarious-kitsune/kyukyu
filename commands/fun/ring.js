@@ -1,12 +1,12 @@
 // const {literal} = require('../../helpers/literal');
 
 const {
-  SCENARIO_TYPE, RESOLUTION_TYPE,
-  survived, eliminated, medalX1, medalX2, medalX3,
-  diceRoll, pause,
-} = require('res/en.common');
+  SCENARIO_TYPE, RESOLUTION_TYPE, diceRoll, pause,
+} = require('./res/en.common');
 
-const SCENARIOS = require('res/en.chance').concat(require('res/en.danger'));
+const SCENARIOS =
+  require('./res/en.chance')
+      .concat(require('./res/en.danger'));
 
 const GAME_CHANNELS = ['903150247142903878', '831064145637539860'];
 
@@ -21,16 +21,16 @@ const RING_IMG_URL = 'https://cdn.discordapp.com/attachments/833978786395586600/
 // const ENTRY_TIME_LIMIT = 10;
 // const PLAYER_LIMIT = 20;
 // const WINNER_LIMIT = -1;
-
+// const SPECIAL_TRIGGER = 1;
+//
 // Production
 const PAUSE_BEFORE_GAME_START = 1;
 const RESPONSE_TIME = 25;
 const PAUSE_AFTER_DAY_ENDS = 15;
 const ENTRY_TIME_LIMIT = 90;
-const PLAYER_LIMIT = 25;
+const PLAYER_LIMIT = 15;
 const WINNER_LIMIT = 2;
-
-const SPECIAL_TRIGGER = 6;
+const SPECIAL_TRIGGER = 5;
 
 const ENTROLL_FILTER = {
   time: ENTRY_TIME_LIMIT * 1000,
@@ -131,17 +131,14 @@ There was a heavy shower, and the road became very muddy.
 
 */
 
-/* eslint-disable max-len */
 const SPECIAL_SCENARIOS = [
-  require('res/en.lamp'),
-  require('res/en.trapA'),
-  require('res/en.triggerA'),
-  require('res/en.trapB'),
-  require('res/en.duel'),
-  require('res/en.marble'),
+  require('./res/en.special.lamp'),
+  require('./res/en.special.trapA'),
+  require('./res/en.special.triggerA'),
+  require('./res/en.special.trapB'),
+  require('./res/en.special.duel'),
+  require('./res/en.special.marble'),
 ];
-
-/* eslint-enable max-len */
 
 /** RiNG player */
 class Player {
@@ -228,11 +225,11 @@ class Player {
    * @return {Boolean}
    */
   endDay() {
-    if (this.scenario.type == SCENARIO_TYPE.  PVP_DUEL) {
+    if (this.scenario.type == SCENARIO_TYPE.PVP_DUEL) {
       const result = this.scenario.resolveDuel(this.master.data, this);
       let response = result.message;
 
-      if (result.result == RESOLUTION_TYPE.ELIMINATED) {
+      if (result.type == RESOLUTION_TYPE.ELIMINATED) {
         if (this.medal) {
           this.medal--;
           response += REVIVE_MSG;
@@ -267,7 +264,11 @@ class Player {
     const scenario = this.scenario;
 
     if (scenario.type == SCENARIO_TYPE.PVP_DUEL) {
-      this.scenario.resolveChoice(this.master.data, choice, this);
+      result = this.scenario.resolveChoice(this.master.data, choice, this);
+      this.interaction.followUp({
+        content: result.message,
+        ephemeral: true,
+      });
       return;
     }
 
@@ -280,8 +281,7 @@ class Player {
     } // end normal scenario
 
     response = result.message;
-
-    switch (result.result) {
+    switch (result.type) {
       case RESOLUTION_TYPE.MEDAL_X1:
         if (this.medal < MAX_MEDAL) this.medal++;
         break;
@@ -297,6 +297,7 @@ class Player {
         if (this.medal) {
           this.medal--;
           response += REVIVE_MSG;
+          console.log('medal--');
         } else if (Math.random() < RING_MASTER_REVIVE_RATE) {
           response += MASTER_REVIVE_MSG;
         } else {
@@ -383,11 +384,14 @@ class RiNGMaster {
     this.playerAIdx = -1;
     this.playerBIdx = -1;
     if (this.players.length >= SPECIAL_TRIGGER) {
+      // const SPECIAL_IDX = diceRoll(SPECIAL_SCENARIOS.length + 2);
+
       const SPECIAL_IDX =
         (this.days == 1)?4:diceRoll(SPECIAL_SCENARIOS.length + 4);
+
       if (SPECIAL_IDX < SPECIAL_SCENARIOS.length) {
         scenario = SPECIAL_SCENARIOS[SPECIAL_IDX];
-        if (scenario.type = SCENARIO_TYPE.SPECIAL) {
+        if (scenario.type == SCENARIO_TYPE.SPECIAL) {
           this.playerAIdx = diceRoll(this.players.length);
           scenario = SPECIAL_SCENARIOS[SPECIAL_IDX];
           this.players[this.playerAIdx].startDay(scenario);
@@ -406,6 +410,10 @@ class RiNGMaster {
             this.players[AIdx].startDay(scenario);
             this.players[BIdx].startDay(scenario);
           }
+          // this.playerAIdx = 0;
+          // this.playerBIdx = 0;
+          // scenario.setPlayers(this.data, this.players[0], this.players[0]);
+          // this.players[0].startDay(scenario);
         }
       }
     }
@@ -417,7 +425,7 @@ class RiNGMaster {
         this.players[pi].startDay(scenario);
       }
     }
-    puase(RESPONSE_TIME+0.5).then(() => this.endDay());
+    pause(RESPONSE_TIME+0.5).then(() => this.endDay());
   }
 
   /** End a day */
