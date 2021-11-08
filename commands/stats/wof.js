@@ -69,23 +69,26 @@ module.exports = {
      */
     function getCombination(resultQty, q1, q2) {
       const r = [];
-      let Q1;
-      let Q2;
       if (q1 < q2) {
-        Q1 = q1;
-        Q2 = q2;
-      } else {
-        Q1 = q2;
-        Q2 = q1;
-      }
-      let n1 = Math.floor(resultQty / Q1);
-      let n2 = 0;
-      while (n1 >= 0) {
-        n2 = (resultQty - (n1 * Q1)) / Q2;
-        if (Number.isInteger(n2)) {
-          r.push([n1, n2]);
+        let n1 = Math.floor(resultQty / q1);
+        let n2 = 0;
+        while (n1 >= 0) {
+          n2 = (resultQty - (n1 * q1)) / q2;
+          if (Number.isInteger(n2)) {
+            r.push([n1, n2]);
+          }
+          n1--;
         }
-        n1--;
+      } else {
+        let n2 = Math.floor(resultQty / q2);
+        let n1 = 0;
+        while (n2 >= 0) {
+          n1 = (resultQty - (n2 * q2)) / q1;
+          if (Number.isInteger(n1)) {
+            r.push([n1, n2]);
+          }
+          n2--;
+        }
       }
       return r;
     }
@@ -136,10 +139,8 @@ module.exports = {
       prob2 = 0.004; // probability of 2× LEGEND_SHARDSs
       unit = cmdRes.shardUnit;
     } else if (EPIC_SHARDS.includes(resultType)) {
-      qty1 = 1;
-      prob1 = 0.03; // probability of 1× shard
-      qty2 = 1;
-      prob2 = 0.03; // probability of 2× EPIC_SHARDSs
+      qty1 = qty2 = 1;
+      prob1 = prob2 = 0.03; // probability of 1× shard
       unit = cmdRes.shardUnit;
     }
 
@@ -230,6 +231,9 @@ module.exports = {
       );
     } else {
       let log = '';
+
+      if (resultRange[1] > 0.8 * spinCount) return; // NO TROLLING
+
       if (qty1 != qty2) {
         const combinations = getCombination(resultRange[1], qty1, qty2);
         for (let i=0; i<combinations.length; i++) {
