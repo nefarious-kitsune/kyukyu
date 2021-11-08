@@ -3,7 +3,7 @@
  * can have consequence on another player
  */
 
-const {SCENARIO_TYPE, survived, eliminated} = require('./en.common');
+const {SCENARIO_TYPE, survived, eliminated, pending} = require('./en.common');
 
 const SCENARIO_TRAP_SET = {
   story:
@@ -31,7 +31,7 @@ module.exports = { // lamp
         if (choice == 0) {
           return eliminated(
               'You went left.\n\n'+
-              'Swoosh! You were flung in the air by a noose trap set by' +
+              'Swoosh! You were flung in the air by a noose trap set by ' +
               `**${data.trapABy}**.`);
         } else {
           return eliminated(
@@ -50,7 +50,7 @@ module.exports = { // lamp
       data.trapASet = true;
       data.trapA = choice;
       data.trapABy = player.playerName;
-      return survived(
+      return pending(
           (choice == 0)?`You set a noose trap.`:'You set a deadfall trap.',
       );
     }

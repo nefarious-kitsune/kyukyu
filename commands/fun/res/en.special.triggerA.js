@@ -3,7 +3,7 @@
  * can have consequence on another player
  */
 
-const {SCENARIO_TYPE, survived, eliminated} = require('./en.common');
+const {SCENARIO_TYPE, diceRoll, survived, eliminated} = require('./en.common');
 
 const SCENARIO = {
   story:
@@ -73,9 +73,9 @@ module.exports = { // lamp
     // TrapA hasn't been set
     // 1/3 chance of death by RNG!
     if (diceRoll(3) == 0) {
-      return eliminated((choice==0)?RANDOM_DEATH_0:RANDOM_DEATH_1);
+      return (choice==0)?RANDOM_DEATH_0:RANDOM_DEATH_1;
     } else {
-      return survived((choice==0)?RANDOM_SURVIVAL_0:RANDOM_SURVIVAL_1);
+      return (choice==0)?RANDOM_SURVIVAL_0:RANDOM_SURVIVAL_1;
     }
   }, // resolveChoice
 };

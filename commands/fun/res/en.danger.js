@@ -230,7 +230,7 @@ module.exports = [
     // choices: ['站在爭鬥者那一邊', '站在投茅者那一邊'],
     results: [
       [
-        survived('You took Peltast\'s side.\n\nThe Brawler challenged you to break his shield. You threw a spear against the shield and the spear broke. The Brawler laughed and ask you to try again. You obliged and, on your second try, broke the shield and killed Brawler. Oops.'),
+        survived('You took Peltast\'s side.\n\nThe Brawler challenged you to break his shield. You threw a spear against the shield and the spear broke. The Brawler laughed and ask you to try again. You obliged and, on your second try, broke the shield and killed the Brawler. Oops.'),
         survived('You took Peltast\'s side.\n\nThe Brawler held his shield and taunted you to break it. You took a spear and took a few steps back. You paused and took a few more steps back. You paused again, and the Brawler readied his shield.\n\nThen you turned and ran away.'),
         eliminated('You took Peltast\'s side.\n\nThe Brawler challenged you to break his shield. You threw a spear against the shield. The spear tip snapped off and pierced your forehead.'),
       ],

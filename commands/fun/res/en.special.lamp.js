@@ -4,7 +4,7 @@
  */
 
 const {
-  SCENARIO_TYPE,
+  SCENARIO_TYPE, diceRoll,
   survived, eliminated,
   medalX1, medalX2, medalX3,
 } = require('./en.common');

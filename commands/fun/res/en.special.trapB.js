@@ -3,7 +3,7 @@
  * can have consequence on another player
  */
 
-const {SCENARIO_TYPE, survived, eliminated} = require('./en.common');
+const {SCENARIO_TYPE, survived, eliminated, pending} = require('./en.common');
 
 const SCENARIO_TRAP_SET = {
   story: 'A fallen tree blocked your way.',
@@ -29,8 +29,8 @@ module.exports = { // lamp
         data.trapASet = false;
         if (choice == 0) {
           return eliminated(
-              'You went over the fallen tree. You tripped a trap set by'+
-              `**${data.trapABy}** and were flung of by a swinging log.`);
+              'You went over the fallen tree. You tripped a trap set by '+
+              `**${data.trapABy}** and were flung off by a swinging log.`);
         } else {
           return eliminated(
               'You went under the fallen tree and fell into a spike pit '+
@@ -47,7 +47,7 @@ module.exports = { // lamp
       data.trapASet = true;
       data.trapA = choice;
       data.trapABy = player.playerName;
-      return survived(
+      return pending(
           (choice == 0)?`You made a swing-log trap.`:'You dug a spike-pit.',
       );
     }

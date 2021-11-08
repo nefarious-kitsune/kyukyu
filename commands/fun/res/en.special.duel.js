@@ -2,7 +2,7 @@
  * Special scenarios
  */
 
-const {SCENARIO_TYPE, survived, eliminated, pending} =
+const {SCENARIO_TYPE, diceRoll, survived, eliminated, pending} =
   require('./en.common');
 
 const CHOICES = ['Chione', 'Selene', 'Aly'];
@@ -37,7 +37,7 @@ module.exports = { // Duel Arena
     if (choice == undefined) {
       return eliminated('You forfeited the match.');
     } else {
-      console.log(`${player.playerName} chose ${heroes[choice]}`);
+      console.log(`${player.playerName} chose ${CHOICES[choice]}`);
       return pending(`You chose ${CHOICES[choice]}.`);
     }
   },

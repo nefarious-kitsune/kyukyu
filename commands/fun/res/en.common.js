@@ -1,4 +1,5 @@
-const APPEND_SURVIVED = ' **You survived.**';
+// const APPEND_SURVIVED = ' **You survived.**';
+const APPEND_SURVIVED = '';
 const APPEND_ELIMINATED = ' **You were eliminated.**';
 const APPEND_MEDAL_X1 = ' **You got 1 medal.**';
 const APPEND_MEDAL_X2 = ' **You got 2 medals.**';
