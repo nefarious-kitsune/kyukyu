@@ -158,7 +158,7 @@ kyukyu.on('messageCreate', async (msg) => {
       }
       msg.channel.send({
         content: reply,
-        reply: {messageReference: msg.reference.messageId},
+        reply: {messageReference: msg.id},
       });
       return;
     }
