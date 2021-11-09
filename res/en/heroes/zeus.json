@@ -8,15 +8,15 @@
     },
     {
       "name": "Active Skill: Nimbus",
-      "value": "• Zues will summon multiple lightening strikes in a targeted area, stunning the enemy and dealing damages\n• The damages can stack.\n• Number of lightening strikes: 13\n• Stun duration: 5 seconds\n• Range: 13"
+      "value": "• Zues will summon multiple lightning strikes in a targeted area, stunning the enemy and dealing damages\n• The damages can stack.\n• Number of lightning strikes: 13\n• Stun duration: 5 seconds\n• Range: 13"
     },
     {
       "name": "Passive Skill: Static Field",
-      "value": "• Zues will increase the attack speed of allied units and reduce the enemy’s attack.\n• Every 5 seconds, Zeus will summon one lightening strike to a random area, stunning the enemy and dealing damage.\n• Stun duration: 5 seconds\n• Range: 13"
+      "value": "• Zues will increase the attack speed of allied units and reduce the enemy’s attack.\n• Every 5 seconds, Zeus will summon one lightning strike to a random area, stunning the enemy and dealing damage.\n• Stun duration: 5 seconds\n• Range: 13"
     },
     {
       "name": "Legendary Skill: The Wrath of God",
-      "value": "• The lightening strikes of awakened Zeus will deal enemy units additional damage that is proportional to their maximum health.\n• The additional damages can stack.\n• Health Proportion: 2% / 4% / 6% / 8% / 10%"
+      "value": "• The lightning strikes of awakened Zeus will deal enemy units additional damage that is proportional to their maximum health.\n• The additional damages can stack.\n• Health Proportion: 2% / 4% / 6% / 8% / 10%"
     }
   ]
 }
