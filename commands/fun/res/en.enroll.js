@@ -26,7 +26,7 @@ const WELCOME = {
 //   '這場比賽的獲勝者將被加冕為**Lord of RiNGs**!';
 
 /* eslint-disable max-len */
-module.exports = { // Duel Arena
+module.exports = {
   enroll(GAME_SETTINGS, master) {
     const ANNOUNCEMENT_MSG =
     'A round of **Ri**diculously **N**onsensical **G**ambits (RiNGs) ' +

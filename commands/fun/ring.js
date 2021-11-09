@@ -1,10 +1,13 @@
 // const {literal} = require('../../helpers/literal');
 
 const {
-  SCENARIO_TYPE, RESOLUTION_TYPE, diceRoll, pause, wait,
+  STRINGS, SCENARIO_TYPE, RESOLUTION_TYPE, diceRoll, pause, wait,
 } = require('./res/en.common');
 
-const {enroll} = require('./res/en.enroll');
+const {literal} = require('../../helpers/literal');
+
+// const {enroll} = require('./res/en.enroll');
+const {enroll} = require('./res/en.enroll.rlgl');
 
 const SCENARIOS =
   require('./res/en.chance')
@@ -30,12 +33,6 @@ const GAME_SETTINGS = {
   PLAYER_LIMIT: 15,
   WINNER_LIMIT: 2,
   SPECIAL_TRIGGER: 5,
-};
-
-const RESPONSE_FILTER = {
-  max: 1,
-  time: GAME_SETTINGS.RESPONSE_TIME * 1000,
-  componentType: 'BUTTON',
 };
 
 // const BLUE = 0x3170a6; // (49, 112, 166)
@@ -80,6 +77,10 @@ class Player {
    */
   constructor(master, i) {
     const playerName = (i.member.nickname||i.member.user.username);
+    // console.log('playerName: ' + playerName);
+    // console.log('member');
+    // console.log(i.member);
+
     this.master = master;
     this.player = i.member;
     this.playerName = playerName;
@@ -121,19 +122,22 @@ class Player {
       this.cachedResponse = '';
     }
 
-    for (let bi = 0; bi < choices.length; bi++) {
+    for (let bIdx = 0; bIdx < choices.length; bIdx++) {
       buttons.push({
-        type: 2, label: choices[bi],
-        style: 1, custom_id: bi.toString(),
+        type: 2, label: choices[bIdx],
+        style: 1, custom_id: bIdx.toString(),
       });
     }
     const content = {
-      content: response,
-      ephemeral: true,
+      content: response, ephemeral: true,
       components: [{type: 1, components: buttons}],
     };
+
     this.interaction.followUp(content).then( (msg) => {
-      this.collector = msg.createMessageComponentCollector(RESPONSE_FILTER);
+      this.collector = msg.createMessageComponentCollector({
+        max: 1, time: GAME_SETTINGS.RESPONSE_TIME * 1000,
+        componentType: 'BUTTON',
+      });
       this.collector.on('collect', (i) => {
         this.interaction = i;
         i.deferUpdate();
@@ -149,10 +153,11 @@ class Player {
 
   /**
    * Send last message
+   * @return {Promise}
    */
-  async lastMessage() {
+  lastMessage() {
     if (this.cachedResponse.length) {
-      await this.interaction.followUp({
+      return this.interaction.followUp({
         content: this.cachedResponse,
         ephemeral: true,
       });
@@ -284,9 +289,11 @@ class RiNGMaster {
    * @return {PLayer}
    */
   addPlayer(i) {
-    player = new Player(this, i);
-    this.players.push(player);
-    return player;
+    // console.log('adding player...');
+    // console.log(i);
+    const newPlayer = new Player(this, i);
+    this.players.push(newPlayer);
+    return newPlayer;
   }
 
   /** Start a day */
@@ -297,10 +304,7 @@ class RiNGMaster {
     this.playerAIdx = -1;
     this.playerBIdx = -1;
     if (this.players.length >= GAME_SETTINGS.SPECIAL_TRIGGER) {
-      // const SPECIAL_IDX = diceRoll(SPECIAL_SCENARIOS.length + 2);
-
-      const SPECIAL_IDX =
-        (this.days == 1)?4:diceRoll(SPECIAL_SCENARIOS.length + 4);
+      const SPECIAL_IDX = diceRoll(SPECIAL_SCENARIOS.length + 4);
 
       if (SPECIAL_IDX < SPECIAL_SCENARIOS.length) {
         scenario = SPECIAL_SCENARIOS[SPECIAL_IDX];
@@ -330,67 +334,72 @@ class RiNGMaster {
         }
       }
     }
-
-    for (let pi=0; pi < this.players.length; pi++) {
-      if ((pi != this.playerAIdx) && (pi != this.playerBIdx)) {
+    for (let pIdx=0; pIdx < this.players.length; pIdx++) {
+      if ((pIdx != this.playerAIdx) && (pIdx != this.playerBIdx)) {
         scenario = SCENARIOS[diceRoll(SCENARIOS.length)];
-        // scenario = SCENARIOS[SCENARIOS.length-1];
-        this.players[pi].startDay(scenario);
+        this.players[pIdx].startDay(scenario);
       }
     }
     pause(GAME_SETTINGS.RESPONSE_TIME+0.5).then(() => this.endDay());
   }
 
   /** End a day */
-  async endDay() {
+  endDay() {
     const survivors = [];
-    const eliminated = [];
+    const eliminatedNames = [];
     this.players.forEach((p) => {
       if (p.endDay()) {
         survivors.push(p);
       } else {
-        eliminated.push(p.playerName);
+        eliminatedNames.push(p.playerName);
       }
     });
 
-    let SUMMARY = '__Day ' + this.days + '__\n';
-    if (eliminated.length == 0) {
-      SUMMARY += 'No player was eliminated.';
-    } else if (eliminated.length == 1) {
-      SUMMARY += `1 player was eliminated: ${eliminated[0]}`;
+    let SUMMARY = literal(STRINGS.SUMMARY_HEADING, '{DAY}', this.days);
+    if (eliminatedNames.length == 0) {
+      SUMMARY += STRINGS.SUMMARY_NO_ELIMINATION;
+    } else if (eliminatedNames.length == 1) {
+      SUMMARY += literal(
+          STRINGS.SUMMARY_ONE_ELIMINATION,
+          '{PLAYER}', eliminatedNames[0],
+      );
     } else {
-      SUMMARY +=
-        eliminated.length + ' players were eliminated: ' +
-        eliminated.join(', ');
+      SUMMARY += literal(
+          STRINGS.SUMMARY_MANY_ELIMINATIONS,
+          '{COUNT}', eliminatedNames.length,
+          '{PLAYERS}', eliminatedNames.join(', '),
+      );
     }
     this.gameSummary.push(SUMMARY);
 
     this.players = survivors;
 
     let gameEnded = false;
-    if (survivors.length <= GAME_SETTINGS.WINNER_LIMIT) {
+    if (survivors.length == 0) {
+      gameEnded = true;
+      this.gameSummary.push(STRINGS.SUMMARY_NO_WINNER);
+    } else if (survivors.length <= GAME_SETTINGS.WINNER_LIMIT) {
       gameEnded = true;
       if (survivors.length == 1) {
         this.gameSummary.push(
-            'The RiNGs round has ended! The **Lord of the RiNGs** is: ' +
-            `<@${survivors[0].player.id}>`,
+            literal(
+                STRINGS.SUMMARY_ONE_WINNER,
+                '{WINNER}', `<@${survivors[0].player.id}>`,
+            ),
         );
       } else {
         this.gameSummary.push(
-            'The RiNGs round has ended! The **Lords of the RiNGs** are: ' +
-            survivors.map((p)=>`<@${p.player.id}>`).join(', '),
+            literal(
+                STRINGS.SUMMARY_MANY_WINNERS,
+                '{COUNT}', survivors.length,
+                '{WINNERS}', survivors.map((p)=>`<@${p.player.id}>`).join(', '),
+            ),
         );
       }
-    } else if (survivors.length == 0) {
-      gameEnded = true;
-      this.gameSummary.push(
-          'The RiNGs round has ended! ' +
-          'Unfortunately **none of our players** has survived!',
-      );
     }
 
     if (gameEnded) {
-      this.players.forEach((p) => p.lastMessage());
+      survivors.forEach(async (p) => await p.lastMessage());
       wait(GAME_SETTINGS.PAUSE_AFTER_DAY_ENDS);
       this.channel.send(this.gameSummary.join('\n\n'));
       this.gameSummary = [];
@@ -398,16 +407,15 @@ class RiNGMaster {
       return;
     }
 
-    let pauseTime = GAME_SETTINGS.PAUSE_AFTER_DAY_ENDS;
     if (this.gameSummary.length >= 5) {
-      await this.channel.send(
-          this.gameSummary.join('\n\n') + '\n\n**' +
-          survivors.length + '** players remaining.',
+      this.channel.send(
+          this.gameSummary.join('\n\n') +
+          literal(STRINGS.SUMMARY_SURVIVOR_COUNT, '{COUNT}', survivors.length),
       );
       this.gameSummary = [];
-      pauseTime += 5;
     }
-    pause(pauseTime).then(() => this.startDay());
+    pause(GAME_SETTINGS.PAUSE_AFTER_DAY_ENDS)
+        .then(() => this.startDay());
   }
 };
 
@@ -418,10 +426,10 @@ const lotr = {
       if (msg.channelId == '903150247142903878') {
         const CB = msg.client.AOW_CB;
         CB.send(
-            'A round of RiNG is starting in 10 seconds. ' +
+            'A round of RiNG is starting in 15 seconds. ' +
             'Head over to <#903150247142903878> to play!',
         );
-        pause(10).then(()=>{
+        pause(15).then(()=>{
           CB.send('Alright. Let\'s go! <#903150247142903878>');
           new RiNGMaster(msg.channel);
         });

@@ -9,7 +9,7 @@ const APPEND_MEDAL_X3 = ' **You got 3 medals.**';
  * Type of scenario
  * @enum {string}
  */
-SCENARIO_TYPE = {
+const SCENARIO_TYPE = {
   SPECIAL: 'SPECIAL',
   PVP_DUEL: 'DEUL',
   CHANCE: 'CHANCE',
@@ -20,7 +20,7 @@ SCENARIO_TYPE = {
  * Type of scenario resolution
  * @enum {number}
  */
-RESOLUTION_TYPE = {
+const RESOLUTION_TYPE = {
   ELIMINATED: 0,
   SURVIVED: 1, // Player has survived
   PENDING: 2, // Player's status is pending (i.e. result of a duel match)
@@ -29,6 +29,19 @@ RESOLUTION_TYPE = {
   MEDAL_X2: 22,
   MEDAL_X3: 23,
 };
+
+/* eslint-disable max-len */
+const STRINGS = {
+  SUMMARY_HEADING: '__Day {DAY}__\n',
+  SUMMARY_NO_ELIMINATION: 'No player was eliminated.',
+  SUMMARY_ONE_ELIMINATION: '1 player was eliminated: {PLAYER}.',
+  SUMMARY_MANY_ELIMINATIONS: '{COUNT} players were eliminated: {PLAYERS}.',
+  SUMMARY_NO_WINNER: 'The RiNGs round has ended! Unfortunately **none of our players** has survived!',
+  SUMMARY_ONE_WINNER: 'The RiNGs round has ended! The **Lord of the RiNGs** is {WINNER}',
+  SUMMARY_MANY_WINNERS: 'The RiNGs round has ended! The **Lords of the RiNGs** are: {WINNERS}',
+  SUMMARY_SURVIVOR_COUNT: '\n\n**{COUNT}** players remaining.',
+};
+/* eslint-enable max-len */
 
 /**
  * @typedef RESOLUTION
@@ -140,6 +153,7 @@ async function wait(seconds) {
 }
 
 module.exports = {
+  STRINGS,
   SCENARIO_TYPE,
   RESOLUTION_TYPE,
   survived, eliminated, pending,

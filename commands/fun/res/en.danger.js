@@ -122,7 +122,7 @@ module.exports = [
         survived('You got a ride from the Magic Apprentice.'),
         survived('You asked the Magic Apprentice for a ride. Unfortunately her bloom broke down and you had to swim across the river.'),
         eliminated('You got a ride from the Magic Apprentice. Oh no, the weather conditions weren\'t right. You met an air turbulence and crashed.'),
-        eliminated('The Magic Apprentice took you on a nice ride. *Clap!* A lightening struck the Apprentice.'),
+        eliminated('The Magic Apprentice took you on a nice ride. *Clap!* A lightning struck the Apprentice.'),
       ],
     ],
   },
@@ -132,7 +132,7 @@ module.exports = [
     choices: ['Hide in the cave', 'Hide under the tree'],
     results: [
       [
-        survived('You took shelter in the cave. *Clap*! A lightening hit the tree and set it on fire.'),
+        survived('You took shelter in the cave. *Clap*! A lightning hit the tree and set it on fire.'),
         survived('You took shelter in the cave and waited out the rain.'),
         eliminated('You entered the cave to hide and saw a meditating Soul Hunter. The Soul Hunter was not happy that you disrupted his routine.'),
         eliminated('You entered the cave to hide. It started to rain heavily. You heard some rumbling sound and looked out. There was a rock slide and the cave\'s entrance was blocked!'),
@@ -140,7 +140,7 @@ module.exports = [
       [
         survived('You took shelter under the tree. Soon heavy rain poured down. You heard some rumbling sound and looked to the cave. A rock slide just blocked the cave\'s entrance. Lucky you!'),
         survived('You took shelter under the tree and waited out the rain.'),
-        eliminated('You took shelter under the tree. *Clap*! A lightening hit the tree and zapped you.'),
+        eliminated('You took shelter under the tree. *Clap*! A lightning hit the tree and zapped you.'),
         eliminated('You ran to the tree and slipped and fell right into a trench. Before you could get out, heavy rain poured down and flooded the trench.'),
       ],
     ],
