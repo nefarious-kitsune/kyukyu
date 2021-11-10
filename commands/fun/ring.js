@@ -7,7 +7,7 @@ const {
 const {literal} = require('../../helpers/literal');
 
 // const {enroll} = require('./res/en.enroll');
-const {enroll} = require('./res/en.enroll.rlgl');
+const enroll = require('./res/en.enroll.rlgl');
 
 const SCENARIOS =
   require('./res/en.chance')
@@ -15,17 +15,6 @@ const SCENARIOS =
 
 const GAME_CHANNELS = ['903150247142903878', '831064145637539860'];
 
-// Debug
-// const GAME_SETTINGS = {
-//   RESPONSE_TIME: 15,
-//   PAUSE_AFTER_DAY_ENDS: 2,
-//   ENTRY_TIME_LIMIT: 10,
-//   PLAYER_LIMIT: 10,
-//   WINNER_LIMIT: -1,
-//   SPECIAL_TRIGGER: 1,
-// };
-
-// Production
 const GAME_SETTINGS = {
   RESPONSE_TIME: 25,
   PAUSE_AFTER_DAY_ENDS: 15,
@@ -77,13 +66,9 @@ class Player {
    */
   constructor(master, i) {
     const playerName = (i.member.nickname||i.member.user.username);
-    // console.log('playerName: ' + playerName);
-    // console.log('member');
-    // console.log(i.member);
-
     this.master = master;
     this.player = i.member;
-    this.playerName = playerName;
+    this.playerName = playerName.normalize();
     this.alive = true;
     this.medal = 0;
     this.interaction = i;
@@ -143,7 +128,6 @@ class Player {
         i.deferUpdate();
         this.processChoice(parseInt(i.customId));
       });
-
       this.collector.on('end', (i, reason) => {
         // console.log(this.collector.collected.first().customId);
         if (reason == 'time') this.processChoice(undefined);
@@ -281,7 +265,6 @@ class RiNGMaster {
       playerAChoice: undefined, playerBChoice: undefined,
     };
     this.gameSummary = [];
-    enroll(GAME_SETTINGS, this);
   }
 
   /**
@@ -327,10 +310,6 @@ class RiNGMaster {
             this.players[AIdx].startDay(scenario);
             this.players[BIdx].startDay(scenario);
           }
-          // this.playerAIdx = 0;
-          // this.playerBIdx = 0;
-          // scenario.setPlayers(this.data, this.players[0], this.players[0]);
-          // this.players[0].startDay(scenario);
         }
       }
     }
@@ -396,6 +375,13 @@ class RiNGMaster {
             ),
         );
       }
+      const role = this.channel.guild.roles.cache.get('907578724533293066');
+      role.members.forEach((member)=> {
+        member.roles.remove(role);
+      });
+      survivors.forEach((survivor)=> {
+        survivor.player.roles.add(role);
+      });
     }
 
     if (gameEnded) {
@@ -421,17 +407,22 @@ class RiNGMaster {
 
 const lotr = {
   name: 'ring',
-  async execute(cmdRes, settings, msg, args) {
+  execute(cmdRes, settings, msg, args) {
     if (GAME_CHANNELS.includes(msg.channelId)) {
       if (msg.channelId == '903150247142903878') {
         const CB = msg.client.AOW_CB;
-        CB.send(
-            'A round of RiNG is starting in 15 seconds. ' +
-            'Head over to <#903150247142903878> to play!',
-        );
-        pause(15).then(()=>{
-          CB.send('Alright. Let\'s go! <#903150247142903878>');
-          new RiNGMaster(msg.channel);
+        CB.send(literal(STRINGS.PREANNOUNCEMENT, '{SECONDS}', 15));
+        master = new RiNGMaster(msg.channel);
+
+        enroll.announce(GAME_SETTINGS, master);
+        pause(15).then(()=> {
+          CB.send(STRINGS.LETSGO);
+          enroll.start(GAME_SETTINGS, master);
+          pause(GAME_SETTINGS.ENTRY_TIME_LIMIT).then(()=> {
+            enroll.stop(GAME_SETTINGS, master);
+            pause(GAME_SETTINGS.PAUSE_AFTER_DAY_ENDS)
+                .then(() => master.startDay());
+          });
         });
       } else {
         new RiNGMaster(msg.channel);

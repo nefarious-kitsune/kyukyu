@@ -32,13 +32,15 @@ const RESOLUTION_TYPE = {
 
 /* eslint-disable max-len */
 const STRINGS = {
+  PREANNOUNCEMENT: 'RiNG is starting in {SECONDS} seconds. Head over to <#903150247142903878> to play!',
+  LETSGO: 'Alright. Let\'s go! <#903150247142903878>',
   SUMMARY_HEADING: '__Day {DAY}__\n',
   SUMMARY_NO_ELIMINATION: 'No player was eliminated.',
   SUMMARY_ONE_ELIMINATION: '1 player was eliminated: {PLAYER}.',
   SUMMARY_MANY_ELIMINATIONS: '{COUNT} players were eliminated: {PLAYERS}.',
-  SUMMARY_NO_WINNER: 'The RiNGs round has ended! Unfortunately **none of our players** has survived!',
-  SUMMARY_ONE_WINNER: 'The RiNGs round has ended! The **Lord of the RiNGs** is {WINNER}',
-  SUMMARY_MANY_WINNERS: 'The RiNGs round has ended! The **Lords of the RiNGs** are: {WINNERS}',
+  SUMMARY_NO_WINNER: 'The game has ended! Unfortunately **none of our players** has survived!',
+  SUMMARY_ONE_WINNER: 'The game has ended! {WINNER} is <@&907578724533293066>',
+  SUMMARY_MANY_WINNERS: 'The game has ended! <@&907578724533293066> are: {WINNERS}',
   SUMMARY_SURVIVOR_COUNT: '\n\n**{COUNT}** players remaining.',
 };
 /* eslint-enable max-len */
