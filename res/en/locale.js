@@ -85,6 +85,13 @@ module.exports = {
       aliases: ['ring', 'rings', 'lotr'],
       desc: '...',
     },
+    // lotr
+    {
+      name: 'rainbow',
+      hidden: true,
+      aliases: ['rainbow'],
+      desc: '...',
+    },
 
     // help
     {
