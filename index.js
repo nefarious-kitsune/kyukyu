@@ -150,7 +150,7 @@ kyukyu.on('messageCreate', async (msg) => {
 
     const cmd = kyukyu.commands.get(cmdRes.name);
 
-    if (cmd.args && ! args.length) {
+    if (cmd.args && !args.length) {
       let reply = `You didn't provide any arguments`;
       if (cmd.usage) {
         reply += '\nThe proper usage would be:' +
