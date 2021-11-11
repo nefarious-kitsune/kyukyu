@@ -16,14 +16,14 @@ module.exports = { // Duel Arena
     data.playerB = B;
     data.playerAChoice = undefined;
     data.playerBChoice = undefined;
-    console.log(`**${A.playerName}** and **${B.playerName}** started a Marble Game.`);
+    console.log(`${A.playerName} and ${B.playerName} started a Marble Game.`);
   },
   getScenario(data, player) {
     if (player.id == data.playerA.id) {
       return {
         story:
             'You arrived at the Marble Arena. ' +
-            `Your opponent was **${data.playerA.playerName}**.\n\n` +
+            `Your opponent was **${data.playerB.playerName}**.\n\n` +
             'You needed to pick a marble ball and ' +
             'your oppoent would guess what it was.' +
             'If your opponent guessed correctly, you would lose; ' +
@@ -53,7 +53,7 @@ module.exports = { // Duel Arena
     console.log(`${player.playerName} chose ${COLORS[choice]}`);
 
     if (choice == undefined) {
-      console.log(`${player.playerName} forfeited the match.`);
+      console.log(`xxx ${player.playerName} forfeited the match. xxxx`);
       return eliminated('You forfeited the match.');
     } else {
       console.log(`${player.playerName} chose ${COLORS[choice]}`);
