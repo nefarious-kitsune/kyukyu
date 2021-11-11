@@ -5,6 +5,7 @@ const {
 } = require('./res/en.common');
 
 const {literal} = require('../../helpers/literal');
+const {normalize} = require('../../helpers/normalize');
 
 // const {enroll} = require('./res/en.enroll');
 const enroll = require('./res/en.enroll.rlgl');
@@ -65,7 +66,7 @@ class Player {
    * @param {Interaction} i First interaction
    */
   constructor(master, i) {
-    const playerName = (i.member.nickname||i.member.user.username);
+    const playerName = normalize(i.member.nickname||i.member.user.username);
     this.master = master;
     this.player = i.member;
     this.playerName = playerName.normalize();
@@ -407,13 +408,12 @@ class RiNGMaster {
 
 const lotr = {
   name: 'ring',
-  execute(cmdRes, settings, msg, args) {
+  async execute(cmdRes, settings, msg, args) {
     if (GAME_CHANNELS.includes(msg.channelId)) {
       if (msg.channelId == '903150247142903878') {
         const CB = msg.client.AOW_CB;
         CB.send(literal(STRINGS.PREANNOUNCEMENT, '{SECONDS}', 15));
         master = new RiNGMaster(msg.channel);
-
         enroll.announce(GAME_SETTINGS, master);
         pause(15).then(()=> {
           CB.send(STRINGS.LETSGO);
@@ -425,7 +425,16 @@ const lotr = {
           });
         });
       } else {
-        new RiNGMaster(msg.channel);
+        master = new RiNGMaster(msg.channel);
+        enroll.announce(GAME_SETTINGS, master);
+        pause(15).then(()=> {
+          enroll.start(GAME_SETTINGS, master);
+          pause(GAME_SETTINGS.ENTRY_TIME_LIMIT).then(()=> {
+            enroll.stop(GAME_SETTINGS, master);
+            pause(GAME_SETTINGS.PAUSE_AFTER_DAY_ENDS)
+                .then(() => master.startDay());
+          });
+        });
       }
     }
   },
