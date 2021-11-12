@@ -35,6 +35,7 @@ const kyukyu = new Client(
 );
 
 kyukyu.commands = new Collection();
+kyukyu.secretMessage = '';
 
 fs.readdirSync('./commands').forEach( (folder) => {
   fs.readdirSync(`./commands/${folder}`)
@@ -55,14 +56,13 @@ kyukyu.on('ready', async () => {
   );
   kyukyu.AOW = await kyukyu.guilds.cache.get('658594298983350293');
   kyukyu.AOW_CB = await kyukyu.channels.cache.get('658969855181193238');
-  kyukyu.secretMessage = '';
 });
 
 kyukyu.on('messageCreate', async (msg) => {
   if (msg.author.bot) return;
 
   // ECHO
-  if (msg.author.id == 706106177439924348) {
+  if (msg.author.id == '706106177439924348') {
     if (kyukyu.secretMessage.length > 0) {
       if ((msg.reference) && (msg.reference.messageId)) {
         msg.channel.send({
