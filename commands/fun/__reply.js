@@ -6,7 +6,7 @@ const AOW_MSG_LINK =
 module.exports = {
   name: 'reply',
   async execute(cmdRes, settings, msg, args) {
-    if ((msg.author.id == 706106177439924348) &&
+    if ((msg.author.id == '706106177439924348') &&
         (msg.channel.type == 'DM')) {
       const content = msg.content.substring('?reply '.length);
       if (content.startsWith(AOW_MSG_LINK)) {

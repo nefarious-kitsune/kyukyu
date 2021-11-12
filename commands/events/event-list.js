@@ -9,7 +9,7 @@ module.exports = {
     const EVENTS = JSON.parse(fs.readFileSync(FILE_PATH));
     // const last = EVENTS.events.length-1;
     const last =
-       (msg.author.id == 706106177439924348)?EVENTS.events.length-1:6;
+       (msg.author.id == '706106177439924348')?EVENTS.events.length-1:6;
 
     let response = '';
     for (let i=last; i>=0; i--) {
