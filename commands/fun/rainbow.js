@@ -51,6 +51,11 @@ module.exports = {
   name: 'rainbow',
   async execute(cmdRes, settings, msg, args) {
     const CLAN_ROLES = [];
+    if ((msg.author.id != '117203285152104448') &&
+      (msg.author.id != '706106177439924348')) {
+      return;
+    }
+
     msg.client.AOW.roles.cache.forEach((role) => {
       if (
         (role.name.length <= 4) &&
@@ -60,6 +65,7 @@ module.exports = {
       ) {
         const clanRole = {
           name: role.name,
+          id: role.id,
           color: color(role.hexColor),
         };
         CLAN_ROLES.push(clanRole);
@@ -94,12 +100,12 @@ module.exports = {
     const SPACING = context.measureText(' ').width;
 
     let maxWidth = 0;
-    const lines = [];
+    const mentions = [];
     colorTables.forEach((row) => {
       const line = row.map((r)=>'@' + r.name).join(' ');
       const lineWidth = context.measureText(line).width;
       if (lineWidth > maxWidth) maxWidth = lineWidth;
-      lines.push(line);
+      mentions.push(row.map((r)=>`<@&${r.id}>`).join(' '));
     });
     canvas.width = maxWidth + PADDING * 2;
     context.font = `${TEXT_HEIGHT}px Candara`;
@@ -121,8 +127,9 @@ module.exports = {
 
     const buffer = canvas.toBuffer('image/png');
     fs.writeFileSync('./roles.png', buffer);
-    msg.channel.send(
-        {files: [{attachment: './roles.png', name: 'roles.png'}]},
-    );
+    msg.author.send({
+      content: '```' + mentions.join('\n') + '```',
+      files: [{attachment: './roles.png', name: 'roles.png'}],
+    });
   },
 };
