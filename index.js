@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const res = require('./res/res');
+const {normalize} = require('./helpers/normalize');
 
 const {Client, Collection, Intents} = require('discord.js');
 
@@ -48,67 +49,31 @@ fs.readdirSync('./commands').forEach( (folder) => {
 
 kyukyu.login(config['login token']);
 
-let secretMessage = '';
-
-const AOW_GUILD_ID = '658594298983350293';
-const AOW_CB_ID = '658969855181193238';
-const AOW_MSG_LINK =
-  `https://discord.com/channels/${AOW_GUILD_ID}/${AOW_CB_ID}/`;
-
 kyukyu.on('ready', async () => {
   console.log(
       fs.readFileSync(path.resolve(__dirname, 'splash.md'), 'utf8'),
   );
-  kyukyu.AOW_CB = await kyukyu.channels.cache.get(AOW_CB_ID);
+  kyukyu.AOW = await kyukyu.guilds.cache.get('658594298983350293');
+  kyukyu.AOW_CB = await kyukyu.channels.cache.get('658969855181193238');
+  kyukyu.secretMessage = '';
 });
 
 kyukyu.on('messageCreate', async (msg) => {
   if (msg.author.bot) return;
 
+  // ECHO
   if (msg.author.id == 706106177439924348) {
-    if (msg.content.startsWith(AOW_MSG_LINK)) {
-      if (secretMessage.length > 0) {
-        replyId = msg.content.substring(
-            AOW_MSG_LINK.length,
-            msg.content.length);
-        kyukyu.AOW_CB.send({
-          content: secretMessage,
-          reply: {messageReference: replyId},
+    if (kyukyu.secretMessage.length > 0) {
+      if ((msg.reference) && (msg.reference.messageId)) {
+        msg.channel.send({
+          content: kyukyu.secretMessage,
+          reply: {messageReference: msg.reference.messageId},
         });
-        secretMessage = '';
+      } else {
+        msg.channel.send(kyukyu.secretMessage);
       }
+      kyukyu.secretMessage = '';
       return;
-    }
-
-    if (msg.channel.type == 'DM') {
-      if (msg.content.toLowerCase().startsWith('say')) {
-        if (msg.content.length > 4) {
-          what2say = msg.content.substring(4, msg.content.length);
-          kyukyu.AOW_CB.send(what2say);
-        }
-        return;
-      } else if (msg.content.toLowerCase().startsWith('msg')) {
-        if (msg.content.length > 4) {
-          secretMessage = msg.content.substring(4, msg.content.length);
-        } else {
-          secretMessage = '';
-        }
-        return;
-      }
-    } else {
-      if (secretMessage.length > 0) {
-        if ((msg.reference) && (msg.reference.messageId)) {
-          msg.channel.send({
-            content: secretMessage,
-            reply: {messageReference: msg.reference.messageId},
-          });
-        } else {
-          // ECHO
-          msg.channel.send(secretMessage);
-        }
-        secretMessage = '';
-        return;
-      }
     }
   }
 
@@ -163,7 +128,7 @@ kyukyu.on('messageCreate', async (msg) => {
       return;
     }
 
-    console.log(`${msg.author.username}: ${msg.content}`);
+    console.log(`${normalize(msg.author.username)}: ${msg.content}`);
 
     cmd.execute(cmdRes, settings, msg, args).catch((error) => {
       console.error('--------------------------------------------------');

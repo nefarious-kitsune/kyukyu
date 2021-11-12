@@ -11,21 +11,19 @@ module.exports = {
         if (mention.startsWith('!')) {
           mention = mention.slice(1);
         }
-        const member = await msg.guild.members.fetch(mention);
-        // console.log(user);
-        // const user = await msg.client.users.cache.get(mention);
-        msg.channel.send(
-            {
-              'embeds': [
-                {
+        msg.guild.members
+            .fetch(mention)
+            .then((member) => {
+              msg.channel.send({
+                'embeds': [{
                   'title': `Avatar of ${member.displayName}`,
-                  'image': {
-                    'url': member.user.avatarURL(),
-                  },
-                },
-              ],
-            },
-        );
+                  'image': {'url': member.user.avatarURL()},
+                }],
+              });
+            })
+            .catch((err) => {
+              throw new Error(`Cannot find user with id "${mention}"`);
+            });
       }
     }
   },

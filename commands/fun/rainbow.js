@@ -51,10 +51,11 @@ module.exports = {
   name: 'rainbow',
   async execute(cmdRes, settings, msg, args) {
     const CLAN_ROLES = [];
-    msg.guild.roles.cache.forEach((role) => {
+    msg.client.AOW.roles.cache.forEach((role) => {
       if (
         (role.name.length <= 4) &&
-        (role.name.toUpperCase() == role.name) &&
+        (role.mentionable) &&
+        // (role.name.toUpperCase() == role.name) &&
         (!role.name.startsWith('@'))
       ) {
         const clanRole = {
@@ -65,32 +66,59 @@ module.exports = {
       }
     });
 
-    CLAN_ROLES.sort((a, b) => a.color.hue - b.color.hue);
+    let colorTables = [];
+    for (let i=0; i<20; i++) colorTables.push([]);
+    CLAN_ROLES.forEach((clanRole)=> {
+      h = Math.floor(clanRole.color.hue/30);
+      colorTables[(h>=20)?19:h].push(clanRole);
+    });
+    colorTables.forEach((row)=>{
+      row.sort((a, b) => a.color.luma - b.color.luma);
+    });
+    colorTables = colorTables.filter((row)=>row.length>0);
 
-    const padding = 20;
-    const lineSpacing = 4;
-    const fontHeight = 20;
-    const width = 80 + padding * 2;
+    const PADDING = 20;
+    const LINE_SPACING = 4;
+    const TEXT_HEIGHT = 20;
+    const width = 1000;
     const height =
-      (CLAN_ROLES.length * fontHeight) +
-      ((CLAN_ROLES.length-1) * lineSpacing) +
-      (padding * 2);
+      (colorTables.length * TEXT_HEIGHT) +
+      ((colorTables.length-1) * LINE_SPACING) +
+      (PADDING * 2);
     const canvas = createCanvas(width, height);
     const context = canvas.getContext('2d');
-    // context.fillStyle = '#000000';
-    // context.fillRect(0, 0, width, height);
 
-    context.font = `${fontHeight}px Candara`;
+    context.font = `${TEXT_HEIGHT}px Candara`;
     context.textBaseline = 'top';
     context.textAlign = 'left';
+    const SPACING = context.measureText(' ').width;
+
+    let maxWidth = 0;
+    const lines = [];
+    colorTables.forEach((row) => {
+      const line = row.map((r)=>'@' + r.name).join(' ');
+      const lineWidth = context.measureText(line).width;
+      if (lineWidth > maxWidth) maxWidth = lineWidth;
+      lines.push(line);
+    });
+    canvas.width = maxWidth + PADDING * 2;
+    context.font = `${TEXT_HEIGHT}px Candara`;
+    context.textBaseline = 'top';
+    context.textAlign = 'left';
+
     let idx = 0;
-    CLAN_ROLES.forEach((clanRole) => {
-      // console.log(clanRole.name, clanRole.id);
-      context.fillStyle = clanRole.color.hexColor;
-      const y = idx * (lineSpacing + fontHeight) + padding;
-      context.fillText('@'+clanRole.name, padding, y);
+    colorTables.forEach((row) => {
+      const y = idx * (LINE_SPACING + TEXT_HEIGHT) + PADDING;
+      let lineWidth = PADDING - SPACING;
+      row.forEach((clanRole) => {
+        const text = '@'+clanRole.name;
+        context.fillStyle = clanRole.color.hexColor;
+        context.fillText(text, lineWidth + SPACING, y);
+        lineWidth += context.measureText(text).width + SPACING;
+      });
       idx++;
     });
+
     const buffer = canvas.toBuffer('image/png');
     fs.writeFileSync('./roles.png', buffer);
     msg.channel.send(

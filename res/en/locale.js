@@ -75,7 +75,6 @@ module.exports = {
       name: 'avatar',
       hidden: true,
       aliases: ['avatar', 'pfp'],
-      desc: '...',
     },
 
     // lotr
@@ -87,10 +86,16 @@ module.exports = {
     },
     // lotr
     {
-      name: 'rainbow',
-      hidden: true,
-      aliases: ['rainbow'],
-      desc: '...',
+      name: 'rainbow', hidden: true, aliases: ['rainbow', 'estel'],
+    },
+    { // echo
+      name: 'echo', hidden: true, aliases: ['echo'],
+    },
+    { // say
+      name: 'say', hidden: true, aliases: ['say'],
+    },
+    { // reply
+      name: 'reply', hidden: true, aliases: ['reply'],
     },
 
     // help
