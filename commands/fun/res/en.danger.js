@@ -241,4 +241,20 @@ module.exports = [
       ],
     ],
   },
+  {
+    type: SCENARIO_TYPE.DANGER,
+    story: 'You were at the foot of a hill. *Heave-ho!* You heard a shout. You looked up and saw group of pirates were carrying a ship. *That\'s weird,* you thought. The pirates set down the ship to take a break. Suddenly, the gravels under the ship gave way and the ship slid down in your direction. On your left was a ditch. On your right was a mound.',
+    choices: ['Get in the ditch', 'Get behind the mound'],
+    results: [
+      [
+        survived('You got in the ditch. Fortunately the ship slowed quickly and stopped mid hill.'),
+        eliminated('You got in the ditch. Unfortunately the ship headed directly toward the ditch and crashed on top of you.'),
+        // eliminated('You got in the ditch. Unfortunately the ship glanced off mound and turned over, the mast collapsing right on top of you.'),
+      ],
+      [
+        survived('You got behind the mound. Fortunately the ship slowed quickly and stopped mid hill.'),
+        eliminated('You got behind the mound. The ship slid past the mound and stopped. Then there was a squeaking sound. The ship tilted and turned over, the mast collapsing right on top of you.'),
+      ],
+    ],
+  },
 ];
