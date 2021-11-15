@@ -18,15 +18,24 @@ module.exports = {
   stats(events, first, last) {
     occurances = {};
     for (let i=first; i<=last; i++) {
-      events[i].heroes.forEach(
-          (h) => {
-            if (occurances[h]) {
-              occurances[h] = occurances[h] + 1;
-            } else {
-              occurances[h] = 1;
-            }
-          },
-      );
+      if (events[i].heroes.length > 2) {
+        events[i].heroes.forEach(
+            (h) => {
+              if (occurances[h]) {
+                occurances[h] = occurances[h] + 1;
+              } else {
+                occurances[h] = 1;
+              }
+            },
+        );
+      } else {
+        const h = events[i].heroes[0];
+        if (occurances[h]) {
+          occurances[h] = occurances[h] + 1;
+        } else {
+          occurances[h] = 1;
+        }
+      }
     }
     counts = [
       [], // once
@@ -76,10 +85,11 @@ module.exports = {
     let response;
 
     if (eventStart > now) { // next event announced
-      if (event.heroes.length == 1 ) {
+      if (event.heroes.length == 2 ) {
         response = literal(
             cmdRes.responseNextWheel,
             '{HERO}', this.proper(event.heroes[0]),
+            '{HERO2}', this.proper(event.heroes[1]),
         );
       } else {
         response = literal(
@@ -91,10 +101,11 @@ module.exports = {
         '\n' + cmdRes.responseRecent13 + this.stats(EVENTS.events, 1, 13);
       msg.channel.send(response);
     } else { // next event has not been announced
-      if (event.heroes.length == 1 ) {
+      if (event.heroes.length == 2 ) {
         response = literal(
             cmdRes.responseCurrentWheel,
             '{HERO}', this.proper(event.heroes[0]),
+            '{HERO2}', this.proper(event.heroes[1]),
         );
       } else {
         response = literal(
