@@ -7,8 +7,8 @@ const {
 const {literal} = require('../../helpers/literal');
 const {normalize} = require('../../helpers/normalize');
 
-// const {enroll} = require('./res/en.enroll');
-const enroll = require('./res/en.enroll.rlgl');
+const enroll = require('./res/en.enroll');
+// const enroll = require('./res/en.enroll.rlgl');
 
 const SCENARIOS =
   require('./res/en.chance')
@@ -18,8 +18,8 @@ const GAME_CHANNELS = ['903150247142903878', '831064145637539860'];
 
 const GAME_SETTINGS = {
   RESPONSE_TIME: 25,
-  PAUSE_AFTER_DAY_ENDS: 15,
-  ENTRY_TIME_LIMIT: 90,
+  PAUSE_AFTER_DAY_ENDS: 10,
+  ENTRY_TIME_LIMIT: 60,
   PLAYER_LIMIT: 15,
   WINNER_LIMIT: 2,
   SPECIAL_TRIGGER: 5,
@@ -241,9 +241,10 @@ class Player {
     }
 
     if (choice == undefined) {
-      console.log(`${this.playerName} timed out.`);
+      console.log(`${this.master.days}: ${this.playerName} timed out.`);
       this.cachedResponse = response;
     } else {
+      console.log(`${this.master.days}: ${this.playerName} chose "${scenario.choices[choice]}".`);
       this.interaction.followUp({content: response, ephemeral: true});
     };
   }
@@ -376,13 +377,16 @@ class RiNGMaster {
             ),
         );
       }
-      const role = this.channel.guild.roles.cache.get('907578724533293066');
-      role.members.forEach((member)=> {
-        member.roles.remove(role);
-      });
-      survivors.forEach((survivor)=> {
-        survivor.player.roles.add(role);
-      });
+
+      if (this.channel.id == '903150247142903878') {
+        const role = this.channel.guild.roles.cache.get('907578724533293066');
+        role.members.forEach((member)=> {
+          member.roles.remove(role);
+        });
+        survivors.forEach((survivor)=> {
+          survivor.player.roles.add(role);
+        });
+      }
     }
 
     if (gameEnded) {
