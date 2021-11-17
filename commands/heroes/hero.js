@@ -1,13 +1,12 @@
 const res = require('../../res/res');
 const {getEmbed} = require('../../helpers/getEmbed');
-const {MessageActionRow, MessageSelectMenu} = require('discord.js');
 
 module.exports = {
   name: 'hero',
   getContent(cmdRes, settings, heroName) {
     const embed = getEmbed(settings, cmdRes.files[heroName]);
     embed.thumbnail = {'url': res.images.hero_icons[heroName]};
-    return {embeds: [embed]};
+    return embed;
   },
   async execute(cmdRes, settings, msg, args) {
     const l10n = res.l10n[settings.lang];
@@ -16,21 +15,24 @@ module.exports = {
       const heroDisplayName = l10n.HERO_DISPLAY_NAMES[key];
       menuOptions.push({label: heroDisplayName, value: key});
     }
-    const menu = new MessageSelectMenu()
-        .setCustomId('hero.list')
-        .addOptions(menuOptions);
-    const row = new MessageActionRow().addComponents(menu);
+    const row = {
+      type: 1,
+      components: [{custom_id: 'hero.list', type: 3, options: menuOptions}],
+    };
 
-    let content = {embeds: [{description: cmdRes.menuDesc}]};
+    let content = {content: cmdRes.menuDesc, components: [row]};
     if (args.length > 0) {
       const heroName = res.findHero(settings.lang, args[0]);
       if (heroName) {
         if (cmdRes.files.hasOwnProperty(heroName)) {
-          content = this.getContent(cmdRes, settings, heroName);
+          content = {
+            embeds: [this.getContent(cmdRes, settings, heroName)],
+            components: [row],
+          };
         };
       }
     }
-    content.components = [row];
+
     const response = await msg.channel.send(content);
     const collector = response.createMessageComponentCollector({
       componentType: 'SELECT_MENU',
@@ -39,10 +41,11 @@ module.exports = {
     });
     collector.on('collect',
         async (interaction) => {
-          newContent = this.getContent(cmdRes, settings, interaction.values[0]);
-          content.components = [row];
-          interaction.message.edit(newContent);
           interaction.deferUpdate();
+          interaction.message.edit({
+            embeds: [this.getContent(cmdRes, settings, interaction.values[0])],
+            components: [row],
+          });
         },
     );
     collector.on('end', (collected) => {
