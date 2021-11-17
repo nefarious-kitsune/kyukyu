@@ -7,12 +7,6 @@ const {Client, Collection, Intents} = require('discord.js');
 
 const guildConfig = require('./helpers/config.js');
 guildConfig.load();
-setInterval(
-    function() {
-      guildConfig.save();
-    },
-    1000*60*5,
-);
 
 let configFilePath = path.resolve(__dirname, 'config.json');
 const processArgs = process.argv.slice(2);
@@ -87,7 +81,7 @@ kyukyu.on('messageCreate', async (msg) => {
       lang: config.lang,
     };
   }
-  const prefix = settings.prefix || '?';
+  const prefix = settings.prefix ?? '?';
 
   if ( msg.content.startsWith(prefix) ) {
     const args = parseArgs(prefix, msg.content);

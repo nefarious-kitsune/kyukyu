@@ -57,10 +57,6 @@ module.exports = {
     return settings;
   },
 
-  get(guild, param) {
-
-  },
-
   setGuildBotChannel(guild, settings, values) {
     if (values[0].toLowerCase().trim() == 'all') {
       settings['bot-channel'] = [];
@@ -136,19 +132,26 @@ module.exports = {
 
   setGuild(guild, param, values) {
     const settings = this.getGuildSettings(guild);
+    let success = false;
     switch (param) {
       case 'prefix':
-        return this.setGuildPrefix(guild, settings, values);
+        success = this.setGuildPrefix(guild, settings, values);
+        break;
       case 'bot-channel':
-        return this.setGuildBotChannel(guild, settings, values);
+        success = this.setGuildBotChannel(guild, settings, values);
+        break;
       case 'lang':
-        return this.setGuildLang(guild, settings, values);
+        success = this.setGuildLang(guild, settings, values);
+        break;
       case 'enable':
-        return this.enableCommands(guild, settings, values);
+        success = this.enableCommands(guild, settings, values);
+        break;
       case 'disable':
-        return this.disableCommands(guild, settings, values);
+        success = this.disableCommands(guild, settings, values);
+        break;
       default:
     }
-    return false;
+    if (success) this.save();
+    return success;
   },
 };
