@@ -9,7 +9,7 @@ module.exports = {
     let nickname;
     if (msg.channel.type == 'GUILD_TEXT') {
       const me = await msg.guild.members.fetch(msg.client.user.id);
-      nickname = me.nickname || me.user.username;
+      nickname = me.nickname ?? me.user.username;
       avatarUrl = me.user.avatarURL;
     } else {
       const me = msg.client.user;

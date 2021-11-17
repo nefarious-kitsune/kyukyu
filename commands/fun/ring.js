@@ -66,7 +66,7 @@ class Player {
    * @param {Interaction} i First interaction
    */
   constructor(master, i) {
-    const playerName = normalize(i.member.nickname||i.member.user.username);
+    const playerName = normalize(i.member.nickname??i.member.user.username);
     this.master = master;
     this.player = i.member;
     this.playerName = playerName.normalize();

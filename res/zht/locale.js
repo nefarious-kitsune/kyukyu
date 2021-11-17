@@ -272,7 +272,6 @@ module.exports = {
       menuDesc: 'Select a hero you want to know',
       menuPlaceholder: 'Select a hero you want to know',
       files: {
-        'meta': path.resolve(__dirname, 'heroes', 'meta.json'),
         'aly': path.resolve(__dirname, 'heroes', 'aly.json'),
         'selene': path.resolve(__dirname, 'heroes', 'selene.json'),
         'chione': path.resolve(__dirname, 'heroes', 'chione.json'),
@@ -346,7 +345,6 @@ module.exports = {
 
   TROOPS_ALIASES: [
     // first item is the correct spelling, the rest alternate spellings
-    ['meta'],
     ['infantry', '步兵'],
     ['archers', 'archer', '弓兵', '弓箭手'],
     ['iron guards', 'iron guard', '鐵衛'],
@@ -400,7 +398,6 @@ module.exports = {
   ],
 
   TROOPS_DISPLAY_NAMES: {
-    'meta': 'meta',
     'infantry': '步兵',
     'archers': '弓兵',
     'iron guards': '鐵衛',
@@ -452,7 +449,6 @@ module.exports = {
 
   HERO_ALIASES: [
     // first item is the correct spelling, the rest alternate spellings
-    ['meta'],
     ['kelvins'],
     ['illum'],
     ['moshe'],

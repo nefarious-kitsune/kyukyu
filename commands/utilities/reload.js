@@ -8,7 +8,7 @@ module.exports = {
   async execute(cmdRes, settings, msg, args) {
     const cmdName = args[0].toLowerCase();
     const cmd =
-      msg.client.commands.get(cmdName) ||
+      msg.client.commands.get(cmdName) ??
       msg.client.commands.find(
           (cmd) => cmd.aliases && cmd.aliases.includes(cmdName),
       );
