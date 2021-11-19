@@ -35,8 +35,8 @@ module.exports = { // Duel Arena
       data.playerBChoice = choice;
     }
     if (choice == undefined) {
-      console.log(`${player.playerName} forfeited the match.`);
-      return eliminated('You forfeited the match.');
+      console.log(`${player.playerName} forfeited a duel.`);
+      return eliminated('You forfeited the duel.');
     } else {
       console.log(`${player.playerName} chose ${CHOICES[choice]}`);
       return pending(`You chose ${CHOICES[choice]}.`);
@@ -60,7 +60,7 @@ module.exports = { // Duel Arena
     }
 
     if (myChoice == undefined) {
-      return eliminated('You forfeited the match.');
+      return eliminated('You forfeited the deul.');
     }
 
     if (myChoice == oppChoice) {
@@ -76,7 +76,7 @@ module.exports = { // Duel Arena
       }
     } else {
       if (oppChoice == undefined) {
-        return survived(`**${oppName}** forfeited the match. You won.`);
+        return survived(`**${oppName}** forfeited the deul. You won.`);
       } else if (((myChoice == 2) && (oppChoice == 0)) || (myChoice < oppChoice)) {
         return survived(`You chose ${CHOICES[myChoice]} and **${oppName}** chose ${CHOICES[oppChoice]}. You won.`);
       } else {

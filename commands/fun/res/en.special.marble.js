@@ -50,11 +50,9 @@ module.exports = { // Duel Arena
       data.playerBChoice = choice;
     }
 
-    console.log(`${player.playerName} chose ${COLORS[choice]}`);
-
     if (choice == undefined) {
-      console.log(`xxx ${player.playerName} forfeited the match. xxxx`);
-      return eliminated('You forfeited the match.');
+      console.log(`${player.playerName} forfeited a marble game.`);
+      return eliminated('You forfeited the marble game.');
     } else {
       console.log(`${player.playerName} chose ${COLORS[choice]}`);
       return pending(`You chose ${COLORS[choice]}.`);
@@ -77,7 +75,7 @@ module.exports = { // Duel Arena
     }
 
     if (myChoice == undefined) {
-      return eliminated('You forfeited the match.');
+      return eliminated('You forfeited the marble game.');
     }
 
     if (myChoice == oppChoice) {
@@ -88,7 +86,7 @@ module.exports = { // Duel Arena
       }
     } else {
       if (oppChoice == undefined) {
-        return survived(`**${oppName}** forfeited the match. You won.`);
+        return survived(`**${oppName}** forfeited the marble game. You won.`);
       } else if (((myChoice == 2) && (oppChoice == 0)) || (myChoice < oppChoice)) {
         return survived(`You chose ${CHOICES[myChoice]} and **${oppName}** chose ${CHOICES[oppChoice]}. You won.`);
       } else {
