@@ -240,11 +240,16 @@ class Player {
       default:
     }
 
+    const log = `${this.master.days}: ${this.playerName} `;
     if (choice == undefined) {
-      this.master.log(`${this.master.days}: ${this.playerName} timed out.`);
+      this.master.log(log + `timed out.`);
       this.cachedResponse = response;
     } else {
-      this.master.log(`${this.master.days}: ${this.playerName} chose "${scenario.choices[choice]}".`);
+      if (scenario.type == SCENARIO_TYPE.SPECIAL) {
+        this.master.log(log + `chose "${choice}".`);
+      } else {
+        this.master.log(log + `chose "${scenario.choices[choice]}".`);
+      }
       this.interaction.followUp({content: response, ephemeral: true});
     };
   }
