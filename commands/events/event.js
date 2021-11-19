@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const res = require('../../res/res');
 const {literal} = require('../../helpers/literal');
 
 module.exports = {
@@ -15,7 +16,7 @@ module.exports = {
   proper(s) {
     return s.charAt(0).toUpperCase() + s.slice(1);
   },
-  stats(events, first, last) {
+  stats(events, first, last, l10n) {
     occurances = {};
     for (let i=first; i<=last; i++) {
       if (events[i].heroes.length > 2) {
@@ -54,17 +55,18 @@ module.exports = {
     });
     let txt = '';
     if (counts[5].length) {
-      txt += '≥6×: ' + counts[5].map((h)=>this.proper(h)).join(' ') + '\n';
+      txt += '≥6×: ' + counts[5].map((h)=>l10n.HERO_DISPLAY_NAMES[h]).join(' ') + '\n';
     }
     for (let i=4; i>=0; i--) {
       if (counts[i].length) {
         txt += (i+1) + '×: ' +
-        counts[i].map((h)=>this.proper(h)).join(' ') + '\n';
+        counts[i].map((h)=>l10n.HERO_DISPLAY_NAMES[h]).join(' ') + '\n';
       }
     }
     return txt;
   },
   async execute(cmdRes, settings, msg, args) {
+    const l10n = res.l10n[settings.lang];
     const FILE_PATH = path.resolve(__dirname, '../../events.json');
     const EVENTS = JSON.parse(fs.readFileSync(FILE_PATH));
 
@@ -82,46 +84,65 @@ module.exports = {
     const event = EVENTS.events[0];
     const eventStart = event.date;
 
+    let thisEvent = undefined;
+    let nextEvent = undefined;
+
+    if (eventStart > now) { // next event has not been announced
+      thisEvent = EVENTS.events[1];
+      nextEvent = event;
+    } else {
+      thisEvent = event;
+    }
+
     let response;
 
-    if (eventStart > now) { // next event announced
-      if (event.heroes.length == 2 ) {
+    if (thisEvent.heroes.length == 2 ) {
+      response = literal(
+          cmdRes.responseCurrentWheel,
+          '{HERO}', l10n.HERO_DISPLAY_NAMES[thisEvent.heroes[0]],
+          '{HERO2}', l10n.HERO_DISPLAY_NAMES[thisEvent.heroes[1]],
+      );
+    } else {
+      response = literal(cmdRes.responseCurrentCM, '{HERO}',
+          thisEvent.heroes.map((h)=>l10n.HERO_DISPLAY_NAMES[h]).join(' '),
+      );
+    }
+
+    const eventEnd = eventStart + (7 * 24 * 60 - 1) * 60 * 1000;
+    const timeLeft = eventEnd - now;
+    const D = (24 * 60 * 60 * 1000);
+    const H = (60 * 60 * 1000);
+    const M = (60 * 1000);
+    const d = Math.floor(timeLeft / D );
+    const h = Math.floor( (timeLeft - d * D)/ H );
+    const m = Math.floor( (timeLeft - d * D - h * H)/ M );
+
+    response += literal(
+        cmdRes.responseCurrentEnd, '{DAY}', d, '{HOUR}', h, '{MINUTE}', m);
+
+    if (nextEvent) {
+      if (nextEvent.heroes.length == 2 ) {
         response = literal(
             cmdRes.responseNextWheel,
-            '{HERO}', this.proper(event.heroes[0]),
-            '{HERO2}', this.proper(event.heroes[1]),
+            '{HERO}', l10n.HERO_DISPLAY_NAMES[nextEvent.heroes[0]],
+            '{HERO2}', l10n.HERO_DISPLAY_NAMES[nextEvent.heroes[1]],
         );
       } else {
-        response = literal(
-            cmdRes.responseNextCM,
-            '{HERO}', event.heroes.map((h)=>this.proper(h)).join(' '),
+        nextEvent = literal(cmdRes.responseNextCM, '{HERO}',
+            nextEvent.heroes.map((h)=>l10n.HERO_DISPLAY_NAMES[h]).join(' '),
         );
       }
-      response +=
-        '\n' + cmdRes.responseRecent13 + this.stats(EVENTS.events, 1, 13);
-      msg.channel.send(response);
-    } else { // next event has not been announced
-      if (event.heroes.length == 2 ) {
-        response = literal(
-            cmdRes.responseCurrentWheel,
-            '{HERO}', this.proper(event.heroes[0]),
-            '{HERO2}', this.proper(event.heroes[1]),
-        );
-      } else {
-        response = literal(
-            cmdRes.responseCurrentCM,
-            '{HERO}', event.heroes.map((h)=>this.proper(h)).join(' '),
-        );
-      }
-      response +=
-        '\n' + cmdRes.responseRecent14 + this.stats(EVENTS.events, 0, 13);
-
+    } else {
       const nag = new Date(eventStart);
       nag.setUTCDate(nag.getUTCDate() + 2);
       if (now > Number(nag)) {
-        response += '\n' + cmdRes.responseNextEvent;
+        response += cmdRes.responseNextEvent;
       }
-      msg.channel.send(response);
     }
+
+    response +=
+      '\n' + cmdRes.responseRecent13 + this.stats(EVENTS.events, 1, 13, l10n);
+
+    msg.channel.send(response);
   },
 };

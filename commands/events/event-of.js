@@ -11,8 +11,8 @@ module.exports = {
     const FILE_PATH = path.resolve(__dirname, '../../events.json');
     const EVENTS = JSON.parse(fs.readFileSync(FILE_PATH));
 
-    const CM = '<:eventcard:909986289535832104>';
-    const WOF = '<:eventwheel:909986289552617502>';
+    const CM = '<:eventcard:909986289535832104> ';
+    const WOF = '<:eventwheel:909986289552617502> ';
 
     const hero = res.findHero(settings.lang, args[0]);
     if (!hero) return;
@@ -30,7 +30,7 @@ module.exports = {
       if (event.heroes.indexOf(hero) != -1) {
         results.push(
             ((event.heroes.length > 2)?CM:WOF) +
-            ' ' + formatDate(new Date(event.date)),
+            formatDate(new Date(event.date)),
         );
         if (results.length >= 5) break;
       };
