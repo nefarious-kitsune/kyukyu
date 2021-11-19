@@ -1,23 +1,25 @@
 {
-  "title": "Selene",
-  "description": "A burst hero who provides massive attack increase and damage immunity to friendly units in the battle opening.",
-  "color": 16431948,
-  "fields": [
-    {
-      "name": "Basic Attack",
-      "value": "• Range: 3"
-    },
-    {
-      "name": "Active Skill: Moonlight Shackles",
-      "value": "• Selene will stun the enemy in the targeted arena and bind them in place for several seconds.\n• Stun duration: 9 seconds\n• Range: 5"
-    },
-    {
-      "name": "Passive Skill: Moonlight Projection",
-      "value": "• For a period of time after the start of the battle, Selene will give allied units partial damage immunity and increase attack power.\nDamage immunity applies to all forms of damages, including reflection and curse.\n• Duration: 3 / 3 / 3 / 4 / 4 / 4 / 5 / 5 / 5 / 6 / 6 / 6 / 7 / 7 / 7 (7.07/7.13/7.2) / 7.33 (7.4/7.47/7.53) / 7.67 seconds"
-    },
-    {
-      "name": "Legendary Skill: Moonlight Dance",
-      "value": "• After several basic attacks, awakened Selene will trigger the <Moonlight Dance> skill to damage enemy units in front of her and reduce their attack.\n• Trigger Number: 5/4/3/3/3\n• Range: 4×8"
-    }
-  ]
+  "basic": {
+    "label": "Basic",
+    "title": "Basic Attack",
+    "description": "• Range: 3",
+    "image": "https://cdn.discordapp.com/attachments/833978786395586600/911157494863265822/selene.basic.png"
+  },
+  "active": {
+    "label": "Active",
+    "title": "Active Skill: Moonlight Shackles",
+    "description": "Selene will stun the enemy in a target arena and bind them in place for several seconds.\n• Stun duration: 9 seconds\n• Range: 5",
+    "image": "https://cdn.discordapp.com/attachments/833978786395586600/911157494640963584/selene.active.png"
+  },
+  "passive": {
+    "label": "Passive",
+    "title": "Passive Skill: Moonlight Projection",
+    "description": "• For a period of time after the start of the battle, Selene will give allied units partial damage immunity and increase attack power.\nDamage immunity applies to all forms of damages, including reflection and curse.\n• Duration: 3 / 3 / 3 / 4 / 4 / 4 / 5 / 5 / 5 / 6 / 6 / 6 / 7 / 7 / 7 (7.07/7.13/7.2) / 7.33 (7.4/7.47/7.53) / 7.67 seconds"
+  },
+  "legendary": {
+    "label": "Legendary",
+    "title": "Legendary Skill: Moonlight Dance",
+    "description": "• After several basic attacks, awakened Selene will release the <Moonlight Dance> skill to damage enemy units in front of her and reduce their attack.\n• Trigger Number: 5/4/3/3/3\n• Range: 4×8",
+    "image": "https://cdn.discordapp.com/attachments/833978786395586600/911157495131672646/selene.legendary.png"
+  }
 }

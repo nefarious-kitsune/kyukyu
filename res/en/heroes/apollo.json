@@ -1,22 +1,29 @@
 {
-  "title": "Apollo",
-  "color": 16431948,
-  "fields": [
-    {
-      "name": "Basic Attack",
-      "value": "• Range: 30×2"
-    },
-    {
-      "name": "Active Skill: ",
-      "value": "• Apollo will ....\n• Range: 6"
-    },
-    {
-      "name": "Passive Skill: ",
-      "value": "• Apollo will ..."
-    },
-    {
-      "name": "Legendary Skill: ",
-      "value": "• "
-    }
-  ]
+  "basic": {
+    "label": "Basic",
+    "title": "Basic Attack",
+    "description": "• Range: 30×2",
+    "image": "https://cdn.discordapp.com/attachments/833978786395586600/910716342934589480/apollo.basic.png"
+  },
+  "active": {
+    "label": "Active",
+    "title": "Active Skill: Solar Rain",
+    "description": "• Apollo will summon Solar Rain in a target area, dealing multiple damages to the enemy.\n• Range: 6",
+    "image": "https://cdn.discordapp.com/attachments/833978786395586600/910716339142934588/apollo.active.png"
+  },
+  "passive": {
+    "label": "Passive",
+    "title": "Passive Skill: I am the Light!",
+    "description": "• Apollo will increase the attack of all allied units."
+  },
+  "legendary": {
+    "label": "Legendary",
+    "title": "Legendary Skill: Sun Imprint",
+    "description": "• Apollo will impose a layer of Sun Imprint on every enemy unit Apollo attacks (with basic attack or active skill).\n• The first time Apollo attacks an enemy unit, the layer of Sun Imprint is zero (0).\n• The Sun Imprint can stack up to 10 layers.\n• Every time Apollo attacks an enemy unit, the target unit receives an additional damage that is *Damage of Sun Imprint* × *Layer of Sun Imprint*\n• Sun Imprint damage does not stack the number of layers of Sun Imprint."
+  },
+  "racial synergy": {
+    "label": "Racial Synergy",
+    "title": "Racial Synergy",
+    "description": "• Apollo will increase the basic attack and skill attack of all sacred units."
+  }
 }

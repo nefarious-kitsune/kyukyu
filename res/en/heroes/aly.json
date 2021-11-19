@@ -1,23 +1,25 @@
 {
-  "title": "Aly",
-  "description": "A powerful mage who can deal massive damage to enemy units with spirit bombs while also reducing their defense and stunning them.",
-  "color": 16431948,
-  "fields": [
-    {
-      "name": "Basic Attack",
-      "value": "• Range: 4"
-    },
-    {
-      "name": "Active Skill: Trial of Flames",
-      "value": "• Aly will accumulate power for 3 seconds to form a fire bomb, then throw the fire bomb at the enemy.\n• The fire bomb will deal damage to the targeted enemy units and stun them.\n• The fire bomb will leave a burning flame on the ground and continue to damage enemy units within the range for a period of time.\n• If Aly is affected by a stun effect during the fire ball accumulating process, the fire bomb will drop to the ground, and the damage and range will be reduced by half.\n• Stun duration: 3 seconds\n• Range: 9"
-    },
-    {
-      "name": "Passive Skill: Fox's Charming Fire",
-      "value": "• Aly’s normal attack and some skills can ignite the enemy. Ignited enemy units will take continuous damage and have reduced attack and defense. The ignition effect disappears after 8 seconds."
-    },
-    {
-      "name": "Legendary Skill: Power of Nine Tails",
-      "value": "• Every time Aly cumulatively losses 10% of her life, she will stimulate the power of a tail to increase her damage.\n• The power increase stacks up to 9 times.\n• When Aly cumulatively loses 90% of her life, all enemies on the battlefield will be bewitched (stunned), and the ignited enemy units will be detonated, damaging the enemy units and surrounding units.\n• Bewitching and detonation only trigger once per battle.\n• The damage caused by the detonation will not cause the enemy to be ignited.\n• After the ignited enemy unit is detonated, the ignition effect on the unit will disappear.\n• Bewitch (stun) duration: 2 seconds\n• Range (self-detonation): 3"
-    }
-  ]
+  "basic": {
+    "label": "Basic",
+    "title": "Basic Attack",
+    "description": "• Range: 4",
+    "image": "https://cdn.discordapp.com/attachments/833978786395586600/910436171975368754/aly.basic.png"
+  },
+  "active": {
+    "label": "Active",
+    "title": "Active Skill: Trial of Flames",
+    "description": "**1**\n• Aly will accumulate power for 3 seconds to form a fire bomb, then throw the fire bomb at the enemy.\n• The fire bomb will deal damage to the targeted enemy units and stun them.\n• The fire bomb will leave a burning flame on the ground and continue to damage enemy units within the range for a period of time.\n• Range: 9\n• Stun duration: 3 seconds\n\n**2**\n• If Aly is affected by a stun effect during the fire ball accumulating process, the fire bomb will drop to the ground, and the damage and range will be reduced by half.\n• Range (halved): 4.5",
+    "image": "https://cdn.discordapp.com/attachments/833978786395586600/910436170029215776/aly.active.png"
+  },
+  "passive": {
+    "label": "Passive",
+    "title": "Passive Skill: Fox's Charming Fire",
+    "description": "• Aly’s normal attack and some skills can ignite the enemy. Ignited enemy units will take continuous damage and have reduced attack and defense. The ignition effect disappears after 8 seconds."
+  },
+  "legendary": {
+    "label": "Legendary",
+    "title": "Legendary Skill: Power of Nine Tails",
+    "description": "• Every time Aly cumulatively losses 10% of her life, she will stimulate the power of a tail to increase her damage.\n• The power increase stacks up to 9 times.\n• When Aly cumulatively loses 90% of her life, all enemies on the battlefield will be bewitched (stunned), and the ignited enemy units will be detonated, damaging the enemy units and surrounding units.\n• Bewitching and detonation only trigger once per battle.\n• The damage caused by the detonation will not cause the enemy to be ignited.\n• After the ignited enemy unit is detonated, the ignition effect on the unit will disappear.\n• Bewitch (stun) duration: 2 seconds\n• Range (self-detonation): 3",
+    "image": "https://cdn.discordapp.com/attachments/833978786395586600/910436168011759666/aly.legendary.png"
+  }
 }

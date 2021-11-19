@@ -1,23 +1,25 @@
 {
-  "title": "Chione",
-  "description": "An attrition hero who suppresses enemy’s attack while smothering the enemy with her own attack.",
-  "color": 16431948,
-  "fields": [
-    {
-      "name": "Basic Attack",
-      "value": "• Range: 3"
-    },
-    {
-      "name": "Active Skill: Freezing Field",
-      "value": "• Chione’s <Freezing Field> skill summons a blizzard that freezes enemy units in the targeted area.\n• The blizzard will deal damage to the targeted enemy units while disregarding any damage reduction effect (Selene’s <Moonlight Projection>, Arthur’s <Avalon> and Stone Golem’s <The Will of the Stone> skills).\n• Any damage reduction will still apply to other forms of attack (e.g. Chione’s basic attack and attacks by allied units).\n• Range: 8"
-    },
-    {
-      "name": "Passive Skill: Frost",
-      "value": "• Chione will reduce enemy attack speed and movement."
-    },
-    {
-      "name": "Legendary Skill: Frost Prison",
-      "value": "• After several basic attacks, awakened Chione will trigger the <Frost Prison> skill which freezes targeted enemy units.\n• <Frost Prison> increases damage dealt to enemy units frozen by either <Freezing Field> or <Frost Prison>.\n• The damage increase applies to both basic attacks and skill damages, including damage from Voodoo Dolls’ <Destiny Bond> skill.\n• Trigger Number: 3\n• Range: 3"
-    }
-  ]
+  "basic": {
+    "label": "Basic",
+    "title": "Basic Attack",
+    "description": "• Range: 3",
+    "image": "https://cdn.discordapp.com/attachments/833978786395586600/911152658147057674/chione.basic.png"
+  },
+  "active": {
+    "label": "Active",
+    "title": "Active Skill: Freezing Field",
+    "description": "• Chione will summon a blizzard that freezes enemy units in a target area, dealing damage to the targeted enemy units.\n• The blizzard’s damage will disregard any damage reduction effect.\n• Damages from other attacks (e.g. Chione’s basic attack and attacks by allied units) will observe damage reduction effect.\n• Range: 8",
+    "image": "https://cdn.discordapp.com/attachments/833978786395586600/911152657945739274/chione.active.png"
+  },
+  "passive": {
+    "label": "Passive",
+    "title": "Passive Skill: Frost",
+    "description": "• Chione will reduce enemy attack speed and movement."
+  },
+  "legendary": {
+    "label": "Legendary",
+    "title": "Legendary Skill: Frost Prison",
+    "description": "• After several basic attacks, Chione will release the <Frost Prison> skill which freezes targeted enemy units.\n• <Frost Prison> increases damage dealt to enemy units frozen by either <Freezing Field> or <Frost Prison>.\n• The damage increase applies to both basic attacks and skill damages, including damage from Voodoo Dolls’ <Destiny Bond> skill.\n• Trigger Number: 3\n• Range: 3",
+    "image": "https://cdn.discordapp.com/attachments/833978786395586600/911152657723449354/chione.legendary.png"
+  }
 }

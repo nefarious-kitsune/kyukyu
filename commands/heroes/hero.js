@@ -1,55 +1,56 @@
+const fs = require('fs');
 const res = require('../../res/res');
-const {getEmbed} = require('../../helpers/getEmbed');
 
 module.exports = {
   name: 'hero',
-  getContent(cmdRes, settings, heroName) {
-    const embed = getEmbed(settings, cmdRes.files[heroName]);
-    embed.thumbnail = {'url': res.images.hero_icons[heroName]};
-    return embed;
-  },
+  args: true,
   async execute(cmdRes, settings, msg, args) {
-    const l10n = res.l10n[settings.lang];
-    const menuOptions = [];
-    for (const [key] of Object.entries(cmdRes.files)) {
-      const heroDisplayName = l10n.HERO_DISPLAY_NAMES[key];
-      menuOptions.push({label: heroDisplayName, value: key});
-    }
-    const row = {
-      type: 1,
-      components: [{custom_id: 'hero.list', type: 3, options: menuOptions}],
+    const hero = res.findHero(settings.lang, args[0]);
+    if ((!hero) || (!cmdRes.files.hasOwnProperty(hero))) return;
+
+    // const heroIcon = res.images.hero_icons[hero];
+    const heroRes = JSON.parse(fs.readFileSync(cmdRes.files[hero], 'utf8'));
+
+    const embeds = [];
+    const buttons = [];
+    let keyIdx = 0;
+    for ([key, info] of Object.entries(heroRes)) {
+      const embed = {
+        title: info.title,
+        description: info.description,
+        // thumbnail: {url: heroIcon},
+      };
+      if (info.hasOwnProperty('image')) embed.image = {url: info.image};
+      embeds.push(embed);
+      buttons.push({
+        type: 2, label: info.label,
+        style: 2, custom_id: String(keyIdx),
+      });
+      keyIdx++;
     };
+    const components = [{type: 1, components: buttons}];
 
-    let content = {content: cmdRes.menuDesc, components: [row]};
-    if (args.length > 0) {
-      const heroName = res.findHero(settings.lang, args[0]);
-      if (heroName) {
-        if (cmdRes.files.hasOwnProperty(heroName)) {
-          content = {
-            embeds: [this.getContent(cmdRes, settings, heroName)],
-            components: [row],
-          };
-        };
-      }
-    }
+    msg.channel.send({
+      embeds: [embeds[0]],
+      components: components,
+    }).then((response)=> {
+      const collector = response.createMessageComponentCollector({
+        time: 10 * 60 * 1000,
+        idle: 1 * 60 * 1000,
+      });
 
-    const response = await msg.channel.send(content);
-    const collector = response.createMessageComponentCollector({
-      componentType: 'SELECT_MENU',
-      time: 10 * 60 * 1000,
-      idle: 1 * 60 * 1000,
-    });
-    collector.on('collect',
-        async (interaction) => {
-          interaction.deferUpdate();
-          interaction.message.edit({
-            embeds: [this.getContent(cmdRes, settings, interaction.values[0])],
-            components: [row],
-          });
-        },
-    );
-    collector.on('end', (collected) => {
-      response.edit({embeds: response.embeds, components: []});
+      collector.on('collect',
+          async (i) => {
+            i.deferUpdate();
+            response.edit({
+              embeds: [embeds[parseInt(i.customId)]],
+              components: [{type: 1, components: buttons}],
+            });
+          },
+      );
+      collector.on('end', (i) => {
+        response.edit({embeds: response.embeds, components: []});
+      });
     });
   },
 };

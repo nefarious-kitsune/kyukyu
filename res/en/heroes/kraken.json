@@ -1,0 +1,25 @@
+{
+  "basic": {
+    "label": "Basic",
+    "title": "Basic Attack",
+    "description": "• Range: None"
+  },
+  "active": {
+    "label": "Active",
+    "title": "Active Skill: Kraken's Deterrence ",
+    "description": "• Kraken will fly towards the enemy and ensnare a large number of enemy troops, dealing damage and stunning them, as well as providing himself with a powerful amor bonus.\n• Range: 8-9",
+    "image": "https://cdn.discordapp.com/attachments/833978786395586600/911167731854888960/kraken.legendary.png"
+  },
+  "passive": {
+    "label": "Passive",
+    "title": "Passive Skill: Frozen Tornado",
+    "description": "• At the beginning of the battle, an Arctic tornado appears with the Kraken. Moving randomly, it causes continuous damage and slows enemies it touches. After several hits, enemy will be frozen.\n• Range: 5",
+    "image": "https://cdn.discordapp.com/attachments/833978786395586600/911167731355770900/kraken.passive.png"
+  },
+  "legendary": {
+    "label": "Legendary",
+    "title": "Legendary Skill: Death Tentacle",
+    "description": "• Kraken stretches out multiple tentacles toward the enemy, dealing damage and causing stun effects.\n• Number of Tentacles: 10 / 10 / 12 / 12 / 14 / 14 (14/14/14) / 14 (14/14/14) / 14\n• Range: 2.6",
+    "image": "https://cdn.discordapp.com/attachments/833978786395586600/911167731854888960/kraken.legendary.png"
+  }
+}

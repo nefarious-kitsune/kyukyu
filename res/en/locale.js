@@ -562,8 +562,9 @@ module.exports = {
       files: {
         'aly': path.resolve(__dirname, 'heroes', 'aly.json'),
         'apollo': path.resolve(__dirname, 'heroes', 'apollo.json'),
-        // 'chione': path.resolve(__dirname, 'heroes', 'chione.json'),
-        // 'selene': path.resolve(__dirname, 'heroes', 'selene.json'),
+        'chione': path.resolve(__dirname, 'heroes', 'chione.json'),
+        'kraken': path.resolve(__dirname, 'heroes', 'kraken.json'),
+        'selene': path.resolve(__dirname, 'heroes', 'selene.json'),
         // 'seondeok': path.resolve(__dirname, 'heroes', 'seondeok.json'),
         // 'harrison': path.resolve(__dirname, 'heroes', 'harrison.json'),
         // 'mephisto': path.resolve(__dirname, 'heroes', 'mephisto.json'),
