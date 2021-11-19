@@ -46,7 +46,7 @@ module.exports = {
       responseCurrentEnd: 'This event will end in {DAY}d {HOUR}h {MINUTE}m.\n',
       responseNextCM: '\nNext Card Master will have: {HERO}\n',
       responseNextWheel: '\nNext Wheel of Fortune will have: {HERO} ({HERO2})\n',
-      responseNextEvent: '\nThe next event will be announced soon (usually around Friday).',
+      responseNextEvent: '\nThe next event will be announced soon (usually around Friday).\n',
       responseRecent14: '\n**# of appearances in the 14 most recent events:**\n',
       responseRecent13: '\n**# of appearances in the 13 most recent events:**\n',
     },
@@ -61,6 +61,8 @@ module.exports = {
       aliases: ['event-list', 'events-list'],
       desc: 'List recent hero events.',
     },
+    {name: 'event-add', aliases: ['event-add', 'events-d'], hidden: true},
+    {name: 'event-delete', aliases: ['event-delete', 'events-delete'], hidden: true},
     {
       name: 'utc',
       aliases: ['utc', 'now', 'time'],

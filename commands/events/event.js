@@ -55,7 +55,8 @@ module.exports = {
     });
     let txt = '';
     if (counts[5].length) {
-      txt += '≥6×: ' + counts[5].map((h)=>l10n.HERO_DISPLAY_NAMES[h]).join(' ') + '\n';
+      txt += '≥6×: ' +
+        counts[5].map((h)=>l10n.HERO_DISPLAY_NAMES[h]).join(' ') + '\n';
     }
     for (let i=4; i>=0; i--) {
       if (counts[i].length) {
@@ -122,13 +123,13 @@ module.exports = {
 
     if (nextEvent) {
       if (nextEvent.heroes.length == 2 ) {
-        response = literal(
+        response += literal(
             cmdRes.responseNextWheel,
             '{HERO}', l10n.HERO_DISPLAY_NAMES[nextEvent.heroes[0]],
             '{HERO2}', l10n.HERO_DISPLAY_NAMES[nextEvent.heroes[1]],
         );
       } else {
-        nextEvent = literal(cmdRes.responseNextCM, '{HERO}',
+        response += literal(cmdRes.responseNextCM, '{HERO}',
             nextEvent.heroes.map((h)=>l10n.HERO_DISPLAY_NAMES[h]).join(' '),
         );
       }
@@ -141,7 +142,7 @@ module.exports = {
     }
 
     response +=
-      '\n' + cmdRes.responseRecent13 + this.stats(EVENTS.events, 1, 13, l10n);
+      cmdRes.responseRecent13 + this.stats(EVENTS.events, 1, 13, l10n);
 
     msg.channel.send(response);
   },

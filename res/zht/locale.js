@@ -46,7 +46,7 @@ module.exports = {
       responseCurrentEnd: '本活動會在{DAY}天{HOUR}小時{MINUTE}分結束。\n',
       responseNextCM: '\n下個卡牌大師英雄是： {HERO}\n',
       responseNextWheel: '\n下個幸運展盤英雄是：{HERO} ({HERO2})\n',
-      responseNextEvent: '\n下個活動會很快的宣布　(通常是禮拜五)。',
+      responseNextEvent: '\n下個活動會很快的宣布　(通常是禮拜五)。\n',
       responseRecent14: '\n最近14次活動出現的英雄：\n',
       responseRecent13: '\n最近13次活動出現的英雄：\n',
     },
@@ -62,11 +62,6 @@ module.exports = {
       desc: 'List recent hero events.',
     },
     {name: 'event-of', hidden: true, aliases: ['event-of', 'events-of', '活動搜尋']},
-    {
-      name: 'event-list',
-      aliases: ['event-list', 'events-list'],
-      desc: 'List recent hero events.',
-    },
     {
       name: 'utc',
       aliases: ['utc', 'now', 'time'],
