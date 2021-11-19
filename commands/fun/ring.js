@@ -93,7 +93,7 @@ class Player {
     if ((scenario.type == SCENARIO_TYPE.SPECIAL)||
       (scenario.type == SCENARIO_TYPE.PVP_DUEL)
     ) {
-      const s = scenario.getScenario(this.master.data, this);
+      const s = scenario.getScenario(this);
       choices = s.choices;
       story = s.story;
     } else {
@@ -155,7 +155,7 @@ class Player {
    */
   endDay() {
     if (this.scenario.type == SCENARIO_TYPE.PVP_DUEL) {
-      const result = this.scenario.resolveDuel(this.master.data, this);
+      const result = this.scenario.resolveDuel(this);
       let response = result.message;
 
       if (result.type == RESOLUTION_TYPE.ELIMINATED) {
@@ -259,10 +259,6 @@ class RiNGMaster {
     this.players = [];
     this.channel = channel;
     this.days = 0;
-    this.data = {
-      playerA: null, playerB: null,
-      playerAChoice: undefined, playerBChoice: undefined,
-    };
     this.gameSummary = [];
     this.gameLog = '';
   }
