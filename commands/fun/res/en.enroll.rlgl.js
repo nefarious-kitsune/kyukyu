@@ -137,7 +137,7 @@ module.exports = {
 
     master.channel.send(
         'The following players advance: ' +
-        master.players.map((p) => `<@${p.player.id}>`).join(', '),
+        master.players.map((p) => `<@${p.member.id}>`).join(', '),
     );
 
     enrollmentCollector = null;

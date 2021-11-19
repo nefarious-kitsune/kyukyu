@@ -20,7 +20,7 @@ module.exports = { // Duel Arena
   },
   getScenario(data, player) {
     const opponentName =
-      (player.id == data.playerA.id)?
+      (player.member.id == data.playerA.member.id)?
       data.playerB.playerName:
       data.playerA.playerName;
     return {
@@ -29,7 +29,7 @@ module.exports = { // Duel Arena
     };
   },
   resolveChoice(data, choice, player) {
-    if (player.id == data.playerA.id) {
+    if (player.member.id == data.playerA.member.id) {
       data.playerAChoice = choice;
     } else {
       data.playerBChoice = choice;
@@ -47,7 +47,7 @@ module.exports = { // Duel Arena
     let oppChoice;
     let oppName;
     let reaperChoice;
-    if (player.id == data.playerA.id) {
+    if (player.member.id == data.playerA.member.id) {
       myChoice = data.playerAChoice;
       oppChoice = data.playerBChoice;
       oppName = data.playerB.playerName;

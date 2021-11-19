@@ -23,7 +23,7 @@ class duel {
     this.playerB = playerB;
     this.playerAChoice = undefined;
     this.playerBChoice = undefined;
-    master.log(`${playerA.playerName} and ${playerA.playerName} started a Marble Game.`);
+    master.log(`${playerA.playerName} and ${playerB.playerName} started a Marble Game.`);
   }
 
   /**
@@ -31,7 +31,7 @@ class duel {
    * @return {object}
    */
   getScenario(player) {
-    if (player.id == this.playerA.id) {
+    if (player.member.id == this.playerA.member.id) {
       return {
         story:
              'You arrived at the Marble Arena. ' +
@@ -62,7 +62,7 @@ class duel {
    * @return {object}
    */
   resolveChoice(choice, player) {
-    if (player.id == this.playerA.id) {
+    if (player.member.id == this.playerA.member.id) {
       this.playerAChoice = choice;
     } else {
       this.playerBChoice = choice;
@@ -86,7 +86,7 @@ class duel {
     let oppChoice;
     let oppName;
     let chooser = false;
-    if (player.id == this.playerA.id) {
+    if (player.member.id == this.playerA.member.id) {
       myChoice = this.playerAChoice;
       oppChoice = this.playerBChoice;
       oppName = this.playerB.playerName;

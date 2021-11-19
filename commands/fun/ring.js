@@ -68,7 +68,7 @@ class Player {
   constructor(master, i) {
     const playerName = normalize(i.member.nickname??i.member.user.username);
     this.master = master;
-    this.player = i.member;
+    this.member = i.member;
     this.playerName = playerName.normalize();
     this.alive = true;
     this.medal = 0;
@@ -362,7 +362,7 @@ class RiNGMaster {
         this.gameSummary.push(
             literal(
                 STRINGS.SUMMARY_ONE_WINNER,
-                '{WINNER}', `<@${survivors[0].player.id}>`,
+                '{WINNER}', `<@${survivors[0].member.id}>`,
             ),
         );
       } else {
@@ -370,7 +370,7 @@ class RiNGMaster {
             literal(
                 STRINGS.SUMMARY_MANY_WINNERS,
                 '{COUNT}', survivors.length,
-                '{WINNERS}', survivors.map((p)=>`<@${p.player.id}>`).join(', '),
+                '{WINNERS}', survivors.map((p)=>`<@${p.member.id}>`).join(', '),
             ),
         );
       }
@@ -379,7 +379,7 @@ class RiNGMaster {
         const role = this.channel.guild
             .roles.cache.get(GLOBAL.LORD_OF_RING_ROLE_ID);
         role.members.forEach((member)=> member.roles.remove(role));
-        survivors.forEach((survivor)=> survivor.player.roles.add(role));
+        survivors.forEach((survivor)=> survivor.member.roles.add(role));
       }
     }
 
