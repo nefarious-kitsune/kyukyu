@@ -1,4 +1,4 @@
-// const {literal} = require('../../helpers/literal');
+const GLOBAL = require('../../global');
 
 const {
   STRINGS, SCENARIO_TYPE, RESOLUTION_TYPE, diceRoll, pause, wait,
@@ -14,13 +14,13 @@ const SCENARIOS =
   require('./res/en.chance')
       .concat(require('./res/en.danger'));
 
-const GAME_CHANNELS = ['903150247142903878', '831064145637539860'];
+const GAME_CHANNELS = [GLOBAL.RING_CHANNEL, GLOBAL.RING_TEST_CHANNEL];
 
 const GAME_SETTINGS = {
   RESPONSE_TIME: 25,
   PAUSE_AFTER_DAY_ENDS: 10,
   ENTRY_TIME_LIMIT: 60,
-  PLAYER_LIMIT: 15,
+  PLAYER_LIMIT: 50,
   WINNER_LIMIT: 2,
   SPECIAL_TRIGGER: 5,
 };
@@ -32,10 +32,6 @@ const GAME_SETTINGS = {
 const RING_MASTER_REVIVE_RATE = 0.08;
 
 const MAX_MEDAL = 5; // maximum number of medals a player can have.
-
-const REVIVE_MSG = '\n\nYou were **revived** with an Honor Medal.';
-const MASTER_REVIVE_MSG = '\n\nYou were **revived** by the RiNG Master!';
-const DEATH_MSG = '\n\n**You did not make it. Better luck next time.**';
 
 /*
 TRAP
@@ -161,12 +157,12 @@ class Player {
       if (result.type == RESOLUTION_TYPE.ELIMINATED) {
         if (this.medal) {
           this.medal--;
-          response += REVIVE_MSG;
+          response += STRINGS.REVIVE_MSG;
         } else if (Math.random() < RING_MASTER_REVIVE_RATE) {
-          response += MASTER_REVIVE_MSG;
+          response += STRINGS.MASTER_REVIVE_MSG;
         } else {
           this.alive = false;
-          response += DEATH_MSG;
+          response += STRINGS.DEATH_MSG;
         }
       }
       this.cachedResponse = response;
@@ -227,12 +223,12 @@ class Player {
       case RESOLUTION_TYPE.ELIMINATED:
         if (this.medal) {
           this.medal--;
-          response += REVIVE_MSG;
+          response += STRINGS.REVIVE_MSG;
         } else if (Math.random() < RING_MASTER_REVIVE_RATE) {
-          response += MASTER_REVIVE_MSG;
+          response += STRINGS.MASTER_REVIVE_MSG;
         } else {
           this.alive = false;
-          response += DEATH_MSG;
+          response += STRINGS.DEATH_MSG;
         }
         break;
       case RESOLUTION_TYPE.SURVIVED:
@@ -378,14 +374,11 @@ class RiNGMaster {
         );
       }
 
-      if (this.channel.id == '903150247142903878') {
-        const role = this.channel.guild.roles.cache.get('907578724533293066');
-        role.members.forEach((member)=> {
-          member.roles.remove(role);
-        });
-        survivors.forEach((survivor)=> {
-          survivor.player.roles.add(role);
-        });
+      if (this.channel.id == GLOBAL.RING_CHANNEL) {
+        const role = this.channel.guild
+            .roles.cache.get(GLOBAL.LORD_OF_RING_ROLE_ID);
+        role.members.forEach((member)=> member.roles.remove(role));
+        survivors.forEach((survivor)=> survivor.player.roles.add(role));
       }
     }
 
@@ -414,7 +407,7 @@ const lotr = {
   name: 'ring',
   async execute(cmdRes, settings, msg, args) {
     if (GAME_CHANNELS.includes(msg.channelId)) {
-      if (msg.channelId == '903150247142903878') {
+      if (msg.channelId == GLOBAL.RING_CHANNEL) {
         const CB = msg.client.AOW_CB;
         CB.send(literal(STRINGS.PREANNOUNCEMENT, '{SECONDS}', 15));
         master = new RiNGMaster(msg.channel);
