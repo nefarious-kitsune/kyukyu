@@ -21,23 +21,27 @@ const SCENARIO_TRAP_NOT_SET = {
 
 module.exports = { // lamp
   type: SCENARIO_TYPE.SPECIAL,
-  getScenario(data, player) {
-    return data.trapASet?SCENARIO_TRAP_SET:SCENARIO_TRAP_NOT_SET;
+  init() {
+    this.trapSet = false;
+    this.trap = 0;
+    this.trapBy = '';
   },
-  resolveChoice(data, choice, player) {
-    if (data.trapASet) { // go through trap
-      if (choice == data.trapA) {
-        data.trapASet = false;
+  getScenario(player) {
+    return this.trapSet?SCENARIO_TRAP_SET:SCENARIO_TRAP_NOT_SET;
+  },
+  resolveChoice(choice, player) {
+    if (this.trapSet) { // go through trap
+      if (choice == this.trap) {
+        this.trapSet = false;
         if (choice == 0) {
           return eliminated(
               'You went left.\n\n'+
               'Swoosh! You were flung in the air by a noose trap set by ' +
-              `**${data.trapABy}**.`);
+              `**${this.trapBy}**.`);
         } else {
           return eliminated(
               'You went right.\n\n'+
-              'Thud! You fell into a trap hole dug by ' +
-              `**${data.trapABy}**.`);
+              `Thud! You fell into a trap hole dug by **${this.trapBy}**.`);
         }
       } else {
         return survived(
@@ -47,9 +51,9 @@ module.exports = { // lamp
         );
       }
     } else { // setting trap
-      data.trapASet = true;
-      data.trapA = choice;
-      data.trapABy = player.playerName;
+      this.trapSet = true;
+      this.trap = choice;
+      this.trapBy = player.playerName;
       return pending(
           (choice == 0)?`You set a noose trap.`:'You set a deadfall trap.',
       );

@@ -20,21 +20,26 @@ const SCENARIO_TRAP_NOT_SET = {
 
 module.exports = { // lamp
   type: SCENARIO_TYPE.SPECIAL,
-  getScenario(data, player) {
-    return data.trapASet?SCENARIO_TRAP_SET:SCENARIO_TRAP_NOT_SET;
+  init() {
+    this.trapSet = false;
+    this.trap = 0;
+    this.trapBy = '';
   },
-  resolveChoice(data, choice, player) {
-    if (data.trapASet) { // go through trap
-      if (choice == data.trapA) {
-        data.trapASet = false;
+  getScenario(player) {
+    return this.trapSet?SCENARIO_TRAP_SET:SCENARIO_TRAP_NOT_SET;
+  },
+  resolveChoice(choice, player) {
+    if (this.trapSet) { // go through trap
+      if (choice == this.trap) {
+        this.trapSet = false;
         if (choice == 0) {
           return eliminated(
               'You went over the fallen tree. You tripped a trap set by '+
-              `**${data.trapABy}** and were flung off by a swinging log.`);
+              `**${this.trapBy}** and were flung off by a swinging log.`);
         } else {
           return eliminated(
               'You went under the fallen tree and fell into a spike pit '+
-              `dug by **${data.trapABy}**.`);
+              `dug by **${this.trapBy}**.`);
         }
       } else {
         return survived(
@@ -44,9 +49,9 @@ module.exports = { // lamp
         );
       }
     } else { // setting trap
-      data.trapASet = true;
-      data.trapA = choice;
-      data.trapABy = player.playerName;
+      this.trapSet = true;
+      this.trap = choice;
+      this.trapBy = player.playerName;
       return pending(
           (choice == 0)?`You made a swing-log trap.`:'You dug a spike-pit.',
       );

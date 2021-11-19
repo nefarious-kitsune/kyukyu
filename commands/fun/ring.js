@@ -51,7 +51,11 @@ const SPECIAL_SCENARIOS = [
   require('./res/en.special.trapA'),
   require('./res/en.special.triggerA'),
   require('./res/en.special.trapB'),
-  require('./res/en.special.duel'),
+];
+
+
+const DUEL_SCENARIOS = [
+  // require('./res/en.special.duel'),
   require('./res/en.special.marble'),
 ];
 
@@ -126,7 +130,7 @@ class Player {
         this.processChoice(parseInt(i.customId));
       });
       this.collector.on('end', (i, reason) => {
-        // console.log(this.collector.collected.first().customId);
+        // this.master.log(this.collector.collected.first().customId);
         if (reason == 'time') this.processChoice(undefined);
       });
     });
@@ -189,7 +193,7 @@ class Player {
     const scenario = this.scenario;
 
     if (scenario.type == SCENARIO_TYPE.PVP_DUEL) {
-      result = this.scenario.resolveChoice(this.master.data, choice, this);
+      result = this.scenario.resolveChoice(choice, this);
       if (choice != undefined) {
         this.interaction.followUp({
           content: result.message,
@@ -200,7 +204,7 @@ class Player {
     } else {
       const CHOICE = (choice == undefined)?this.defaultChoice:choice;
       if (scenario.type == SCENARIO_TYPE.SPECIAL) {
-        result = this.scenario.resolveChoice(this.master.data, CHOICE, this);
+        result = this.scenario.resolveChoice(CHOICE, this);
       } else {
         const __result = this.scenario.results[CHOICE];
         result = __result[diceRoll(__result.length)];
@@ -237,10 +241,10 @@ class Player {
     }
 
     if (choice == undefined) {
-      console.log(`${this.master.days}: ${this.playerName} timed out.`);
+      this.master.log(`${this.master.days}: ${this.playerName} timed out.`);
       this.cachedResponse = response;
     } else {
-      console.log(`${this.master.days}: ${this.playerName} chose "${scenario.choices[choice]}".`);
+      this.master.log(`${this.master.days}: ${this.playerName} chose "${scenario.choices[choice]}".`);
       this.interaction.followUp({content: response, ephemeral: true});
     };
   }
@@ -256,13 +260,20 @@ class RiNGMaster {
     this.channel = channel;
     this.days = 0;
     this.data = {
-      lampUsed: false, lampUsedBy: '',
-      trapASet: false, trapA: 0, trapABy: '',
-      trapBSet: false, trapB: 0, trapBBy: '',
       playerA: null, playerB: null,
       playerAChoice: undefined, playerBChoice: undefined,
     };
     this.gameSummary = [];
+    this.gameLog = '';
+  }
+
+  /** @param {string} text */
+  log(text) {
+    try {
+      console.log(text);
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   /**
@@ -270,8 +281,6 @@ class RiNGMaster {
    * @return {PLayer}
    */
   addPlayer(i) {
-    // console.log('adding player...');
-    // console.log(i);
     const newPlayer = new Player(this, i);
     this.players.push(newPlayer);
     return newPlayer;
@@ -281,40 +290,36 @@ class RiNGMaster {
   startDay() {
     let scenario;
     this.days++;
+    this.players.forEach((p)=>p.scenario = undefined);
 
     this.playerAIdx = -1;
     this.playerBIdx = -1;
-    if (this.players.length >= GAME_SETTINGS.SPECIAL_TRIGGER) {
-      const SPECIAL_IDX = diceRoll(SPECIAL_SCENARIOS.length + 4);
 
+    if (this.players.length >= GAME_SETTINGS.SPECIAL_TRIGGER) {
+      const DUEL_IDX = diceRoll(DUEL_SCENARIOS.length + 2);
+      if (DUEL_IDX < DUEL_SCENARIOS.length) {
+        const AIdx = diceRoll(this.players.length);
+        let BIdx = diceRoll(this.players.length);
+        if (AIdx == BIdx) BIdx = diceRoll(this.players.length);
+        if (AIdx !== BIdx) {
+          const DUEL = DUEL_SCENARIOS[DUEL_IDX];
+          scenario = new DUEL(this, this.players[AIdx], this.players[BIdx]);
+          this.players[AIdx].startDay(scenario);
+          this.players[BIdx].startDay(scenario);
+        }
+      }
+
+      const SPECIAL_IDX = diceRoll(SPECIAL_SCENARIOS.length + 4);
       if (SPECIAL_IDX < SPECIAL_SCENARIOS.length) {
         scenario = SPECIAL_SCENARIOS[SPECIAL_IDX];
-        if (scenario.type == SCENARIO_TYPE.SPECIAL) {
-          this.playerAIdx = diceRoll(this.players.length);
-          scenario = SPECIAL_SCENARIOS[SPECIAL_IDX];
-          this.players[this.playerAIdx].startDay(scenario);
-        } if (scenario.type == SCENARIO_TYPE.PVP_DUEL) {
-          const AIdx = diceRoll(this.players.length);
-          let BIdx = diceRoll(this.players.length);
-          if (AIdx == BIdx) BIdx = diceRoll(this.players.length);
-          if (AIdx !== BIdx) {
-            this.playerAIdx = AIdx;
-            this.playerBIdx = BIdx;
-            scenario.setPlayers(
-                this.data,
-                this.players[AIdx],
-                this.players[BIdx],
-            );
-            this.players[AIdx].startDay(scenario);
-            this.players[BIdx].startDay(scenario);
-          }
-        }
+        const player = this.players[diceRoll(this.players.length)];
+        if (player.scenario == undefined) player.startDay(scenario);
       }
     }
     for (let pIdx=0; pIdx < this.players.length; pIdx++) {
-      if ((pIdx != this.playerAIdx) && (pIdx != this.playerBIdx)) {
-        scenario = SCENARIOS[diceRoll(SCENARIOS.length)];
-        this.players[pIdx].startDay(scenario);
+      const player = this.players[pIdx];
+      if (player.scenario == undefined) {
+        player.startDay(SCENARIOS[diceRoll(SCENARIOS.length)]);
       }
     }
     pause(GAME_SETTINGS.RESPONSE_TIME+0.5).then(() => this.endDay());
@@ -388,6 +393,7 @@ class RiNGMaster {
       this.channel.send(this.gameSummary.join('\n\n'));
       this.gameSummary = [];
       this.players = [];
+      SPECIAL_SCENARIOS.forEach((s)=>s.init());
       return;
     }
 

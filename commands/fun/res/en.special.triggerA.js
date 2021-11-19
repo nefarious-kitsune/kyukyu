@@ -5,6 +5,9 @@
 
 const {SCENARIO_TYPE, diceRoll, survived, eliminated} = require('./en.common');
 
+const trapA = require('./en.special.trapA');
+const lamp = require('./en.special.lamp');
+
 const SCENARIO = {
   story:
     'The path ahead of you was overgrown with vines. ' +
@@ -30,39 +33,39 @@ const RANDOM_SURVIVAL_1 =
 
 module.exports = { // lamp
   type: SCENARIO_TYPE.SPECIAL,
-  getScenario(data, player) {
+  init() {
+    // do nothing
+  },
+  getScenario(player) {
     return SCENARIO;
   },
-  resolveChoice(data, choice, player) {
-    if (data.trapASet) {
+  resolveChoice(choice, player) {
+    if (trapA.trapSet) {
       let result;
       if (choice == 0) {
         result = survived('You looked closely and found a trap wire. Oof!');
       } else {
         result = eliminated(
             'You kept moving and tripped a trap set by **' +
-            data.trapABy + '**.\n\n' +
+            this.trapBy + '**.\n\n' +
             ((choice == 0)?
             'Whoosh! You were flung in the air a noose trap.':
             'A heavy log dropped from above and smashed you.'),
         );
-        data.trapASet = false;
-        data.trapA = 0;
-        data.trapABy = '';
+        trapA.init();
       }
       return result;
     }
 
-    if (data.lampUsed) {
+    if (lamp.lampUsed) {
       let result;
       if (choice == 0) {
         result = eliminated(
             'You found a lamp. You rubbed it and Jinn showed up. ' +
             'Oh no Jinn looked irriated ' +
-            `(**${data.lampUsedBy}** had already rubbed the lamp).`,
+            `(**${lamp.lampUsedBy}** had already rubbed the lamp).`,
         );
-        data.lampUsed = false;
-        data.lampUsedBy = '';
+        lamp.init();
       } else {
         result = survived('You kept moving');
       }

@@ -33,20 +33,24 @@ const SCENARIO = {
 
 module.exports = { // lamp
   type: SCENARIO_TYPE.SPECIAL,
-  getScenario(data, player) {
+  init() {
+    this.lampUsed = false;
+    this.lampUsedBy = '';
+  },
+  getScenario(player) {
     return SCENARIO;
   },
-  resolveChoice(data, choice, player) {
+  resolveChoice(choice, player) {
     if (choice == 0) {
-      if (data.lampUsed) {
-        data.lampUsed = false;
+      if (this.lampUsed) {
+        this.lampUsed = false;
         return eliminated(
             'You rubbed the lamp. Lo and behold, Jinn showed up. ' +
             'But Jinn was grumpy for **' +
-            data.lampUsedBy + '** had alraedy rubbed the lamp.');
+            this.lampUsedBy + '** had alraedy rubbed the lamp.');
       } else {
-        data.lampUsed = true;
-        data.lampUsedBy = player.playerName;
+        this.lampUsed = true;
+        this.lampUsedBy = player.playerName;
         return UNUSED_LAMP_RESOLUTIONS[diceRoll(3)];
       }
     } else {

@@ -9,45 +9,63 @@ const CHOICES = ['Red Marble', 'Blue Marble'];
 const COLORS = ['Red', 'Blue'];
 
 /* eslint-disable max-len */
-module.exports = { // Duel Arena
-  type: SCENARIO_TYPE.PVP_DUEL,
-  setPlayers(data, A, B) {
-    data.playerA = A;
-    data.playerB = B;
-    data.playerAChoice = undefined;
-    data.playerBChoice = undefined;
-    console.log(`${A.playerName} and ${B.playerName} started a Marble Game.`);
-  },
-  getScenario(data, player) {
-    if (player.id == data.playerA.id) {
+
+/** RiNG Master */
+class duel {
+  /**
+   * @param {object} master RiNG Master
+   * @param {object} playerA RiNG Master
+   * @param {object} playerB RiNG Master
+   */
+  constructor(master, playerA, playerB) {
+    this.type = SCENARIO_TYPE.PVP_DUEL;
+    this.playerA = playerA;
+    this.playerB = playerB;
+    this.playerAChoice = undefined;
+    this.playerBChoice = undefined;
+    master.log(`${playerA.playerName} and ${playerA.playerName} started a Marble Game.`);
+  }
+
+  /**
+   * @param {object} player
+   * @return {object}
+   */
+  getScenario(player) {
+    if (player.id == this.playerA.id) {
       return {
         story:
-            'You arrived at the Marble Arena. ' +
-            `Your opponent was **${data.playerB.playerName}**.\n\n` +
-            'You needed to pick a marble ball and ' +
-            'your oppoent would guess what it was.' +
-            'If your opponent guessed correctly, you would lose; ' +
-            'otherwise, you would win.',
+             'You arrived at the Marble Arena. ' +
+             `Your opponent was **${this.playerB.playerName}**.\n\n` +
+             'You needed to pick a marble ball and ' +
+             'your oppoent would guess what it was.' +
+             'If your opponent guessed correctly, you would lose; ' +
+             'otherwise, you would win.',
         choices: CHOICES,
       };
     } else {
       return {
         story:
-            'You arrived at the Marble Arena. ' +
-            `Your opponent is **${data.playerA.playerName}**.\n\n` +
-            'Your opponent would pick a marble ball and ' +
-            'you needed to guess what it was.' +
-            'If you guessed correctly, you would win; ' +
-            'otherwise, you would lose.',
+             'You arrived at the Marble Arena. ' +
+             `Your opponent is **${this.playerA.playerName}**.\n\n` +
+             'Your opponent would pick a marble ball and ' +
+             'you needed to guess what it was.' +
+             'If you guessed correctly, you would win; ' +
+             'otherwise, you would lose.',
         choices: CHOICES,
       };
     }
-  },
-  resolveChoice(data, choice, player) {
-    if (player.id == data.playerA.id) {
-      data.playerAChoice = choice;
+  }
+
+  /**
+   * @param {undefined|number} choice
+   * @param {object} player
+   * @return {object}
+   */
+  resolveChoice(choice, player) {
+    if (player.id == this.playerA.id) {
+      this.playerAChoice = choice;
     } else {
-      data.playerBChoice = choice;
+      this.playerBChoice = choice;
     }
 
     if (choice == undefined) {
@@ -57,21 +75,26 @@ module.exports = { // Duel Arena
       console.log(`${player.playerName} chose ${COLORS[choice]}`);
       return pending(`You chose ${COLORS[choice]}.`);
     }
-  },
-  resolveDuel(data, player) {
+  }
+
+  /**
+   * @param {object} player
+   * @return {object}
+   */
+  resolveDuel(player) {
     let myChoice;
     let oppChoice;
     let oppName;
     let chooser = false;
-    if (player.id == data.playerA.id) {
-      myChoice = data.playerAChoice;
-      oppChoice = data.playerBChoice;
-      oppName = data.playerB.playerName;
+    if (player.id == this.playerA.id) {
+      myChoice = this.playerAChoice;
+      oppChoice = this.playerBChoice;
+      oppName = this.playerB.playerName;
       chooser = true; // PlayerA chooses the ball
     } else {
-      myChoice = data.playerBChoice;
-      oppChoice = data.playerAChoice;
-      oppName = data.playerA.playerName;
+      myChoice = this.playerBChoice;
+      oppChoice = this.playerAChoice;
+      oppName = this.playerA.playerName;
     }
 
     if (myChoice == undefined) {
@@ -87,11 +110,13 @@ module.exports = { // Duel Arena
     } else {
       if (oppChoice == undefined) {
         return survived(`**${oppName}** forfeited the marble game. You won.`);
-      } else if (((myChoice == 2) && (oppChoice == 0)) || (myChoice < oppChoice)) {
-        return survived(`You chose ${CHOICES[myChoice]} and **${oppName}** chose ${CHOICES[oppChoice]}. You won.`);
+      } else if (chooser) {
+        return survived(`You chose ${CHOICES[myChoice]} and **${oppName}** guessed ${CHOICES[oppChoice]}. You won.`);
       } else {
-        return eliminated(`You chose ${CHOICES[myChoice]} and **${oppName}** chose ${CHOICES[oppChoice]}. You lost.`);
+        return eliminated(`**${oppName}** chose ${CHOICES[oppChoice]} and you guessed ${CHOICES[myChoice]}. You lost.`);
       }
     }
-  },
+  }
 };
+
+module.exports = duel;
