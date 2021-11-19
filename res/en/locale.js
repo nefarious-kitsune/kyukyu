@@ -556,7 +556,7 @@ module.exports = {
       name: 'hero',
       aliases: ['hero'],
       desc: 'Information about heroes.',
-      usage: 'aly|apollo',
+      usage: 'aly|apollo|chione|kraken|selene',
       // menuDesc: 'Select a hero you want to know',
       // menuPlaceholder: 'Select a hero you want to know',
       files: {
