@@ -8,7 +8,7 @@ module.exports = {
   name: 'event-of',
   async execute(cmdRes, settings, msg, args) {
     const l10n = res.l10n[settings.lang];
-    const FILE_PATH = path.resolve(__dirname, '../../events.json');
+    const FILE_PATH = path.resolve(__dirname, '../../cache/events.json');
     const EVENTS = JSON.parse(fs.readFileSync(FILE_PATH));
 
     const CM = '<:eventcard:909986289535832104> ';

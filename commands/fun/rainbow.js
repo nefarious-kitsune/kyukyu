@@ -1,5 +1,6 @@
 const {createCanvas} = require('canvas');
 const fs = require('fs');
+const GLOBAL = require('../../global');
 
 color = function(hexColor) {
   const hex = hexColor.substring(1);
@@ -51,8 +52,8 @@ module.exports = {
   name: 'rainbow',
   async execute(cmdRes, settings, msg, args) {
     const CLAN_ROLES = [];
-    if ((msg.author.id != '117203285152104448') &&
-      (msg.author.id != '706106177439924348')) {
+    if (!GLOBAL.TRUSTED_USERS.includes(msg.author.id) &&
+      !GLOBAL.SUPER_USERS.includes(msg.author.id)) {
       return;
     }
 
@@ -60,7 +61,6 @@ module.exports = {
       if (
         (role.name.length <= 4) &&
         (role.mentionable) &&
-        // (role.name.toUpperCase() == role.name) &&
         (!role.name.startsWith('@'))
       ) {
         const clanRole = {
@@ -94,7 +94,7 @@ module.exports = {
     const canvas = createCanvas(width, height);
     const context = canvas.getContext('2d');
 
-    context.font = `${TEXT_HEIGHT}px Candara`;
+    context.font = `${TEXT_HEIGHT}px serif`;
     context.textBaseline = 'top';
     context.textAlign = 'left';
     const SPACING = context.measureText(' ').width;
@@ -108,7 +108,7 @@ module.exports = {
       mentions.push(row.map((r)=>`<@&${r.id}>`).join(' '));
     });
     canvas.width = maxWidth + PADDING * 2;
-    context.font = `${TEXT_HEIGHT}px Candara`;
+    context.font = `${TEXT_HEIGHT}px serif`;
     context.textBaseline = 'top';
     context.textAlign = 'left';
 
@@ -126,10 +126,10 @@ module.exports = {
     });
 
     const buffer = canvas.toBuffer('image/png');
-    fs.writeFileSync('./roles.png', buffer);
+    fs.writeFileSync('./cache/roles.png', buffer);
     msg.author.send({
       content: '```' + mentions.join('\n') + '```',
-      files: [{attachment: './roles.png', name: 'roles.png'}],
+      files: [{attachment: './cache/roles.png', name: 'roles.png'}],
     });
   },
 };

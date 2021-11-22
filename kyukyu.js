@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const res = require('./res/res');
+const GLOBAL = require('./global');
 const {normalize} = require('./helpers/normalize');
 
 const {Client, Collection, Intents} = require('discord.js');
@@ -59,7 +60,7 @@ kyukyu.on('messageCreate', async (msg) => {
   if (msg.author.bot) return;
 
   // ECHO
-  if (msg.author.id == '706106177439924348') {
+  if (msg.author.id == GLOBAL.USER_KITSUNE_ID) {
     if (kyukyu.secretMessage.length > 0) {
       if ((msg.reference) && (msg.reference.messageId)) {
         msg.channel.send({
@@ -128,6 +129,7 @@ kyukyu.on('messageCreate', async (msg) => {
     console.log(`${normalize(msg.author.username)}: ${msg.content}`);
 
     cmd.execute(cmdRes, settings, msg, args).catch((error) => {
+      console.error(error);
       console.error('--------------------------------------------------');
       console.error(`Error executing '${msg.content}'`);
       console.error('> ' + error.message);

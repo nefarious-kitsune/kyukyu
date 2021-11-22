@@ -2,11 +2,12 @@ const fs = require('fs');
 const path = require('path');
 const res = require('../../res/res');
 const {formatDate, proper} = require('./event');
+const GLOBAL = require('../../global');
 
 module.exports = {
   name: 'event-delete',
   async execute(cmdRes, settings, msg, args) {
-    if (msg.author.id == '706106177439924348') {
+    if (msg.author.id == GLOBAL.USER_KITSUNE_ID) {
       const FILE_PATH = path.resolve(__dirname, '../../cache/events.json');
       const EVENTS = JSON.parse(fs.readFileSync(FILE_PATH));
       lastEvent = EVENTS.events.shift();
