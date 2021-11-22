@@ -28,6 +28,7 @@ module.exports = {
       desc: 'Reloads a command.',
       commandNotFound: 'There is no command with name or alias of "{TEXT}"',
     },
+    {name: 'git-pull', aliases: ['git-pull', 'git-update'], hidden: true},
     {name: 'get-log', aliases: ['get-log', 'get-logs'], hidden: true},
     {name: 'flush-log', aliases: ['flush', 'flush-log', 'flush-logs', 'clear-log', 'clear-logs'], hidden: true},
 
