@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const res = require('../res/res');
 
-const CONFIG_FILE_PATH = path.resolve(__dirname, '../guilds.json');
+const CONFIG_FILE_PATH = path.resolve(__dirname, '../cache/guilds.json');
 
 // these commands should not be disabled
 const UTILITY_COMMANDS = ['reload', 'greet', 'kyukyu', 'help', 'clear', 'kill'];

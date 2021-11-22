@@ -7,7 +7,7 @@ module.exports = {
   name: 'event-delete',
   async execute(cmdRes, settings, msg, args) {
     if (msg.author.id == '706106177439924348') {
-      const FILE_PATH = path.resolve(__dirname, '../../events.json');
+      const FILE_PATH = path.resolve(__dirname, '../../cache/events.json');
       const EVENTS = JSON.parse(fs.readFileSync(FILE_PATH));
       lastEvent = EVENTS.events.shift();
       eventDate = new Date(lastEvent.date);

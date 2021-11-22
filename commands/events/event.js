@@ -68,7 +68,7 @@ module.exports = {
   },
   async execute(cmdRes, settings, msg, args) {
     const l10n = res.l10n[settings.lang];
-    const FILE_PATH = path.resolve(__dirname, '../../events.json');
+    const FILE_PATH = path.resolve(__dirname, '../../cache/events.json');
     const EVENTS = JSON.parse(fs.readFileSync(FILE_PATH));
 
     const localTime = new Date();

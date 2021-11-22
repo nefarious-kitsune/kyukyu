@@ -3,7 +3,7 @@ logs
 *.log
 config*.json
 config.json
-guilds.json
+cache/
 roles.png
 *.bat
 

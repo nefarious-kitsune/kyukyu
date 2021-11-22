@@ -7,7 +7,7 @@ module.exports = {
   name: 'event-add',
   async execute(cmdRes, settings, msg, args) {
     if ((msg.author.id == '706106177439924348') && (args.length > 0)) {
-      const FILE_PATH = path.resolve(__dirname, '../../events.json');
+      const FILE_PATH = path.resolve(__dirname, '../../cache/events.json');
       const EVENTS = JSON.parse(fs.readFileSync(FILE_PATH));
       heroes = args.map( (h) => res.findHero(settings.lang, h) );
       // EVENTS.events.sort( (a, b) => a.date - b.date );
