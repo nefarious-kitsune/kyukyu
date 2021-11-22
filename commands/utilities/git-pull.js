@@ -10,7 +10,7 @@ module.exports = {
         console.error(`exec error: ${error}`);
         return;
       } else {
-        msg.channel.send('Git pulled');
+        msg.channel.send('Git pulled XXXXXXXXXXXXXXX');
       }
       console.log(`stdout: ${stdout}`);
       console.error(`stderr: ${stderr}`);
