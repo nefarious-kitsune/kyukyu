@@ -82,17 +82,18 @@ module.exports = {
     );
     const now = Number(utcTime);
 
-    const event = EVENTS.events[0];
-    const eventStart = event.date;
+    const lastEvent = EVENTS.events[0];
+    let eventStart = lastEvent.date;
 
     let thisEvent = undefined;
     let nextEvent = undefined;
 
     if (eventStart > now) { // next event has not been announced
       thisEvent = EVENTS.events[1];
-      nextEvent = event;
+      eventStart = thisEvent.date;
+      nextEvent = lastEvent;
     } else {
-      thisEvent = event;
+      thisEvent = lastEvent;
     }
 
     let response;
