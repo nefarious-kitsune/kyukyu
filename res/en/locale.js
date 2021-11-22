@@ -81,9 +81,13 @@ module.exports = {
       name: 'ring',
       hidden: true,
       aliases: ['ring', 'rings', 'lotr'],
-      desc: '...',
     },
-    // lotr
+    {
+      name: 'declare',
+      hidden: true,
+      aliases: ['declare'],
+    },
+    // rainbow
     {
       name: 'rainbow', hidden: true, aliases: ['rainbow', 'estel'],
     },
