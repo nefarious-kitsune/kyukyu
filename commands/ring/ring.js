@@ -2,24 +2,25 @@ const GLOBAL = require('../../global');
 
 const {
   STRINGS, SCENARIO_TYPE, RESOLUTION_TYPE, diceRoll, pause, wait,
-} = require('./res/en.common');
+} = require('./src/en.common');
 
 const {literal} = require('../../helpers/literal');
 const {normalize} = require('../../helpers/normalize');
 
-const enroll = require('./res/en.enroll');
-// const enroll = require('./res/en.enroll.rlgl');
+const enroll = require('./src/en.enroll');
+// const enroll = require('./src/en.enroll.rlgl');
 
 const SCENARIOS =
-  require('./res/en.chance')
-      .concat(require('./res/en.danger'));
+  require('./src/en.chance')
+      .concat(require('./src/en.danger'));
 
 const GAME_CHANNELS = [GLOBAL.RING_CHANNEL, GLOBAL.RING_TEST_CHANNEL];
 
 const GAME_SETTINGS = {
   RESPONSE_TIME: 25,
   PAUSE_AFTER_DAY_ENDS: 10,
-  ENTRY_TIME_LIMIT: 60,
+  PAUSE_BEFORE_GAME_START: 15, // 5
+  ENTRY_TIME_LIMIT: 60, // 15
   PLAYER_LIMIT: 50,
   WINNER_LIMIT: 2,
   SPECIAL_TRIGGER: 5,
@@ -47,16 +48,16 @@ There was a heavy shower, and the road became very muddy.
 */
 
 const SPECIAL_SCENARIOS = [
-  require('./res/en.special.lamp'),
-  require('./res/en.special.trapA'),
-  require('./res/en.special.triggerA'),
-  require('./res/en.special.trapB'),
+  require('./src/en.special.lamp'),
+  require('./src/en.special.trapA'),
+  require('./src/en.special.triggerA'),
+  require('./src/en.special.trapB'),
 ];
 
 
 const DUEL_SCENARIOS = [
-  // require('./res/en.special.duel'),
-  require('./res/en.special.marble'),
+  // require('./src/en.special.duel'),
+  require('./src/en.special.marble'),
 ];
 
 /** RiNG player */
@@ -72,12 +73,13 @@ class Player {
     this.playerName = playerName.normalize();
     this.alive = true;
     this.medal = 0;
-    this.interaction = i;
+    this.lastInteraction = i;
 
     this.collector = null;
     this.defaultChoice = 0;
     this.scenario = null;
-    this.cachedResponse = '';
+    this.messages = [];
+    this.noReactionCount = 1;
   }
 
   /**
@@ -102,11 +104,7 @@ class Player {
     }
     this.defaultChoice = diceRoll(choices.length);
 
-    let response = `**Day ${this.master.days}**\n${story}`;
-    if (this.cachedResponse.length) {
-      response = this.cachedResponse + '\n\n' + response;
-      this.cachedResponse = '';
-    }
+    this.messages.push(`**Day ${this.master.days}**\n${story}`);
 
     for (let bIdx = 0; bIdx < choices.length; bIdx++) {
       buttons.push({
@@ -115,39 +113,66 @@ class Player {
       });
     }
     const content = {
-      content: response, ephemeral: true,
+      content: this.messages.join('\n'),
+      ephemeral: true,
       components: [{type: 1, components: buttons}],
     };
 
-    this.interaction.followUp(content).then( (msg) => {
+    const handler = (msg) => {
       this.collector = msg.createMessageComponentCollector({
         max: 1, time: GAME_SETTINGS.RESPONSE_TIME * 1000,
-        componentType: 'BUTTON',
       });
-      this.collector.on('collect', (i) => {
-        this.interaction = i;
-        i.deferUpdate();
-        this.processChoice(parseInt(i.customId));
-      });
-      this.collector.on('end', (i, reason) => {
-        // this.master.log(this.collector.collected.first().customId);
-        if (reason == 'time') this.processChoice(undefined);
-      });
+      this.collector.on('collect', (i) => this.onReaction(i));
+      this.collector.on('end', (i, reason) => this.onNoReaction(i, reason));
+    };
+
+    if (this.lastInteraction.replied) {
+      this.lastInteraction.editReply(content).then(handler);
+    } else {
+      this.lastInteraction.reply(content).then(handler);
+    }
+  }
+
+  /**
+   * Process interaction
+   * @param {Interaction} i Interaction
+   */
+  onReaction(i) {
+    this.processChoice(parseInt(i.customId));
+    this.noReactionCount = 0;
+    this.lastInteraction = i;
+    this.messages = [];
+    i.reply({
+      content: 'wait....',
+      ephemeral: true,
     });
+    // i.deferReply();
+  }
+
+  /**
+   * Automatic interaction
+   * @param {Interaction} i Interaction
+   * @param {String} reason Reason for
+   */
+  onNoReaction(i, reason) {
+    if (reason == 'time') {
+      this.processChoice(undefined);
+      this.noReactionCount++;
+    }
   }
 
   /**
    * Send last message
    * @return {Promise}
    */
-  lastMessage() {
-    if (this.cachedResponse.length) {
-      return this.interaction.followUp({
-        content: this.cachedResponse,
-        ephemeral: true,
-      });
-    }
-  }
+  // sendLastMessage() {
+  //   if (this.queuedMessage.length) {
+  //     return this.lastInteraction.followUp({
+  //       content: this.queuedMessage,
+  //       ephemeral: true,
+  //     });
+  //   }
+  // }
 
   /**
    * End of the new day
@@ -169,17 +194,18 @@ class Player {
           response += STRINGS.DEATH_MSG;
         }
       }
-      this.cachedResponse = response;
-    }
-
-    if ((!this.alive) && (this.cachedResponse.length)) {
-      // Send last message (won't be another day)
-      this.interaction.followUp({
-        content: this.cachedResponse,
+      this.messages.push(response);
+      const reply = {
+        content: this.messages.join('\n\n'),
         ephemeral: true,
-      });
+        components: [],
+      };
+      if (this.lastInteraction.replied) {
+        this.lastInteraction.editReply(reply);
+      } else {
+        this.lastInteraction.reply(reply);
+      }
     }
-
     return this.alive;
   }
 
@@ -188,30 +214,22 @@ class Player {
    * @param {Integer} choice
   */
   processChoice(choice) {
-    let response;
     let result;
     const scenario = this.scenario;
+    const CHOICE = (choice == undefined)?this.defaultChoice:choice;
 
-    if (scenario.type == SCENARIO_TYPE.PVP_DUEL) {
-      result = this.scenario.resolveChoice(choice, this);
-      if (choice != undefined) {
-        this.interaction.followUp({
-          content: result.message,
-          ephemeral: true,
-        });
-        return;
-      }
+    if (
+      (scenario.type == SCENARIO_TYPE.PVP_DUEL)||
+      (scenario.type == SCENARIO_TYPE.SPECIAL)
+    ) {
+      result = this.scenario.resolveChoice(CHOICE, this);
     } else {
-      const CHOICE = (choice == undefined)?this.defaultChoice:choice;
-      if (scenario.type == SCENARIO_TYPE.SPECIAL) {
-        result = this.scenario.resolveChoice(CHOICE, this);
-      } else {
-        const __result = this.scenario.results[CHOICE];
-        result = __result[diceRoll(__result.length)];
-      } // end normal scenario
+      const __result = this.scenario.results[CHOICE];
+      result = __result[diceRoll(__result.length)];
     }
 
-    response = result.message;
+    let response = result.message;
+
     switch (result.type) {
       case RESOLUTION_TYPE.MEDAL_X1:
         if (this.medal < MAX_MEDAL) this.medal++;
@@ -240,18 +258,27 @@ class Player {
       default:
     }
 
-    const log = `${this.master.days}: ${this.playerName} `;
+    let log = `${this.master.days}: ${this.playerName} `;
     if (choice == undefined) {
-      this.master.log(log + `timed out.`);
-      this.cachedResponse = response;
+      log += 'timed out.';
+    } else if (scenario.choices) {
+      log += `chose "${scenario.choices[choice]}".`;
     } else {
-      if (scenario.type == SCENARIO_TYPE.SPECIAL) {
-        this.master.log(log + `chose "${choice}".`);
-      } else {
-        this.master.log(log + `chose "${scenario.choices[choice]}".`);
-      }
-      this.interaction.followUp({content: response, ephemeral: true});
+      log += `chose "${choice}".`;
+    }
+    this.master.log(log);
+
+    this.messages.push(response);
+    const reply = {
+      content: this.messages.join('\n\n'),
+      ephemeral: true,
+      components: [],
     };
+    if (this.lastInteraction.replied) {
+      this.lastInteraction.editReply(reply);
+    } else {
+      this.lastInteraction.reply(reply);
+    }
   }
 }
 
@@ -389,7 +416,7 @@ class RiNGMaster {
     }
 
     if (gameEnded) {
-      survivors.forEach(async (p) => await p.lastMessage());
+      // survivors.forEach(async (p) => await p.sendLastMessage());
       wait(GAME_SETTINGS.PAUSE_AFTER_DAY_ENDS);
       this.channel.send(this.gameSummary.join('\n\n'));
       this.gameSummary = [];
@@ -416,10 +443,13 @@ const lotr = {
     if (GAME_CHANNELS.includes(msg.channelId)) {
       if (msg.channelId == GLOBAL.RING_CHANNEL) {
         const CB = msg.client.AOW_CB;
-        CB.send(literal(STRINGS.PREANNOUNCEMENT, '{SECONDS}', 15));
+        CB.send(literal(
+            STRINGS.PREANNOUNCEMENT,
+            '{SECONDS}', GAME_SETTINGS.PAUSE_BEFORE_GAME_START),
+        );
         master = new RiNGMaster(msg.channel);
         enroll.announce(GAME_SETTINGS, master);
-        pause(15).then(()=> {
+        pause(GAME_SETTINGS.PAUSE_BEFORE_GAME_START).then(()=> {
           CB.send(STRINGS.LETSGO);
           enroll.start(GAME_SETTINGS, master);
           pause(GAME_SETTINGS.ENTRY_TIME_LIMIT).then(()=> {
@@ -431,7 +461,7 @@ const lotr = {
       } else {
         master = new RiNGMaster(msg.channel);
         enroll.announce(GAME_SETTINGS, master);
-        pause(15).then(()=> {
+        pause(GAME_SETTINGS.PAUSE_BEFORE_GAME_START).then(()=> {
           enroll.start(GAME_SETTINGS, master);
           pause(GAME_SETTINGS.ENTRY_TIME_LIMIT).then(()=> {
             enroll.stop(GAME_SETTINGS, master);

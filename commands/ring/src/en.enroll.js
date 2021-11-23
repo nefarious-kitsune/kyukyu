@@ -20,11 +20,6 @@ const ENROLL_INITIATING = {
   components: [{type: 1, components: DISABLED_BUTTONS}],
 };
 
-const ENROLL_CLOSED = {
-  content: 'Ended',
-  components: [{type: 1, components: DISABLED_BUTTONS}],
-};
-
 const REFRESH_INTERVAL = 3;
 
 let refresher;
@@ -34,7 +29,7 @@ let countDown;
 
 const WELCOME = {
   content:
-    'Welcome! The game will start shortly.',
+    'Welcome! The game will start shortly.\n(**Do NOT close this message**)',
   // content:
   //   '歡迎。我們還在等其他人加入。賭注很快地就會開始。.',
   ephemeral: true,
@@ -79,10 +74,13 @@ module.exports = {
     enrollmentCollector = enrollmentMessage.createMessageComponentCollector();
 
     enrollmentCollector.on('collect', (interaction) => {
-      interaction.deferUpdate();
+      // interaction.deferUpdate();
+      // interaction.deferReply();
+      // interaction.followUp(WELCOME);
+      interaction.reply(WELCOME);
+
       if (contestantIds.indexOf(interaction.member.id) != -1) return;
       const newPlayer = master.addPlayer(interaction);
-      interaction.followUp(WELCOME);
       console.log(`${newPlayer.playerName} has joined the RiNGs.`);
 
       contestantIds.push(interaction.member.id);
@@ -123,14 +121,11 @@ module.exports = {
   stop(GAME_SETTINGS, master) {
     clearInterval(refresher);
     if (!enrollmentCollector.ended) enrollmentCollector.stop();
-    enrollmentMessage.edit(ENROLL_CLOSED);
-
-    master.channel.send(
-        '**RiNGs** has started! Best of luck to all of our ' +
-        `**${master.players.length}** players.`);
-    // channel.send(
-    //     '荒謬的賭注開始了！祝我們' +
-    //     `**${master.players.length}**名玩家玩得愉快！`);
+    enrollmentMessage.edit({
+      content: '**RiNGs** has started! Best of luck to all of our ' +
+        `**${master.players.length}** players.`,
+      components: [{type: 1, components: DISABLED_BUTTONS}],
+    });
 
     enrollmentCollector = null;
     enrollmentMessage = null;
