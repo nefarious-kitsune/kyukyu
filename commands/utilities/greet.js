@@ -17,65 +17,62 @@ module.exports = {
       avatarUrl = me.avatarURL;
     }
 
-    const greeting = literal(
-        res.l10n[settings.lang].GREETING,
-        '{BOT NAME}', nickname,
-        '{PREFIX}', settings.prefix,
-    );
-
-    const content = {
-      embeds: [{
-        description: greeting,
-        thumbnail: {url: avatarUrl},
-      }],
+    const greeting = {
+      description: literal(
+          res.l10n[settings.lang].GREETING,
+          '{BOT NAME}', nickname,
+          '{PREFIX}', settings.prefix,
+      ),
+      thumbnail: {url: avatarUrl},
     };
 
-    const row = new MessageActionRow().addComponents(
-        new MessageSelectMenu()
-            .setCustomId('greet.list')
-            .setPlaceholder('Please leave a rating')
-            .addOptions([
-              {label: '🟊🟊🟊🟊🟊', value: '🟊🟊🟊🟊🟊'},
-              {label: '☆☆☆☆☆', value: '☆☆☆☆☆'},
-              {label: '✭✭✭✭✭', value: '✭✭✭✭✭'}]),
-    );
+    const components = [{
+      type: 1,
+      components: [{
+        type: 3,
+        custom_id: 'greet.list',
+        placeholder: 'Please leave a rating',
+        options: [
+          {label: '🟊🟊🟊🟊🟊', value: '🟊🟊🟊🟊🟊'},
+          {label: '☆☆☆☆☆', value: '☆☆☆☆☆'},
+          {label: '✭✭✭✭✭', value: '✭✭✭✭✭'},
+        ],
+      }],
+    }];
 
-    content.components = [row];
+    msg.channel.send({
+      embeds: [greeting],
+      components: components,
+    }).then((response) => {
+      const collector = response.createMessageComponentCollector({
+        time: 1 * 60 * 1000,
+        idle: 1 * 60 * 1000,
+      });
+      const reviews = [];
+      collector.on('collect', (interaction) => {
+        interaction.reply({
+          content: 'Thank you for the review!',
+          ephemeral: true,
+        });
+        const user =
+          interaction.member.nickname ||
+          interaction.member.user.username;
+        reviews.push(interaction.values[0] + ' review by **' + user + '**!');
+      });
+      collector.on('end', (interaction) => {
+        if (reviews.length) {
+          greeting.fields = [{
+            name: 'Reviews',
+            value: reviews.join('\n'),
+          }];
+        }
+        const content = {
+          embeds: [greeting],
+          components: [],
+        };
 
-    const response = await msg.channel.send(content);
-    const collector = response.createMessageComponentCollector({
-      componentType: 'SELECT_MENU',
-      time: 1 * 60 * 1000,
-      idle: 1 * 60 * 1000,
-    });
-    collector.on('collect',
-        async (interaction) => {
-          // console.log('************ collected ***************');
-          // console.log(interaction);
-          // const embed = interaction.message.embeds[0];
-          //
-          // // const botUser =
-          // //     interaction.message.author.username;
-          // const user =
-          //   interaction.member.nickname ||
-          //   interaction.member.user.username;
-          //
-          // embed.fields = {
-          //   name: 'Review',
-          //   value: interaction.values[0] + ' review by **' + user + '**!',
-          // };
-          // const content = {
-          //   embeds: [embed],
-          //   components: [],
-          // };
-          // interaction.message.edit(content);
-          interaction.deferUpdate();
-        },
-    );
-    collector.on('end', (collected) => {
-      // console.log('************ collection ended***************');
-      // console.log(collected);
-      // response.edit({embeds: response.embeds, components: []});
+        response.edit(content);
+      });
     });
   },
 };
