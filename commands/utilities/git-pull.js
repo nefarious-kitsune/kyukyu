@@ -5,7 +5,7 @@ module.exports = {
   name: 'git-pull',
   async execute(cmdRes, settings, msg, args) {
     if (!GLOBAL.SUPER_USERS.includes(msg.author.id)) return;
-    exec('git pull', (error, stdout, stderr) => {
+    exec('git pull', (err, stdout, stderr) => {
       if (error) {
         console.error(`exec error: ${error}`);
         return;
