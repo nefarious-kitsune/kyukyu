@@ -15,119 +15,129 @@ const ENABLED_BUTTONS = [{
   custom_id: 'join', emoji: RING_EMOJI,
 }];
 
-const ENROLL_INITIATING = {
-  content: 'Starting soon.',
-  components: [{type: 1, components: DISABLED_BUTTONS}],
-};
-
 const REFRESH_INTERVAL = 3;
-
-let refresher;
-let enrollmentMessage;
-let enrollmentCollector;
-let countDown;
 
 const WELCOME = {
   content:
     'Welcome! The game will start shortly.\n(**Do NOT close this message**)',
-  // content:
-  //   '歡迎。我們還在等其他人加入。賭注很快地就會開始。.',
   ephemeral: true,
 };
 
-// const JOIN = '加入';
-// const ANNOUNCEMENT_MSG =
-//   '一場荒謬的賭注（**Ri**diculously **N**onsensical **G**ambits, RiNGs）' +
-//   `即將開始！你準備好了嗎？\n\n如果您想參與其中，請點擊“${JOIN}”按鈕！\n` +
-//   `• 進入時間限制：**${ENTRY_TIME_LIMIT}**秒\n` +
-//   `• 最多**${PLAYER_LIMIT}**名參與者\n` +
-//   `• 最多**${WINNER_LIMIT}**名獲勝者\n\n` +
-//   '這場比賽的獲勝者將被加冕為**Lord of RiNGs**!';
+/** Enrollment manager */
+class Enrollment {
+  /**
+   * Constructor
+   * @param {object} GAME_SETTINGS game settings
+   * @param {Master} master Ring Master
+   * */
+  constructor(GAME_SETTINGS, master) {
+    this.reset();
+    this.master = master;
+    this.gameSettings = GAME_SETTINGS;
+    this.headStartMsg = '';
+  }
 
-/* eslint-disable max-len */
-module.exports = {
-  async announce(GAME_SETTINGS, master) {
-    const ANNOUNCEMENT_MSG =
+  /** Reset everything */
+  reset() {
+    this.master = null;
+    this.gameSettings = null;
+    this.refresher = null;
+    this.annoucementMessage = null;
+    this.enrollmentCollector = null;
+    this.countDown = 0;
+    this.updateBoard = null;
+  }
+
+  /** Make an annoucement */
+  announce() {
+    this.ANNOUNCEMENT_MSG =
     'A round of **Ri**diculously **N**onsensical **G**ambits (RiNGs) ' +
     'is about to start! If you want to participate in it, ' +
     `tap the ${JOIN} button!\n` +
-    `• Max **${GAME_SETTINGS.PLAYER_LIMIT}** participants\n` +
-    `• Max **${GAME_SETTINGS.WINNER_LIMIT}** winners\n\n` +
+    `• Max **${this.gameSettings.PLAYER_LIMIT}** participants\n` +
+    `• Max **${this.gameSettings.WINNER_LIMIT}** winners\n\n` +
     'Winners of this game will be crowned as **Lord of the RiNGs**!';
 
-    const ANNOUNCEMENT = {
+    this.master.channel.send({
       embeds: [{
         title: 'RiNGs',
         thumbnail: {url: RING_IMG_URL},
-        description: ANNOUNCEMENT_MSG,
+        description: this.ANNOUNCEMENT_MSG,
         color: 0x3170a6,
       }],
-    };
-    const channel = master.channel;
-    channel.send(ANNOUNCEMENT);
-    enrollmentMessage = await channel.send(ENROLL_INITIATING);
-  },
+      components: [{type: 1, components: DISABLED_BUTTONS}],
+    }).then((msg)=> {
+      this.annoucementMessage = msg;
+      msg.channel.send('Starting soon.').then((msg)=>{
+        this.updateBoard = msg;
+        this.master.updateBoard = this.msg;
+      });
+    });
+  }
 
-  start(GAME_SETTINGS, master) {
+  /** Start enrolling players */
+  start() {
     const contestantIds = [];
 
-    enrollmentCollector = enrollmentMessage.createMessageComponentCollector();
+    this.enrollmentCollector =
+      this.annoucementMessage.createMessageComponentCollector();
 
-    enrollmentCollector.on('collect', (interaction) => {
-      // interaction.deferUpdate();
-      // interaction.deferReply();
-      // interaction.followUp(WELCOME);
+    this.enrollmentCollector.on('collect', (interaction) => {
       interaction.reply(WELCOME);
 
       if (contestantIds.indexOf(interaction.member.id) != -1) return;
       const newPlayer = master.addPlayer(interaction);
-      console.log(`${newPlayer.playerName} has joined the RiNGs.`);
+      this.master.log(`${newPlayer.playerName} has joined the RiNGs.`);
 
       contestantIds.push(interaction.member.id);
-      if (master.players.length ==3) {
-        master.players[0].medal = 1;
-        master.players[1].medal = 1;
-        master.players[2].medal = 1;
-        master.channel.send(
+      if (contestantIds.length ==3) {
+        this.master.players[0].medal = 1;
+        this.master.players[1].medal = 1;
+        this.master.players[2].medal = 1;
+        this.headStartMsg =
             `**${master.players[0].playerName}**, ` +
             `**${master.players[1].playerName}**, and ` +
             `**${master.players[2].playerName}** ` +
             'have taken a headstart! ' +
-            'They each will be awarded an Honor Medal.',
-        );
+            'They each will be awarded an Honor Medal.\n\n';
       }
-      if (master.players.length >= GAME_SETTINGS.PLAYER_LIMIT) {
-        enrollmentCollector.stop();
+      if (master.players.length >= this.gameSettings.PLAYER_LIMIT) {
+        this.enrollmentCollector.stop();
       }
     });
 
-    countDown = GAME_SETTINGS.ENTRY_TIME_LIMIT;
+    countDown = this.gameSettings.ENTRY_TIME_LIMIT;
     this.refresh();
     refresher = setInterval(this.refresh, REFRESH_INTERVAL * 1000);
-  },
+  }
 
+  /** Countdown update */
   refresh() {
-    if (countDown <= 0) {
-      countDown = 0;
-      clearInterval(refresher);
+    if (this.countDown <= 0) {
+      this.countDown = 0;
+      clearInterval(this.refresher);
     }
-    enrollmentMessage.edit({
-      content: `${countDown}s remaining`,
+    this.updateBoard.edit({
+      content: this.headStartMsg + `${countDown}s remaining`,
       components: [{type: 1, components: ENABLED_BUTTONS}],
     });
-    countDown -= REFRESH_INTERVAL;
-  },
+    this.countDown -= REFRESH_INTERVAL;
+  }
 
-  stop(GAME_SETTINGS, master) {
+  /** Countdown stop */
+  stop() {
     clearInterval(refresher);
-    if (!enrollmentCollector.ended) enrollmentCollector.stop();
-    enrollmentMessage.edit({
-      content: '**RiNGs** has started! Best of luck to all of our ' +
+    if (!this.enrollmentCollector.ended) this.enrollmentCollector.stop();
+    this.updateBoard.edit({
+      content: this.headStartMsg +
+        '**RiNGs** has started! Best of luck to all of our ' +
         `**${master.players.length}** players.`,
       components: [{type: 1, components: DISABLED_BUTTONS}],
     });
-
-    enrollmentCollector = null;
-    enrollmentMessage = null;
-  },
+    this.reset();
+  }
 };
+
+/* eslint-disable max-len */
+module.exports = Enrollment;
+
