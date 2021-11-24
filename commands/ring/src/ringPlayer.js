@@ -1,10 +1,7 @@
 'use strict';
 
-const {SCENARIO_TYPE, RESOLUTION_TYPE} = require('./common');
+const {SCENARIO_TYPE, RESOLUTION_TYPE, diceRoll} = require('./common');
 const {normalize} = require('../../../helpers/normalize');
-
-const RING_MASTER_REVIVE_RATE = 0.08;
-const MAX_MEDAL = 5; // maximum number of medals a player can have.
 
 /** RiNG player */
 class Player {
@@ -120,12 +117,15 @@ class Player {
       if (result.type == RESOLUTION_TYPE.ELIMINATED) {
         if (this.medal) {
           this.medal--;
-          response += STRINGS.REVIVE_MSG;
-        } else if (Math.random() < RING_MASTER_REVIVE_RATE) {
-          response += STRINGS.MASTER_REVIVE_MSG;
+          response += this.master.l10n.REVIVE_MSG;
         } else {
-          this.alive = false;
-          response += STRINGS.DEATH_MSG;
+          const REVIVE_RATE = this.master.gameSettings.RING_MASTER_REVIVE_RATE;
+          if (Math.random() < REVIVE_RATE) {
+            response += this.master.l10n.MASTER_REVIVE_MSG;
+          } else {
+            this.alive = false;
+            response += this.master.l10n.DEATH_MSG;
+          }
         }
       }
       this.messages.push(response);
@@ -164,6 +164,7 @@ class Player {
 
     let response = result.message;
 
+    const MAX_MEDAL = this.master.gameSettings.MAX_MEDAL;
     switch (result.type) {
       case RESOLUTION_TYPE.MEDAL_X1:
         if (this.medal < MAX_MEDAL) this.medal++;
@@ -179,12 +180,15 @@ class Player {
       case RESOLUTION_TYPE.ELIMINATED:
         if (this.medal) {
           this.medal--;
-          response += STRINGS.REVIVE_MSG;
-        } else if (Math.random() < RING_MASTER_REVIVE_RATE) {
-          response += STRINGS.MASTER_REVIVE_MSG;
+          response += this.master.l10n.REVIVE_MSG;
         } else {
-          this.alive = false;
-          response += STRINGS.DEATH_MSG;
+          REVIVE_RATE = this.master.gameSettings.RING_MASTER_REVIVE_RATE;
+          if (Math.random() < REVIVE_RATE) {
+            response += this.master.l10n.MASTER_REVIVE_MSG;
+          } else {
+            this.alive = false;
+            response += this.master.l10n.DEATH_MSG;
+          }
         }
         break;
       case RESOLUTION_TYPE.SURVIVED:

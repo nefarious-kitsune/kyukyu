@@ -19,6 +19,9 @@ const GAME_SETTINGS = {
   PLAYER_LIMIT: 50,
   WINNER_LIMIT: 2,
   SPECIAL_TRIGGER: 5,
+  RING_MASTER_REVIVE_RATE: 0.08,
+  MAX_MEDAL: 5, // maximum number of medals a player can have.
+
 };
 
 // const BLUE = 0x3170a6; // (49, 112, 166)
@@ -45,12 +48,12 @@ module.exports = {
       const master = new Master(
           msg.author, msg.channel, GAME_SETTINGS, L10N_EN);
       const enroll = new ENROLL(GAME_SETTINGS, master);
-      const CB =
+      const generalChat =
         (msg.channelId == GLOBAL.RING_CHANNEL)?
         msg.client.AOW_CB:
         msg.channel;
 
-      CB.send(literal(
+      generalChat.send(literal(
           L10N_EN.PREANNOUNCEMENT,
           '{SECONDS}', GAME_SETTINGS.PAUSE_BEFORE_GAME_START),
       );
@@ -58,11 +61,10 @@ module.exports = {
       enroll.announce();
 
       pause(GAME_SETTINGS.PAUSE_BEFORE_GAME_START).then(() => {
-        CB.send(L10N_EN.LETSGO);
+        generalChat.send(L10N_EN.LETSGO);
         enroll.start();
         pause(GAME_SETTINGS.ENTRY_TIME_LIMIT).then(()=> {
           enroll.stop();
-          enroll = null;
           pause(GAME_SETTINGS.PAUSE_AFTER_DAY_ENDS)
               .then(() => master.startDay());
         });

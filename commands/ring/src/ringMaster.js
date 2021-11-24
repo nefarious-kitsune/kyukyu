@@ -1,6 +1,7 @@
 'use strict';
 
 const {diceRoll, pause, wait} = require('./common');
+const Player = require('./ringPlayer');
 
 /** RiNG Master */
 class Master {
@@ -42,39 +43,63 @@ class Master {
 
   /** Start a day */
   startDay() {
-    let scenario;
+    const randPlayer = () => {
+      const L = this.players.length;
+      let idx = diceRoll(L);
+      let player = this.players[idx];
+      while (player.scenario == undefined) {
+        idx = diceRoll(L);
+        player = this.players[idx];
+      }
+      return player;
+    };
+
+    const randPair = () => {
+      const L = this.players.length;
+      let idxA = diceRoll(L);
+      let playerA = this.players[idx];
+      while (playerA.scenario == undefined) {
+        idxA = diceRoll(L);
+        playerA = this.players[idxA];
+      }
+      let idxB = diceRoll(L);
+      let playerB = this.players[idx];
+      while ((playerB.scenario == undefined) || (idxB == idxA)) {
+        idxB = diceRoll(L);
+        playerB = this.players[idxB];
+      }
+      return [playerA, playerB];
+    };
+
     this.days++;
     this.players.forEach((p)=>p.scenario = undefined);
 
+    const duelScenarios = this.l10n.duelScenarios;
+    const specialScenarios = this.l10n.specialScenarios;
+    const normalScenarios = this.l10n.normalScenarios;
+    let scenario;
+
     if (this.players.length >= this.gameSettings.SPECIAL_TRIGGER) {
-      const DUEL_IDX = diceRoll(this.l10n.duelScenarios.length + 2);
-      if (DUEL_IDX < this.l10n.duelScenarios.length) {
-        const AIdx = diceRoll(this.players.length);
-        let BIdx = diceRoll(this.players.length);
-        if (AIdx == BIdx) BIdx = diceRoll(this.players.length);
-        if (AIdx !== BIdx) {
-          const DUEL = this.l10n.duelScenarios[DUEL_IDX];
-          scenario = new DUEL(this, this.players[AIdx], this.players[BIdx]);
-          this.players[AIdx].startDay(scenario);
-          this.players[BIdx].startDay(scenario);
-        }
+      const DUEL_IDX = diceRoll(duelScenarios.length + 2);
+      if (DUEL_IDX < duelScenarios.length) {
+        const [playerA, playerB] = randPair();
+        scenario = new DUEL(this, playerA, playerB);
+        playerA.startDay(scenario);
+        playerB.startDay(scenario);
       }
 
-      const SPECIAL_IDX = diceRoll(this.l10n.specialScenarios.length + 4);
-      if (SPECIAL_IDX < this.l10n.specialScenarios.length) {
-        scenario = this.l10n.specialScenarios[SPECIAL_IDX];
-        const player = this.players[diceRoll(this.players.length)];
-        if (player.scenario == undefined) player.startDay(scenario);
+      const SPECIAL_IDX = diceRoll(specialScenarios.length + 4);
+      if (SPECIAL_IDX < specialScenarios.length) {
+        player = randPlayer().startDay(specialScenarios[SPECIAL_IDX]);
       }
     }
-    for (let pIdx=0; pIdx < this.players.length; pIdx++) {
-      const player = this.players[pIdx];
+
+    this.players.forEach((player) => {
       if (player.scenario == undefined) {
-        player.startDay(
-            this.l10n.normalScenarios[diceRoll(this.l10n.normalScenarios.length)],
-        );
+        player.startDay(normalScenarios[diceRoll(normalScenarios.length)]);
       }
-    }
+    });
+
     pause(this.gameSettings.RESPONSE_TIME+0.5).then(() => this.endDay());
   }
 
@@ -90,17 +115,17 @@ class Master {
       }
     });
 
-    let SUMMARY = literal(STRINGS.SUMMARY_HEADING, '{DAY}', this.days);
+    let SUMMARY = literal(this.l10n.SUMMARY_HEADING, '{DAY}', this.days);
     if (eliminatedNames.length == 0) {
-      SUMMARY += STRINGS.SUMMARY_NO_ELIMINATION;
+      SUMMARY += this.l10n.SUMMARY_NO_ELIMINATION;
     } else if (eliminatedNames.length == 1) {
       SUMMARY += literal(
-          STRINGS.SUMMARY_ONE_ELIMINATION,
+          this.l10n.SUMMARY_ONE_ELIMINATION,
           '{PLAYER}', eliminatedNames[0],
       );
     } else {
       SUMMARY += literal(
-          STRINGS.SUMMARY_MANY_ELIMINATIONS,
+          this.l10n.SUMMARY_MANY_ELIMINATIONS,
           '{COUNT}', eliminatedNames.length,
           '{PLAYERS}', eliminatedNames.join(', '),
       );
@@ -112,20 +137,20 @@ class Master {
     let gameEnded = false;
     if (survivors.length == 0) {
       gameEnded = true;
-      this.gameSummary.push(STRINGS.SUMMARY_NO_WINNER);
+      this.gameSummary.push(this.l10n.SUMMARY_NO_WINNER);
     } else if (survivors.length <= this.gameSettings.WINNER_LIMIT) {
       gameEnded = true;
       if (survivors.length == 1) {
         this.gameSummary.push(
             literal(
-                STRINGS.SUMMARY_ONE_WINNER,
+                this.l10n.SUMMARY_ONE_WINNER,
                 '{WINNER}', `<@${survivors[0].member.id}>`,
             ),
         );
       } else {
         this.gameSummary.push(
             literal(
-                STRINGS.SUMMARY_MANY_WINNERS,
+                this.l10n.SUMMARY_MANY_WINNERS,
                 '{COUNT}', survivors.length,
                 '{WINNERS}', survivors.map((p)=>`<@${p.member.id}>`).join(', '),
             ),
@@ -151,9 +176,13 @@ class Master {
     }
 
     if (this.gameSummary.length >= 5) {
-      this.channel.send(
+      this.fireStarter.send(
           this.gameSummary.join('\n\n') +
-          literal(STRINGS.SUMMARY_SURVIVOR_COUNT, '{COUNT}', survivors.length),
+          literal(
+              this.l10n.SUMMARY_SURVIVOR_COUNT,
+              '{COUNT}',
+              survivors.length,
+          ),
       );
       this.gameSummary = [];
     }

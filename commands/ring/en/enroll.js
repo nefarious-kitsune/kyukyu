@@ -96,13 +96,13 @@ class Enrollment {
         this.master.players[1].medal = 1;
         this.master.players[2].medal = 1;
         this.headStartMsg =
-            `**${master.players[0].playerName}**, ` +
-            `**${master.players[1].playerName}**, and ` +
-            `**${master.players[2].playerName}** ` +
+            `**${this.master.players[0].playerName}**, ` +
+            `**${this.master.players[1].playerName}**, and ` +
+            `**${this.master.players[2].playerName}** ` +
             'have taken a headstart! ' +
             'They each will be awarded an Honor Medal.\n\n';
       }
-      if (master.players.length >= this.gameSettings.PLAYER_LIMIT) {
+      if (contestantIds.length >= this.gameSettings.PLAYER_LIMIT) {
         this.enrollmentCollector.stop();
       }
     });
