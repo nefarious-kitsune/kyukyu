@@ -1,28 +1,10 @@
-const GLOBAL = require('../../global');
+const fs = require('fs');
+const path = require('path');
 const {literal} = require('../../helpers/literal');
-
-const L10N_EN = require('./en/_l10n');
 const {pause} = require('./src/common');
+const L10N_EN = require('./en/_l10n');
 const ENROLL = require('./en/enroll');
-// const enroll = require('./src/en.enroll.rlgl');
-
-// const Player = require('./src/ringPlayer');
 const Master = require('./src/ringMaster');
-
-const GAME_CHANNELS = [GLOBAL.RING_CHANNEL, GLOBAL.RING_TEST_CHANNEL];
-
-const GAME_SETTINGS = {
-  RESPONSE_TIME: 25,
-  PAUSE_AFTER_DAY_ENDS: 10,
-  PAUSE_BEFORE_GAME_START: 15, // 5
-  ENTRY_TIME_LIMIT: 60, // 15
-  PLAYER_LIMIT: 50,
-  WINNER_LIMIT: 2,
-  SPECIAL_TRIGGER: 5,
-  RING_MASTER_REVIVE_RATE: 0.08,
-  MAX_MEDAL: 5, // maximum number of medals a player can have.
-
-};
 
 // const BLUE = 0x3170a6; // (49, 112, 166)
 // const RED = 0xb83a34; // (184, 58, 52)
@@ -43,33 +25,43 @@ There was a heavy shower, and the road became very muddy.
 
 module.exports = {
   name: 'ring',
-  async execute(cmdRes, settings, msg, args) {
-    if (GAME_CHANNELS.includes(msg.channelId)) {
-      const master = new Master(
-          msg.author, msg.channel, GAME_SETTINGS, L10N_EN);
-      const enroll = new ENROLL(GAME_SETTINGS, master);
-      const generalChat =
-        (msg.channelId == GLOBAL.RING_CHANNEL)?
-        msg.client.AOW_CB:
-        msg.channel;
+  async start(msg) {
+    const allSettings = JSON.parse(
+        fs.readFileSync(path.resolve(__dirname, './ring.json')),
+    );
+    if (!allSettings.hasOwnProperty(msg.guildId)) return;
 
-      generalChat.send(literal(
-          L10N_EN.PREANNOUNCEMENT,
-          '{SECONDS}', GAME_SETTINGS.PAUSE_BEFORE_GAME_START),
-      );
+    const guildSettings = allSettings[msg.guildId];
+    if (guildSettings.gameChannel != msg.channelId) return;
 
-      enroll.announce();
+    const generalChat =
+        await msg.guild.channels.fetch(guildSettings.generalChannel);
 
-      pause(GAME_SETTINGS.PAUSE_BEFORE_GAME_START).then(() => {
-        generalChat.send(L10N_EN.LETSGO);
-        enroll.start();
-        pause(GAME_SETTINGS.ENTRY_TIME_LIMIT).then(()=> {
-          enroll.stop();
-          pause(GAME_SETTINGS.PAUSE_AFTER_DAY_ENDS)
-              .then(() => master.startDay());
-        });
+    const master = new Master(
+        msg.author, msg.channel, guildSettings, L10N_EN);
+
+    const enroll = new ENROLL(guildSettings, master);
+
+    generalChat.send(literal(
+        L10N_EN.PREANNOUNCEMENT,
+        '{SECONDS}', guildSettings.pauseBeforeGame),
+    );
+
+    enroll.announce();
+
+    pause(guildSettings.pauseBeforeGame).then(() => {
+      generalChat.send(L10N_EN.LETSGO);
+      enroll.start();
+      pause(guildSettings.entryTimeLimit).then(()=> {
+        enroll.stop();
+        pause(guildSettings.pauseBeforeDay)
+            .then(() => master.startDay());
       });
-    }
+    });
+  },
+  async execute(cmdRes, settings, msg, args) {
+    if (msg.channel.type == 'DM') return;
+    this.start(msg);
   },
 };
 

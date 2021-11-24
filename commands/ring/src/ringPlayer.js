@@ -64,7 +64,7 @@ class Player {
 
     const handler = (msg) => {
       this.collector = msg.createMessageComponentCollector({
-        max: 1, time: this.master.gameSettings.RESPONSE_TIME * 1000,
+        max: 1, time: this.master.gameSettings.responseTime * 1000,
       });
       this.collector.on('collect', (i) => this.onReaction(i));
       this.collector.on('end', (i, reason) => this.onNoReaction(i, reason));
@@ -119,7 +119,7 @@ class Player {
           this.medal--;
           response += this.master.l10n.REVIVE_MSG;
         } else {
-          const REVIVE_RATE = this.master.gameSettings.RING_MASTER_REVIVE_RATE;
+          const REVIVE_RATE = this.master.gameSettings.masterRivivalRate;
           if (Math.random() < REVIVE_RATE) {
             response += this.master.l10n.MASTER_REVIVE_MSG;
           } else {
@@ -130,7 +130,7 @@ class Player {
       }
       this.messages.push(response);
       const reply = {
-        content: this.messages.join('\n\n'),
+        content: this.messages.join('\n'),
         ephemeral: true,
         components: [],
       };
@@ -164,25 +164,25 @@ class Player {
 
     let response = result.message;
 
-    const MAX_MEDAL = this.master.gameSettings.MAX_MEDAL;
+    const maxMedal = this.master.gameSettings.maxMedal;
     switch (result.type) {
       case RESOLUTION_TYPE.MEDAL_X1:
-        if (this.medal < MAX_MEDAL) this.medal++;
+        if (this.medal < maxMedal) this.medal++;
         break;
       case RESOLUTION_TYPE.MEDAL_X2:
         this.medal += 2;
-        if (this.medal > MAX_MEDAL) this.medal = MAX_MEDAL;
+        if (this.medal > maxMedal) this.medal = maxMedal;
         break;
       case RESOLUTION_TYPE.MEDAL_X3:
         this.medal += 3;
-        if (this.medal > MAX_MEDAL) this.medal = MAX_MEDAL;
+        if (this.medal > maxMedal) this.medal = maxMedal;
         break;
       case RESOLUTION_TYPE.ELIMINATED:
         if (this.medal) {
           this.medal--;
           response += this.master.l10n.REVIVE_MSG;
         } else {
-          REVIVE_RATE = this.master.gameSettings.RING_MASTER_REVIVE_RATE;
+          const REVIVE_RATE = this.master.gameSettings.masterRivivalRate;
           if (Math.random() < REVIVE_RATE) {
             response += this.master.l10n.MASTER_REVIVE_MSG;
           } else {
@@ -208,7 +208,7 @@ class Player {
 
     this.messages.push(response);
     const reply = {
-      content: this.messages.join('\n\n'),
+      content: this.messages.join('\n'),
       ephemeral: true,
       components: [],
     };

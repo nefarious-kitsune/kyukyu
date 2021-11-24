@@ -1,5 +1,6 @@
 'use strict';
 
+const {literal} = require('../../../helpers/literal');
 const {diceRoll, pause, wait} = require('./common');
 const Player = require('./ringPlayer');
 
@@ -79,7 +80,7 @@ class Master {
     const normalScenarios = this.l10n.normalScenarios;
     let scenario;
 
-    if (this.players.length >= this.gameSettings.SPECIAL_TRIGGER) {
+    if (this.players.length >= this.gameSettings.specialTrigger) {
       const DUEL_IDX = diceRoll(duelScenarios.length + 2);
       if (DUEL_IDX < duelScenarios.length) {
         const [playerA, playerB] = randPair();
@@ -100,7 +101,7 @@ class Master {
       }
     });
 
-    pause(this.gameSettings.RESPONSE_TIME+0.5).then(() => this.endDay());
+    pause(this.gameSettings.responseTime+0.5).then(() => this.endDay());
   }
 
   /** End a day */
@@ -138,7 +139,7 @@ class Master {
     if (survivors.length == 0) {
       gameEnded = true;
       this.gameSummary.push(this.l10n.SUMMARY_NO_WINNER);
-    } else if (survivors.length <= this.gameSettings.WINNER_LIMIT) {
+    } else if (survivors.length <= this.gameSettings.winnerLimit) {
       gameEnded = true;
       if (survivors.length == 1) {
         this.gameSummary.push(
@@ -167,7 +168,7 @@ class Master {
 
     if (gameEnded) {
       // survivors.forEach(async (p) => await p.sendLastMessage());
-      wait(this.gameSettings.PAUSE_AFTER_DAY_ENDS);
+      wait(this.gameSettings.pauseBeforeDay);
       this.channel.send(this.gameSummary.join('\n\n'));
       this.gameSummary = [];
       this.players = [];
@@ -186,7 +187,7 @@ class Master {
       );
       this.gameSummary = [];
     }
-    pause(this.gameSettings.PAUSE_AFTER_DAY_ENDS)
+    pause(this.gameSettings.pauseBeforeDay)
         .then(() => this.startDay());
   }
 };

@@ -55,8 +55,8 @@ class Enrollment {
     'A round of **Ri**diculously **N**onsensical **G**ambits (RiNGs) ' +
     'is about to start! If you want to participate in it, ' +
     `tap the ${JOIN} button!\n` +
-    `• Max **${this.gameSettings.PLAYER_LIMIT}** participants\n` +
-    `• Max **${this.gameSettings.WINNER_LIMIT}** winners\n\n` +
+    `• Max **${this.gameSettings.playerLimit}** participants\n` +
+    `• Max **${this.gameSettings.winnerLimit}** winners\n\n` +
     'Winners of this game will be crowned as **Lord of the RiNGs**!';
 
     this.master.channel.send({
@@ -84,9 +84,11 @@ class Enrollment {
       this.annoucementMessage.createMessageComponentCollector();
 
     this.enrollmentCollector.on('collect', (interaction) => {
+      if (contestantIds.indexOf(interaction.member.id) != -1) {
+        interaction.deferUpadte();
+        return;
+      }
       interaction.reply(WELCOME);
-
-      if (contestantIds.indexOf(interaction.member.id) != -1) return;
       const newPlayer = this.master.addPlayer(interaction);
       this.master.log(`${newPlayer.playerName} has joined the RiNGs.`);
 
@@ -102,7 +104,7 @@ class Enrollment {
             'have taken a headstart! ' +
             'They each will be awarded an Honor Medal.\n\n';
       }
-      if (contestantIds.length >= this.gameSettings.PLAYER_LIMIT) {
+      if (contestantIds.length >= this.gameSettings.playerLimit) {
         this.enrollmentCollector.stop();
       }
     });
@@ -116,7 +118,7 @@ class Enrollment {
       }],
       components: [{type: 1, components: ENABLED_BUTTONS}],
     });
-    this.countDown = this.gameSettings.ENTRY_TIME_LIMIT;
+    this.countDown = this.gameSettings.entryTimeLimit;
     this.refresh();
     this.refresher = setInterval(
         () => this.refresh(),
