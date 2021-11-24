@@ -1,6 +1,10 @@
 'use strict';
 
 const {SCENARIO_TYPE, RESOLUTION_TYPE} = require('./common');
+const {normalize} = require('../../../helpers/normalize');
+
+const RING_MASTER_REVIVE_RATE = 0.08;
+const MAX_MEDAL = 5; // maximum number of medals a player can have.
 
 /** RiNG player */
 class Player {
