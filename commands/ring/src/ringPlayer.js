@@ -64,7 +64,7 @@ class Player {
 
     const handler = (msg) => {
       this.collector = msg.createMessageComponentCollector({
-        max: 1, time: GAME_SETTINGS.RESPONSE_TIME * 1000,
+        max: 1, time: this.master.gameSettings.RESPONSE_TIME * 1000,
       });
       this.collector.on('collect', (i) => this.onReaction(i));
       this.collector.on('end', (i, reason) => this.onNoReaction(i, reason));
