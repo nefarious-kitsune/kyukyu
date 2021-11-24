@@ -1,3 +1,4 @@
+
 /* eslint-disable max-len */
 const RING_IMG_URL = 'https://cdn.discordapp.com/attachments/833978786395586600/903096090977509446/the-ring.png';
 const RING_EMOJI = '<:the_one_ring:906177472490532864>';
@@ -66,11 +67,11 @@ class Enrollment {
         color: 0x3170a6,
       }],
       components: [{type: 1, components: DISABLED_BUTTONS}],
-    }).then((msg)=> {
-      this.annoucementMessage = msg;
-      msg.channel.send('Starting soon.').then((msg)=>{
-        this.updateBoard = msg;
-        this.master.updateBoard = this.msg;
+    }).then((annoucement)=> {
+      this.annoucementMessage = annoucement;
+      annoucement.channel.send('Starting soon.').then((startingSoon)=>{
+        this.updateBoard = startingSoon;
+        this.master.updateBoard = startingSoon;
       });
     });
   }
@@ -106,9 +107,9 @@ class Enrollment {
       }
     });
 
-    countDown = this.gameSettings.ENTRY_TIME_LIMIT;
+    this.countDown = this.gameSettings.ENTRY_TIME_LIMIT;
     this.refresh();
-    refresher = setInterval(this.refresh, REFRESH_INTERVAL * 1000);
+    this.refresher = setInterval(this.refresh, REFRESH_INTERVAL * 1000);
   }
 
   /** Countdown update */
@@ -118,7 +119,7 @@ class Enrollment {
       clearInterval(this.refresher);
     }
     this.updateBoard.edit({
-      content: this.headStartMsg + `${countDown}s remaining`,
+      content: this.headStartMsg + `${this.countDown}s remaining`,
       components: [{type: 1, components: ENABLED_BUTTONS}],
     });
     this.countDown -= REFRESH_INTERVAL;
@@ -126,7 +127,7 @@ class Enrollment {
 
   /** Countdown stop */
   stop() {
-    clearInterval(refresher);
+    clearInterval(this.refresher);
     if (!this.enrollmentCollector.ended) this.enrollmentCollector.stop();
     this.updateBoard.edit({
       content: this.headStartMsg +

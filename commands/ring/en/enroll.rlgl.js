@@ -1,4 +1,4 @@
-const {diceRoll} = require('./en.common');
+const {diceRoll} = require('../src/common');
 
 /* eslint-disable max-len */
 const RING_IMG_URL = 'https://cdn.discordapp.com/attachments/833978786395586600/903096090977509446/the-ring.png';

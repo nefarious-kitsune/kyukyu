@@ -1,9 +1,9 @@
 const GLOBAL = require('../../global');
 const {literal} = require('../../helpers/literal');
 
-const L10N_EN = require('./en.common');
-const {pause} = require('./src/en.common');
-const ENROLL = require('./src/en.enroll');
+const L10N_EN = require('./en/_l10n');
+const {pause} = require('./src/common');
+const ENROLL = require('./en/enroll');
 // const enroll = require('./src/en.enroll.rlgl');
 
 // const Player = require('./src/ringPlayer');
@@ -42,7 +42,8 @@ module.exports = {
   name: 'ring',
   async execute(cmdRes, settings, msg, args) {
     if (GAME_CHANNELS.includes(msg.channelId)) {
-      const master = new Master(msg.channel, GAME_SETTINGS, L10N_EN);
+      const master = new Master(
+          msg.author, msg.channel, GAME_SETTINGS, L10N_EN);
       const enroll = new ENROLL(GAME_SETTINGS, master);
       const CB =
         (msg.channelId == GLOBAL.RING_CHANNEL)?
