@@ -87,7 +87,7 @@ class Enrollment {
       interaction.reply(WELCOME);
 
       if (contestantIds.indexOf(interaction.member.id) != -1) return;
-      const newPlayer = master.addPlayer(interaction);
+      const newPlayer = this.master.addPlayer(interaction);
       this.master.log(`${newPlayer.playerName} has joined the RiNGs.`);
 
       contestantIds.push(interaction.member.id);
@@ -107,9 +107,20 @@ class Enrollment {
       }
     });
 
+    this.annoucementMessage.edit({
+      embeds: [{
+        title: 'RiNGs',
+        thumbnail: {url: RING_IMG_URL},
+        description: this.ANNOUNCEMENT_MSG,
+        color: 0x3170a6,
+      }],
+      components: [{type: 1, components: ENABLED_BUTTONS}],
+    });
     this.countDown = this.gameSettings.ENTRY_TIME_LIMIT;
     this.refresh();
-    this.refresher = setInterval(this.refresh, REFRESH_INTERVAL * 1000);
+    this.refresher = setInterval(
+        () => this.refresh(),
+        REFRESH_INTERVAL * 1000);
   }
 
   /** Countdown update */
@@ -120,7 +131,6 @@ class Enrollment {
     }
     this.updateBoard.edit({
       content: this.headStartMsg + `${this.countDown}s remaining`,
-      components: [{type: 1, components: ENABLED_BUTTONS}],
     });
     this.countDown -= REFRESH_INTERVAL;
   }
@@ -129,11 +139,18 @@ class Enrollment {
   stop() {
     clearInterval(this.refresher);
     if (!this.enrollmentCollector.ended) this.enrollmentCollector.stop();
+    this.annoucementMessage.edit({
+      embeds: [{
+        title: 'RiNGs',
+        thumbnail: {url: RING_IMG_URL},
+        description: this.ANNOUNCEMENT_MSG,
+        color: 0x3170a6,
+      }],
+    });
     this.updateBoard.edit({
       content: this.headStartMsg +
         '**RiNGs** has started! Best of luck to all of our ' +
-        `**${master.players.length}** players.`,
-      components: [{type: 1, components: DISABLED_BUTTONS}],
+        `**${this.master.players.length}** players.`,
     });
     this.reset();
   }
