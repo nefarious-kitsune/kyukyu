@@ -2,8 +2,8 @@
  * Special scenarios
  */
 
-const {SCENARIO_TYPE, diceRoll, survived, eliminated, pending} =
-  require('./en.common');
+const {SCENARIO_TYPE} = require('../src/common');
+const {survived, eliminated} = require('./resolutions');
 
 const CHOICES = ['Chione', 'Selene', 'Aly'];
 

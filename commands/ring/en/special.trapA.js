@@ -3,7 +3,8 @@
  * can have consequence on another player
  */
 
-const {SCENARIO_TYPE, survived, eliminated, pending} = require('./en.common');
+const {SCENARIO_TYPE} = require('../src/common');
+const {survived, eliminated} = require('./resolutions');
 
 const SCENARIO_TRAP_SET = {
   story:

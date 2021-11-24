@@ -3,11 +3,9 @@
  * Each choice has a differnet probability of elminiation
  */
 
-const {
-  SCENARIO_TYPE,
-  survived, eliminated,
-  medalX1, medalX2, medalX3,
-} = require('./en.common');
+const {SCENARIO_TYPE} = require('../src/common');
+const {survived, eliminated, medalX1, medalX2, medalX3} =
+    require('./resolutions');
 
 const HELP_DONT_HELP = ['Help', 'Don\'t help'];
 
