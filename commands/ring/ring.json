@@ -1,0 +1,34 @@
+{
+  "658594298983350293": {
+    "name": "official",
+    "language": "en",
+    "gameChannel": "903150247142903878",
+    "generalChannel": "658969855181193238",
+    "roleId": "907578724533293066",
+    "responseTime": 25,
+    "pauseBeforeDay": 10,
+    "pauseBeforeGame": 15,
+    "entryTimeLimit": 60,
+    "playerLimit": 50,
+    "winnerLimit": 2,
+    "specialTrigger": 5,
+    "masterRivivalRate": 0.08,
+    "maxMedal": 5
+  },
+  "762562773333835787": {
+    "name": "test server",
+    "language": "en",
+    "gameChannel": "831064145637539860",
+    "generalChannel": "831064145637539860",
+    "roleId": "912970577323646986",
+    "responseTime": 25,
+    "pauseBeforeDay": 10,
+    "pauseBeforeGame": 5,
+    "entryTimeLimit": 15,
+    "playerLimit": 50,
+    "winnerLimit": -1,
+    "specialTrigger": 5,
+    "masterRivivalRate": 0.2,
+    "maxMedal": 5
+  }
+}

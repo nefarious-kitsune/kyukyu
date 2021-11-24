@@ -3,20 +3,22 @@
  * can have consequence on another player
  */
 
-const {SCENARIO_TYPE, survived, eliminated, pending} = require('./en.common');
+const {SCENARIO_TYPE} = require('../src/common');
+const {survived, eliminated} = require('./resolutions');
 
 const SCENARIO_TRAP_SET = {
-  story: 'A fallen tree blocked your way.',
-  choices: ['Go over the tree', 'Go under the tree'],
+  story:
+    'You saw two piles of dead foilage that looked suspicious. ' +
+    'You had to go through one of them.',
+  choices: ['Go through left pile', 'Go through right pile'],
 };
 
 const SCENARIO_TRAP_NOT_SET = {
   story:
-    'A tree had fallen and blocked the road. ' +
-    'This looked like an idea place to set a trap.',
-  choices: ['Make a swing-log trap', 'Dig a spike-pit trap'],
+    'You were at a winding road in deep woods. ' +
+    'This looked like a perfect place to set a trap.',
+  choices: ['Set a noose trap', 'Set a deadfall trap'],
 };
-
 
 module.exports = { // lamp
   type: SCENARIO_TYPE.SPECIAL,
@@ -34,18 +36,19 @@ module.exports = { // lamp
         this.trapSet = false;
         if (choice == 0) {
           return eliminated(
-              'You went over the fallen tree. You tripped a trap set by '+
-              `**${this.trapBy}** and were flung off by a swinging log.`);
+              'You went left.\n\n'+
+              'Swoosh! You were flung in the air by a noose trap set by ' +
+              `**${this.trapBy}**.`);
         } else {
           return eliminated(
-              'You went under the fallen tree and fell into a spike pit '+
-              `dug by **${this.trapBy}**.`);
+              'You went right.\n\n'+
+              `Thud! You fell into a trap hole dug by **${this.trapBy}**.`);
         }
       } else {
         return survived(
           (choice == 0)?
-          'You went over the fallen tree.':
-          'You went under the fallen tree.',
+          'You went left and passed safely.':
+          'You went right and passed safely.',
         );
       }
     } else { // setting trap
@@ -53,9 +56,8 @@ module.exports = { // lamp
       this.trap = choice;
       this.trapBy = player.playerName;
       return pending(
-          (choice == 0)?`You made a swing-log trap.`:'You dug a spike-pit.',
+          (choice == 0)?`You set a noose trap.`:'You set a deadfall trap.',
       );
     }
   }, // resolveChoice
 };
-

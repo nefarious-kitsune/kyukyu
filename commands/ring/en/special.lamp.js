@@ -3,11 +3,9 @@
  * can have consequence on another player
  */
 
-const {
-  SCENARIO_TYPE, diceRoll,
-  survived, eliminated,
-  medalX1, medalX2, medalX3,
-} = require('./en.common');
+const {SCENARIO_TYPE} = require('../src/common');
+const {survived, eliminated, medalX1, medalX2, medalX3} =
+     require('./resolutions');
 
 const UNUSED_LAMP_RESOLUTIONS = [
   medalX1(

@@ -2,9 +2,8 @@
  * Special scenarios
  */
 
-const {SCENARIO_TYPE, survived, eliminated, pending} =
-  require('./en.common');
-
+const {SCENARIO_TYPE} = require('../src/common');
+const {survived, eliminated} = require('./resolutions');
 const CHOICES = ['Red Marble', 'Blue Marble'];
 const COLORS = ['Red', 'Blue'];
 

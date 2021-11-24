@@ -3,10 +3,11 @@
  * can have consequence on another player
  */
 
-const {SCENARIO_TYPE, diceRoll, survived, eliminated} = require('./en.common');
+const {SCENARIO_TYPE, diceRoll} = require('../src/common');
+const {survived, eliminated} = require('./resolutions');
 
-const trapA = require('./en.special.trapA');
-const lamp = require('./en.special.lamp');
+const trapA = require('./special.trapA');
+const lamp = require('./special.lamp');
 
 const SCENARIO = {
   story:

@@ -1,4 +1,4 @@
-const {diceRoll} = require('./en.common');
+const {diceRoll} = require('../src/common');
 
 /* eslint-disable max-len */
 const RING_IMG_URL = 'https://cdn.discordapp.com/attachments/833978786395586600/903096090977509446/the-ring.png';
@@ -81,7 +81,7 @@ module.exports = {
     'The rules are simple:\n' +
     '• **+1** point for each green ball you collect,\n' +
     '• **-1** point for each red ball you collect,\n' +
-    `• **${GAME_SETTINGS.PLAYER_LIMIT}** players with the most points ` +
+    `• **${GAME_SETTINGS.playerLimit}** players with the most points ` +
     'enter the main event."';
 
     const ANNOUNCEMENT = {
@@ -101,7 +101,7 @@ module.exports = {
     enrollmentCollector = enrollmentMessage.createMessageComponentCollector();
     enrollmentCollector.on('collect', (i) => i.deferUpdate());
     refreshCount = 0;
-    countDown = GAME_SETTINGS.ENTRY_TIME_LIMIT;
+    countDown = this.gameSettings.entryTimeLimit;
     this.refresh();
     refresher = setInterval(this.refresh, RLGL_INTERVAL * 1000);
   },
@@ -130,7 +130,7 @@ module.exports = {
 
     const players = this.tally(
         enrollmentCollector.collected,
-        GAME_SETTINGS.PLAYER_LIMIT,
+        GAME_SETTINGS.playerLimit,
     );
 
     players.forEach((p) => master.addPlayer(p.interaction));

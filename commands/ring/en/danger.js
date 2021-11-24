@@ -1,9 +1,12 @@
+'use strict';
+
 /*
  * Normal scenarios where a player is in imminent danger.
  * All choices have same probability of elminiation
  */
 
-const {SCENARIO_TYPE, survived, eliminated} = require('./en.common');
+const {SCENARIO_TYPE} = require('../src/common');
+const {survived, eliminated} = require('./resolutions');
 
 /* eslint-disable max-len */
 module.exports = [
