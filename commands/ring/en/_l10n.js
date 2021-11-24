@@ -1,16 +1,18 @@
 const GLOBAL = require('../../../global');
-const {RESOLUTION_TYPE} = require('./common');
 
-const SPECIAL_SCENARIOS = [
-  require('./en.special.lamp'),
-  require('./en.special.trapA'),
-  require('./en.special.triggerA'),
-  require('./en.special.trapB'),
+const specialScenarios = [
+  require('./special.lamp'),
+  require('./special.trapA'),
+  require('./special.triggerA'),
+  require('./special.trapB'),
 ];
 
-const DUEL_SCENARIOS = [
-  require('./en.special.marble'),
+const duelScenarios = [
+  require('./special.marble'),
 ];
+
+const normalScenarios =
+  require('./chance').concat(require('./danger'));
 
 /* eslint-disable max-len */
 module.exports = {
@@ -27,7 +29,9 @@ module.exports = {
   REVIVE_MSG: '\n\nYou were **revived** with an Honor Medal.',
   MASTER_REVIVE_MSG: '\n\nYou were **revived** by the RiNG Master!',
   DEATH_MSG: '\n\n**You did not make it. Better luck next time.**',
-  DAY: ''
+  specialScenarios: specialScenarios,
+  duelScenarios: duelScenarios,
+  normalScenarios: normalScenarios,
 };
 /* eslint-enable max-len */
 

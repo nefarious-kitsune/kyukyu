@@ -1,3 +1,5 @@
+'use strict';
+
 /*
  * Normal scenarios where a player is in imminent danger.
  * All choices have same probability of elminiation

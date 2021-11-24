@@ -1,3 +1,5 @@
+'use strict';
+
 /*
  * Normal scenarios where a player has some chance of getting a medal.
  * Each choice has a differnet probability of elminiation

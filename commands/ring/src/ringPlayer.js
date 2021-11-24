@@ -47,6 +47,7 @@ class Player {
     this.defaultChoice = diceRoll(choices.length);
 
     this.messages.push(`**Day ${this.master.days}**\n${story}`);
+    this.messages.push(this.master.l10n.day);
 
     for (let bIdx = 0; bIdx < choices.length; bIdx++) {
       buttons.push({

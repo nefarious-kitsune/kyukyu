@@ -1,7 +1,5 @@
 'use strict';
 
-const L10N_EN = require('./en.common');
-
 const {diceRoll, pause, wait} = require('./common');
 
 /** RiNG Master */
