@@ -3,7 +3,7 @@ const path = require('path');
 const {literal} = require('../../helpers/literal');
 const {wait, pause} = require('./src/common');
 const L10N_EN = require('./en/_l10n');
-const Enroll = require('./en/enroll');
+const Enroll = require('./src/enroll');
 const Master = require('./src/ringMaster');
 
 // const BLUE = 0x3170a6; // (49, 112, 166)

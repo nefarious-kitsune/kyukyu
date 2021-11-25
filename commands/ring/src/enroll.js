@@ -1,4 +1,5 @@
 const {literal} = require('../../../helpers/literal');
+const {pause} = require('./common');
 
 /* eslint-disable max-len */
 const RING_IMG_URL = 'https://cdn.discordapp.com/attachments/833978786395586600/903096090977509446/the-ring.png';
@@ -169,7 +170,6 @@ class Enrollment {
             '{PLAYER COUNT}', this.contestantIds.length),
     );
     this.master.startDay();
-    this.reset();
   }
 };
 
