@@ -1,9 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 const {literal} = require('../../helpers/literal');
-const {pause} = require('./src/common');
+const {wait} = require('./src/common');
 const L10N_EN = require('./en/_l10n');
-const ENROLL = require('./en/enroll');
+const Enroll = require('./en/enroll');
 const Master = require('./src/ringMaster');
 
 // const BLUE = 0x3170a6; // (49, 112, 166)
@@ -25,43 +25,51 @@ There was a heavy shower, and the road became very muddy.
 
 module.exports = {
   name: 'ring',
-  async start(msg) {
-    const allSettings = JSON.parse(
-        fs.readFileSync(path.resolve(__dirname, './ring.json')),
-    );
-    if (!allSettings.hasOwnProperty(msg.guildId)) return;
+  async start(gameSettings) {
+    const master = new Master(gameSettings, L10N_EN);
+    const enroll = new Enroll(gameSettings, master);
 
-    const guildSettings = allSettings[msg.guildId];
-    if (guildSettings.gameChannel != msg.channelId) return;
+    const preannouncement = literal(
+        L10N_EN.PREANNOUNCEMENT, '{SECONDS}', gameSettings.pauseBeforeGame);
+    const letsgo = literal(
+        L10N_EN.LETSGO, '{CHANNEL ID}', gameSettings.gameChannelId);
 
-    const generalChat =
-        await msg.guild.channels.fetch(guildSettings.generalChannel);
-
-    const master = new Master(
-        msg.author, msg.channel, guildSettings, L10N_EN);
-
-    const enroll = new ENROLL(guildSettings, master);
-
-    generalChat.send(literal(
-        L10N_EN.PREANNOUNCEMENT,
-        '{SECONDS}', guildSettings.pauseBeforeGame),
-    );
-
-    enroll.announce();
-
-    pause(guildSettings.pauseBeforeGame).then(() => {
-      generalChat.send(L10N_EN.LETSGO);
-      enroll.start();
-      pause(guildSettings.entryTimeLimit).then(()=> {
-        enroll.stop();
-        pause(guildSettings.pauseBeforeDay)
-            .then(() => master.startDay());
-      });
-    });
+    generalChannel.send(preannouncement);
+    enroll.announce(); // Preload enrollment message (buttons disabled)
+    wait(guildSettings.pauseBeforeGame);
+    generalChannel.send(letsgo);
+    enroll.start(); // Enable buttons
   },
   async execute(cmdRes, settings, msg, args) {
     if (msg.channel.type == 'DM') return;
-    this.start(msg);
+
+    const allSettings = JSON.parse(
+        fs.readFileSync(path.resolve(__dirname, './ring.json')),
+    );
+
+    // Exit if guild settings cannot be found
+    if (!allSettings.hasOwnProperty(msg.guildId)) return;
+
+    // Exit if the command is not executed in game channel
+    const guildSettings = allSettings[msg.guildId];
+    if (guildSettings.gameChannelId != msg.channelId) return;
+
+    // Exit if the command is not executed by an Fire Starter
+    if (!guildSettings.fireStarterIds.includes(msg.author.id)) return;
+
+    const channel = msg.channel;
+    const guild = msg.guild;
+
+    const generalChannel =
+      await guild.channels.fetch(guildSettings.generalChannelId);
+    const role = await guild.roles.fetch(guildSettings.roleId);
+
+    const gameSettings = Object.assign({}, guildSettings);
+    gameSettings.generalChannel = generalChannel;
+    gameSettings.gameChannel = channel;
+    gameSettings.roleName = role.name;
+    gameSettings.fireStarter = msg.author;
+    this.start(gameSettings);
   },
 };
 

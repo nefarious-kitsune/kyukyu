@@ -1,122 +1,101 @@
+const {literal} = require('../../../helpers/literal');
 
 /* eslint-disable max-len */
 const RING_IMG_URL = 'https://cdn.discordapp.com/attachments/833978786395586600/903096090977509446/the-ring.png';
-const RING_EMOJI = '<:the_one_ring:906177472490532864>';
 /* eslint-enable max-len */
 
-const JOIN = 'JOIN';
-
-const DISABLED_BUTTONS = [{
-  type: 2, label: JOIN, style: 1,
-  custom_id: 'join', emoji: RING_EMOJI, disabled: true,
-}];
-
-const ENABLED_BUTTONS = [{
-  type: 2, label: JOIN, style: 1,
-  custom_id: 'join', emoji: RING_EMOJI,
-}];
-
 const REFRESH_INTERVAL = 3;
-
-const WELCOME = {
-  content:
-    'Welcome! The game will start shortly.\n(**Do NOT close this message**)',
-  ephemeral: true,
-};
 
 /** Enrollment manager */
 class Enrollment {
   /**
    * Constructor
-   * @param {object} GAME_SETTINGS game settings
+   * @param {object} gameSettings game settings
    * @param {Master} master Ring Master
    * */
-  constructor(GAME_SETTINGS, master) {
+  constructor(gameSettings, master) {
     this.reset();
+    this.l10n = master.l10n.ENROLL;
     this.master = master;
-    this.gameSettings = GAME_SETTINGS;
-    this.headStartMsg = '';
+    this.gameSettings = gameSettings;
+    this.headStartText = '';
   }
 
   /** Reset everything */
   reset() {
     this.master = null;
     this.gameSettings = null;
+    this.L10N = null;
     this.refresher = null;
     this.annoucementMessage = null;
     this.enrollmentCollector = null;
     this.countDown = 0;
     this.updateBoard = null;
+    this.contestantIds = [];
   }
 
   /** Make an annoucement */
   announce() {
-    this.ANNOUNCEMENT_MSG =
-    'A round of **Ri**diculously **N**onsensical **G**ambits (RiNGs) ' +
-    'is about to start! If you want to participate in it, ' +
-    `tap the ${JOIN} button!\n` +
-    `• Max **${this.gameSettings.playerLimit}** participants\n` +
-    `• Max **${this.gameSettings.winnerLimit}** winners\n\n` +
-    'Winners of this game will be crowned as **Lord of the RiNGs**!';
+    this.announcementText = literal(
+        this.l10n.ANNOUNCEMENT_MSG,
+        '{PLAYER LIMIT}', this.gameSettings.playerLimit,
+        '{WINNEr LIMIT}', this.gameSettings.winnerLimit,
+        '{ROLE NAME}', this.gameSettings.roleName,
+    );
 
-    this.master.channel.send({
+    this.gameSettings.gameChannel.send({
       embeds: [{
-        title: 'RiNGs',
         thumbnail: {url: RING_IMG_URL},
-        description: this.ANNOUNCEMENT_MSG,
+        description: this.announcementText,
         color: 0x3170a6,
       }],
-      components: [{type: 1, components: DISABLED_BUTTONS}],
+      components: [{
+        type: 1,
+        components: [{
+          type: 2, label: this.l10n.JOIN,
+          style: 1, custom_id: 'join', disabled: true,
+        }],
+      }],
     }).then((annoucement)=> {
       this.annoucementMessage = annoucement;
-      annoucement.channel.send('Starting soon.').then((startingSoon)=>{
-        this.updateBoard = startingSoon;
-        this.master.updateBoard = startingSoon;
-      });
+      annoucement.channel
+          .send(this.l10n.STARTING_SOON)
+          .then((startingSoon)=>{
+            this.updateBoard = startingSoon;
+            this.master.updateBoard = startingSoon;
+          });
     });
   }
 
   /** Start enrolling players */
   start() {
-    const contestantIds = [];
-
     this.enrollmentCollector =
-      this.annoucementMessage.createMessageComponentCollector();
+      this.annoucementMessage.createMessageComponentCollector(
+          {time: this.gameSettings.entryTimeLimit * 1000},
+      );
 
-    this.enrollmentCollector.on('collect', (interaction) => {
-      if (contestantIds.indexOf(interaction.member.id) != -1) {
-        interaction.deferUpadte();
-        return;
-      }
-      interaction.reply(WELCOME);
-      const newPlayer = this.master.addPlayer(interaction);
-      this.master.log(`${newPlayer.playerName} has joined the RiNGs.`);
+    this.enrollmentCollector.on('collect', (i) => {
+      this.onCollect(i);
+    });
 
-      contestantIds.push(interaction.member.id);
-      if (contestantIds.length ==3) {
-        this.master.players[0].medal = 1;
-        this.master.players[1].medal = 1;
-        this.master.players[2].medal = 1;
-        this.headStartMsg =
-            `**${this.master.players[0].playerName}**, ` +
-            `**${this.master.players[1].playerName}**, and ` +
-            `**${this.master.players[2].playerName}** ` +
-            'have taken a headstart! ' +
-            'They each will be awarded an Honor Medal.\n\n';
-      }
-      if (contestantIds.length >= this.gameSettings.playerLimit) {
-        this.enrollmentCollector.stop();
-      }
+    this.enrollmentCollector.on('end', (i, reason) => {
+      if (reason == 'time') clearInterval(this.refresher);
+      this.onEnd(i);
     });
 
     this.annoucementMessage.edit({
       embeds: [{
-        title: 'RiNGs',
         thumbnail: {url: RING_IMG_URL},
-        description: this.ANNOUNCEMENT_MSG,
+        description: this.announcementText,
         color: 0x3170a6,
       }],
-      components: [{type: 1, components: ENABLED_BUTTONS}],
+      components: [{
+        type: 1,
+        components: [{
+          type: 2, label: this.l10n.JOIN,
+          style: 1, custom_id: 'join',
+        }],
+      }],
     });
     this.countDown = this.gameSettings.entryTimeLimit;
     this.refresh();
@@ -125,36 +104,67 @@ class Enrollment {
         REFRESH_INTERVAL * 1000);
   }
 
+  /**
+   * Process interaction
+   * @param {Interaction} i Interaction
+   */
+  onCollect(i) {
+    if (this.contestantIds.indexOf(i.member.id) != -1) {
+      i.deferUpadte();
+      return;
+    }
+
+    i.reply({content: this.l10n.WELCOME, ephemeral: true});
+    const newPlayer = this.master.addPlayer(i);
+    this.master.log(`${newPlayer.playerName} has joined the RiNGs.`);
+    contestantIds.push(i.member.id);
+    if (contestantIds.length ==3) {
+      this.master.players[0].medal = 1;
+      this.master.players[1].medal = 1;
+      this.master.players[2].medal = 1;
+      this.headStartText = literal(
+          this.l10n.HEAD_START,
+          '{PLAYER 1}', this.master.players[0].playerName,
+          '{PLAYER 2}', this.master.players[1].playerName,
+          '{PLAYER 3}', this.master.players[2].playerName,
+      );
+    }
+    if (contestantIds.length >= this.gameSettings.playerLimit) {
+      this.enrollmentCollector.stop();
+    }
+  }
+
   /** Countdown update */
   refresh() {
     if (this.countDown <= 0) {
       this.countDown = 0;
       clearInterval(this.refresher);
     }
-    this.updateBoard.edit({
-      content: this.headStartMsg + `${this.countDown}s remaining`,
-    });
+    this.updateBoard.edit(
+        this.headStartText +
+        literal(this.l10n.TIME_REMAINING, '{SECONDS}', this.countDown),
+    );
     this.countDown -= REFRESH_INTERVAL;
   }
 
   /** Countdown stop */
-  stop() {
-    clearInterval(this.refresher);
-    if (!this.enrollmentCollector.ended) this.enrollmentCollector.stop();
+  onEnd() {
     this.annoucementMessage.edit({
       embeds: [{
         title: 'RiNGs',
         thumbnail: {url: RING_IMG_URL},
-        description: this.ANNOUNCEMENT_MSG,
+        description: this.announcementText,
         color: 0x3170a6,
       }],
     });
-    this.updateBoard.edit({
-      content: this.headStartMsg +
-        '**RiNGs** has started! Best of luck to all of our ' +
-        `**${this.master.players.length}** players.`,
-    });
+    this.updateBoard.edit(
+        this.headStartText +
+        literal(
+            this.l10n.STARTED,
+            '{PLAYER COUNT}', this.contestantIds.length),
+    );
     this.reset();
+    this.master.startDay();
   }
 };
 

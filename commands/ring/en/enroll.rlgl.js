@@ -92,7 +92,7 @@ module.exports = {
         color: 0x3170a6,
       }],
     };
-    const channel = master.channel;
+    const channel = master.gameSettings.gameChannel;
     channel.send(ANNOUNCEMENT);
     enrollmentMessage = await channel.send(RLGL_INITIATING);
   },
@@ -135,7 +135,7 @@ module.exports = {
 
     players.forEach((p) => master.addPlayer(p.interaction));
 
-    master.channel.send(
+    master.gameSettings.gameChannel.send(
         'The following players advance: ' +
         master.players.map((p) => `<@${p.member.id}>`).join(', '),
     );

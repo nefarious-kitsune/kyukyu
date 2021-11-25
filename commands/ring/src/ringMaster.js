@@ -7,15 +7,11 @@ const Player = require('./ringPlayer');
 /** RiNG Master */
 class Master {
   /**
-   * @param {Member} fireStarter user who initiates the game
-   * @param {TextChannel} channel
    * @param {object} gameSettings game settings
    * @param {object} l10n Localization object
    */
-  constructor(fireStarter, channel, gameSettings, l10n) {
-    this.fireStarter = fireStarter;
+  constructor(gameSettings, l10n) {
     this.players = [];
-    this.channel = channel;
     this.days = 0;
     this.gameSummary = [];
     this.gameLog = '';
@@ -145,6 +141,7 @@ class Master {
         this.gameSummary.push(
             literal(
                 this.l10n.SUMMARY_ONE_WINNER,
+                '{ROLE ID}', this.gameSettings.roleId,
                 '{WINNER}', `<@${survivors[0].member.id}>`,
             ),
         );
@@ -158,18 +155,16 @@ class Master {
         );
       }
 
-      if (this.channel.id == GLOBAL.RING_CHANNEL) {
-        const role = this.channel.guild
-            .roles.cache.get(GLOBAL.LORD_OF_RING_ROLE_ID);
-        role.members.forEach((member)=> member.roles.remove(role));
-        survivors.forEach((survivor)=> survivor.member.roles.add(role));
-      }
+      const role = this.gameSettings.gameChannel.guild
+          .roles.cache.get(this.gameSettings.roleId);
+      role.members.forEach((member)=> member.roles.remove(role));
+      survivors.forEach((survivor)=> survivor.member.roles.add(role));
     }
 
     if (gameEnded) {
       // survivors.forEach(async (p) => await p.sendLastMessage());
       wait(this.gameSettings.pauseBeforeDay);
-      this.channel.send(this.gameSummary.join('\n\n'));
+      this.gameSettings.gameChannel.send(this.gameSummary.join('\n\n'));
       this.gameSummary = [];
       this.players = [];
       this.l10n.specialScenarios.forEach((s)=>s.init());
@@ -177,7 +172,7 @@ class Master {
     }
 
     if (this.gameSummary.length >= 5) {
-      this.fireStarter.send(
+      this.gameSettings.fireStarter.send(
           this.gameSummary.join('\n\n') +
           literal(
               this.l10n.SUMMARY_SURVIVOR_COUNT,
