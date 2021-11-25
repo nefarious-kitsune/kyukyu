@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const {literal} = require('../../helpers/literal');
-const {wait} = require('./src/common');
+const {wait, pause} = require('./src/common');
 const L10N_EN = require('./en/_l10n');
 const Enroll = require('./en/enroll');
 const Master = require('./src/ringMaster');
@@ -34,11 +34,13 @@ module.exports = {
     const letsgo = literal(
         L10N_EN.LETSGO, '{CHANNEL ID}', gameSettings.gameChannelId);
 
-    generalChannel.send(preannouncement);
-    enroll.announce(); // Preload enrollment message (buttons disabled)
-    wait(guildSettings.pauseBeforeGame);
-    generalChannel.send(letsgo);
-    enroll.start(); // Enable buttons
+    gameSettings.generalChannel.send(preannouncement);
+    // Preload enrollment message (buttons disabled)
+    enroll.announce();
+    pause(gameSettings.pauseBeforeGame).then(()=>{
+      gameSettings.generalChannel.send(letsgo);
+      enroll.start(); // Enable buttons
+    });
   },
   async execute(cmdRes, settings, msg, args) {
     if (msg.channel.type == 'DM') return;
@@ -57,7 +59,6 @@ module.exports = {
     // Exit if the command is not executed by an Fire Starter
     if (!guildSettings.fireStarterIds.includes(msg.author.id)) return;
 
-    const channel = msg.channel;
     const guild = msg.guild;
 
     const generalChannel =
@@ -66,7 +67,7 @@ module.exports = {
 
     const gameSettings = Object.assign({}, guildSettings);
     gameSettings.generalChannel = generalChannel;
-    gameSettings.gameChannel = channel;
+    gameSettings.gameChannel = msg.channel;
     gameSettings.roleName = role.name;
     gameSettings.fireStarter = msg.author;
     this.start(gameSettings);

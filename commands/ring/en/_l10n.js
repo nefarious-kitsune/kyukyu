@@ -32,7 +32,7 @@ module.exports = {
   ENROLL: {
     JOIN: 'JOIN',
     ANNOUNCEMENT_MSG: 'A round of **Ri**diculously **N**onsensical **G**ambits (RiNGs) is about to start! If you want to participate in it, tap the JOIN button!\n• Max **{PLAYER LIMIT}** participants\n• Max **{WINNER LIMIT}** winners\n\nWinners of this game will be crowned as **{ROLE NAME}**!',
-    STARTING_SOON: 'Starting soon',
+    STARTING_SOON: '<a:ellipsedots:913313385859399690>',
     WELCOME: 'Welcome! The game will start shortly.\n(**Do NOT close this message**)',
     HEAD_START: '**{PLAYER 1}**, **{PLAYER 2}**, and **{PLAYER 3}** have taken a headstart! They each will be awarded an Honor Medal.\n\n',
     TIME_REMAINING: '{SECONDS}s remaining',

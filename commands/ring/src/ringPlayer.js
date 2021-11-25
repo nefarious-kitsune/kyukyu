@@ -84,13 +84,14 @@ class Player {
   onReaction(i) {
     this.processChoice(parseInt(i.customId));
     this.noReactionCount = 0;
-    this.lastInteraction = i;
-    this.messages = [];
-    i.reply({
-      content: 'wait....',
-      ephemeral: true,
-    });
-    // i.deferReply();
+    if (this.alive) {
+      this.lastInteraction = i;
+      this.messages = [];
+      i.reply({
+        content: '<a:ellipsedots:913313385859399690>',
+        ephemeral: true,
+      });
+    }
   }
 
   /**

@@ -35,15 +35,15 @@ class Enrollment {
   }
 
   /** Make an annoucement */
-  announce() {
+  async announce() {
     this.announcementText = literal(
         this.l10n.ANNOUNCEMENT_MSG,
         '{PLAYER LIMIT}', this.gameSettings.playerLimit,
-        '{WINNEr LIMIT}', this.gameSettings.winnerLimit,
+        '{WINNER LIMIT}', this.gameSettings.winnerLimit,
         '{ROLE NAME}', this.gameSettings.roleName,
     );
 
-    this.gameSettings.gameChannel.send({
+    const content = {
       embeds: [{
         thumbnail: {url: RING_IMG_URL},
         description: this.announcementText,
@@ -56,15 +56,17 @@ class Enrollment {
           style: 1, custom_id: 'join', disabled: true,
         }],
       }],
-    }).then((annoucement)=> {
-      this.annoucementMessage = annoucement;
-      annoucement.channel
-          .send(this.l10n.STARTING_SOON)
-          .then((startingSoon)=>{
-            this.updateBoard = startingSoon;
-            this.master.updateBoard = startingSoon;
-          });
-    });
+    };
+
+    const annoucement = await this.gameSettings.gameChannel.send(content);
+
+    this.annoucementMessage = annoucement;
+    annoucement.channel
+        .send(this.l10n.STARTING_SOON)
+        .then((startingSoon)=>{
+          this.updateBoard = startingSoon;
+          this.master.updateBoard = startingSoon;
+        });
   }
 
   /** Start enrolling players */
@@ -110,15 +112,16 @@ class Enrollment {
    */
   onCollect(i) {
     if (this.contestantIds.indexOf(i.member.id) != -1) {
-      i.deferUpadte();
+      i.deferUpdate();
       return;
     }
-
+    console.log('user collected');
     i.reply({content: this.l10n.WELCOME, ephemeral: true});
     const newPlayer = this.master.addPlayer(i);
     this.master.log(`${newPlayer.playerName} has joined the RiNGs.`);
-    contestantIds.push(i.member.id);
-    if (contestantIds.length ==3) {
+
+    this.contestantIds.push(i.member.id);
+    if (this.contestantIds.length ==3) {
       this.master.players[0].medal = 1;
       this.master.players[1].medal = 1;
       this.master.players[2].medal = 1;
@@ -129,7 +132,7 @@ class Enrollment {
           '{PLAYER 3}', this.master.players[2].playerName,
       );
     }
-    if (contestantIds.length >= this.gameSettings.playerLimit) {
+    if (this.contestantIds.length >= this.gameSettings.playerLimit) {
       this.enrollmentCollector.stop();
     }
   }
@@ -148,7 +151,8 @@ class Enrollment {
   }
 
   /** Countdown stop */
-  onEnd() {
+  async onEnd() {
+    console.log('enrollment has ended');
     this.annoucementMessage.edit({
       embeds: [{
         title: 'RiNGs',
@@ -156,6 +160,7 @@ class Enrollment {
         description: this.announcementText,
         color: 0x3170a6,
       }],
+      components: [],
     });
     this.updateBoard.edit(
         this.headStartText +
@@ -163,8 +168,8 @@ class Enrollment {
             this.l10n.STARTED,
             '{PLAYER COUNT}', this.contestantIds.length),
     );
-    this.reset();
     this.master.startDay();
+    this.reset();
   }
 };
 
