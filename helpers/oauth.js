@@ -2,8 +2,6 @@ const fs = require('fs');
 const readline = require('readline');
 const {google} = require('googleapis');
 
-const SHEET_ID = '1gCbDpHcmGdoZx5oCD5b-dszTeiJNClWSvO6JYYlMnWE';
-
 // If modifying these scopes, delete token.json.
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
 
