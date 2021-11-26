@@ -66,6 +66,7 @@ module.exports = {
     },
     {name: 'event-add', aliases: ['event-add', 'events-d'], hidden: true},
     {name: 'event-delete', aliases: ['event-delete', 'events-delete'], hidden: true},
+    {name: 'event-update', aliases: ['event-update', 'events-update'], hidden: true},
     {
       name: 'utc',
       aliases: ['utc', 'now', 'time'],

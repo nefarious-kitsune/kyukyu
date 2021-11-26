@@ -6,6 +6,8 @@ config.json
 cache/
 roles.png
 *.bat
+credentials.json
+token.json
 
 # Dependency directories
 node_modules/
