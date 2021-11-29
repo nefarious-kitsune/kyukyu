@@ -1,0 +1,25 @@
+{
+  "basic": {
+    "label": "Basic",
+    "title": "Basic Attack",
+    "description": "• Range: 4",
+    "image": ""
+  },
+  "active": {
+    "label": "Active",
+    "title": "Active Skill: ",
+    "description": "• ",
+    "image": ""
+  },
+  "passive": {
+    "label": "Passive",
+    "title": "Passive Skill: ",
+    "description": "• "
+  },
+  "legendary": {
+    "label": "Legendary",
+    "title": "Legendary Skill: ",
+    "description": "• ",
+    "image": ""
+  }
+}

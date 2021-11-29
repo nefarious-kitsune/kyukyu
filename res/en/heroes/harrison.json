@@ -16,7 +16,7 @@
     },
     {
       "name": "Legendary Skill: Tea Party Time",
-      "value": "• Upon death, awakened Harrison will trigger the <Tea Party Time> skill which revives himself and some of his troops.\n• Harrison will revive troops who are present at the start of the battle (i.e. Pirate Ship and Necromancer). Troops spawned during the battle (i.e. Pirate and Skeleton) will not be revived.\n• Undead Soldier who are revived by Harrison can revive once.\n• Number of Troops Revived: 35/45/55/65/76"
+      "value": "• Upon death, awakened Harrison will release the <Tea Party Time> skill which revives himself and some of his troops.\n• Harrison will revive troops who are present at the start of the battle (i.e. Pirate Ship and Necromancer). Troops spawned during the battle (i.e. Pirate and Skeleton) will not be revived.\n• Undead Soldier who are revived by Harrison can revive once.\n• Number of Troops Revived: 35/45/55/65/76"
     }
   ]
 }
